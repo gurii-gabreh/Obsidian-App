@@ -1,0 +1,1281 @@
+{
+  "nodes": [
+    {
+      "id": "eb80452f7272f265",
+      "type": "group",
+      "x": 500,
+      "y": -35,
+      "width": 2270,
+      "height": 870,
+      "label": "① 目的・仕様",
+      "color": "5"
+    },
+    {
+      "id": "e30d2b0f38d07658",
+      "type": "group",
+      "x": 500,
+      "y": 995,
+      "width": 2270,
+      "height": 870,
+      "label": "② 画面・操作",
+      "color": "4"
+    },
+    {
+      "id": "1c72c24474ac809b",
+      "type": "group",
+      "x": 500,
+      "y": 2025,
+      "width": 2270,
+      "height": 930,
+      "label": "③ 処理・連携",
+      "color": "6"
+    },
+    {
+      "id": "7170d96dbb4a836b",
+      "type": "group",
+      "x": 500,
+      "y": 3115,
+      "width": 2270,
+      "height": 930,
+      "label": "④ データ・保存",
+      "color": "2"
+    },
+    {
+      "id": "8ed7bb9fa8073297",
+      "type": "group",
+      "x": 500,
+      "y": 4205,
+      "width": 2270,
+      "height": 1160,
+      "label": "⑤ ログイン・安全",
+      "color": "1"
+    },
+    {
+      "id": "9896d727ac1cddbb",
+      "type": "group",
+      "x": 500,
+      "y": 5525,
+      "width": 2270,
+      "height": 870,
+      "label": "⑥ 開発・確認",
+      "color": "3"
+    },
+    {
+      "id": "74f24811855ebbb5",
+      "type": "group",
+      "x": 500,
+      "y": 6555,
+      "width": 2270,
+      "height": 990,
+      "label": "⑦ 公開・運用",
+      "color": "5"
+    },
+    {
+      "id": "c6ada15a9a6d32f2",
+      "type": "group",
+      "x": 500,
+      "y": 7705,
+      "width": 2270,
+      "height": 870,
+      "label": "⑧ スマホ向けの追加",
+      "color": "2"
+    },
+    {
+      "id": "8af3804377fb39ab",
+      "type": "text",
+      "x": 1050,
+      "y": 0,
+      "width": 540,
+      "height": 220,
+      "text": "## 誰の何を解決する？\n\n**必ず決める**\n\n使う人と、困っていることを決める。",
+      "color": "5"
+    },
+    {
+      "id": "ba71b112338a231c",
+      "type": "text",
+      "x": 1810,
+      "y": 0,
+      "width": 900,
+      "height": 220,
+      "text": "## 選び方・具体例\n\n- 例：毎日の作業を記録し、合計時間を確認したい。\n\n- 完成の条件：入力・保存・一覧表示ができる。",
+      "color": "5"
+    },
+    {
+      "id": "3f22a5c765fdbab1",
+      "type": "text",
+      "x": 1050,
+      "y": 290,
+      "width": 540,
+      "height": 220,
+      "text": "## 最初に作る機能\n\n**必ず決める**\n\n最低限の機能と、画面の流れを決める。",
+      "color": "5"
+    },
+    {
+      "id": "bf37680459489d99",
+      "type": "text",
+      "x": 1810,
+      "y": 290,
+      "width": 900,
+      "height": 220,
+      "text": "## 選び方・具体例\n\n- 例：一覧 → 新規入力 → 保存 → 詳細。\n\n- 最小版（MVP）を先に作り、追加機能は分ける。",
+      "color": "5"
+    },
+    {
+      "id": "57e90a5cf90ae617",
+      "type": "text",
+      "x": 1050,
+      "y": 580,
+      "width": 540,
+      "height": 220,
+      "text": "## 条件・予算・対象端末\n\n**必ず決める**\n\n使う場所、期限、費用の上限を決める。",
+      "color": "5"
+    },
+    {
+      "id": "b2afab48c201b45e",
+      "type": "text",
+      "x": 1810,
+      "y": 580,
+      "width": 900,
+      "height": 220,
+      "text": "## 選び方・具体例\n\n- Web／スマホアプリ、個人用／複数人用を選ぶ。\n\n- 月額費用・データ量・利用人数の見込みを確認する。",
+      "color": "5"
+    },
+    {
+      "id": "64879f7d6b960a01",
+      "type": "text",
+      "x": 560,
+      "y": 320,
+      "width": 320,
+      "height": 160,
+      "text": "## ① 目的・仕様\n\n作る前に決める",
+      "color": "5"
+    },
+    {
+      "id": "78b65e457181bc8f",
+      "type": "text",
+      "x": 1050,
+      "y": 1030,
+      "width": 540,
+      "height": 220,
+      "text": "## 画面の基本技術\n\n**Webなら基本**\n\nフロントエンドは、見た目と操作を作る部分。",
+      "color": "4"
+    },
+    {
+      "id": "846e5f93355d9bbb",
+      "type": "text",
+      "x": 1810,
+      "y": 1030,
+      "width": 900,
+      "height": 220,
+      "text": "## 選び方・具体例\n\n- HTML：内容・構造。CSS：見た目。JavaScript：動き。\n\n- 表示、入力、ボタンの反応を作る。",
+      "color": "4"
+    },
+    {
+      "id": "0163f1a623089fc6",
+      "type": "text",
+      "x": 1050,
+      "y": 1320,
+      "width": 540,
+      "height": 220,
+      "text": "## 画面を作る道具\n\n**必要なら使う**\n\nフレームワークは、画面作りを助ける道具。",
+      "color": "4"
+    },
+    {
+      "id": "b09cd60811238498",
+      "type": "text",
+      "x": 1810,
+      "y": 1320,
+      "width": 900,
+      "height": 220,
+      "text": "## 選び方・具体例\n\n- 例：React・Vue。JavaScriptに加えて使う。\n\n- 画面や部品が増えたら検討。全て導入する必要はない。",
+      "color": "4"
+    },
+    {
+      "id": "89cf6c66a6f4d43d",
+      "type": "text",
+      "x": 1050,
+      "y": 1610,
+      "width": 540,
+      "height": 220,
+      "text": "## 使いやすさ・画面状態\n\n**必ず確認する**\n\n小さな画面でも、迷わず操作できるようにする。",
+      "color": "4"
+    },
+    {
+      "id": "de85ddfa40e4a3da",
+      "type": "text",
+      "x": 1810,
+      "y": 1610,
+      "width": 900,
+      "height": 220,
+      "text": "## 選び方・具体例\n\n- スマホ対応、文字の読みやすさ、キーボード操作を確認。\n\n- 読み込み中・データなし・保存成功・失敗を表示する。",
+      "color": "4"
+    },
+    {
+      "id": "4cd6c2914887dd4a",
+      "type": "text",
+      "x": 560,
+      "y": 1350,
+      "width": 320,
+      "height": 160,
+      "text": "## ② 画面・操作\n\n利用者が見る部分",
+      "color": "4"
+    },
+    {
+      "id": "4a62df2faefe9ba4",
+      "type": "text",
+      "x": 1050,
+      "y": 2090,
+      "width": 540,
+      "height": 220,
+      "text": "## 裏側の処理\n\n**必要なら使う**\n\nバックエンドは、共有データや秘密を扱う部分。",
+      "color": "6"
+    },
+    {
+      "id": "26e6d2475d07c993",
+      "type": "text",
+      "x": 1810,
+      "y": 2060,
+      "width": 900,
+      "height": 280,
+      "text": "## 選び方・具体例\n\n- 例：Node.js・Python。実行方法にはサーバーレスもある。\n\n- サーバーレス例：Cloudflare Workers。サーバー管理をサービス側へ任せる。\n\n- 表示だけのWebなら、自作バックエンドを省ける場合もある。",
+      "color": "6"
+    },
+    {
+      "id": "f42e4c2c99bd4bfb",
+      "type": "text",
+      "x": 1050,
+      "y": 2410,
+      "width": 540,
+      "height": 220,
+      "text": "## データの受け渡し\n\n**通信するなら必要**\n\nAPIは、画面と処理・外部サービスの窓口。",
+      "color": "6"
+    },
+    {
+      "id": "e55366cd78e4ac66",
+      "type": "text",
+      "x": 1810,
+      "y": 2410,
+      "width": 900,
+      "height": 220,
+      "text": "## 選び方・具体例\n\n- REST：URLと操作で取得・登録。GraphQL：欲しい項目を指定。\n\n- どちらかを用途で選ぶ。送る項目、返す結果、失敗時の応答を決める。",
+      "color": "6"
+    },
+    {
+      "id": "06240611fa222d45",
+      "type": "text",
+      "x": 1050,
+      "y": 2700,
+      "width": 540,
+      "height": 220,
+      "text": "## 外部サービス・定期処理\n\n**必要なら使う**\n\nメール、AI、決まった時刻の処理などをつなぐ。",
+      "color": "6"
+    },
+    {
+      "id": "b4da210bdc7ff4c1",
+      "type": "text",
+      "x": 1810,
+      "y": 2700,
+      "width": 900,
+      "height": 220,
+      "text": "## 選び方・具体例\n\n- 例：通知メール、外部API、毎日の集計。\n\n- 通信失敗・タイムアウト・利用上限を考え、再実行しても二重登録しないようにする。",
+      "color": "6"
+    },
+    {
+      "id": "0a63dd9aa0a90420",
+      "type": "text",
+      "x": 560,
+      "y": 2410,
+      "width": 320,
+      "height": 160,
+      "text": "## ③ 処理・連携\n\n画面の裏で動く部分",
+      "color": "6"
+    },
+    {
+      "id": "c24133fabacc9627",
+      "type": "text",
+      "x": 1050,
+      "y": 3150,
+      "width": 540,
+      "height": 220,
+      "text": "## データの設計\n\n**保存するなら必要**\n\n保存する項目と、データ同士の関係を決める。",
+      "color": "2"
+    },
+    {
+      "id": "68efca081f600f88",
+      "type": "text",
+      "x": 1810,
+      "y": 3150,
+      "width": 900,
+      "height": 220,
+      "text": "## 選び方・具体例\n\n- 例：作業ID・日付・内容・時間。IDは1件を区別する番号。\n\n- 必須項目、型、重複の扱い、追加・編集・削除を決める。",
+      "color": "2"
+    },
+    {
+      "id": "dd163df09cab6390",
+      "type": "text",
+      "x": 1050,
+      "y": 3470,
+      "width": 540,
+      "height": 220,
+      "text": "## 保存先を選ぶ\n\n**保存するなら必要**\n\nデータベースは、検索や更新ができる保存場所。",
+      "color": "2"
+    },
+    {
+      "id": "fa11d39dd897bc30",
+      "type": "text",
+      "x": 1810,
+      "y": 3440,
+      "width": 900,
+      "height": 280,
+      "text": "## 選び方・具体例\n\n- SQL例：PostgreSQL・MySQL。NoSQL例：MongoDB。\n\n- 小規模ならJSON・Sheetsも候補。共有・同時更新・権限の制約を確認。\n\n- 端末内保存だけでは、他の端末と自動共有されない。",
+      "color": "2"
+    },
+    {
+      "id": "f2575f5b4573bb78",
+      "type": "text",
+      "x": 1050,
+      "y": 3790,
+      "width": 540,
+      "height": 220,
+      "text": "## 画像・ファイル・復元\n\n**必要性を確認する**\n\n添付の置き場所と、消えたデータの戻し方を決める。",
+      "color": "2"
+    },
+    {
+      "id": "b83b8bd4e8b52edc",
+      "type": "text",
+      "x": 1810,
+      "y": 3790,
+      "width": 900,
+      "height": 220,
+      "text": "## 選び方・具体例\n\n- 画像等はファイル用ストレージを検討し、容量・形式・閲覧権限を決める。\n\n- 大切なデータはバックアップし、復元できることも確認する。",
+      "color": "2"
+    },
+    {
+      "id": "3a6eb0790f39ac87",
+      "type": "text",
+      "x": 560,
+      "y": 3500,
+      "width": 320,
+      "height": 160,
+      "text": "## ④ データ・保存\n\n何をどこへ残すか",
+      "color": "2"
+    },
+    {
+      "id": "8ad951fd859c75f0",
+      "type": "text",
+      "x": 1050,
+      "y": 4240,
+      "width": 540,
+      "height": 220,
+      "text": "## ログイン\n\n**必要なら使う**\n\n認証は、使っている人が誰かを確認すること。",
+      "color": "1"
+    },
+    {
+      "id": "19242fdb6672b843",
+      "type": "text",
+      "x": 1810,
+      "y": 4240,
+      "width": 900,
+      "height": 220,
+      "text": "## 選び方・具体例\n\n- 例：メール・Googleログイン。必要なら既存の認証サービスを利用。\n\n- 公開情報の閲覧だけなら不要な場合も。ログアウト・期限切れも考える。",
+      "color": "1"
+    },
+    {
+      "id": "ae70bd3cfeccb748",
+      "type": "text",
+      "x": 1050,
+      "y": 4530,
+      "width": 540,
+      "height": 220,
+      "text": "## 操作できる範囲\n\n**利用者を分けるなら必要**\n\n認可は、誰が何を見たり変更できるかを決めること。",
+      "color": "1"
+    },
+    {
+      "id": "af6fde634c4cf720",
+      "type": "text",
+      "x": 1810,
+      "y": 4530,
+      "width": 900,
+      "height": 220,
+      "text": "## 選び方・具体例\n\n- 例：本人の記録だけ編集、管理者だけ削除。\n\n- 画面でボタンを隠すだけでなく、サーバー側でも権限を確認する。",
+      "color": "1"
+    },
+    {
+      "id": "0077ce79199faece",
+      "type": "text",
+      "x": 1050,
+      "y": 4820,
+      "width": 540,
+      "height": 220,
+      "text": "## 入力と秘密情報\n\n**基本として確認**\n\n不正な入力を防ぎ、APIキー等を漏らさない。",
+      "color": "1"
+    },
+    {
+      "id": "7fffe8d97b5b7a61",
+      "type": "text",
+      "x": 1810,
+      "y": 4820,
+      "width": 900,
+      "height": 220,
+      "text": "## 選び方・具体例\n\n- 文字数・型を検証し、保存側でもチェックする。\n\n- 秘密のキーは画面やGitHubへ書かず、環境変数・Secrets等で管理する。",
+      "color": "1"
+    },
+    {
+      "id": "cb70f5b75432d7fd",
+      "type": "text",
+      "x": 1050,
+      "y": 5110,
+      "width": 540,
+      "height": 220,
+      "text": "## 個人情報の扱い\n\n**扱うなら必要**\n\n集める情報を絞り、保存・削除の方法を決める。",
+      "color": "1"
+    },
+    {
+      "id": "05c1c4d78d8b1aaa",
+      "type": "text",
+      "x": 1810,
+      "y": 5110,
+      "width": 900,
+      "height": 220,
+      "text": "## 選び方・具体例\n\n- 誰が見られるか、保存期間、退会時の削除を決める。\n\n- ログにもパスワードや機密データを残さない。",
+      "color": "1"
+    },
+    {
+      "id": "5d2d3ceb7abe5523",
+      "type": "text",
+      "x": 560,
+      "y": 4705,
+      "width": 320,
+      "height": 160,
+      "text": "## ⑤ ログイン・安全\n\n見せる人と操作を制限",
+      "color": "1"
+    },
+    {
+      "id": "7e0cfb1c1ecb937f",
+      "type": "text",
+      "x": 1050,
+      "y": 5560,
+      "width": 540,
+      "height": 220,
+      "text": "## 変更履歴を残す\n\n**基本として用意**\n\nGitは変更の履歴、GitHubは共有・保管する場所。",
+      "color": "3"
+    },
+    {
+      "id": "263030e01139205c",
+      "type": "text",
+      "x": 1810,
+      "y": 5560,
+      "width": 900,
+      "height": 220,
+      "text": "## 選び方・具体例\n\n- 小さな単位でコミットし、何を変えたか記録する。\n\n- READMEに起動方法と設定を書く。Git履歴はDBのバックアップとは別。",
+      "color": "3"
+    },
+    {
+      "id": "7f02e34779a988a5",
+      "type": "text",
+      "x": 1050,
+      "y": 5850,
+      "width": 540,
+      "height": 220,
+      "text": "## 開発環境と設定\n\n**作る前に用意**\n\n自分や他の人が、同じ手順で動かせるようにする。",
+      "color": "3"
+    },
+    {
+      "id": "dbc600d824f55d17",
+      "type": "text",
+      "x": 1810,
+      "y": 5850,
+      "width": 900,
+      "height": 220,
+      "text": "## 選び方・具体例\n\n- エディタ、言語の実行環境、ライブラリのバージョンを揃える。\n\n- 開発用・本番用のURLや設定を分け、秘密の値はコードの外に置く。",
+      "color": "3"
+    },
+    {
+      "id": "5dceec2d0e8eae6a",
+      "type": "text",
+      "x": 1050,
+      "y": 6140,
+      "width": 540,
+      "height": 220,
+      "text": "## テスト・動作確認\n\n**公開前に確認**\n\n作りたい動きと、失敗した場合の動きを確かめる。",
+      "color": "3"
+    },
+    {
+      "id": "a25ce86e78c5e879",
+      "type": "text",
+      "x": 1810,
+      "y": 6140,
+      "width": 900,
+      "height": 220,
+      "text": "## 選び方・具体例\n\n- 正常入力・不正入力・権限・通信失敗を確認する。\n\n- ブラウザ・スマホでも確認。重要な処理は自動テストも用意する。",
+      "color": "3"
+    },
+    {
+      "id": "875b9380866e9d56",
+      "type": "text",
+      "x": 560,
+      "y": 5880,
+      "width": 320,
+      "height": 160,
+      "text": "## ⑥ 開発・確認\n\n変更を安全に積み上げる",
+      "color": "3"
+    },
+    {
+      "id": "3db9db7d225ac41b",
+      "type": "text",
+      "x": 1050,
+      "y": 6620,
+      "width": 540,
+      "height": 220,
+      "text": "## 公開する場所\n\n**公開するなら必要**\n\nホスティングは、アプリを動かす・配る場所。",
+      "color": "5"
+    },
+    {
+      "id": "f4a15c0bad9071ea",
+      "type": "text",
+      "x": 1810,
+      "y": 6590,
+      "width": 900,
+      "height": 280,
+      "text": "## 選び方・具体例\n\n- 静的Web：GitHub Pages等。サーバー側のコードは実行しない。\n\n- 裏側の処理がある場合：Vercel・Cloudflare等の実行サービスを検討。\n\n- サービスごとに機能・上限・料金を確認。無料とは限らない。",
+      "color": "5"
+    },
+    {
+      "id": "54c2676481e6c104",
+      "type": "text",
+      "x": 1050,
+      "y": 6940,
+      "width": 540,
+      "height": 220,
+      "text": "## 公開・更新の手順\n\n**公開するなら必要**\n\nデプロイは、作ったものを利用環境へ反映すること。",
+      "color": "5"
+    },
+    {
+      "id": "f6e76fd46befa533",
+      "type": "text",
+      "x": 1810,
+      "y": 6940,
+      "width": 900,
+      "height": 220,
+      "text": "## 選び方・具体例\n\n- URL・必要なら独自ドメインを決め、HTTPSで通信する。\n\n- 手動またはCI/CDでテスト→ビルド→公開。失敗時に前版へ戻せるようにする。",
+      "color": "5"
+    },
+    {
+      "id": "371edb40a4528676",
+      "type": "text",
+      "x": 1050,
+      "y": 7260,
+      "width": 540,
+      "height": 220,
+      "text": "## エラー対応・監視\n\n**運用するなら必要**\n\n利用者に失敗を伝え、原因を記録して調べる。",
+      "color": "5"
+    },
+    {
+      "id": "e2c4d9833f91255d",
+      "type": "text",
+      "x": 1810,
+      "y": 7230,
+      "width": 900,
+      "height": 280,
+      "text": "## 選び方・具体例\n\n- コード：try/catch等で適切に処理。入力チェックも行う。\n\n- ログ：いつ・どこで・何が起きたか。監視：Sentry等で検知・通知。\n\n- サービス停止・費用・容量を確認し、対応する人を決める。",
+      "color": "5"
+    },
+    {
+      "id": "a4d451ec23463726",
+      "type": "text",
+      "x": 560,
+      "y": 6970,
+      "width": 320,
+      "height": 160,
+      "text": "## ⑦ 公開・運用\n\n使える場所へ置き、見守る",
+      "color": "5"
+    },
+    {
+      "id": "8883e9baccaf019b",
+      "type": "text",
+      "x": 1050,
+      "y": 7740,
+      "width": 540,
+      "height": 220,
+      "text": "## 作り方と配り方\n\n**スマホ用途なら選ぶ**\n\nスマホ対応Webと、ストア配信アプリを選ぶ。",
+      "color": "2"
+    },
+    {
+      "id": "248c33928bfe69ae",
+      "type": "text",
+      "x": 1810,
+      "y": 7740,
+      "width": 900,
+      "height": 220,
+      "text": "## 選び方・具体例\n\n- Web／PWA：ブラウザ等から使う。ネイティブ：OS向け。クロスプラットフォーム：複数OS向け。\n\n- ストア配信するならApp Store／Google Playの審査・署名・更新手順を確認する。",
+      "color": "2"
+    },
+    {
+      "id": "f911f5fad3aa6ee5",
+      "type": "text",
+      "x": 1050,
+      "y": 8030,
+      "width": 540,
+      "height": 220,
+      "text": "## 通知・端末機能\n\n**必要なら使う**\n\nカメラ・位置情報・プッシュ通知等を利用する。",
+      "color": "2"
+    },
+    {
+      "id": "9abd68356bbab7a0",
+      "type": "text",
+      "x": 1810,
+      "y": 8030,
+      "width": 900,
+      "height": 220,
+      "text": "## 選び方・具体例\n\n- 利用者の許可を取り、拒否された場合も操作できるようにする。\n\n- OS・ブラウザ・配信方法によって使える機能が違う。",
+      "color": "2"
+    },
+    {
+      "id": "9a431c2afef74460",
+      "type": "text",
+      "x": 1050,
+      "y": 8320,
+      "width": 540,
+      "height": 220,
+      "text": "## オフラインと同期\n\n**必要なら使う**\n\n通信できないときの表示・保存を決める。",
+      "color": "2"
+    },
+    {
+      "id": "a2fcec354498a572",
+      "type": "text",
+      "x": 1810,
+      "y": 8320,
+      "width": 900,
+      "height": 220,
+      "text": "## 選び方・具体例\n\n- 端末へ一時保存し、再接続後に同期する方法を考える。\n\n- 同期済み表示、同時編集の衝突、二重送信の扱いを決める。",
+      "color": "2"
+    },
+    {
+      "id": "d524c1a0811da495",
+      "type": "text",
+      "x": 560,
+      "y": 8060,
+      "width": 320,
+      "height": 160,
+      "text": "## ⑧ スマホ向けの追加\n\n用途に応じて選ぶ",
+      "color": "2"
+    },
+    {
+      "id": "4813494d137e1631",
+      "type": "text",
+      "x": 0,
+      "y": 4105,
+      "width": 400,
+      "height": 560,
+      "text": "# アプリ作成の全体像\n\n**目的 → 画面 → 処理 → 保存 → 安全 → 開発 → 公開**\n\n左：何を考えるか\n右：短い説明・選び方\n\n**必ず決める／確認する**\n基本の検討事項。\n\n**必要なら使う**\n用途に合うものだけ選ぶ。\n\n全ての技術を使う必要はありません。特定アプリの採用済み仕様ではなく、構成選びのチェックリストです。"
+    },
+    {
+      "id": "07a0b0962107485c",
+      "type": "text",
+      "x": 1050,
+      "y": 8770,
+      "width": 1660,
+      "height": 440,
+      "text": "## 参考・元図\n\n添付 app-architecture-flow.canvas の項目を整理し、目的・テスト・復元・運用等を追加。\n\n- [MDN：画面とサーバーの役割](https://developer.mozilla.org/ja/docs/Learn_web_development/Extensions/Server-side/First_steps/Client-Server_overview)\n- [MDN：サーバー側の処理](https://developer.mozilla.org/ja/docs/Learn_web_development/Extensions/Server-side/First_steps/Introduction)\n- [MDN：アクセシビリティ](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility)\n- [MDN：テスト](https://developer.mozilla.org/en-US/curriculum/extensions/testing/)\n- [GitHub Pages：静的ホスティング](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages)\n\n技術名は選択肢の例です。機能・料金・制限は採用時に公式情報で確認してください。\n\n更新：2026-10-12 JST"
+    }
+  ],
+  "edges": [
+    {
+      "id": "0b67a0be330543d1",
+      "fromNode": "8af3804377fb39ab",
+      "fromSide": "right",
+      "toNode": "ba71b112338a231c",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "具体例",
+      "color": "5"
+    },
+    {
+      "id": "e63feb087b246f4d",
+      "fromNode": "3f22a5c765fdbab1",
+      "fromSide": "right",
+      "toNode": "bf37680459489d99",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "具体例",
+      "color": "5"
+    },
+    {
+      "id": "26d996e2c0462702",
+      "fromNode": "57e90a5cf90ae617",
+      "fromSide": "right",
+      "toNode": "b2afab48c201b45e",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "具体例",
+      "color": "5"
+    },
+    {
+      "id": "d3238ea314910532",
+      "fromNode": "64879f7d6b960a01",
+      "fromSide": "right",
+      "toNode": "8af3804377fb39ab",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "5"
+    },
+    {
+      "id": "36bbc9e604810329",
+      "fromNode": "64879f7d6b960a01",
+      "fromSide": "right",
+      "toNode": "3f22a5c765fdbab1",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "5"
+    },
+    {
+      "id": "de42bf22a79bceff",
+      "fromNode": "64879f7d6b960a01",
+      "fromSide": "right",
+      "toNode": "57e90a5cf90ae617",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "5"
+    },
+    {
+      "id": "04f0331d44befbd4",
+      "fromNode": "78b65e457181bc8f",
+      "fromSide": "right",
+      "toNode": "846e5f93355d9bbb",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "具体例",
+      "color": "4"
+    },
+    {
+      "id": "2858d75f3a82a7c5",
+      "fromNode": "0163f1a623089fc6",
+      "fromSide": "right",
+      "toNode": "b09cd60811238498",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "具体例",
+      "color": "4"
+    },
+    {
+      "id": "ea151416e931ee02",
+      "fromNode": "89cf6c66a6f4d43d",
+      "fromSide": "right",
+      "toNode": "de85ddfa40e4a3da",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "具体例",
+      "color": "4"
+    },
+    {
+      "id": "a6ea81729fb57740",
+      "fromNode": "4cd6c2914887dd4a",
+      "fromSide": "right",
+      "toNode": "78b65e457181bc8f",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "4"
+    },
+    {
+      "id": "4b369c173039c18a",
+      "fromNode": "4cd6c2914887dd4a",
+      "fromSide": "right",
+      "toNode": "0163f1a623089fc6",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "4"
+    },
+    {
+      "id": "e515ff2709f7b760",
+      "fromNode": "4cd6c2914887dd4a",
+      "fromSide": "right",
+      "toNode": "89cf6c66a6f4d43d",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "4"
+    },
+    {
+      "id": "2b625553fc4ae599",
+      "fromNode": "4a62df2faefe9ba4",
+      "fromSide": "right",
+      "toNode": "26e6d2475d07c993",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "具体例",
+      "color": "6"
+    },
+    {
+      "id": "d88fc3a5f4627bfb",
+      "fromNode": "f42e4c2c99bd4bfb",
+      "fromSide": "right",
+      "toNode": "e55366cd78e4ac66",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "具体例",
+      "color": "6"
+    },
+    {
+      "id": "db1c60a98644da1b",
+      "fromNode": "06240611fa222d45",
+      "fromSide": "right",
+      "toNode": "b4da210bdc7ff4c1",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "具体例",
+      "color": "6"
+    },
+    {
+      "id": "81a7ec42ce57004a",
+      "fromNode": "0a63dd9aa0a90420",
+      "fromSide": "right",
+      "toNode": "4a62df2faefe9ba4",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "d4a9d8be6d785ef8",
+      "fromNode": "0a63dd9aa0a90420",
+      "fromSide": "right",
+      "toNode": "f42e4c2c99bd4bfb",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "44b7d726f4677d88",
+      "fromNode": "0a63dd9aa0a90420",
+      "fromSide": "right",
+      "toNode": "06240611fa222d45",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "f54f49174c77fa45",
+      "fromNode": "c24133fabacc9627",
+      "fromSide": "right",
+      "toNode": "68efca081f600f88",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "具体例",
+      "color": "2"
+    },
+    {
+      "id": "87a44bfcbf76d476",
+      "fromNode": "dd163df09cab6390",
+      "fromSide": "right",
+      "toNode": "fa11d39dd897bc30",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "具体例",
+      "color": "2"
+    },
+    {
+      "id": "894bf837d065f200",
+      "fromNode": "f2575f5b4573bb78",
+      "fromSide": "right",
+      "toNode": "b83b8bd4e8b52edc",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "具体例",
+      "color": "2"
+    },
+    {
+      "id": "a1dc1240b36a28b9",
+      "fromNode": "3a6eb0790f39ac87",
+      "fromSide": "right",
+      "toNode": "c24133fabacc9627",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "2"
+    },
+    {
+      "id": "8bbcb2b9ba4c594b",
+      "fromNode": "3a6eb0790f39ac87",
+      "fromSide": "right",
+      "toNode": "dd163df09cab6390",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "2"
+    },
+    {
+      "id": "03fc017d73aedb8b",
+      "fromNode": "3a6eb0790f39ac87",
+      "fromSide": "right",
+      "toNode": "f2575f5b4573bb78",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "2"
+    },
+    {
+      "id": "660e5219ee44ba91",
+      "fromNode": "8ad951fd859c75f0",
+      "fromSide": "right",
+      "toNode": "19242fdb6672b843",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "具体例",
+      "color": "1"
+    },
+    {
+      "id": "d3c2a3cbc21a77ad",
+      "fromNode": "ae70bd3cfeccb748",
+      "fromSide": "right",
+      "toNode": "af6fde634c4cf720",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "具体例",
+      "color": "1"
+    },
+    {
+      "id": "4e259b8f018482ae",
+      "fromNode": "0077ce79199faece",
+      "fromSide": "right",
+      "toNode": "7fffe8d97b5b7a61",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "具体例",
+      "color": "1"
+    },
+    {
+      "id": "02c1c9efbd0aa5a7",
+      "fromNode": "cb70f5b75432d7fd",
+      "fromSide": "right",
+      "toNode": "05c1c4d78d8b1aaa",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "具体例",
+      "color": "1"
+    },
+    {
+      "id": "2fb3fb073cba98af",
+      "fromNode": "5d2d3ceb7abe5523",
+      "fromSide": "right",
+      "toNode": "8ad951fd859c75f0",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "f7161661119ba53f",
+      "fromNode": "5d2d3ceb7abe5523",
+      "fromSide": "right",
+      "toNode": "ae70bd3cfeccb748",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "8b03e9354887ff1b",
+      "fromNode": "5d2d3ceb7abe5523",
+      "fromSide": "right",
+      "toNode": "0077ce79199faece",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "a06e9f69482e52f3",
+      "fromNode": "5d2d3ceb7abe5523",
+      "fromSide": "right",
+      "toNode": "cb70f5b75432d7fd",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "c2767f486d8c344f",
+      "fromNode": "7e0cfb1c1ecb937f",
+      "fromSide": "right",
+      "toNode": "263030e01139205c",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "具体例",
+      "color": "3"
+    },
+    {
+      "id": "5296b47dc6ac79ee",
+      "fromNode": "7f02e34779a988a5",
+      "fromSide": "right",
+      "toNode": "dbc600d824f55d17",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "具体例",
+      "color": "3"
+    },
+    {
+      "id": "4c8d174b808d84e8",
+      "fromNode": "5dceec2d0e8eae6a",
+      "fromSide": "right",
+      "toNode": "a25ce86e78c5e879",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "具体例",
+      "color": "3"
+    },
+    {
+      "id": "f2b83dfc4451bfb2",
+      "fromNode": "875b9380866e9d56",
+      "fromSide": "right",
+      "toNode": "7e0cfb1c1ecb937f",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "3"
+    },
+    {
+      "id": "117b67d8a49886ce",
+      "fromNode": "875b9380866e9d56",
+      "fromSide": "right",
+      "toNode": "7f02e34779a988a5",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "3"
+    },
+    {
+      "id": "f776bb294e431e48",
+      "fromNode": "875b9380866e9d56",
+      "fromSide": "right",
+      "toNode": "5dceec2d0e8eae6a",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "3"
+    },
+    {
+      "id": "d7e47292cf69dd4d",
+      "fromNode": "3db9db7d225ac41b",
+      "fromSide": "right",
+      "toNode": "f4a15c0bad9071ea",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "具体例",
+      "color": "5"
+    },
+    {
+      "id": "cc251be81c7beb96",
+      "fromNode": "54c2676481e6c104",
+      "fromSide": "right",
+      "toNode": "f6e76fd46befa533",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "具体例",
+      "color": "5"
+    },
+    {
+      "id": "a4b890921e62a663",
+      "fromNode": "371edb40a4528676",
+      "fromSide": "right",
+      "toNode": "e2c4d9833f91255d",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "具体例",
+      "color": "5"
+    },
+    {
+      "id": "451cd9d2993c6c74",
+      "fromNode": "a4d451ec23463726",
+      "fromSide": "right",
+      "toNode": "3db9db7d225ac41b",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "5"
+    },
+    {
+      "id": "4caba5a267633bfe",
+      "fromNode": "a4d451ec23463726",
+      "fromSide": "right",
+      "toNode": "54c2676481e6c104",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "5"
+    },
+    {
+      "id": "fd2bd4593af4fb49",
+      "fromNode": "a4d451ec23463726",
+      "fromSide": "right",
+      "toNode": "371edb40a4528676",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "5"
+    },
+    {
+      "id": "cd5afb07b9448b3a",
+      "fromNode": "8883e9baccaf019b",
+      "fromSide": "right",
+      "toNode": "248c33928bfe69ae",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "具体例",
+      "color": "2"
+    },
+    {
+      "id": "1aa092ec5f381f3f",
+      "fromNode": "f911f5fad3aa6ee5",
+      "fromSide": "right",
+      "toNode": "9abd68356bbab7a0",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "具体例",
+      "color": "2"
+    },
+    {
+      "id": "044445f5bec523ec",
+      "fromNode": "9a431c2afef74460",
+      "fromSide": "right",
+      "toNode": "a2fcec354498a572",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "具体例",
+      "color": "2"
+    },
+    {
+      "id": "f66fa01d7f557183",
+      "fromNode": "d524c1a0811da495",
+      "fromSide": "right",
+      "toNode": "8883e9baccaf019b",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "2"
+    },
+    {
+      "id": "c20240de80d9591e",
+      "fromNode": "d524c1a0811da495",
+      "fromSide": "right",
+      "toNode": "f911f5fad3aa6ee5",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "2"
+    },
+    {
+      "id": "edd48b3eb883fc84",
+      "fromNode": "d524c1a0811da495",
+      "fromSide": "right",
+      "toNode": "9a431c2afef74460",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "2"
+    },
+    {
+      "id": "756b8726d5ebc61a",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "64879f7d6b960a01",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "83369c9ec7fe0089",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "4cd6c2914887dd4a",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "fd60251f418852d6",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "0a63dd9aa0a90420",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "35eb56bdf5c8dfb5",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "3a6eb0790f39ac87",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "5ffc133af7c1d7ae",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "5d2d3ceb7abe5523",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "3881261f7b093385",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "875b9380866e9d56",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "eb3b6f294ad07170",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "a4d451ec23463726",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "db97d638d4f53595",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "d524c1a0811da495",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    }
+  ]
+}
