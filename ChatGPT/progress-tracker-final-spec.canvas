@@ -1,0 +1,1214 @@
+{
+  "nodes": [
+    {
+      "id": "a5af85c9376e9482",
+      "type": "group",
+      "x": 500,
+      "y": -45,
+      "width": 2370,
+      "height": 2030,
+      "label": "データ構造",
+      "color": "5"
+    },
+    {
+      "id": "d9c9ef122b16a841",
+      "type": "group",
+      "x": 500,
+      "y": 2155,
+      "width": 2370,
+      "height": 2170,
+      "label": "画面・操作",
+      "color": "4"
+    },
+    {
+      "id": "e998dfe6747fab3c",
+      "type": "group",
+      "x": 500,
+      "y": 4495,
+      "width": 2370,
+      "height": 1710,
+      "label": "セキュリティ・権限",
+      "color": "6"
+    },
+    {
+      "id": "44d2b305d45ae61d",
+      "type": "group",
+      "x": 500,
+      "y": 6375,
+      "width": 2370,
+      "height": 2290,
+      "label": "連携・同期",
+      "color": "2"
+    },
+    {
+      "id": "f8d5892f2c394482",
+      "type": "group",
+      "x": 500,
+      "y": 8835,
+      "width": 2370,
+      "height": 2390,
+      "label": "ナレッジ・運用",
+      "color": "3"
+    },
+    {
+      "id": "6c2dbdf47a43157f",
+      "type": "group",
+      "x": 500,
+      "y": 11395,
+      "width": 2370,
+      "height": 2730,
+      "label": "アプリの特徴",
+      "color": "6"
+    },
+    {
+      "id": "9aa0fdc0bfe28198",
+      "type": "text",
+      "x": 1050,
+      "y": 130,
+      "width": 540,
+      "height": 240,
+      "text": "## データの役割分担\n\n**確認区分：採用方針**\n\n運用タスクはSheet、表示・詳細はJSON、共通設定は専用の設定ファイルで管理する。",
+      "color": "5"
+    },
+    {
+      "id": "0c8abd7c7ff9b61a",
+      "type": "text",
+      "x": 1810,
+      "y": 0,
+      "width": 1000,
+      "height": 500,
+      "text": "## 最終仕様\n\nGoogleスプレッドシート「実装進捗管理シート」を運用上のタスク管理元とする。依頼タスク／完了／対応中タスクのナレッジ／コメントの各タブを使う。対応中ナレッジは完了時に削除し、完了側との重複を避ける。tasks.jsonは画面表示に必要な構造・詳細・経緯を保持し、AI設定・ポリシーはそれぞれの専用ファイルで管理する。\n\n### 現在の制約・確認範囲\n\n- SheetとJSONは同期処理で揃える。画面操作直後に全媒体が同時更新される設計ではない。\n\n### 根拠\n\n- [README.md](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/README.md)\n- [data/ai-config.json](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/ai-config.json)\n- [gas/Code.gs](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/gas/Code.gs)",
+      "color": "5"
+    },
+    {
+      "id": "53877c5b1ab5f249",
+      "type": "text",
+      "x": 1050,
+      "y": 670,
+      "width": 540,
+      "height": 240,
+      "text": "## タスク・相談事項の構造\n\n**確認区分：実装あり**\n\nタスクは一意IDと再帰的な子タスクを持ち、相談事項は同じリポジトリ内のテーマとして整理する。",
+      "color": "5"
+    },
+    {
+      "id": "7e3e1e2217df412f",
+      "type": "text",
+      "x": 1810,
+      "y": 600,
+      "width": 1000,
+      "height": 380,
+      "text": "## 最終仕様\n\nタスクにid、title、依頼内容task、subtasks、detail、checkHistory、issues、nextAction等を持たせる。detailは最新の要約、checkHistoryは時系列の確認経緯、issuesは課題を分離して記録する。手動作業はmanualSetup等の項目で表す。相談事項はリポジトリ内のテーマとしてまとめ、実装タスクの階層とは区別して扱う。\n\n### 根拠\n\n- [data/tasks.json](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/tasks.json)\n- [dashboard.html](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/dashboard.html)\n- [README.md](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/README.md)",
+      "color": "5"
+    },
+    {
+      "id": "3ffd0765d609d543",
+      "type": "text",
+      "x": 1050,
+      "y": 1110,
+      "width": 540,
+      "height": 240,
+      "text": "## 親タスクの状態集計\n\n**確認区分：実装あり**\n\n孫以下まで再帰的に集計し、未完了の子孫を完了扱いで隠さない。",
+      "color": "5"
+    },
+    {
+      "id": "4a95014777b33dd9",
+      "type": "text",
+      "x": 1810,
+      "y": 1080,
+      "width": 1000,
+      "height": 300,
+      "text": "## 最終仕様\n\naggregateStatusで下位階層まで状態を確認する。全て完了なら親を完了とし、未完了がある場合は判断待ち等の優先順位に基づいて親の状態を表示する。直接の子が完了でも、孫以下に未完了がある場合は未完了として扱う。\n\n### 根拠\n\n- [dashboard.html](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/dashboard.html)",
+      "color": "5"
+    },
+    {
+      "id": "8eb121f1f6d856cd",
+      "type": "text",
+      "x": 1050,
+      "y": 1590,
+      "width": 540,
+      "height": 240,
+      "text": "## 関連タスクの共通データ\n\n**確認区分：実装あり**\n\ndepends_on／blocks／relates_toをtasks.jsonに持ち、関係図へ利用する。",
+      "color": "5"
+    },
+    {
+      "id": "cbf09fe7893efb21",
+      "type": "text",
+      "x": 1810,
+      "y": 1480,
+      "width": 1000,
+      "height": 460,
+      "text": "## 最終仕様\n\nrelatedTasksの各要素に対象id、type、noteを記録する。typeは依存、妨げる関係、関連を区別する。関係図専用の重複したデータファイルを作らず、既存のタスクデータから関係を生成する。\n\n### 現在の制約・確認範囲\n\n- 古いタスク全件への関連付けの遡及入力は完了仕様に含めない。記載された関係だけを表示する。\n\n### 根拠\n\n- [data/tasks.json](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/tasks.json)\n- [dashboard.html](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/dashboard.html)\n- [README.md](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/README.md)",
+      "color": "5"
+    },
+    {
+      "id": "0478d35f78130176",
+      "type": "text",
+      "x": 560,
+      "y": 890,
+      "width": 300,
+      "height": 160,
+      "text": "## データ構造\n\n4仕様項目",
+      "color": "5"
+    },
+    {
+      "id": "28b74329cce7ff16",
+      "type": "text",
+      "x": 1050,
+      "y": 2240,
+      "width": 540,
+      "height": 240,
+      "text": "## 用途別の画面とモバイル操作\n\n**確認区分：実装あり**\n\n一覧・WBS・学習・ナレッジ・AI設定などを用途別のタブから閲覧する。",
+      "color": "4"
+    },
+    {
+      "id": "f4274fc9b50684ee",
+      "type": "text",
+      "x": 1810,
+      "y": 2200,
+      "width": 1000,
+      "height": 320,
+      "text": "## 最終仕様\n\n静的HTMLのdashboard.htmlが起動時にJSONを取得し、タスクや学習、アプリ一覧、ナレッジ、AI基本設定、クレジット、ルーティン、連関図などの画面を描画する。640px以下ではハンバーガーメニューを使い、詳細画面のサブタブは横スクロールできる。\n\n### 根拠\n\n- [dashboard.html](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/dashboard.html)",
+      "color": "4"
+    },
+    {
+      "id": "a22aa3c3caa0d9df",
+      "type": "text",
+      "x": 1050,
+      "y": 2750,
+      "width": 540,
+      "height": 240,
+      "text": "## 次の作業と手動完了\n\n**確認区分：実装あり**\n\n未完了タスクに次のアクションを表示し、手動作業の完了には取消可能な猶予を設ける。",
+      "color": "4"
+    },
+    {
+      "id": "736a971c7393f192",
+      "type": "text",
+      "x": 1810,
+      "y": 2620,
+      "width": 1000,
+      "height": 500,
+      "text": "## 最終仕様\n\n未完了タスクではnextActionを表示する。手動作業の末端タスクに「完了にする」操作を用意し、完了予約をGASへ送る。翌日9:00 JSTまで取消を受け付け、確定処理で完了へ移す。\n\n### 現在の制約・確認範囲\n\n- 定期トリガーの実行時に確定するため9:00ちょうどの反映を保証しない。Sheet更新後のJSON反映には同期が必要。\n\n### 根拠\n\n- [dashboard.html](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/dashboard.html)\n- [gas/Code.gs](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/gas/Code.gs)\n- [README.md](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/README.md)",
+      "color": "4"
+    },
+    {
+      "id": "315fc40ae18f843b",
+      "type": "text",
+      "x": 1050,
+      "y": 3330,
+      "width": 540,
+      "height": 240,
+      "text": "## コメントと非同期の応答\n\n**確認区分：実装あり**\n\nタスクへのコメントを保存し、ルーティンで後から確認・返信する。",
+      "color": "4"
+    },
+    {
+      "id": "010251c036edd8a7",
+      "type": "text",
+      "x": 1810,
+      "y": 3220,
+      "width": 1000,
+      "height": 460,
+      "text": "## 最終仕様\n\n画面からタスク単位のコメントをGASへ投稿してSheetへ保存する。運用ルーティンで未処理コメントを確認し、返信や対応内容を記録する。\n\n### 現在の制約・確認範囲\n\n- 画面内でAIが即時に回答するリアルタイムチャットは実装済み仕様に含めない。\n\n### 根拠\n\n- [dashboard.html](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/dashboard.html)\n- [gas/Code.gs](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/gas/Code.gs)\n- [README.md](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/README.md)",
+      "color": "4"
+    },
+    {
+      "id": "7ad239f261b91f6b",
+      "type": "text",
+      "x": 1050,
+      "y": 3910,
+      "width": 540,
+      "height": 240,
+      "text": "## 連関図とChromeサイドパネル\n\n**確認区分：実装あり**\n\nタスク間の関係を図にし、Chromeのサイドパネルからも進捗を参照する。",
+      "color": "4"
+    },
+    {
+      "id": "a22c1df0fae04e25",
+      "type": "text",
+      "x": 1810,
+      "y": 3780,
+      "width": 1000,
+      "height": 500,
+      "text": "## 最終仕様\n\n連関図はrelatedTasksからリポジトリごとにMermaidを生成する。別リポジトリのタスクは参照関係があるものを表示する。Chrome拡張はGitHub上のJSONを読み込む参照用サイドパネルを提供する。データ変更は更新で取り込み、拡張コードの変更時は再読み込みする。\n\n### 現在の制約・確認範囲\n\n- Chromeサイドパネルは参照中心。ダッシュボード側の更新操作と同等とはみなさない。\n\n### 根拠\n\n- [dashboard.html](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/dashboard.html)\n- [chrome-extension/sidepanel.html](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/chrome-extension/sidepanel.html)\n- [chrome-extension/README.md](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/chrome-extension/README.md)",
+      "color": "4"
+    },
+    {
+      "id": "949279c428b3fc16",
+      "type": "text",
+      "x": 560,
+      "y": 3160,
+      "width": 300,
+      "height": 160,
+      "text": "## 画面・操作\n\n4仕様項目",
+      "color": "4"
+    },
+    {
+      "id": "8d0fa6cad316b8e5",
+      "type": "text",
+      "x": 1050,
+      "y": 4660,
+      "width": 540,
+      "height": 220,
+      "text": "## GAS更新リクエストの照合\n\n**確認区分：実装あり**\n\n更新リクエストの共有トークンをGAS側で照合する。",
+      "color": "6"
+    },
+    {
+      "id": "cf34fe50f16db246",
+      "type": "text",
+      "x": 1810,
+      "y": 4540,
+      "width": 1000,
+      "height": 460,
+      "text": "## 最終仕様\n\ndoPostは受信JSONのtokenを設定値と比較し、一致しない要求を拒否する。画面からのコメント・完了操作などにこの入口を使う。\n\n### 現在の制約・確認範囲\n\n- 共有トークンは静的ブラウザコードにも含まれるため利用者から秘匿できない。個別ユーザー認証やロール別権限の実装は確認できない。認証値は本マップに記載しない。\n\n### 根拠\n\n- [gas/Code.gs](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/gas/Code.gs)\n- [dashboard.html](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/dashboard.html)",
+      "color": "6"
+    },
+    {
+      "id": "8fc6df58fd59a866",
+      "type": "text",
+      "x": 1050,
+      "y": 5210,
+      "width": 540,
+      "height": 240,
+      "text": "## GitHub連携用の認証情報\n\n**確認区分：実装あり**\n\nActionsはSecrets、GASのGitHubアクセスはスクリプトプロパティから認証情報を得る。",
+      "color": "6"
+    },
+    {
+      "id": "f7a729a6b2738781",
+      "type": "text",
+      "x": 1810,
+      "y": 5100,
+      "width": 1000,
+      "height": 460,
+      "text": "## 最終仕様\n\nGitHub ActionsはCROSS_REPO_PAT等のSecretsと用途に応じたGITHUB_TOKENを利用する。GASのGitHub APIアクセス用トークンはPropertiesServiceのスクリプトプロパティから取得する。\n\n### 現在の制約・確認範囲\n\n- 実際に設定された権限範囲・有効期限・更新状況はこのコード確認からは判断できない。\n\n### 根拠\n\n- [.github/workflows/sync-claude-md.yml](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/.github/workflows/sync-claude-md.yml)\n- [.github/workflows/sync-claude-permissions.yml](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/.github/workflows/sync-claude-permissions.yml)\n- [gas/Code.gs](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/gas/Code.gs)",
+      "color": "6"
+    },
+    {
+      "id": "b06fcf9ea844603e",
+      "type": "text",
+      "x": 1050,
+      "y": 5790,
+      "width": 540,
+      "height": 240,
+      "text": "## AI作業の安全ルールと許可設定\n\n**確認区分：採用方針**\n\n共通ルールと許可設定を管理し、外部入力の命令や破壊的な操作を制限する。",
+      "color": "6"
+    },
+    {
+      "id": "21689482d33619f1",
+      "type": "text",
+      "x": 1810,
+      "y": 5660,
+      "width": 1000,
+      "height": 500,
+      "text": "## 最終仕様\n\n共通ルールはclaude-core-rules.md、許可設定はclaude-permissions.jsonで管理する。外部コンテンツを作業命令とみなさず、パスワード等の入力を代行しない。許可対象を明示し、危険なresetや強制pushを安易に許可しない方針を運用する。\n\n### 現在の制約・確認範囲\n\n- ルール文書の存在は全実行の自動遮断・違反防止を保証しない。\n\n### 根拠\n\n- [data/claude-core-rules.md](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/claude-core-rules.md)\n- [data/claude-permissions.json](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/claude-permissions.json)\n- [data/policy.json](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/policy.json)",
+      "color": "6"
+    },
+    {
+      "id": "d678525a8acaaa57",
+      "type": "text",
+      "x": 560,
+      "y": 5270,
+      "width": 300,
+      "height": 160,
+      "text": "## セキュリティ・権限\n\n3仕様項目",
+      "color": "6"
+    },
+    {
+      "id": "b2bc098edfee9934",
+      "type": "text",
+      "x": 1050,
+      "y": 6550,
+      "width": 540,
+      "height": 240,
+      "text": "## GASからGitHubへのPull同期\n\n**確認区分：実装あり**\n\nGASがtasks.jsonを取得し、Sheetの未完了・完了・ナレッジを更新する。",
+      "color": "2"
+    },
+    {
+      "id": "ebcf531acf885ec7",
+      "type": "text",
+      "x": 1810,
+      "y": 6420,
+      "width": 1000,
+      "height": 500,
+      "text": "## 最終仕様\n\nsyncFromGithubでGitHub側のタスクJSONを読み、未完了タスクを追加・更新し、完了タスクを完了側へ移す。詳細・課題・成果物等を対応する列へ反映する。完了時に対応中ナレッジを削除する。ルーティンコメントも同期し、同一コメントの重複とタスク名の表記差を処理する。\n\n### 現在の制約・確認範囲\n\n- 定期実行と「今すぐ同期」の運用を採用。稼働環境のトリガー設定は今回未確認。リアルタイム双方向同期ではない。\n\n### 根拠\n\n- [gas/Code.gs](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/gas/Code.gs)\n- [README.md](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/README.md)",
+      "color": "2"
+    },
+    {
+      "id": "f2b563f5d89d4c9a",
+      "type": "text",
+      "x": 1050,
+      "y": 7120,
+      "width": 540,
+      "height": 240,
+      "text": "## GASの反映と定期処理\n\n**確認区分：採用方針**\n\nGASのコード更新は手動反映し、時間トリガーで同期・完了確定を動かす。",
+      "color": "2"
+    },
+    {
+      "id": "fa86798814e95dcb",
+      "type": "text",
+      "x": 1810,
+      "y": 7020,
+      "width": 1000,
+      "height": 440,
+      "text": "## 最終仕様\n\nGitHubのgas/Code.gsをApps Scriptへ反映して保存し、Webアプリとして新しいバージョンをデプロイする。時間主導トリガーで同期や完了予約の確定を実行する。\n\n### 現在の制約・確認範囲\n\n- GitHubへのコミットだけでは稼働中のGASが自動更新されない。Sheet・JSON間の更新は次の同期まで遅延する。\n\n### 根拠\n\n- [README.md](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/README.md)\n- [gas/Code.gs](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/gas/Code.gs)",
+      "color": "2"
+    },
+    {
+      "id": "c4445f98698f9886",
+      "type": "text",
+      "x": 1050,
+      "y": 7660,
+      "width": 540,
+      "height": 240,
+      "text": "## 静的サイトの公開\n\n**確認区分：実装あり**\n\nmainへの更新をGitHub ActionsからGitHub Pagesへ公開する。",
+      "color": "2"
+    },
+    {
+      "id": "c5a14faff8147185",
+      "type": "text",
+      "x": 1810,
+      "y": 7560,
+      "width": 1000,
+      "height": 440,
+      "text": "## 最終仕様\n\ndeploy-pages.ymlでmainの更新に応じて公開用ファイルをアップロードし、GitHub Pagesへデプロイする。表示データは実行時にJSONから取得する。\n\n### 現在の制約・確認範囲\n\n- この構成に専用Webサーバーは不要。外部サービスの制限や料金の将来保証は含めない。\n\n### 根拠\n\n- [.github/workflows/deploy-pages.yml](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/.github/workflows/deploy-pages.yml)\n- [dashboard.html](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/dashboard.html)",
+      "color": "2"
+    },
+    {
+      "id": "693db329eb2369fd",
+      "type": "text",
+      "x": 1050,
+      "y": 8250,
+      "width": 540,
+      "height": 220,
+      "text": "## 共通設定のリポジトリ間配信\n\n**確認区分：実装あり**\n\n管理元のルール・許可設定を対象リポジトリへ配信する。",
+      "color": "2"
+    },
+    {
+      "id": "b5dcb0024b87cc5e",
+      "type": "text",
+      "x": 1810,
+      "y": 8100,
+      "width": 1000,
+      "height": 520,
+      "text": "## 最終仕様\n\nclaude-core-rules.mdから各CLAUDE.mdの共通部分を更新し、claude-permissions.jsonから既存の設定ファイルへ許可設定を同期する。対象ファイルの変更をActionsが検知してスクリプトを実行する。\n\n### 現在の制約・確認範囲\n\n- 設定ファイルが存在しないリポジトリは許可設定同期をスキップする。対象固有の設定・ルールと共通部分を区別する。\n\n### 根拠\n\n- [scripts/sync_claude_md.py](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/scripts/sync_claude_md.py)\n- [scripts/sync_claude_permissions.py](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/scripts/sync_claude_permissions.py)\n- [.github/workflows/sync-claude-md.yml](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/.github/workflows/sync-claude-md.yml)\n- [.github/workflows/sync-claude-permissions.yml](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/.github/workflows/sync-claude-permissions.yml)",
+      "color": "2"
+    },
+    {
+      "id": "2db5028e50d04527",
+      "type": "text",
+      "x": 560,
+      "y": 7440,
+      "width": 300,
+      "height": 160,
+      "text": "## 連携・同期\n\n4仕様項目",
+      "color": "2"
+    },
+    {
+      "id": "8cd68372fba2267c",
+      "type": "text",
+      "x": 1050,
+      "y": 9000,
+      "width": 540,
+      "height": 220,
+      "text": "## 会話記録とタスク記録の分離\n\n**確認区分：採用方針**\n\n日次の会話要約と構造化したタスクを分けて追跡する。",
+      "color": "3"
+    },
+    {
+      "id": "c972bf7d722a32e4",
+      "type": "text",
+      "x": 1810,
+      "y": 8880,
+      "width": 1000,
+      "height": 460,
+      "text": "## 最終仕様\n\nmanager-room-log.jsonは会話の話題・判断を日付順の要約として記録する。完了・未完了にかかわらず対象の話題を残す。tasks.jsonは作業の構造・進捗・詳細を保持する。\n\n### 現在の制約・確認範囲\n\n- 会話ログは全文の逐語記録ではなく要約。\n\n### 根拠\n\n- [README.md](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/README.md)\n- [data/manager-room-log.json](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/manager-room-log.json)\n- [data/tasks.json](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/tasks.json)",
+      "color": "3"
+    },
+    {
+      "id": "ce2da7e603202ef3",
+      "type": "text",
+      "x": 1050,
+      "y": 9550,
+      "width": 540,
+      "height": 240,
+      "text": "## 設計判断の蓄積と再利用\n\n**確認区分：採用方針**\n\n重要な設計判断をconcept-logへ蓄積し、実装前に参照する。",
+      "color": "3"
+    },
+    {
+      "id": "b85d8803aec3f24b",
+      "type": "text",
+      "x": 1810,
+      "y": 9440,
+      "width": 1000,
+      "height": 460,
+      "text": "## 最終仕様\n\n意味のある設計・実装上の判断をconcept-log.jsonへ記録する。実装前に関連する過去の判断を確認し、採用した理由と採用しなかった理由を説明する。Edit／Write前のフックが参照を促す。\n\n### 現在の制約・確認範囲\n\n- フックは確認を促す仕組みで、全ナレッジの自動統合を保証しない。\n\n### 根拠\n\n- [data/concept-log.json](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/concept-log.json)\n- [data/claude-core-rules.md](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/claude-core-rules.md)\n- [.claude/hooks/concept-log-reminder.sh](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/.claude/hooks/concept-log-reminder.sh)",
+      "color": "3"
+    },
+    {
+      "id": "65fa6f71daf537b6",
+      "type": "text",
+      "x": 1050,
+      "y": 10140,
+      "width": 540,
+      "height": 240,
+      "text": "## ローカルの意味検索用インデックス\n\n**確認区分：実装あり**\n\n原JSONを保ち、ローカル埋め込みで検索用の派生インデックスを作る。",
+      "color": "3"
+    },
+    {
+      "id": "9df6af047543c93b",
+      "type": "text",
+      "x": 1810,
+      "y": 10000,
+      "width": 1000,
+      "height": 520,
+      "text": "## 最終仕様\n\nfastembedと多言語MiniLMモデルを使い、384次元のベクトルを生成する。元のJSONを変更せずvector-index.jsonを派生データとして作り、内容ハッシュが同じ項目のベクトルを再利用する。search_knowledge.pyがコサイン類似度で検索する。\n\n### 現在の制約・確認範囲\n\n- 外部AI APIの呼び出しは不要だがモデル取得は必要。CLI検索の実装を確認しており、新しい自動検索UIの完成までは主張しない。\n\n### 根拠\n\n- [scripts/knowledge/build_vector_index.py](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/scripts/knowledge/build_vector_index.py)\n- [scripts/knowledge/search_knowledge.py](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/scripts/knowledge/search_knowledge.py)\n- [.github/workflows/build-vector-index.yml](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/.github/workflows/build-vector-index.yml)",
+      "color": "3"
+    },
+    {
+      "id": "7bb792a363f8fcf7",
+      "type": "text",
+      "x": 1050,
+      "y": 10780,
+      "width": 540,
+      "height": 240,
+      "text": "## ルーティン・健全性・人の作業\n\n**確認区分：採用方針**\n\n定期作業と最新の診断結果を表示し、人が行う作業を区別する。",
+      "color": "3"
+    },
+    {
+      "id": "1e12ed8e3b13e0ae",
+      "type": "text",
+      "x": 1810,
+      "y": 10620,
+      "width": 1000,
+      "height": 560,
+      "text": "## 最終仕様\n\nルーティン一覧で定期作業と現在の結果を確認する。health-checks.jsonは最新の診断結果のスナップショット、会話ログは経過記録として使い分ける。managerが整理・調整しworkerが実装する運用を記録し、手動設定が必要な作業は人の作業として明示する。\n\n### 現在の制約・確認範囲\n\n- worker-roomの段階的な廃止方針はあるが代替・移行完了日は未確定。Codexへの自動振り分けは実装済み仕様に含めない。\n\n### 根拠\n\n- [data/health-checks.json](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/health-checks.json)\n- [data/ai-config.json](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/ai-config.json)\n- [dashboard.html](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/dashboard.html)\n- [data/claude-core-rules.md](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/claude-core-rules.md)",
+      "color": "3"
+    },
+    {
+      "id": "ed5d9aaa47119a32",
+      "type": "text",
+      "x": 560,
+      "y": 9950,
+      "width": 300,
+      "height": 160,
+      "text": "## ナレッジ・運用\n\n4仕様項目",
+      "color": "3"
+    },
+    {
+      "id": "a57d61a733122d62",
+      "type": "text",
+      "x": 1050,
+      "y": 11520,
+      "width": 540,
+      "height": 160,
+      "text": "## 複数アプリの進捗をまとめる\n\nアプリ横断でタスクと相談事項を見渡せる。",
+      "color": "6"
+    },
+    {
+      "id": "a719bae325d9766d",
+      "type": "text",
+      "x": 1810,
+      "y": 11440,
+      "width": 1000,
+      "height": 320,
+      "text": "## アプリの特徴\n\nリポジトリ単位のタスク、相談テーマ、アプリ一覧をまとめた管理ハブ。個別アプリの実装内容に加えて、アプリ間の参照関係も追える。\n\n### 根拠\n\n- [dashboard.html](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/dashboard.html)\n- [data/tasks.json](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/tasks.json)",
+      "color": "6"
+    },
+    {
+      "id": "dd94ffe44d997ade",
+      "type": "text",
+      "x": 1050,
+      "y": 11950,
+      "width": 540,
+      "height": 180,
+      "text": "## 進捗と判断の根拠を一緒に追える\n\n状態だけでなく、課題・確認経緯・次の作業まで参照する。",
+      "color": "6"
+    },
+    {
+      "id": "3ecab71736f9a5d8",
+      "type": "text",
+      "x": 1810,
+      "y": 11860,
+      "width": 1000,
+      "height": 360,
+      "text": "## アプリの特徴\n\n最新の要約、課題、checkHistory、nextActionを区別して保持する。会話要約と設計判断ログを合わせて、何が起き、何を採用したかを追跡する運用を支える。\n\n### 根拠\n\n- [data/tasks.json](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/tasks.json)\n- [data/manager-room-log.json](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/manager-room-log.json)\n- [data/concept-log.json](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/concept-log.json)",
+      "color": "6"
+    },
+    {
+      "id": "3752b0bc12324f13",
+      "type": "text",
+      "x": 1050,
+      "y": 12410,
+      "width": 540,
+      "height": 180,
+      "text": "## 人向けの画面とAI向けの規則を併存\n\n読みやすい表示と詳細な実行方針を役割に応じて管理する。",
+      "color": "6"
+    },
+    {
+      "id": "b20df1082cf6c637",
+      "type": "text",
+      "x": 1810,
+      "y": 12320,
+      "width": 1000,
+      "height": 360,
+      "text": "## アプリの特徴\n\nAI設定は人が読むweb表示用の説明とAIが参照する詳細設定を持つ。ポリシーは専用ファイルを参照し、共通ルールは他リポジトリへ配信する。\n\n### 根拠\n\n- [data/ai-config.json](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/ai-config.json)\n- [data/policy.json](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/policy.json)\n- [scripts/sync_claude_md.py](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/scripts/sync_claude_md.py)",
+      "color": "6"
+    },
+    {
+      "id": "08d967c7fda846af",
+      "type": "text",
+      "x": 1050,
+      "y": 12870,
+      "width": 540,
+      "height": 180,
+      "text": "## 手動作業を管理に含める\n\nAIで処理できる作業と、人の設定・判断が必要な作業を見分ける。",
+      "color": "6"
+    },
+    {
+      "id": "8f7efbb4dbb0ecc5",
+      "type": "text",
+      "x": 1810,
+      "y": 12780,
+      "width": 1000,
+      "height": 360,
+      "text": "## アプリの特徴\n\n手動設定項目や判断待ちをタスクとして明示し、利用者が完了を予約・取消できる。自動化の対象外を管理画面から把握できる。\n\n### 根拠\n\n- [dashboard.html](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/dashboard.html)\n- [data/tasks.json](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/tasks.json)\n- [gas/Code.gs](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/gas/Code.gs)",
+      "color": "6"
+    },
+    {
+      "id": "071ce8f29087e7a7",
+      "type": "text",
+      "x": 1050,
+      "y": 13340,
+      "width": 540,
+      "height": 180,
+      "text": "## 静的画面と既存サービスの組合せ\n\nGitHubのJSON・PagesとGoogle Sheet・GASを組み合わせる。",
+      "color": "6"
+    },
+    {
+      "id": "d1024698eb527690",
+      "type": "text",
+      "x": 1810,
+      "y": 13240,
+      "width": 1000,
+      "height": 380,
+      "text": "## アプリの特徴\n\n表示は静的HTML、運用記録はSheet、更新処理はGASを使う。閲覧用Chromeサイドパネルも同じJSONを参照する。定期同期を前提にした構成で、即時一貫性を必要とする用途には制約がある。\n\n### 根拠\n\n- [.github/workflows/deploy-pages.yml](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/.github/workflows/deploy-pages.yml)\n- [dashboard.html](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/dashboard.html)\n- [gas/Code.gs](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/gas/Code.gs)\n- [chrome-extension/sidepanel.html](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/chrome-extension/sidepanel.html)",
+      "color": "6"
+    },
+    {
+      "id": "e2120ceb61705a01",
+      "type": "text",
+      "x": 1050,
+      "y": 13820,
+      "width": 540,
+      "height": 160,
+      "text": "## ナレッジを再利用しやすい形で残す\n\n設計判断のログと意味検索の仕組みを持つ。",
+      "color": "6"
+    },
+    {
+      "id": "9c67dd759acfb081",
+      "type": "text",
+      "x": 1810,
+      "y": 13720,
+      "width": 1000,
+      "height": 360,
+      "text": "## アプリの特徴\n\n構造化した設計判断を記録し、派生ベクトルインデックスから関連情報を検索できる。検索基盤の実装と、実装前に過去の判断を参照する運用を組み合わせている。\n\n### 根拠\n\n- [data/concept-log.json](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/concept-log.json)\n- [scripts/knowledge/build_vector_index.py](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/scripts/knowledge/build_vector_index.py)\n- [scripts/knowledge/search_knowledge.py](https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/scripts/knowledge/search_knowledge.py)",
+      "color": "6"
+    },
+    {
+      "id": "5b8a8b56dada6ce7",
+      "type": "text",
+      "x": 560,
+      "y": 12670,
+      "width": 300,
+      "height": 180,
+      "text": "## アプリの特徴\n\n機能の組合せ・運用方法・設計上の性質",
+      "color": "6"
+    },
+    {
+      "id": "4813494d137e1631",
+      "type": "text",
+      "x": 0,
+      "y": 6800,
+      "width": 380,
+      "height": 740,
+      "text": "# Progress Tracker Dashboard：最終仕様と特徴\n\n**gurii-gabreh/progress-tracker-dashboard**\n\n前回と同じ5カテゴリで、確認した現行実装・採用方針とアプリの特徴を整理。過去の課題と対応履歴は別Canvasに保存。\n\nモード：最終仕様・アプリの特徴\n\n記録：2026-10-12 JST\n\n対象：5aa2c2415b21e6f12901c8bba9828649e8daa218\n\n- 実装あり＝リポジトリ内のコードを確認。稼働中のGAS・スプレッドシートの動作確認は含まない。\n- 最終仕様はこの時点の採用仕様。未実装の計画・未確定の移行先は確定仕様に含めない。"
+    }
+  ],
+  "edges": [
+    {
+      "id": "0a4c54516ecbaaf4",
+      "fromNode": "9aa0fdc0bfe28198",
+      "fromSide": "right",
+      "toNode": "0c8abd7c7ff9b61a",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "5"
+    },
+    {
+      "id": "bf71ed7a5a42b7ba",
+      "fromNode": "53877c5b1ab5f249",
+      "fromSide": "right",
+      "toNode": "7e3e1e2217df412f",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "5"
+    },
+    {
+      "id": "efceb1558f18b229",
+      "fromNode": "3ffd0765d609d543",
+      "fromSide": "right",
+      "toNode": "4a95014777b33dd9",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "5"
+    },
+    {
+      "id": "795dfb08b31d1de8",
+      "fromNode": "8eb121f1f6d856cd",
+      "fromSide": "right",
+      "toNode": "cbf09fe7893efb21",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "5"
+    },
+    {
+      "id": "087bab269676019f",
+      "fromNode": "0478d35f78130176",
+      "fromSide": "right",
+      "toNode": "9aa0fdc0bfe28198",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "5"
+    },
+    {
+      "id": "23404c1c278f9814",
+      "fromNode": "0478d35f78130176",
+      "fromSide": "right",
+      "toNode": "53877c5b1ab5f249",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "5"
+    },
+    {
+      "id": "39e5bd1c84eca7ac",
+      "fromNode": "0478d35f78130176",
+      "fromSide": "right",
+      "toNode": "3ffd0765d609d543",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "5"
+    },
+    {
+      "id": "838c3784e18e6292",
+      "fromNode": "0478d35f78130176",
+      "fromSide": "right",
+      "toNode": "8eb121f1f6d856cd",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "5"
+    },
+    {
+      "id": "2058723e62235355",
+      "fromNode": "28b74329cce7ff16",
+      "fromSide": "right",
+      "toNode": "f4274fc9b50684ee",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "4"
+    },
+    {
+      "id": "95792f715b4d1a24",
+      "fromNode": "a22aa3c3caa0d9df",
+      "fromSide": "right",
+      "toNode": "736a971c7393f192",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "4"
+    },
+    {
+      "id": "f6491bee23007746",
+      "fromNode": "315fc40ae18f843b",
+      "fromSide": "right",
+      "toNode": "010251c036edd8a7",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "4"
+    },
+    {
+      "id": "c4e3b33b5cdbb09a",
+      "fromNode": "7ad239f261b91f6b",
+      "fromSide": "right",
+      "toNode": "a22c1df0fae04e25",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "4"
+    },
+    {
+      "id": "081e750d776213db",
+      "fromNode": "949279c428b3fc16",
+      "fromSide": "right",
+      "toNode": "28b74329cce7ff16",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "4"
+    },
+    {
+      "id": "9b71328c545dd094",
+      "fromNode": "949279c428b3fc16",
+      "fromSide": "right",
+      "toNode": "a22aa3c3caa0d9df",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "4"
+    },
+    {
+      "id": "a0cca6b1a980c7e2",
+      "fromNode": "949279c428b3fc16",
+      "fromSide": "right",
+      "toNode": "315fc40ae18f843b",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "4"
+    },
+    {
+      "id": "f5428c4026e2a366",
+      "fromNode": "949279c428b3fc16",
+      "fromSide": "right",
+      "toNode": "7ad239f261b91f6b",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "4"
+    },
+    {
+      "id": "2d7e03bebc9985a5",
+      "fromNode": "8d0fa6cad316b8e5",
+      "fromSide": "right",
+      "toNode": "cf34fe50f16db246",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "6"
+    },
+    {
+      "id": "06bedd0ea0e3d583",
+      "fromNode": "8fc6df58fd59a866",
+      "fromSide": "right",
+      "toNode": "f7a729a6b2738781",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "6"
+    },
+    {
+      "id": "04b450dbe23b190a",
+      "fromNode": "b06fcf9ea844603e",
+      "fromSide": "right",
+      "toNode": "21689482d33619f1",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "6"
+    },
+    {
+      "id": "b8027c2b55cec652",
+      "fromNode": "d678525a8acaaa57",
+      "fromSide": "right",
+      "toNode": "8d0fa6cad316b8e5",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "4b36d29f5433e467",
+      "fromNode": "d678525a8acaaa57",
+      "fromSide": "right",
+      "toNode": "8fc6df58fd59a866",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "9d459c0b4c971158",
+      "fromNode": "d678525a8acaaa57",
+      "fromSide": "right",
+      "toNode": "b06fcf9ea844603e",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "aeb565b4fa6b72a9",
+      "fromNode": "b2bc098edfee9934",
+      "fromSide": "right",
+      "toNode": "ebcf531acf885ec7",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "2"
+    },
+    {
+      "id": "aff139206aa7e3ea",
+      "fromNode": "f2b563f5d89d4c9a",
+      "fromSide": "right",
+      "toNode": "fa86798814e95dcb",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "2"
+    },
+    {
+      "id": "9c09daac302ea96d",
+      "fromNode": "c4445f98698f9886",
+      "fromSide": "right",
+      "toNode": "c5a14faff8147185",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "2"
+    },
+    {
+      "id": "e98513cc8ac7350c",
+      "fromNode": "693db329eb2369fd",
+      "fromSide": "right",
+      "toNode": "b5dcb0024b87cc5e",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "2"
+    },
+    {
+      "id": "545ed925a250fd2d",
+      "fromNode": "2db5028e50d04527",
+      "fromSide": "right",
+      "toNode": "b2bc098edfee9934",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "2"
+    },
+    {
+      "id": "a6a41fc4001e7108",
+      "fromNode": "2db5028e50d04527",
+      "fromSide": "right",
+      "toNode": "f2b563f5d89d4c9a",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "2"
+    },
+    {
+      "id": "bc2146b0d7fcb69b",
+      "fromNode": "2db5028e50d04527",
+      "fromSide": "right",
+      "toNode": "c4445f98698f9886",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "2"
+    },
+    {
+      "id": "bae2ccc64d79e516",
+      "fromNode": "2db5028e50d04527",
+      "fromSide": "right",
+      "toNode": "693db329eb2369fd",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "2"
+    },
+    {
+      "id": "336ade8620b2fa64",
+      "fromNode": "8cd68372fba2267c",
+      "fromSide": "right",
+      "toNode": "c972bf7d722a32e4",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "3"
+    },
+    {
+      "id": "d8c27d7521ca6c25",
+      "fromNode": "ce2da7e603202ef3",
+      "fromSide": "right",
+      "toNode": "b85d8803aec3f24b",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "3"
+    },
+    {
+      "id": "e01d7ff3d22244a9",
+      "fromNode": "65fa6f71daf537b6",
+      "fromSide": "right",
+      "toNode": "9df6af047543c93b",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "3"
+    },
+    {
+      "id": "40e51b4fb0f682bc",
+      "fromNode": "7bb792a363f8fcf7",
+      "fromSide": "right",
+      "toNode": "1e12ed8e3b13e0ae",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "3"
+    },
+    {
+      "id": "dfe320a76f1cbcc2",
+      "fromNode": "ed5d9aaa47119a32",
+      "fromSide": "right",
+      "toNode": "8cd68372fba2267c",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "3"
+    },
+    {
+      "id": "67771c125276bafe",
+      "fromNode": "ed5d9aaa47119a32",
+      "fromSide": "right",
+      "toNode": "ce2da7e603202ef3",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "3"
+    },
+    {
+      "id": "d7a0d1c40087edb2",
+      "fromNode": "ed5d9aaa47119a32",
+      "fromSide": "right",
+      "toNode": "65fa6f71daf537b6",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "3"
+    },
+    {
+      "id": "5f63f1ed8c7252fb",
+      "fromNode": "ed5d9aaa47119a32",
+      "fromSide": "right",
+      "toNode": "7bb792a363f8fcf7",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "3"
+    },
+    {
+      "id": "2bf63daecfb46df6",
+      "fromNode": "a57d61a733122d62",
+      "fromSide": "right",
+      "toNode": "a719bae325d9766d",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "特徴・根拠",
+      "color": "6"
+    },
+    {
+      "id": "1a120c948e7d1b15",
+      "fromNode": "dd94ffe44d997ade",
+      "fromSide": "right",
+      "toNode": "3ecab71736f9a5d8",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "特徴・根拠",
+      "color": "6"
+    },
+    {
+      "id": "e769be23d50e7069",
+      "fromNode": "3752b0bc12324f13",
+      "fromSide": "right",
+      "toNode": "b20df1082cf6c637",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "特徴・根拠",
+      "color": "6"
+    },
+    {
+      "id": "6a25c4cf7d467b1b",
+      "fromNode": "08d967c7fda846af",
+      "fromSide": "right",
+      "toNode": "8f7efbb4dbb0ecc5",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "特徴・根拠",
+      "color": "6"
+    },
+    {
+      "id": "b9f8a5a489a1f728",
+      "fromNode": "071ce8f29087e7a7",
+      "fromSide": "right",
+      "toNode": "d1024698eb527690",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "特徴・根拠",
+      "color": "6"
+    },
+    {
+      "id": "1363229999dc4748",
+      "fromNode": "e2120ceb61705a01",
+      "fromSide": "right",
+      "toNode": "9c67dd759acfb081",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "特徴・根拠",
+      "color": "6"
+    },
+    {
+      "id": "cb6651b294158e19",
+      "fromNode": "5b8a8b56dada6ce7",
+      "fromSide": "right",
+      "toNode": "a57d61a733122d62",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "0fcdf6dcddd5adef",
+      "fromNode": "5b8a8b56dada6ce7",
+      "fromSide": "right",
+      "toNode": "dd94ffe44d997ade",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "cb95abe33ad3a6f2",
+      "fromNode": "5b8a8b56dada6ce7",
+      "fromSide": "right",
+      "toNode": "3752b0bc12324f13",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "186c54e588926d14",
+      "fromNode": "5b8a8b56dada6ce7",
+      "fromSide": "right",
+      "toNode": "08d967c7fda846af",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "bd2bdcb3214a2156",
+      "fromNode": "5b8a8b56dada6ce7",
+      "fromSide": "right",
+      "toNode": "071ce8f29087e7a7",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "e8000e25acdc3610",
+      "fromNode": "5b8a8b56dada6ce7",
+      "fromSide": "right",
+      "toNode": "e2120ceb61705a01",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "58948b045f475ece",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "0478d35f78130176",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "e06edc6c6466db7a",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "949279c428b3fc16",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "0969ae0b27ba44b4",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "d678525a8acaaa57",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "137f9a5b4abf3c41",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "2db5028e50d04527",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "e0b888519e383632",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ed5d9aaa47119a32",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "57c061482c820a85",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "5b8a8b56dada6ce7",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    }
+  ]
+}

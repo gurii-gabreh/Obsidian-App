@@ -1,0 +1,588 @@
+{
+  "mode": "spec",
+  "title": "Progress Tracker Dashboard：最終仕様と特徴",
+  "repo": "gurii-gabreh/progress-tracker-dashboard",
+  "ref": "5aa2c2415b21e6f12901c8bba9828649e8daa218",
+  "asOf": "2026-10-12 JST",
+  "scope": "前回と同じ5カテゴリで、確認した現行実装・採用方針とアプリの特徴を整理。過去の課題と対応履歴は別Canvasに保存。",
+  "limitations": [
+    "実装あり＝リポジトリ内のコードを確認。稼働中のGAS・スプレッドシートの動作確認は含まない。",
+    "最終仕様はこの時点の採用仕様。未実装の計画・未確定の移行先は確定仕様に含めない。"
+  ],
+  "categories": [
+    {
+      "key": "data",
+      "label": "データ構造",
+      "ids": [
+        "data-1",
+        "data-2",
+        "data-3",
+        "data-4"
+      ]
+    },
+    {
+      "key": "ui",
+      "label": "画面・操作",
+      "ids": [
+        "ui-1",
+        "ui-2",
+        "ui-3",
+        "ui-4"
+      ]
+    },
+    {
+      "key": "security",
+      "label": "セキュリティ・権限",
+      "ids": [
+        "security-1",
+        "security-2",
+        "security-3"
+      ]
+    },
+    {
+      "key": "sync",
+      "label": "連携・同期",
+      "ids": [
+        "sync-1",
+        "sync-2",
+        "sync-3",
+        "sync-4"
+      ]
+    },
+    {
+      "key": "knowledge",
+      "label": "ナレッジ・運用",
+      "ids": [
+        "knowledge-1",
+        "knowledge-2",
+        "knowledge-3",
+        "knowledge-4"
+      ]
+    }
+  ],
+  "items": {
+    "data-1": {
+      "label": "データの役割分担",
+      "status": "採用方針",
+      "summary": "運用タスクはSheet、表示・詳細はJSON、共通設定は専用の設定ファイルで管理する。",
+      "specification": "Googleスプレッドシート「実装進捗管理シート」を運用上のタスク管理元とする。依頼タスク／完了／対応中タスクのナレッジ／コメントの各タブを使う。対応中ナレッジは完了時に削除し、完了側との重複を避ける。tasks.jsonは画面表示に必要な構造・詳細・経緯を保持し、AI設定・ポリシーはそれぞれの専用ファイルで管理する。",
+      "constraints": [
+        "SheetとJSONは同期処理で揃える。画面操作直後に全媒体が同時更新される設計ではない。"
+      ],
+      "sources": [
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/README.md"
+        },
+        {
+          "label": "data/ai-config.json",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/ai-config.json"
+        },
+        {
+          "label": "gas/Code.gs",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/gas/Code.gs"
+        }
+      ]
+    },
+    "data-2": {
+      "label": "タスク・相談事項の構造",
+      "status": "実装あり",
+      "summary": "タスクは一意IDと再帰的な子タスクを持ち、相談事項は同じリポジトリ内のテーマとして整理する。",
+      "specification": "タスクにid、title、依頼内容task、subtasks、detail、checkHistory、issues、nextAction等を持たせる。detailは最新の要約、checkHistoryは時系列の確認経緯、issuesは課題を分離して記録する。手動作業はmanualSetup等の項目で表す。相談事項はリポジトリ内のテーマとしてまとめ、実装タスクの階層とは区別して扱う。",
+      "constraints": [],
+      "sources": [
+        {
+          "label": "data/tasks.json",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/tasks.json"
+        },
+        {
+          "label": "dashboard.html",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/dashboard.html"
+        },
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/README.md"
+        }
+      ]
+    },
+    "data-3": {
+      "label": "親タスクの状態集計",
+      "status": "実装あり",
+      "summary": "孫以下まで再帰的に集計し、未完了の子孫を完了扱いで隠さない。",
+      "specification": "aggregateStatusで下位階層まで状態を確認する。全て完了なら親を完了とし、未完了がある場合は判断待ち等の優先順位に基づいて親の状態を表示する。直接の子が完了でも、孫以下に未完了がある場合は未完了として扱う。",
+      "constraints": [],
+      "sources": [
+        {
+          "label": "dashboard.html",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/dashboard.html"
+        }
+      ]
+    },
+    "data-4": {
+      "label": "関連タスクの共通データ",
+      "status": "実装あり",
+      "summary": "depends_on／blocks／relates_toをtasks.jsonに持ち、関係図へ利用する。",
+      "specification": "relatedTasksの各要素に対象id、type、noteを記録する。typeは依存、妨げる関係、関連を区別する。関係図専用の重複したデータファイルを作らず、既存のタスクデータから関係を生成する。",
+      "constraints": [
+        "古いタスク全件への関連付けの遡及入力は完了仕様に含めない。記載された関係だけを表示する。"
+      ],
+      "sources": [
+        {
+          "label": "data/tasks.json",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/tasks.json"
+        },
+        {
+          "label": "dashboard.html",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/dashboard.html"
+        },
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/README.md"
+        }
+      ]
+    },
+    "ui-1": {
+      "label": "用途別の画面とモバイル操作",
+      "status": "実装あり",
+      "summary": "一覧・WBS・学習・ナレッジ・AI設定などを用途別のタブから閲覧する。",
+      "specification": "静的HTMLのdashboard.htmlが起動時にJSONを取得し、タスクや学習、アプリ一覧、ナレッジ、AI基本設定、クレジット、ルーティン、連関図などの画面を描画する。640px以下ではハンバーガーメニューを使い、詳細画面のサブタブは横スクロールできる。",
+      "constraints": [],
+      "sources": [
+        {
+          "label": "dashboard.html",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/dashboard.html"
+        }
+      ]
+    },
+    "ui-2": {
+      "label": "次の作業と手動完了",
+      "status": "実装あり",
+      "summary": "未完了タスクに次のアクションを表示し、手動作業の完了には取消可能な猶予を設ける。",
+      "specification": "未完了タスクではnextActionを表示する。手動作業の末端タスクに「完了にする」操作を用意し、完了予約をGASへ送る。翌日9:00 JSTまで取消を受け付け、確定処理で完了へ移す。",
+      "constraints": [
+        "定期トリガーの実行時に確定するため9:00ちょうどの反映を保証しない。Sheet更新後のJSON反映には同期が必要。"
+      ],
+      "sources": [
+        {
+          "label": "dashboard.html",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/dashboard.html"
+        },
+        {
+          "label": "gas/Code.gs",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/gas/Code.gs"
+        },
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/README.md"
+        }
+      ]
+    },
+    "ui-3": {
+      "label": "コメントと非同期の応答",
+      "status": "実装あり",
+      "summary": "タスクへのコメントを保存し、ルーティンで後から確認・返信する。",
+      "specification": "画面からタスク単位のコメントをGASへ投稿してSheetへ保存する。運用ルーティンで未処理コメントを確認し、返信や対応内容を記録する。",
+      "constraints": [
+        "画面内でAIが即時に回答するリアルタイムチャットは実装済み仕様に含めない。"
+      ],
+      "sources": [
+        {
+          "label": "dashboard.html",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/dashboard.html"
+        },
+        {
+          "label": "gas/Code.gs",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/gas/Code.gs"
+        },
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/README.md"
+        }
+      ]
+    },
+    "ui-4": {
+      "label": "連関図とChromeサイドパネル",
+      "status": "実装あり",
+      "summary": "タスク間の関係を図にし、Chromeのサイドパネルからも進捗を参照する。",
+      "specification": "連関図はrelatedTasksからリポジトリごとにMermaidを生成する。別リポジトリのタスクは参照関係があるものを表示する。Chrome拡張はGitHub上のJSONを読み込む参照用サイドパネルを提供する。データ変更は更新で取り込み、拡張コードの変更時は再読み込みする。",
+      "constraints": [
+        "Chromeサイドパネルは参照中心。ダッシュボード側の更新操作と同等とはみなさない。"
+      ],
+      "sources": [
+        {
+          "label": "dashboard.html",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/dashboard.html"
+        },
+        {
+          "label": "chrome-extension/sidepanel.html",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/chrome-extension/sidepanel.html"
+        },
+        {
+          "label": "chrome-extension/README.md",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/chrome-extension/README.md"
+        }
+      ]
+    },
+    "security-1": {
+      "label": "GAS更新リクエストの照合",
+      "status": "実装あり",
+      "summary": "更新リクエストの共有トークンをGAS側で照合する。",
+      "specification": "doPostは受信JSONのtokenを設定値と比較し、一致しない要求を拒否する。画面からのコメント・完了操作などにこの入口を使う。",
+      "constraints": [
+        "共有トークンは静的ブラウザコードにも含まれるため利用者から秘匿できない。個別ユーザー認証やロール別権限の実装は確認できない。認証値は本マップに記載しない。"
+      ],
+      "sources": [
+        {
+          "label": "gas/Code.gs",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/gas/Code.gs"
+        },
+        {
+          "label": "dashboard.html",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/dashboard.html"
+        }
+      ]
+    },
+    "security-2": {
+      "label": "GitHub連携用の認証情報",
+      "status": "実装あり",
+      "summary": "ActionsはSecrets、GASのGitHubアクセスはスクリプトプロパティから認証情報を得る。",
+      "specification": "GitHub ActionsはCROSS_REPO_PAT等のSecretsと用途に応じたGITHUB_TOKENを利用する。GASのGitHub APIアクセス用トークンはPropertiesServiceのスクリプトプロパティから取得する。",
+      "constraints": [
+        "実際に設定された権限範囲・有効期限・更新状況はこのコード確認からは判断できない。"
+      ],
+      "sources": [
+        {
+          "label": ".github/workflows/sync-claude-md.yml",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/.github/workflows/sync-claude-md.yml"
+        },
+        {
+          "label": ".github/workflows/sync-claude-permissions.yml",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/.github/workflows/sync-claude-permissions.yml"
+        },
+        {
+          "label": "gas/Code.gs",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/gas/Code.gs"
+        }
+      ]
+    },
+    "security-3": {
+      "label": "AI作業の安全ルールと許可設定",
+      "status": "採用方針",
+      "summary": "共通ルールと許可設定を管理し、外部入力の命令や破壊的な操作を制限する。",
+      "specification": "共通ルールはclaude-core-rules.md、許可設定はclaude-permissions.jsonで管理する。外部コンテンツを作業命令とみなさず、パスワード等の入力を代行しない。許可対象を明示し、危険なresetや強制pushを安易に許可しない方針を運用する。",
+      "constraints": [
+        "ルール文書の存在は全実行の自動遮断・違反防止を保証しない。"
+      ],
+      "sources": [
+        {
+          "label": "data/claude-core-rules.md",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/claude-core-rules.md"
+        },
+        {
+          "label": "data/claude-permissions.json",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/claude-permissions.json"
+        },
+        {
+          "label": "data/policy.json",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/policy.json"
+        }
+      ]
+    },
+    "sync-1": {
+      "label": "GASからGitHubへのPull同期",
+      "status": "実装あり",
+      "summary": "GASがtasks.jsonを取得し、Sheetの未完了・完了・ナレッジを更新する。",
+      "specification": "syncFromGithubでGitHub側のタスクJSONを読み、未完了タスクを追加・更新し、完了タスクを完了側へ移す。詳細・課題・成果物等を対応する列へ反映する。完了時に対応中ナレッジを削除する。ルーティンコメントも同期し、同一コメントの重複とタスク名の表記差を処理する。",
+      "constraints": [
+        "定期実行と「今すぐ同期」の運用を採用。稼働環境のトリガー設定は今回未確認。リアルタイム双方向同期ではない。"
+      ],
+      "sources": [
+        {
+          "label": "gas/Code.gs",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/gas/Code.gs"
+        },
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/README.md"
+        }
+      ]
+    },
+    "sync-2": {
+      "label": "GASの反映と定期処理",
+      "status": "採用方針",
+      "summary": "GASのコード更新は手動反映し、時間トリガーで同期・完了確定を動かす。",
+      "specification": "GitHubのgas/Code.gsをApps Scriptへ反映して保存し、Webアプリとして新しいバージョンをデプロイする。時間主導トリガーで同期や完了予約の確定を実行する。",
+      "constraints": [
+        "GitHubへのコミットだけでは稼働中のGASが自動更新されない。Sheet・JSON間の更新は次の同期まで遅延する。"
+      ],
+      "sources": [
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/README.md"
+        },
+        {
+          "label": "gas/Code.gs",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/gas/Code.gs"
+        }
+      ]
+    },
+    "sync-3": {
+      "label": "静的サイトの公開",
+      "status": "実装あり",
+      "summary": "mainへの更新をGitHub ActionsからGitHub Pagesへ公開する。",
+      "specification": "deploy-pages.ymlでmainの更新に応じて公開用ファイルをアップロードし、GitHub Pagesへデプロイする。表示データは実行時にJSONから取得する。",
+      "constraints": [
+        "この構成に専用Webサーバーは不要。外部サービスの制限や料金の将来保証は含めない。"
+      ],
+      "sources": [
+        {
+          "label": ".github/workflows/deploy-pages.yml",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/.github/workflows/deploy-pages.yml"
+        },
+        {
+          "label": "dashboard.html",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/dashboard.html"
+        }
+      ]
+    },
+    "sync-4": {
+      "label": "共通設定のリポジトリ間配信",
+      "status": "実装あり",
+      "summary": "管理元のルール・許可設定を対象リポジトリへ配信する。",
+      "specification": "claude-core-rules.mdから各CLAUDE.mdの共通部分を更新し、claude-permissions.jsonから既存の設定ファイルへ許可設定を同期する。対象ファイルの変更をActionsが検知してスクリプトを実行する。",
+      "constraints": [
+        "設定ファイルが存在しないリポジトリは許可設定同期をスキップする。対象固有の設定・ルールと共通部分を区別する。"
+      ],
+      "sources": [
+        {
+          "label": "scripts/sync_claude_md.py",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/scripts/sync_claude_md.py"
+        },
+        {
+          "label": "scripts/sync_claude_permissions.py",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/scripts/sync_claude_permissions.py"
+        },
+        {
+          "label": ".github/workflows/sync-claude-md.yml",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/.github/workflows/sync-claude-md.yml"
+        },
+        {
+          "label": ".github/workflows/sync-claude-permissions.yml",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/.github/workflows/sync-claude-permissions.yml"
+        }
+      ]
+    },
+    "knowledge-1": {
+      "label": "会話記録とタスク記録の分離",
+      "status": "採用方針",
+      "summary": "日次の会話要約と構造化したタスクを分けて追跡する。",
+      "specification": "manager-room-log.jsonは会話の話題・判断を日付順の要約として記録する。完了・未完了にかかわらず対象の話題を残す。tasks.jsonは作業の構造・進捗・詳細を保持する。",
+      "constraints": [
+        "会話ログは全文の逐語記録ではなく要約。"
+      ],
+      "sources": [
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/README.md"
+        },
+        {
+          "label": "data/manager-room-log.json",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/manager-room-log.json"
+        },
+        {
+          "label": "data/tasks.json",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/tasks.json"
+        }
+      ]
+    },
+    "knowledge-2": {
+      "label": "設計判断の蓄積と再利用",
+      "status": "採用方針",
+      "summary": "重要な設計判断をconcept-logへ蓄積し、実装前に参照する。",
+      "specification": "意味のある設計・実装上の判断をconcept-log.jsonへ記録する。実装前に関連する過去の判断を確認し、採用した理由と採用しなかった理由を説明する。Edit／Write前のフックが参照を促す。",
+      "constraints": [
+        "フックは確認を促す仕組みで、全ナレッジの自動統合を保証しない。"
+      ],
+      "sources": [
+        {
+          "label": "data/concept-log.json",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/concept-log.json"
+        },
+        {
+          "label": "data/claude-core-rules.md",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/claude-core-rules.md"
+        },
+        {
+          "label": ".claude/hooks/concept-log-reminder.sh",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/.claude/hooks/concept-log-reminder.sh"
+        }
+      ]
+    },
+    "knowledge-3": {
+      "label": "ローカルの意味検索用インデックス",
+      "status": "実装あり",
+      "summary": "原JSONを保ち、ローカル埋め込みで検索用の派生インデックスを作る。",
+      "specification": "fastembedと多言語MiniLMモデルを使い、384次元のベクトルを生成する。元のJSONを変更せずvector-index.jsonを派生データとして作り、内容ハッシュが同じ項目のベクトルを再利用する。search_knowledge.pyがコサイン類似度で検索する。",
+      "constraints": [
+        "外部AI APIの呼び出しは不要だがモデル取得は必要。CLI検索の実装を確認しており、新しい自動検索UIの完成までは主張しない。"
+      ],
+      "sources": [
+        {
+          "label": "scripts/knowledge/build_vector_index.py",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/scripts/knowledge/build_vector_index.py"
+        },
+        {
+          "label": "scripts/knowledge/search_knowledge.py",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/scripts/knowledge/search_knowledge.py"
+        },
+        {
+          "label": ".github/workflows/build-vector-index.yml",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/.github/workflows/build-vector-index.yml"
+        }
+      ]
+    },
+    "knowledge-4": {
+      "label": "ルーティン・健全性・人の作業",
+      "status": "採用方針",
+      "summary": "定期作業と最新の診断結果を表示し、人が行う作業を区別する。",
+      "specification": "ルーティン一覧で定期作業と現在の結果を確認する。health-checks.jsonは最新の診断結果のスナップショット、会話ログは経過記録として使い分ける。managerが整理・調整しworkerが実装する運用を記録し、手動設定が必要な作業は人の作業として明示する。",
+      "constraints": [
+        "worker-roomの段階的な廃止方針はあるが代替・移行完了日は未確定。Codexへの自動振り分けは実装済み仕様に含めない。"
+      ],
+      "sources": [
+        {
+          "label": "data/health-checks.json",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/health-checks.json"
+        },
+        {
+          "label": "data/ai-config.json",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/ai-config.json"
+        },
+        {
+          "label": "dashboard.html",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/dashboard.html"
+        },
+        {
+          "label": "data/claude-core-rules.md",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/claude-core-rules.md"
+        }
+      ]
+    }
+  },
+  "features": [
+    {
+      "label": "複数アプリの進捗をまとめる",
+      "summary": "アプリ横断でタスクと相談事項を見渡せる。",
+      "detail": "リポジトリ単位のタスク、相談テーマ、アプリ一覧をまとめた管理ハブ。個別アプリの実装内容に加えて、アプリ間の参照関係も追える。",
+      "sources": [
+        {
+          "label": "dashboard.html",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/dashboard.html"
+        },
+        {
+          "label": "data/tasks.json",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/tasks.json"
+        }
+      ]
+    },
+    {
+      "label": "進捗と判断の根拠を一緒に追える",
+      "summary": "状態だけでなく、課題・確認経緯・次の作業まで参照する。",
+      "detail": "最新の要約、課題、checkHistory、nextActionを区別して保持する。会話要約と設計判断ログを合わせて、何が起き、何を採用したかを追跡する運用を支える。",
+      "sources": [
+        {
+          "label": "data/tasks.json",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/tasks.json"
+        },
+        {
+          "label": "data/manager-room-log.json",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/manager-room-log.json"
+        },
+        {
+          "label": "data/concept-log.json",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/concept-log.json"
+        }
+      ]
+    },
+    {
+      "label": "人向けの画面とAI向けの規則を併存",
+      "summary": "読みやすい表示と詳細な実行方針を役割に応じて管理する。",
+      "detail": "AI設定は人が読むweb表示用の説明とAIが参照する詳細設定を持つ。ポリシーは専用ファイルを参照し、共通ルールは他リポジトリへ配信する。",
+      "sources": [
+        {
+          "label": "data/ai-config.json",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/ai-config.json"
+        },
+        {
+          "label": "data/policy.json",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/policy.json"
+        },
+        {
+          "label": "scripts/sync_claude_md.py",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/scripts/sync_claude_md.py"
+        }
+      ]
+    },
+    {
+      "label": "手動作業を管理に含める",
+      "summary": "AIで処理できる作業と、人の設定・判断が必要な作業を見分ける。",
+      "detail": "手動設定項目や判断待ちをタスクとして明示し、利用者が完了を予約・取消できる。自動化の対象外を管理画面から把握できる。",
+      "sources": [
+        {
+          "label": "dashboard.html",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/dashboard.html"
+        },
+        {
+          "label": "data/tasks.json",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/tasks.json"
+        },
+        {
+          "label": "gas/Code.gs",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/gas/Code.gs"
+        }
+      ]
+    },
+    {
+      "label": "静的画面と既存サービスの組合せ",
+      "summary": "GitHubのJSON・PagesとGoogle Sheet・GASを組み合わせる。",
+      "detail": "表示は静的HTML、運用記録はSheet、更新処理はGASを使う。閲覧用Chromeサイドパネルも同じJSONを参照する。定期同期を前提にした構成で、即時一貫性を必要とする用途には制約がある。",
+      "sources": [
+        {
+          "label": ".github/workflows/deploy-pages.yml",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/.github/workflows/deploy-pages.yml"
+        },
+        {
+          "label": "dashboard.html",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/dashboard.html"
+        },
+        {
+          "label": "gas/Code.gs",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/gas/Code.gs"
+        },
+        {
+          "label": "chrome-extension/sidepanel.html",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/chrome-extension/sidepanel.html"
+        }
+      ]
+    },
+    {
+      "label": "ナレッジを再利用しやすい形で残す",
+      "summary": "設計判断のログと意味検索の仕組みを持つ。",
+      "detail": "構造化した設計判断を記録し、派生ベクトルインデックスから関連情報を検索できる。検索基盤の実装と、実装前に過去の判断を参照する運用を組み合わせている。",
+      "sources": [
+        {
+          "label": "data/concept-log.json",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/data/concept-log.json"
+        },
+        {
+          "label": "scripts/knowledge/build_vector_index.py",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/scripts/knowledge/build_vector_index.py"
+        },
+        {
+          "label": "scripts/knowledge/search_knowledge.py",
+          "url": "https://github.com/gurii-gabreh/progress-tracker-dashboard/blob/5aa2c2415b21e6f12901c8bba9828649e8daa218/scripts/knowledge/search_knowledge.py"
+        }
+      ]
+    }
+  ]
+}
