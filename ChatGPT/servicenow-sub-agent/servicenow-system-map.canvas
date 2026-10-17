@@ -1,0 +1,1549 @@
+{
+  "nodes": [
+    {
+      "id": "899398e594355acb",
+      "type": "group",
+      "x": 500,
+      "y": -45,
+      "width": 2370,
+      "height": 1650,
+      "label": "① 情報収集・ServiceNowの処理",
+      "color": "5"
+    },
+    {
+      "id": "4b0492ff9d35c55d",
+      "type": "group",
+      "x": 500,
+      "y": 1775,
+      "width": 2370,
+      "height": 1690,
+      "label": "② データ構造・保存",
+      "color": "4"
+    },
+    {
+      "id": "44d2b305d45ae61d",
+      "type": "group",
+      "x": 500,
+      "y": 3635,
+      "width": 2370,
+      "height": 1750,
+      "label": "③ データの取り出し・認証",
+      "color": "6"
+    },
+    {
+      "id": "f23e98244897cc16",
+      "type": "group",
+      "x": 500,
+      "y": 5555,
+      "width": 2370,
+      "height": 2190,
+      "label": "④ 日本語分析・ナレッジ活用",
+      "color": "2"
+    },
+    {
+      "id": "d9c9ef122b16a841",
+      "type": "group",
+      "x": 500,
+      "y": 7915,
+      "width": 2370,
+      "height": 1210,
+      "label": "⑤ Web画面・公開",
+      "color": "3"
+    },
+    {
+      "id": "391d8dcdaf9f8243",
+      "type": "group",
+      "x": 500,
+      "y": 9295,
+      "width": 2370,
+      "height": 2350,
+      "label": "⑥ 設定・保守と別用途の処理",
+      "color": "1"
+    },
+    {
+      "id": "6c2dbdf47a43157f",
+      "type": "group",
+      "x": 500,
+      "y": 11815,
+      "width": 2370,
+      "height": 1350,
+      "label": "アプリの特徴",
+      "color": "6"
+    },
+    {
+      "id": "cc966ef6b18cd6ac",
+      "type": "group",
+      "x": 990,
+      "y": 13350,
+      "width": 4560,
+      "height": 440,
+      "label": "A：情報がServiceNowへ入る"
+    },
+    {
+      "id": "138d05c4d011886c",
+      "type": "group",
+      "x": 990,
+      "y": 13870,
+      "width": 4560,
+      "height": 500,
+      "label": "B：ServiceNowからWeb用データへ"
+    },
+    {
+      "id": "5fd76cf72f0bd6eb",
+      "type": "group",
+      "x": 990,
+      "y": 14450,
+      "width": 3560,
+      "height": 500,
+      "label": "C：JSONをWebで読む（公開条件に注意）"
+    },
+    {
+      "id": "d2c848c18d0e4c72",
+      "type": "group",
+      "x": 990,
+      "y": 15030,
+      "width": 3560,
+      "height": 420,
+      "label": "D：依頼時にAIが日本語分析を加える"
+    },
+    {
+      "id": "ef6834b23fd8e8c7",
+      "type": "text",
+      "x": 1050,
+      "y": 110,
+      "width": 540,
+      "height": 240,
+      "text": "## 外部の情報源\n\n**確認区分：実装あり**\n\nニュース・論文・ニーズ・ハッカソン等を公開フィードから集める。",
+      "color": "5"
+    },
+    {
+      "id": "0aa14900d7375117",
+      "type": "text",
+      "x": 1810,
+      "y": 0,
+      "width": 1000,
+      "height": 460,
+      "text": "## 最終仕様\n\narXiv、Hacker News／Ask HN、各社ブログRSS・Atom、Anthropic NewsのHTML、DevpostのJSONを対象にする。SEOや働き方のフィードも収集コードに含む。情報源ごとの既定値で9観点のカテゴリを割り当てる。\n\n### 現在の制約・確認範囲\n\n- 本文をAIが読んで自動分類する仕組みではない。外部URLの現在の応答は今回未検証。Devpostはpage=1のみを取得する。\n\n### 根拠\n\n- [servicenow/scheduled_job_ai_research_fetch.js](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scheduled_job_ai_research_fetch.js)\n- [servicenow/scripts/setup_rest_messages.mjs](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scripts/setup_rest_messages.mjs)",
+      "color": "5"
+    },
+    {
+      "id": "7dfe422f4a9a586b",
+      "type": "text",
+      "x": 1050,
+      "y": 670,
+      "width": 540,
+      "height": 240,
+      "text": "## Scheduled JobとREST Message\n\n**確認区分：実装あり**\n\nScheduled Jobは定期実行係、REST Messageは外部通信の設定。",
+      "color": "5"
+    },
+    {
+      "id": "b86d8c171ff0e7f2",
+      "type": "text",
+      "x": 1810,
+      "y": 560,
+      "width": 1000,
+      "height": 460,
+      "text": "## 最終仕様\n\nServiceNow上でscheduled_job_ai_research_fetch.jsが実行され、sn_ws.RESTMessageV2で設定済みHTTPメソッドを順にGETする。arXiv／Hacker News／Blog RSS／Devpostの4つのREST Messageを使う。日次運用はREADMEの方針。\n\n### 現在の制約・確認範囲\n\n- ジョブの新規作成・頻度の設定は手動。実際の稼働中スケジュールは未確認。\n\n### 根拠\n\n- [servicenow/scheduled_job_ai_research_fetch.js](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scheduled_job_ai_research_fetch.js)\n- [README.md](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/README.md)",
+      "color": "5"
+    },
+    {
+      "id": "d253978f74e3879d",
+      "type": "text",
+      "x": 1050,
+      "y": 1220,
+      "width": 540,
+      "height": 240,
+      "text": "## 形式を揃える処理\n\n**確認区分：実装あり**\n\n情報源ごとに違うJSON・XML・HTMLを、同じ項目へ揃える。",
+      "color": "5"
+    },
+    {
+      "id": "fec3799ef1349d8c",
+      "type": "text",
+      "x": 1810,
+      "y": 1120,
+      "width": 1000,
+      "height": 440,
+      "text": "## 最終仕様\n\ntitle、summary、sourceUrl、sourceName、category、publishedAtへ整理する。JSONはJSON.parse、RSS／AtomとHTMLは正規表現で抽出し、HTMLタグ等を除く。公開日時はUTCのyyyy-MM-dd HH:mm:ssへ変換する。\n\n### 現在の制約・確認範囲\n\n- Anthropic Newsはページのクラス構造に依存する。RSS／Atomも正規表現による抽出のため構造変更・特殊な形式に弱い。\n\n### 根拠\n\n- [servicenow/scheduled_job_ai_research_fetch.js](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scheduled_job_ai_research_fetch.js)",
+      "color": "5"
+    },
+    {
+      "id": "2d892bb9dc37a04e",
+      "type": "text",
+      "x": 560,
+      "y": 690,
+      "width": 300,
+      "height": 180,
+      "text": "## ① 情報収集・ServiceNowの処理\n\n3仕様項目",
+      "color": "5"
+    },
+    {
+      "id": "87faf26ff0d240c8",
+      "type": "text",
+      "x": 1050,
+      "y": 1960,
+      "width": 540,
+      "height": 220,
+      "text": "## ServiceNowの収集テーブル\n\n**確認区分：実装あり**\n\nu_ai_research_itemが、収集した生データの保存先。",
+      "color": "4"
+    },
+    {
+      "id": "2ae91ee633f1ed33",
+      "type": "text",
+      "x": 1810,
+      "y": 1820,
+      "width": 1000,
+      "height": 500,
+      "text": "## 最終仕様\n\nGlideRecordで新規行を登録する。カテゴリ・タイトル・原文要約・出典URL・出典名・公開日時・取得日時・重複防止キーを保存する。日本語の分析欄はServiceNow側ではなく、GitHubのJSON側で保持する。\n\n### 現在の制約・確認範囲\n\n- テーブル・フィールドとChoiceの初期作成は手動。READMEにはカテゴリ8・9のChoice追加が必要と記載されているが、現在の設定は未確認。\n\n### 根拠\n\n- [README.md](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/README.md)\n- [servicenow/scheduled_job_ai_research_fetch.js](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scheduled_job_ai_research_fetch.js)\n- [servicenow/scripts/export_research_items.mjs](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scripts/export_research_items.mjs)",
+      "color": "4"
+    },
+    {
+      "id": "64f6b48ee761ceb6",
+      "type": "text",
+      "x": 1050,
+      "y": 2520,
+      "width": 540,
+      "height": 240,
+      "text": "## 二重登録と状態の保存\n\n**確認区分：実装あり**\n\n同じ記事の再登録を避け、ハッカソンの状態変化は別行で残す。",
+      "color": "4"
+    },
+    {
+      "id": "c8f6e7b537dd4cc3",
+      "type": "text",
+      "x": 1810,
+      "y": 2420,
+      "width": 1000,
+      "height": 440,
+      "text": "## 最終仕様\n\nURLを小文字化し末尾スラッシュを除いた文字列を最大255文字のu_dedup_keyにする。既存キーならスキップ。Devpostだけは開催状態・入賞発表状態のsuffixを加え、openからended等の変化を別レコードとして残す。\n\n### 現在の制約・確認範囲\n\n- 同じ記事のURL表記が大きく違う場合や長いURLの切り詰めによる衝突は扱いきれない。古いハッカソン状態も残す設計。\n\n### 根拠\n\n- [servicenow/scheduled_job_ai_research_fetch.js](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scheduled_job_ai_research_fetch.js)",
+      "color": "4"
+    },
+    {
+      "id": "7beb5b1c6181a43b",
+      "type": "text",
+      "x": 1050,
+      "y": 3080,
+      "width": 540,
+      "height": 220,
+      "text": "## GitHubのresearch-items.json\n\n**確認区分：実装あり**\n\nWeb画面とClaude用スキルが共通で読むデータ。",
+      "color": "4"
+    },
+    {
+      "id": "ac9da194cc7f6923",
+      "type": "text",
+      "x": 1810,
+      "y": 2960,
+      "width": 1000,
+      "height": 460,
+      "text": "## 最終仕様\n\nServiceNowのsys_idをsysIdへ、原文要約をrawSummaryへ変換し、items配列へ格納する。日本語のsummaryJa／pointsJa／applicableTechJa、curated、scoreを加える。categoriesは画面の絞り込み用の名前辞書。\n\n### 現在の制約・確認範囲\n\n- エクスポートコードのcategoriesは1〜7まで。収集側の8・9は名前辞書に含まれず、専用フィルタやカテゴリ名表示が欠ける構造。実データ内の8・9の有無は未確認。\n\n### 根拠\n\n- [servicenow/scripts/export_research_items.mjs](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scripts/export_research_items.mjs)\n- [index.html](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/index.html)",
+      "color": "4"
+    },
+    {
+      "id": "2a5624044938ca4c",
+      "type": "text",
+      "x": 560,
+      "y": 2540,
+      "width": 300,
+      "height": 160,
+      "text": "## ② データ構造・保存\n\n3仕様項目",
+      "color": "4"
+    },
+    {
+      "id": "c09829bb5758a293",
+      "type": "text",
+      "x": 1050,
+      "y": 3820,
+      "width": 540,
+      "height": 220,
+      "text": "## OAuthの共通クライアント\n\n**確認区分：実装あり**\n\nGitHub側の処理がServiceNowへ入るための認証窓口。",
+      "color": "6"
+    },
+    {
+      "id": "9fc5f75dd9f360e5",
+      "type": "text",
+      "x": 1810,
+      "y": 3680,
+      "width": 1000,
+      "height": 500,
+      "text": "## 最終仕様\n\nGitHub SecretsのインスタンスURL・Client ID・Client Secretを環境変数で渡す。servicenow_client.mjsがClient Credentialsでトークンを取得し、Bearer token付きでServiceNow Table APIを呼ぶ。エクスポート・設定登録・ジョブ同期・別件Business Ruleで共用する。\n\n### 現在の制約・確認範囲\n\n- これは処理間の認証。Web閲覧者のログイン機能ではない。実際のSecret値・利用ユーザー権限は未確認。\n\n### 根拠\n\n- [servicenow/scripts/lib/servicenow_client.mjs](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scripts/lib/servicenow_client.mjs)\n- [.github/workflows/servicenow-setup.yml](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/.github/workflows/servicenow-setup.yml)\n- [.github/workflows/servicenow-export-research.yml](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/.github/workflows/servicenow-export-research.yml)",
+      "color": "6"
+    },
+    {
+      "id": "1d5e640e966592e0",
+      "type": "text",
+      "x": 1050,
+      "y": 4420,
+      "width": 540,
+      "height": 240,
+      "text": "## 定期エクスポート\n\n**確認区分：実装あり**\n\nActionsがServiceNowの収集データを500件ずつ取り出す。",
+      "color": "6"
+    },
+    {
+      "id": "f6cf411f74d55c0c",
+      "type": "text",
+      "x": 1810,
+      "y": 4280,
+      "width": 1000,
+      "height": 520,
+      "text": "## 最終仕様\n\nservicenow-export-research.ymlがexport_research_items.mjsをNode.js 22で起動する。Table APIをoffset方式で全件読み、JSONを書き出す。変更があるとgit add→差分判定→commit→pushする。定義上は毎日09:30 JST、手動実行にも対応。\n\n### 現在の制約・確認範囲\n\n- scheduleは指定時刻の厳密な実行を保証しない。2026-10-17の実行開始は13:50 JST。正常終了は全情報源の当日収集成功を意味しない。\n\n### 根拠\n\n- [.github/workflows/servicenow-export-research.yml](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/.github/workflows/servicenow-export-research.yml)\n- [servicenow/scripts/export_research_items.mjs](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scripts/export_research_items.mjs)\n- [2026-10-17のexport成功履歴](https://github.com/gurii-gabreh/servicenow-sub-agent/actions/runs/39004072696)",
+      "color": "6"
+    },
+    {
+      "id": "9c30ced007a00d0c",
+      "type": "text",
+      "x": 1050,
+      "y": 5000,
+      "width": 540,
+      "height": 240,
+      "text": "## 日本語分析を残すマージ\n\n**確認区分：実装あり**\n\nsysIdで突き合わせ、日本語の分析を残して原文を更新する。",
+      "color": "6"
+    },
+    {
+      "id": "c2eeae84e6e5fd24",
+      "type": "text",
+      "x": 1810,
+      "y": 4900,
+      "width": 1000,
+      "height": 440,
+      "text": "## 最終仕様\n\n既存JSONからcurated、summaryJa、pointsJa、applicableTechJaを引き継ぎ、原文・出典情報をServiceNowの取得結果で更新する。scoreは毎回再計算する。出力行は今回ServiceNowから取得できた行を基準に構成する。\n\n### 現在の制約・確認範囲\n\n- ServiceNowから消えた行は出力にも残らないため永久保存の追記アーカイブではない。titleJaなど任意の追加欄はこのマージの引継ぎ対象に含まれない。\n\n### 根拠\n\n- [servicenow/scripts/export_research_items.mjs](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scripts/export_research_items.mjs)",
+      "color": "6"
+    },
+    {
+      "id": "2db5028e50d04527",
+      "type": "text",
+      "x": 560,
+      "y": 4420,
+      "width": 300,
+      "height": 180,
+      "text": "## ③ データの取り出し・認証\n\n3仕様項目",
+      "color": "6"
+    },
+    {
+      "id": "d5508d6a35b5a0ff",
+      "type": "text",
+      "x": 1050,
+      "y": 5710,
+      "width": 540,
+      "height": 220,
+      "text": "## 記事を読むClaude用スキル\n\n**確認区分：実装あり**\n\n自動収集の後、依頼時にAIが日本語の分析を加える。",
+      "color": "2"
+    },
+    {
+      "id": "cffa73085c642107",
+      "type": "text",
+      "x": 1810,
+      "y": 5600,
+      "width": 1000,
+      "height": 440,
+      "text": "## 最終仕様\n\nresearch-item-curationが未分析記事を選び、原文や出典を読んで概要・ポイント・活かせる技術をJSONへ記入する。curated=trueを付け、既存の分析済み記事を保持して保存する。\n\n### 現在の制約・確認範囲\n\n- 定期ジョブ内でLLMが全記事を分析する構成ではない。スキルを実行するClaude側の作業環境が別途必要。\n\n### 根拠\n\n- [.claude/skills/research-item-curation/SKILL.md](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/.claude/skills/research-item-curation/SKILL.md)\n- [servicenow/scripts/export_research_items.mjs](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scripts/export_research_items.mjs)",
+      "color": "2"
+    },
+    {
+      "id": "e3505de1544c39e7",
+      "type": "text",
+      "x": 1050,
+      "y": 6250,
+      "width": 540,
+      "height": 220,
+      "text": "## ハッカソン入賞作品の分析\n\n**確認区分：実装あり**\n\n一覧の収集と、入賞作品の内容理解を分担する。",
+      "color": "2"
+    },
+    {
+      "id": "ddf1d3c40bb6b093",
+      "type": "text",
+      "x": 1810,
+      "y": 6140,
+      "width": 1000,
+      "height": 440,
+      "text": "## 最終仕様\n\nScheduled JobはAI関連ハッカソンの開催状態と入賞発表・ギャラリーURLを保存する。hackathon-winner-curationが依頼時に終了・入賞発表済みの対象を選び、実際のギャラリーを読んで日本語で分析する。\n\n### 現在の制約・確認範囲\n\n- 入賞作品の中身をDevpost一覧APIだけで自動取得するわけではない。\n\n### 根拠\n\n- [servicenow/scheduled_job_ai_research_fetch.js](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scheduled_job_ai_research_fetch.js)\n- [.claude/skills/hackathon-winner-curation/SKILL.md](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/.claude/skills/hackathon-winner-curation/SKILL.md)",
+      "color": "2"
+    },
+    {
+      "id": "8ca4824b8c381bc6",
+      "type": "text",
+      "x": 1050,
+      "y": 6820,
+      "width": 540,
+      "height": 220,
+      "text": "## おすすめ順の点数\n\n**確認区分：実装あり**\n\nキーワードの一致に重みを付ける簡易スコア。",
+      "color": "2"
+    },
+    {
+      "id": "aa2b310d4038cb7e",
+      "type": "text",
+      "x": 1810,
+      "y": 6680,
+      "width": 1000,
+      "height": 500,
+      "text": "## 最終仕様\n\ntitle・rawSummary・日本語の各欄を結合し、agent／architecture／MCP／RAG／security等の語に応じて加点する。curated=trueならさらに1点加える。exportとrecompute_scoresで同じ関数を使う。\n\n### 現在の制約・確認範囲\n\n- 利用者の行動を学習する推薦AIではない。キーワードで見落とし・偏りが生じる。意味検索はREADMEで検討段階、当該リポジトリに実装ファイルはない。\n\n### 根拠\n\n- [servicenow/scripts/lib/score_items.mjs](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scripts/lib/score_items.mjs)\n- [servicenow/scripts/recompute_scores.mjs](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scripts/recompute_scores.mjs)\n- [README.md](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/README.md)",
+      "color": "2"
+    },
+    {
+      "id": "156fd479775e06f2",
+      "type": "text",
+      "x": 1050,
+      "y": 7370,
+      "width": 540,
+      "height": 240,
+      "text": "## 蓄積情報を読むスキル\n\n**確認区分：実装あり**\n\n質問に答える前に、保存済み記事を条件で絞って確認する。",
+      "color": "2"
+    },
+    {
+      "id": "4f09af7570b71ddf",
+      "type": "text",
+      "x": 1810,
+      "y": 7280,
+      "width": 1000,
+      "height": 420,
+      "text": "## 最終仕様\n\nresearch-knowledge-lookupは大きなJSONをカテゴリ・キーワード・スコア等で抽出し、日本語分析済みの記事を優先して読む手順。該当がなければ見つからないと回答し、原則は読み取り専用。\n\n### 現在の制約・確認範囲\n\n- 自律的に動き続けるサブエージェントの常駐コードではなく、Claudeに作業手順を教えるSKILL.md。\n\n### 根拠\n\n- [.claude/skills/research-knowledge-lookup/SKILL.md](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/.claude/skills/research-knowledge-lookup/SKILL.md)",
+      "color": "2"
+    },
+    {
+      "id": "b884b1b08948cd9c",
+      "type": "text",
+      "x": 560,
+      "y": 6560,
+      "width": 300,
+      "height": 180,
+      "text": "## ④ 日本語分析・ナレッジ活用\n\n4仕様項目",
+      "color": "2"
+    },
+    {
+      "id": "5962e691aa58603b",
+      "type": "text",
+      "x": 1050,
+      "y": 8120,
+      "width": 540,
+      "height": 240,
+      "text": "## GitHub Pagesへの公開\n\n**確認区分：実装あり**\n\nmain更新または手動操作で、静的ファイル一式を公開する。",
+      "color": "3"
+    },
+    {
+      "id": "1389d57940226d30",
+      "type": "text",
+      "x": 1810,
+      "y": 7960,
+      "width": 1000,
+      "height": 560,
+      "text": "## 最終仕様\n\ndeploy-pages.ymlがリポジトリ全体をartifactへまとめ、GitHub Pagesに配置する。公開済みのindex.htmlとJSONが閲覧者へ配信される。\n\n### 現在の制約・確認範囲\n\n- エクスポートのpushは標準GITHUB_TOKENを使う構成。このpushから次のpushワークフローは通常起動しないため、定期JSON更新とPages再公開が自動で連鎖するとは言えない。直近8実行ではexport成功が10/12〜17、Pagesの最新成功は10/11。\n\n### 根拠\n\n- [.github/workflows/deploy-pages.yml](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/.github/workflows/deploy-pages.yml)\n- [.github/workflows/servicenow-export-research.yml](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/.github/workflows/servicenow-export-research.yml)\n- [GitHub公式：GITHUB_TOKENからの再起動制限](https://docs.github.com/ja/actions/concepts/security/github_token)\n- [今回確認した最新Pages成功：2026-10-11](https://github.com/gurii-gabreh/servicenow-sub-agent/actions/runs/38137351365)",
+      "color": "3"
+    },
+    {
+      "id": "e5cc6c42cd6b8b50",
+      "type": "text",
+      "x": 1050,
+      "y": 8730,
+      "width": 540,
+      "height": 240,
+      "text": "## 閲覧画面の内部\n\n**確認区分：実装あり**\n\nindex.htmlが同じ公開場所のJSONを読み、ブラウザ内で絞り込む。",
+      "color": "3"
+    },
+    {
+      "id": "8ccd4fecf634f16d",
+      "type": "text",
+      "x": 1810,
+      "y": 8620,
+      "width": 1000,
+      "height": 460,
+      "text": "## 最終仕様\n\n追加のReactや専用Web APIサーバーは使わず、HTML・CSS・JavaScriptで描画する。起動時にdata/research-items.jsonを全件fetchし、日／週／月、カテゴリ、おすすめ／新着、要約済みのみで表示を切り替える。各グループ30件から追加表示し、初期状態は直近側3グループを展開する。\n\n### 現在の制約・確認範囲\n\n- 30件表示は画面描画の区切りで、ネットワーク取得は全JSON。groupKeyForはcreatedAtを優先するため、日付グループは原則として記事の元公開日ではなく収集テーブルの作成日。閲覧画面に編集・投稿・ログインはない。\n\n### 根拠\n\n- [index.html](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/index.html)",
+      "color": "3"
+    },
+    {
+      "id": "949279c428b3fc16",
+      "type": "text",
+      "x": 560,
+      "y": 8440,
+      "width": 300,
+      "height": 160,
+      "text": "## ⑤ Web画面・公開\n\n2仕様項目",
+      "color": "3"
+    },
+    {
+      "id": "e917790a417881d5",
+      "type": "text",
+      "x": 1050,
+      "y": 9480,
+      "width": 540,
+      "height": 240,
+      "text": "## REST設定とジョブ本文の同期\n\n**確認区分：実装あり**\n\n設定用Actionsは手動実行。初期値はdry-runで変更予定だけを見る。",
+      "color": "1"
+    },
+    {
+      "id": "a4a359ddf4d374e3",
+      "type": "text",
+      "x": 1810,
+      "y": 9340,
+      "width": 1000,
+      "height": 520,
+      "text": "## 最終仕様\n\nverify_source_urlsが情報源URLを検証し、setup_rest_messagesがREST MessageとHTTPメソッドを登録する。sync_scheduled_jobはAIResearchFetcherという目印で既存ジョブを探し、script本文だけPATCHする。ジョブの新規作成や実行頻度は変更しない。\n\n### 現在の制約・確認範囲\n\n- 3つのActionsジョブにneedsの指定はなく、URL検証成功を待つ直列処理ではない。pushをトリガーにした同期でもない。既存RESTメソッドのURLが違っても警告して上書きしない。\n\n### 根拠\n\n- [.github/workflows/servicenow-setup.yml](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/.github/workflows/servicenow-setup.yml)\n- [servicenow/scripts/setup_rest_messages.mjs](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scripts/setup_rest_messages.mjs)\n- [servicenow/scripts/sync_scheduled_job.mjs](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scripts/sync_scheduled_job.mjs)",
+      "color": "1"
+    },
+    {
+      "id": "02164467c5b4ccb4",
+      "type": "text",
+      "x": 1050,
+      "y": 10100,
+      "width": 540,
+      "height": 240,
+      "text": "## 失敗の記録と公開前のマスク\n\n**確認区分：実装あり**\n\n情報源ごとの失敗を記録し、JSON化する一部の文字列をマスクする。",
+      "color": "1"
+    },
+    {
+      "id": "655895a1d30d4268",
+      "type": "text",
+      "x": 1810,
+      "y": 9960,
+      "width": 1000,
+      "height": 520,
+      "text": "## 最終仕様\n\n収集処理は情報源ごとにtry/catchし、最後にinserted／skipped／errorsをgs.infoとgs.errorへ出す。エクスポートはタイトルと原文要約の既知のキー形式をマスクする。Actionsはpush失敗時の診断情報を出して異常終了する。\n\n### 現在の制約・確認範囲\n\n- マスク対象は指定パターンと欄に限られ、全データの機密性を保証しない。外部取得の成功と、ServiceNowへの登録・Pagesへの反映は別々に確認する必要がある。\n\n### 根拠\n\n- [servicenow/scheduled_job_ai_research_fetch.js](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scheduled_job_ai_research_fetch.js)\n- [servicenow/scripts/export_research_items.mjs](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scripts/export_research_items.mjs)\n- [.github/workflows/servicenow-export-research.yml](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/.github/workflows/servicenow-export-research.yml)",
+      "color": "1"
+    },
+    {
+      "id": "a990713ae2d69db0",
+      "type": "text",
+      "x": 1050,
+      "y": 10680,
+      "width": 540,
+      "height": 220,
+      "text": "## 公開日時の補修\n\n**確認区分：実装あり**\n\n以前の空欄データを埋める、一度限りの補助スクリプト。",
+      "color": "1"
+    },
+    {
+      "id": "788911ab81c13f91",
+      "type": "text",
+      "x": 1810,
+      "y": 10580,
+      "width": 1000,
+      "height": 420,
+      "text": "## 最終仕様\n\nbackfill_published_at.jsをServiceNowのBackground Scriptsで手動実行する。arXiv／Hacker News／OpenAI／Hugging Faceを再取得し、既存キーが一致し公開日時が空の行だけ更新する。新規行は作らない。\n\n### 現在の制約・確認範囲\n\n- 全情報源に対応する定期処理ではない。\n\n### 根拠\n\n- [servicenow/backfill_published_at.js](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/backfill_published_at.js)",
+      "color": "1"
+    },
+    {
+      "id": "dfcb592a6783092b",
+      "type": "text",
+      "x": 1050,
+      "y": 11240,
+      "width": 540,
+      "height": 220,
+      "text": "## 別用途：カタログ更新ログ\n\n**確認区分：実装あり**\n\nAIリサーチ本体とは独立したBusiness Ruleの設定例。",
+      "color": "1"
+    },
+    {
+      "id": "2330c5e8e6964a79",
+      "type": "text",
+      "x": 1810,
+      "y": 11100,
+      "width": 1000,
+      "height": 500,
+      "text": "## 最終仕様\n\n専用の手動Actionsがsys_scriptへsc_cat_item更新後のログ出力ルールを作る。実行時はOAuth共通クライアントを使う。既存ならスキップし、dry-run=falseでは有効なカタログアイテムへ同じnameをPATCHしてsyslogの記録を探す。\n\n### 現在の制約・確認範囲\n\n- 記事収集の流れには接続しない。実行するとカタログレコードへ実更新する検証を含むため、通常の設定同期とは別ワークフロー。今回は実行していない。\n\n### 根拠\n\n- [.github/workflows/servicenow-business-rules.yml](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/.github/workflows/servicenow-business-rules.yml)\n- [servicenow/scripts/setup_business_rule_sc_cat_item.mjs](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scripts/setup_business_rule_sc_cat_item.mjs)",
+      "color": "1"
+    },
+    {
+      "id": "2c79461fb2ed53e4",
+      "type": "text",
+      "x": 560,
+      "y": 10380,
+      "width": 300,
+      "height": 180,
+      "text": "## ⑥ 設定・保守と別用途の処理\n\n4仕様項目",
+      "color": "1"
+    },
+    {
+      "id": "a57d61a733122d62",
+      "type": "text",
+      "x": 1050,
+      "y": 11970,
+      "width": 540,
+      "height": 160,
+      "text": "## 収集・理解・閲覧を分担\n\n機械的な収集と、日本語で理解する作業を別にする。",
+      "color": "6"
+    },
+    {
+      "id": "a719bae325d9766d",
+      "type": "text",
+      "x": 1810,
+      "y": 11860,
+      "width": 1000,
+      "height": 380,
+      "text": "## アプリの特徴\n\nServiceNowは決まった手順で情報を集める。Claudeは必要な記事を選んで読んで分析する。Web画面は出来上がったJSONを表示する。名称はsub-agentだが、収集ジョブ自体にLLM呼出しはない。\n\n### 根拠\n\n- [servicenow/scheduled_job_ai_research_fetch.js](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scheduled_job_ai_research_fetch.js)\n- [servicenow/scripts/export_research_items.mjs](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scripts/export_research_items.mjs)\n- [.claude/skills/research-item-curation/SKILL.md](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/.claude/skills/research-item-curation/SKILL.md)\n- [index.html](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/index.html)",
+      "color": "6"
+    },
+    {
+      "id": "dd94ffe44d997ade",
+      "type": "text",
+      "x": 1050,
+      "y": 12420,
+      "width": 540,
+      "height": 160,
+      "text": "## ServiceNowが裏側の基盤\n\nDB・定期実行・外部通信をServiceNowへまとめる。",
+      "color": "6"
+    },
+    {
+      "id": "3ecab71736f9a5d8",
+      "type": "text",
+      "x": 1810,
+      "y": 12340,
+      "width": 1000,
+      "height": 320,
+      "text": "## アプリの特徴\n\nこのリポジトリには独自のExpressやPythonサーバーはない。収集用テーブル、GlideRecord、Scheduled Job、RESTMessageV2が裏側を担い、GitHub Actionsはデータ搬出と管理処理を担う。\n\n### 根拠\n\n- [servicenow/scheduled_job_ai_research_fetch.js](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scheduled_job_ai_research_fetch.js)\n- [servicenow/scripts/export_research_items.mjs](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scripts/export_research_items.mjs)",
+      "color": "6"
+    },
+    {
+      "id": "3752b0bc12324f13",
+      "type": "text",
+      "x": 1050,
+      "y": 12860,
+      "width": 540,
+      "height": 160,
+      "text": "## 出典と活用方法を一緒に残す\n\n原文データと日本語分析を同じ記事IDで追跡する。",
+      "color": "6"
+    },
+    {
+      "id": "b20df1082cf6c637",
+      "type": "text",
+      "x": 1810,
+      "y": 12760,
+      "width": 1000,
+      "height": 360,
+      "text": "## アプリの特徴\n\nsourceUrlとsourceNameで出典を参照し、summaryJa・pointsJa・applicableTechJaで理解と使い道を記録する。ハッカソンは状態変化も別行で残し、あとから傾向を振り返れる。\n\n### 根拠\n\n- [servicenow/scheduled_job_ai_research_fetch.js](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scheduled_job_ai_research_fetch.js)\n- [servicenow/scripts/export_research_items.mjs](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scripts/export_research_items.mjs)\n- [.claude/skills/hackathon-winner-curation/SKILL.md](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/.claude/skills/hackathon-winner-curation/SKILL.md)",
+      "color": "6"
+    },
+    {
+      "id": "5b8a8b56dada6ce7",
+      "type": "text",
+      "x": 560,
+      "y": 12400,
+      "width": 300,
+      "height": 180,
+      "text": "## アプリの特徴\n\n機能の組合せ・運用方法・設計上の性質",
+      "color": "6"
+    },
+    {
+      "id": "f623ff49da8d81cd",
+      "type": "text",
+      "x": 1050,
+      "y": 13380,
+      "width": 540,
+      "height": 380,
+      "text": "## A：情報がServiceNowへ入る\n\nREST Message経由で取得\n\n形式・日付・カテゴリを揃える\n\n重複を除いてGlideRecordで保存\n\n記録に基づく前提・対応順\n\n- [servicenow/scheduled_job_ai_research_fetch.js](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scheduled_job_ai_research_fetch.js)",
+      "color": "1"
+    },
+    {
+      "id": "b4395f34967fee2a",
+      "type": "text",
+      "x": 1810,
+      "y": 13380,
+      "width": 620,
+      "height": 280,
+      "text": "## sources\n\n**外部の情報源**\n\nニュース・論文・ニーズ・ハッカソン等を公開フィードから集める。\n\n上側の同じ項目の再掲。",
+      "color": "5"
+    },
+    {
+      "id": "b25d50193955a4fc",
+      "type": "text",
+      "x": 2650,
+      "y": 13380,
+      "width": 760,
+      "height": 280,
+      "text": "## collector\n\n**Scheduled JobとREST Message**\n\nScheduled Jobは定期実行係、REST Messageは外部通信の設定。\n\n上側の同じ項目の再掲。",
+      "color": "5"
+    },
+    {
+      "id": "c0d5017348fb926f",
+      "type": "text",
+      "x": 3650,
+      "y": 13380,
+      "width": 840,
+      "height": 280,
+      "text": "## normalize\n\n**形式を揃える処理**\n\n情報源ごとに違うJSON・XML・HTMLを、同じ項目へ揃える。\n\n上側の同じ項目の再掲。",
+      "color": "5"
+    },
+    {
+      "id": "07ab1a462bf44409",
+      "type": "text",
+      "x": 4730,
+      "y": 13380,
+      "width": 760,
+      "height": 280,
+      "text": "## database\n\n**ServiceNowの収集テーブル**\n\nu_ai_research_itemが、収集した生データの保存先。\n\n上側の同じ項目の再掲。",
+      "color": "4"
+    },
+    {
+      "id": "17d346ba646448be",
+      "type": "text",
+      "x": 1050,
+      "y": 13900,
+      "width": 540,
+      "height": 440,
+      "text": "## B：ServiceNowからWeb用データへ\n\nOAuth＋Table APIで500件ずつ取得\n\nsysIdで既存の日本語欄を引き継ぐ\n\n再採点してJSON保存・変更時push\n\n記録に基づく前提・対応順\n\n- [servicenow/scripts/export_research_items.mjs](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scripts/export_research_items.mjs)\n- [.github/workflows/servicenow-export-research.yml](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/.github/workflows/servicenow-export-research.yml)",
+      "color": "1"
+    },
+    {
+      "id": "f8b1b8dd9b985c0c",
+      "type": "text",
+      "x": 1810,
+      "y": 13900,
+      "width": 620,
+      "height": 280,
+      "text": "## database\n\n**ServiceNowの収集テーブル**\n\nu_ai_research_itemが、収集した生データの保存先。\n\n上側の同じ項目の再掲。",
+      "color": "4"
+    },
+    {
+      "id": "4f36c2b17b96a8a1",
+      "type": "text",
+      "x": 2650,
+      "y": 13900,
+      "width": 760,
+      "height": 280,
+      "text": "## export\n\n**定期エクスポート**\n\nActionsがServiceNowの収集データを500件ずつ取り出す。\n\n上側の同じ項目の再掲。",
+      "color": "6"
+    },
+    {
+      "id": "da0932f1fbf22b7b",
+      "type": "text",
+      "x": 3650,
+      "y": 13900,
+      "width": 840,
+      "height": 280,
+      "text": "## merge\n\n**日本語分析を残すマージ**\n\nsysIdで突き合わせ、日本語の分析を残して原文を更新する。\n\n上側の同じ項目の再掲。",
+      "color": "6"
+    },
+    {
+      "id": "6fc35c7463a3dffd",
+      "type": "text",
+      "x": 4730,
+      "y": 13900,
+      "width": 760,
+      "height": 280,
+      "text": "## json\n\n**GitHubのresearch-items.json**\n\nWeb画面とClaude用スキルが共通で読むデータ。\n\n上側の同じ項目の再掲。",
+      "color": "4"
+    },
+    {
+      "id": "a114a8acdd550009",
+      "type": "text",
+      "x": 1050,
+      "y": 14480,
+      "width": 540,
+      "height": 440,
+      "text": "## C：JSONをWebで読む（公開条件に注意）\n\nPages再デプロイ時に取り込む。exportのbot pushだけでは通常連鎖しない\n\n公開HTMLが公開JSONをfetchして表示\n\n記録に基づく前提・対応順\n\n- [.github/workflows/deploy-pages.yml](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/.github/workflows/deploy-pages.yml)\n- [index.html](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/index.html)\n- [.github/workflows/servicenow-export-research.yml](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/.github/workflows/servicenow-export-research.yml)",
+      "color": "1"
+    },
+    {
+      "id": "ab5021b459cab156",
+      "type": "text",
+      "x": 1810,
+      "y": 14480,
+      "width": 620,
+      "height": 280,
+      "text": "## json\n\n**GitHubのresearch-items.json**\n\nWeb画面とClaude用スキルが共通で読むデータ。\n\n上側の同じ項目の再掲。",
+      "color": "4"
+    },
+    {
+      "id": "0b4dc6d157889e4e",
+      "type": "text",
+      "x": 2650,
+      "y": 14480,
+      "width": 760,
+      "height": 280,
+      "text": "## deploy\n\n**GitHub Pagesへの公開**\n\nmain更新または手動操作で、静的ファイル一式を公開する。\n\n上側の同じ項目の再掲。",
+      "color": "3"
+    },
+    {
+      "id": "ca4052e1368c31d8",
+      "type": "text",
+      "x": 3650,
+      "y": 14480,
+      "width": 840,
+      "height": 280,
+      "text": "## viewer\n\n**閲覧画面の内部**\n\nindex.htmlが同じ公開場所のJSONを読み、ブラウザ内で絞り込む。\n\n上側の同じ項目の再掲。",
+      "color": "3"
+    },
+    {
+      "id": "57a55fa2925b5f33",
+      "type": "text",
+      "x": 1050,
+      "y": 15060,
+      "width": 540,
+      "height": 360,
+      "text": "## D：依頼時にAIが日本語分析を加える\n\n未分析記事と出典を読む\n\n日本語欄とcuratedを更新。同じJSONの再掲\n\n記録に基づく前提・対応順\n\n- [.claude/skills/research-item-curation/SKILL.md](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/.claude/skills/research-item-curation/SKILL.md)\n- [servicenow/scripts/export_research_items.mjs](https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scripts/export_research_items.mjs)",
+      "color": "1"
+    },
+    {
+      "id": "e0e28540e3c41eb2",
+      "type": "text",
+      "x": 1810,
+      "y": 15060,
+      "width": 620,
+      "height": 280,
+      "text": "## json\n\n**GitHubのresearch-items.json**\n\nWeb画面とClaude用スキルが共通で読むデータ。\n\n上側の同じ項目の再掲。",
+      "color": "4"
+    },
+    {
+      "id": "85ef7d7dd2b75569",
+      "type": "text",
+      "x": 2650,
+      "y": 15060,
+      "width": 760,
+      "height": 280,
+      "text": "## curation\n\n**記事を読むClaude用スキル**\n\n自動収集の後、依頼時にAIが日本語の分析を加える。\n\n上側の同じ項目の再掲。",
+      "color": "2"
+    },
+    {
+      "id": "d1954f9b1ad580d9",
+      "type": "text",
+      "x": 3650,
+      "y": 15060,
+      "width": 840,
+      "height": 280,
+      "text": "## json\n\n**GitHubのresearch-items.json**\n\nWeb画面とClaude用スキルが共通で読むデータ。\n\n上側の同じ項目の再掲。",
+      "color": "4"
+    },
+    {
+      "id": "e2ba41af03120f14",
+      "type": "text",
+      "x": 560,
+      "y": 14290,
+      "width": 300,
+      "height": 360,
+      "text": "## つながり\n\n矢印：記録から確認できる前提・対応順\n\n矢印なし＋関連ラベル：依存を意味しない関連\n\nカードは上側の同じ項目の再掲。",
+      "color": "1"
+    },
+    {
+      "id": "4813494d137e1631",
+      "type": "text",
+      "x": 0,
+      "y": 7320,
+      "width": 380,
+      "height": 920,
+      "text": "# ServiceNow Research Viewer：システム内部の連関図\n\n**gurii-gabreh/servicenow-sub-agent**\n\n情報を集めるServiceNow、取り出すGitHub Actions、読むWeb画面、依頼時のClaudeスキルの役割を整理。下側の「つながり」でデータの流れを追える。\n\nモード：最終仕様・アプリの特徴\n\n記録：2026-10-17 JST\n\n対象：42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8\n\n- 実装あり＝固定コミットのコードを確認。ServiceNow PDIへログインした実動作検証は行っていない。\n- Actions履歴では2026-10-17の定期エクスポートが成功。今回確認した最新のPages成功は2026-10-11。\n- 4.2MBのresearch-items.json本文は接続ツールのサイズ制限で取得できず、記事件数・カテゴリ別実件数は未確認。\n- アプリ本体の設定・コードは変更しない。JPG作業は停止のまま。"
+    }
+  ],
+  "edges": [
+    {
+      "id": "04bae6f34747810d",
+      "fromNode": "ef6834b23fd8e8c7",
+      "fromSide": "right",
+      "toNode": "0aa14900d7375117",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "5"
+    },
+    {
+      "id": "6ad0d1a831a2fc2e",
+      "fromNode": "7dfe422f4a9a586b",
+      "fromSide": "right",
+      "toNode": "b86d8c171ff0e7f2",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "5"
+    },
+    {
+      "id": "9407868608a63a6a",
+      "fromNode": "d253978f74e3879d",
+      "fromSide": "right",
+      "toNode": "fec3799ef1349d8c",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "5"
+    },
+    {
+      "id": "fd0446504761016d",
+      "fromNode": "2d892bb9dc37a04e",
+      "fromSide": "right",
+      "toNode": "ef6834b23fd8e8c7",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "5"
+    },
+    {
+      "id": "70e3784f30ed2a4b",
+      "fromNode": "2d892bb9dc37a04e",
+      "fromSide": "right",
+      "toNode": "7dfe422f4a9a586b",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "5"
+    },
+    {
+      "id": "ed3c4f82f6b32d23",
+      "fromNode": "2d892bb9dc37a04e",
+      "fromSide": "right",
+      "toNode": "d253978f74e3879d",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "5"
+    },
+    {
+      "id": "d33dc3bc60066b8a",
+      "fromNode": "87faf26ff0d240c8",
+      "fromSide": "right",
+      "toNode": "2ae91ee633f1ed33",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "4"
+    },
+    {
+      "id": "fc936b3845783d7d",
+      "fromNode": "64f6b48ee761ceb6",
+      "fromSide": "right",
+      "toNode": "c8f6e7b537dd4cc3",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "4"
+    },
+    {
+      "id": "7357353ffd2a873c",
+      "fromNode": "7beb5b1c6181a43b",
+      "fromSide": "right",
+      "toNode": "ac9da194cc7f6923",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "4"
+    },
+    {
+      "id": "c748ad6cd6232260",
+      "fromNode": "2a5624044938ca4c",
+      "fromSide": "right",
+      "toNode": "87faf26ff0d240c8",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "4"
+    },
+    {
+      "id": "47ca23f9923b76ab",
+      "fromNode": "2a5624044938ca4c",
+      "fromSide": "right",
+      "toNode": "64f6b48ee761ceb6",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "4"
+    },
+    {
+      "id": "f6b8412ee7f199fd",
+      "fromNode": "2a5624044938ca4c",
+      "fromSide": "right",
+      "toNode": "7beb5b1c6181a43b",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "4"
+    },
+    {
+      "id": "4d0d1509f1d8605c",
+      "fromNode": "c09829bb5758a293",
+      "fromSide": "right",
+      "toNode": "9fc5f75dd9f360e5",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "6"
+    },
+    {
+      "id": "7c2fc50c88c7df40",
+      "fromNode": "1d5e640e966592e0",
+      "fromSide": "right",
+      "toNode": "f6cf411f74d55c0c",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "6"
+    },
+    {
+      "id": "303f01a652c82fbd",
+      "fromNode": "9c30ced007a00d0c",
+      "fromSide": "right",
+      "toNode": "c2eeae84e6e5fd24",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "6"
+    },
+    {
+      "id": "b0e07070cdfeb891",
+      "fromNode": "2db5028e50d04527",
+      "fromSide": "right",
+      "toNode": "c09829bb5758a293",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "2b73c582d29927ac",
+      "fromNode": "2db5028e50d04527",
+      "fromSide": "right",
+      "toNode": "1d5e640e966592e0",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "60be836552daf21a",
+      "fromNode": "2db5028e50d04527",
+      "fromSide": "right",
+      "toNode": "9c30ced007a00d0c",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "4449c3d6eeb7d007",
+      "fromNode": "d5508d6a35b5a0ff",
+      "fromSide": "right",
+      "toNode": "cffa73085c642107",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "2"
+    },
+    {
+      "id": "5cee14a8835f55b0",
+      "fromNode": "e3505de1544c39e7",
+      "fromSide": "right",
+      "toNode": "ddf1d3c40bb6b093",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "2"
+    },
+    {
+      "id": "a398fb8180f35d6e",
+      "fromNode": "8ca4824b8c381bc6",
+      "fromSide": "right",
+      "toNode": "aa2b310d4038cb7e",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "2"
+    },
+    {
+      "id": "b2f78c02c0b93087",
+      "fromNode": "156fd479775e06f2",
+      "fromSide": "right",
+      "toNode": "4f09af7570b71ddf",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "2"
+    },
+    {
+      "id": "d2cebd92d18bd269",
+      "fromNode": "b884b1b08948cd9c",
+      "fromSide": "right",
+      "toNode": "d5508d6a35b5a0ff",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "2"
+    },
+    {
+      "id": "265e2e8bb6051900",
+      "fromNode": "b884b1b08948cd9c",
+      "fromSide": "right",
+      "toNode": "e3505de1544c39e7",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "2"
+    },
+    {
+      "id": "3ab2dc0fccbdc2f3",
+      "fromNode": "b884b1b08948cd9c",
+      "fromSide": "right",
+      "toNode": "8ca4824b8c381bc6",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "2"
+    },
+    {
+      "id": "079a431fdde56ee6",
+      "fromNode": "b884b1b08948cd9c",
+      "fromSide": "right",
+      "toNode": "156fd479775e06f2",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "2"
+    },
+    {
+      "id": "53d8bb9b9e7c4649",
+      "fromNode": "5962e691aa58603b",
+      "fromSide": "right",
+      "toNode": "1389d57940226d30",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "3"
+    },
+    {
+      "id": "9d4c91f9593e0303",
+      "fromNode": "e5cc6c42cd6b8b50",
+      "fromSide": "right",
+      "toNode": "8ccd4fecf634f16d",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "3"
+    },
+    {
+      "id": "9e9241e1b04f1732",
+      "fromNode": "949279c428b3fc16",
+      "fromSide": "right",
+      "toNode": "5962e691aa58603b",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "3"
+    },
+    {
+      "id": "785d5aa8defaab23",
+      "fromNode": "949279c428b3fc16",
+      "fromSide": "right",
+      "toNode": "e5cc6c42cd6b8b50",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "3"
+    },
+    {
+      "id": "f807b7de263bb1b5",
+      "fromNode": "e917790a417881d5",
+      "fromSide": "right",
+      "toNode": "a4a359ddf4d374e3",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "1"
+    },
+    {
+      "id": "6b0ce2e6370749a6",
+      "fromNode": "02164467c5b4ccb4",
+      "fromSide": "right",
+      "toNode": "655895a1d30d4268",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "1"
+    },
+    {
+      "id": "7a3e9e30d7bf1a30",
+      "fromNode": "a990713ae2d69db0",
+      "fromSide": "right",
+      "toNode": "788911ab81c13f91",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "1"
+    },
+    {
+      "id": "80d75cc6eb14144c",
+      "fromNode": "dfcb592a6783092b",
+      "fromSide": "right",
+      "toNode": "2330c5e8e6964a79",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "1"
+    },
+    {
+      "id": "4a882d35b2cf25ad",
+      "fromNode": "2c79461fb2ed53e4",
+      "fromSide": "right",
+      "toNode": "e917790a417881d5",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "a79027c0f1de7272",
+      "fromNode": "2c79461fb2ed53e4",
+      "fromSide": "right",
+      "toNode": "02164467c5b4ccb4",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "9db5ebf56d1e95da",
+      "fromNode": "2c79461fb2ed53e4",
+      "fromSide": "right",
+      "toNode": "a990713ae2d69db0",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "e992a877693cbdda",
+      "fromNode": "2c79461fb2ed53e4",
+      "fromSide": "right",
+      "toNode": "dfcb592a6783092b",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "2bf63daecfb46df6",
+      "fromNode": "a57d61a733122d62",
+      "fromSide": "right",
+      "toNode": "a719bae325d9766d",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "特徴・根拠",
+      "color": "6"
+    },
+    {
+      "id": "1a120c948e7d1b15",
+      "fromNode": "dd94ffe44d997ade",
+      "fromSide": "right",
+      "toNode": "3ecab71736f9a5d8",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "特徴・根拠",
+      "color": "6"
+    },
+    {
+      "id": "e769be23d50e7069",
+      "fromNode": "3752b0bc12324f13",
+      "fromSide": "right",
+      "toNode": "b20df1082cf6c637",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "特徴・根拠",
+      "color": "6"
+    },
+    {
+      "id": "eb5338325c0a2900",
+      "fromNode": "5b8a8b56dada6ce7",
+      "fromSide": "right",
+      "toNode": "a57d61a733122d62",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "aa3d7902992a3e7a",
+      "fromNode": "5b8a8b56dada6ce7",
+      "fromSide": "right",
+      "toNode": "dd94ffe44d997ade",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "8e4169cbff0d2be6",
+      "fromNode": "5b8a8b56dada6ce7",
+      "fromSide": "right",
+      "toNode": "3752b0bc12324f13",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "22ea9d4b9c5fb275",
+      "fromNode": "f623ff49da8d81cd",
+      "fromSide": "right",
+      "toNode": "b4395f34967fee2a",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "対象",
+      "color": "1"
+    },
+    {
+      "id": "895c135e4b0ab3d2",
+      "fromNode": "b4395f34967fee2a",
+      "fromSide": "right",
+      "toNode": "b25d50193955a4fc",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "REST Message経由で取得",
+      "color": "1"
+    },
+    {
+      "id": "e82f94af1866a784",
+      "fromNode": "b25d50193955a4fc",
+      "fromSide": "right",
+      "toNode": "c0d5017348fb926f",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "形式・日付・カテゴリを揃える",
+      "color": "1"
+    },
+    {
+      "id": "9883082a8e88b80b",
+      "fromNode": "c0d5017348fb926f",
+      "fromSide": "right",
+      "toNode": "07ab1a462bf44409",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "重複を除いてGlideRecordで保存",
+      "color": "1"
+    },
+    {
+      "id": "d3b526e535e30e5d",
+      "fromNode": "17d346ba646448be",
+      "fromSide": "right",
+      "toNode": "f8b1b8dd9b985c0c",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "対象",
+      "color": "1"
+    },
+    {
+      "id": "aec95ced93f3a4f2",
+      "fromNode": "f8b1b8dd9b985c0c",
+      "fromSide": "right",
+      "toNode": "4f36c2b17b96a8a1",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "OAuth＋Table APIで500件ずつ取得",
+      "color": "1"
+    },
+    {
+      "id": "48dfdfd9aa682799",
+      "fromNode": "4f36c2b17b96a8a1",
+      "fromSide": "right",
+      "toNode": "da0932f1fbf22b7b",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "sysIdで既存の日本語欄を引き継ぐ",
+      "color": "1"
+    },
+    {
+      "id": "5cea234339ad22ba",
+      "fromNode": "da0932f1fbf22b7b",
+      "fromSide": "right",
+      "toNode": "6fc35c7463a3dffd",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "再採点してJSON保存・変更時push",
+      "color": "1"
+    },
+    {
+      "id": "c6a4460dd1446de8",
+      "fromNode": "a114a8acdd550009",
+      "fromSide": "right",
+      "toNode": "ab5021b459cab156",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "対象",
+      "color": "1"
+    },
+    {
+      "id": "6996d1e8a870d186",
+      "fromNode": "ab5021b459cab156",
+      "fromSide": "right",
+      "toNode": "0b4dc6d157889e4e",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "Pages再デプロイ時に取り込む。exportのbot pushだけでは通常連鎖しない",
+      "color": "1"
+    },
+    {
+      "id": "c5f7335ab645b582",
+      "fromNode": "0b4dc6d157889e4e",
+      "fromSide": "right",
+      "toNode": "ca4052e1368c31d8",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "公開HTMLが公開JSONをfetchして表示",
+      "color": "1"
+    },
+    {
+      "id": "229f167ebcfdbf7a",
+      "fromNode": "57a55fa2925b5f33",
+      "fromSide": "right",
+      "toNode": "e0e28540e3c41eb2",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "対象",
+      "color": "1"
+    },
+    {
+      "id": "99491f129303920a",
+      "fromNode": "e0e28540e3c41eb2",
+      "fromSide": "right",
+      "toNode": "85ef7d7dd2b75569",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "未分析記事と出典を読む",
+      "color": "1"
+    },
+    {
+      "id": "babe0006c18f72cd",
+      "fromNode": "85ef7d7dd2b75569",
+      "fromSide": "right",
+      "toNode": "d1954f9b1ad580d9",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "日本語欄とcuratedを更新。同じJSONの再掲",
+      "color": "1"
+    },
+    {
+      "id": "9b72cd84723078d0",
+      "fromNode": "e2ba41af03120f14",
+      "fromSide": "right",
+      "toNode": "f623ff49da8d81cd",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "ca6cf96b8611a03c",
+      "fromNode": "e2ba41af03120f14",
+      "fromSide": "right",
+      "toNode": "17d346ba646448be",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "99f07fe67f122418",
+      "fromNode": "e2ba41af03120f14",
+      "fromSide": "right",
+      "toNode": "a114a8acdd550009",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "8fbe52967ba4fece",
+      "fromNode": "e2ba41af03120f14",
+      "fromSide": "right",
+      "toNode": "57a55fa2925b5f33",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "4dc74c2a530ef57d",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "2d892bb9dc37a04e",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "08dacb2b1aa4cf33",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "2a5624044938ca4c",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "859782d184526e9b",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "2db5028e50d04527",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "87772e265dc148ce",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "b884b1b08948cd9c",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "8fc3854176a059a7",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "949279c428b3fc16",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "11d202f732a09e05",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "2c79461fb2ed53e4",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "c9bb994ac7d7014b",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "5b8a8b56dada6ce7",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "9763850441f6c63d",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "e2ba41af03120f14",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    }
+  ]
+}

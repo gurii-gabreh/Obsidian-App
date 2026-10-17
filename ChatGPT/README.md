@@ -2,6 +2,7 @@
 
 | フォルダ | 内容 |
 |---|---|
+| [servicenow-sub-agent](servicenow-sub-agent/) | ServiceNowリサーチアプリの内部構成・連関図・説明。 |
 | [progress](progress/) | Progress Trackerの課題・対応経緯、最終仕様・特徴、再生成用データ。 |
 | [app-architecture](app-architecture/) | 初心者向けのアプリ作成の全体像。8カテゴリ・25項目。 |
 

@@ -1,0 +1,627 @@
+{
+  "mode": "spec",
+  "title": "ServiceNow Research Viewer：システム内部の連関図",
+  "repo": "gurii-gabreh/servicenow-sub-agent",
+  "ref": "42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8",
+  "asOf": "2026-10-17 JST",
+  "scope": "情報を集めるServiceNow、取り出すGitHub Actions、読むWeb画面、依頼時のClaudeスキルの役割を整理。下側の「つながり」でデータの流れを追える。",
+  "limitations": [
+    "実装あり＝固定コミットのコードを確認。ServiceNow PDIへログインした実動作検証は行っていない。",
+    "Actions履歴では2026-10-17の定期エクスポートが成功。今回確認した最新のPages成功は2026-10-11。",
+    "4.2MBのresearch-items.json本文は接続ツールのサイズ制限で取得できず、記事件数・カテゴリ別実件数は未確認。",
+    "アプリ本体の設定・コードは変更しない。JPG作業は停止のまま。"
+  ],
+  "categories": [
+    {
+      "key": "collect",
+      "label": "① 情報収集・ServiceNowの処理",
+      "ids": [
+        "sources",
+        "collector",
+        "normalize"
+      ]
+    },
+    {
+      "key": "storage",
+      "label": "② データ構造・保存",
+      "ids": [
+        "database",
+        "dedup",
+        "json"
+      ]
+    },
+    {
+      "key": "sync",
+      "label": "③ データの取り出し・認証",
+      "ids": [
+        "auth",
+        "export",
+        "merge"
+      ]
+    },
+    {
+      "key": "analysis",
+      "label": "④ 日本語分析・ナレッジ活用",
+      "ids": [
+        "curation",
+        "winners",
+        "score",
+        "lookup"
+      ]
+    },
+    {
+      "key": "ui",
+      "label": "⑤ Web画面・公開",
+      "ids": [
+        "deploy",
+        "viewer"
+      ]
+    },
+    {
+      "key": "operations",
+      "label": "⑥ 設定・保守と別用途の処理",
+      "ids": [
+        "setup",
+        "errors",
+        "maintenance",
+        "businessrule"
+      ]
+    }
+  ],
+  "items": {
+    "sources": {
+      "label": "外部の情報源",
+      "status": "実装あり",
+      "summary": "ニュース・論文・ニーズ・ハッカソン等を公開フィードから集める。",
+      "specification": "arXiv、Hacker News／Ask HN、各社ブログRSS・Atom、Anthropic NewsのHTML、DevpostのJSONを対象にする。SEOや働き方のフィードも収集コードに含む。情報源ごとの既定値で9観点のカテゴリを割り当てる。",
+      "constraints": [
+        "本文をAIが読んで自動分類する仕組みではない。外部URLの現在の応答は今回未検証。Devpostはpage=1のみを取得する。"
+      ],
+      "sources": [
+        {
+          "label": "servicenow/scheduled_job_ai_research_fetch.js",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scheduled_job_ai_research_fetch.js"
+        },
+        {
+          "label": "servicenow/scripts/setup_rest_messages.mjs",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scripts/setup_rest_messages.mjs"
+        }
+      ]
+    },
+    "collector": {
+      "label": "Scheduled JobとREST Message",
+      "status": "実装あり",
+      "summary": "Scheduled Jobは定期実行係、REST Messageは外部通信の設定。",
+      "specification": "ServiceNow上でscheduled_job_ai_research_fetch.jsが実行され、sn_ws.RESTMessageV2で設定済みHTTPメソッドを順にGETする。arXiv／Hacker News／Blog RSS／Devpostの4つのREST Messageを使う。日次運用はREADMEの方針。",
+      "constraints": [
+        "ジョブの新規作成・頻度の設定は手動。実際の稼働中スケジュールは未確認。"
+      ],
+      "sources": [
+        {
+          "label": "servicenow/scheduled_job_ai_research_fetch.js",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scheduled_job_ai_research_fetch.js"
+        },
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/README.md"
+        }
+      ]
+    },
+    "normalize": {
+      "label": "形式を揃える処理",
+      "status": "実装あり",
+      "summary": "情報源ごとに違うJSON・XML・HTMLを、同じ項目へ揃える。",
+      "specification": "title、summary、sourceUrl、sourceName、category、publishedAtへ整理する。JSONはJSON.parse、RSS／AtomとHTMLは正規表現で抽出し、HTMLタグ等を除く。公開日時はUTCのyyyy-MM-dd HH:mm:ssへ変換する。",
+      "constraints": [
+        "Anthropic Newsはページのクラス構造に依存する。RSS／Atomも正規表現による抽出のため構造変更・特殊な形式に弱い。"
+      ],
+      "sources": [
+        {
+          "label": "servicenow/scheduled_job_ai_research_fetch.js",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scheduled_job_ai_research_fetch.js"
+        }
+      ]
+    },
+    "database": {
+      "label": "ServiceNowの収集テーブル",
+      "status": "実装あり",
+      "summary": "u_ai_research_itemが、収集した生データの保存先。",
+      "specification": "GlideRecordで新規行を登録する。カテゴリ・タイトル・原文要約・出典URL・出典名・公開日時・取得日時・重複防止キーを保存する。日本語の分析欄はServiceNow側ではなく、GitHubのJSON側で保持する。",
+      "constraints": [
+        "テーブル・フィールドとChoiceの初期作成は手動。READMEにはカテゴリ8・9のChoice追加が必要と記載されているが、現在の設定は未確認。"
+      ],
+      "sources": [
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/README.md"
+        },
+        {
+          "label": "servicenow/scheduled_job_ai_research_fetch.js",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scheduled_job_ai_research_fetch.js"
+        },
+        {
+          "label": "servicenow/scripts/export_research_items.mjs",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scripts/export_research_items.mjs"
+        }
+      ]
+    },
+    "dedup": {
+      "label": "二重登録と状態の保存",
+      "status": "実装あり",
+      "summary": "同じ記事の再登録を避け、ハッカソンの状態変化は別行で残す。",
+      "specification": "URLを小文字化し末尾スラッシュを除いた文字列を最大255文字のu_dedup_keyにする。既存キーならスキップ。Devpostだけは開催状態・入賞発表状態のsuffixを加え、openからended等の変化を別レコードとして残す。",
+      "constraints": [
+        "同じ記事のURL表記が大きく違う場合や長いURLの切り詰めによる衝突は扱いきれない。古いハッカソン状態も残す設計。"
+      ],
+      "sources": [
+        {
+          "label": "servicenow/scheduled_job_ai_research_fetch.js",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scheduled_job_ai_research_fetch.js"
+        }
+      ]
+    },
+    "json": {
+      "label": "GitHubのresearch-items.json",
+      "status": "実装あり",
+      "summary": "Web画面とClaude用スキルが共通で読むデータ。",
+      "specification": "ServiceNowのsys_idをsysIdへ、原文要約をrawSummaryへ変換し、items配列へ格納する。日本語のsummaryJa／pointsJa／applicableTechJa、curated、scoreを加える。categoriesは画面の絞り込み用の名前辞書。",
+      "constraints": [
+        "エクスポートコードのcategoriesは1〜7まで。収集側の8・9は名前辞書に含まれず、専用フィルタやカテゴリ名表示が欠ける構造。実データ内の8・9の有無は未確認。"
+      ],
+      "sources": [
+        {
+          "label": "servicenow/scripts/export_research_items.mjs",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scripts/export_research_items.mjs"
+        },
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/index.html"
+        }
+      ]
+    },
+    "auth": {
+      "label": "OAuthの共通クライアント",
+      "status": "実装あり",
+      "summary": "GitHub側の処理がServiceNowへ入るための認証窓口。",
+      "specification": "GitHub SecretsのインスタンスURL・Client ID・Client Secretを環境変数で渡す。servicenow_client.mjsがClient Credentialsでトークンを取得し、Bearer token付きでServiceNow Table APIを呼ぶ。エクスポート・設定登録・ジョブ同期・別件Business Ruleで共用する。",
+      "constraints": [
+        "これは処理間の認証。Web閲覧者のログイン機能ではない。実際のSecret値・利用ユーザー権限は未確認。"
+      ],
+      "sources": [
+        {
+          "label": "servicenow/scripts/lib/servicenow_client.mjs",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scripts/lib/servicenow_client.mjs"
+        },
+        {
+          "label": ".github/workflows/servicenow-setup.yml",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/.github/workflows/servicenow-setup.yml"
+        },
+        {
+          "label": ".github/workflows/servicenow-export-research.yml",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/.github/workflows/servicenow-export-research.yml"
+        }
+      ]
+    },
+    "export": {
+      "label": "定期エクスポート",
+      "status": "実装あり",
+      "summary": "ActionsがServiceNowの収集データを500件ずつ取り出す。",
+      "specification": "servicenow-export-research.ymlがexport_research_items.mjsをNode.js 22で起動する。Table APIをoffset方式で全件読み、JSONを書き出す。変更があるとgit add→差分判定→commit→pushする。定義上は毎日09:30 JST、手動実行にも対応。",
+      "constraints": [
+        "scheduleは指定時刻の厳密な実行を保証しない。2026-10-17の実行開始は13:50 JST。正常終了は全情報源の当日収集成功を意味しない。"
+      ],
+      "sources": [
+        {
+          "label": ".github/workflows/servicenow-export-research.yml",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/.github/workflows/servicenow-export-research.yml"
+        },
+        {
+          "label": "servicenow/scripts/export_research_items.mjs",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scripts/export_research_items.mjs"
+        },
+        {
+          "label": "2026-10-17のexport成功履歴",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/actions/runs/39004072696"
+        }
+      ]
+    },
+    "merge": {
+      "label": "日本語分析を残すマージ",
+      "status": "実装あり",
+      "summary": "sysIdで突き合わせ、日本語の分析を残して原文を更新する。",
+      "specification": "既存JSONからcurated、summaryJa、pointsJa、applicableTechJaを引き継ぎ、原文・出典情報をServiceNowの取得結果で更新する。scoreは毎回再計算する。出力行は今回ServiceNowから取得できた行を基準に構成する。",
+      "constraints": [
+        "ServiceNowから消えた行は出力にも残らないため永久保存の追記アーカイブではない。titleJaなど任意の追加欄はこのマージの引継ぎ対象に含まれない。"
+      ],
+      "sources": [
+        {
+          "label": "servicenow/scripts/export_research_items.mjs",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scripts/export_research_items.mjs"
+        }
+      ]
+    },
+    "curation": {
+      "label": "記事を読むClaude用スキル",
+      "status": "実装あり",
+      "summary": "自動収集の後、依頼時にAIが日本語の分析を加える。",
+      "specification": "research-item-curationが未分析記事を選び、原文や出典を読んで概要・ポイント・活かせる技術をJSONへ記入する。curated=trueを付け、既存の分析済み記事を保持して保存する。",
+      "constraints": [
+        "定期ジョブ内でLLMが全記事を分析する構成ではない。スキルを実行するClaude側の作業環境が別途必要。"
+      ],
+      "sources": [
+        {
+          "label": ".claude/skills/research-item-curation/SKILL.md",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/.claude/skills/research-item-curation/SKILL.md"
+        },
+        {
+          "label": "servicenow/scripts/export_research_items.mjs",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scripts/export_research_items.mjs"
+        }
+      ]
+    },
+    "winners": {
+      "label": "ハッカソン入賞作品の分析",
+      "status": "実装あり",
+      "summary": "一覧の収集と、入賞作品の内容理解を分担する。",
+      "specification": "Scheduled JobはAI関連ハッカソンの開催状態と入賞発表・ギャラリーURLを保存する。hackathon-winner-curationが依頼時に終了・入賞発表済みの対象を選び、実際のギャラリーを読んで日本語で分析する。",
+      "constraints": [
+        "入賞作品の中身をDevpost一覧APIだけで自動取得するわけではない。"
+      ],
+      "sources": [
+        {
+          "label": "servicenow/scheduled_job_ai_research_fetch.js",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scheduled_job_ai_research_fetch.js"
+        },
+        {
+          "label": ".claude/skills/hackathon-winner-curation/SKILL.md",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/.claude/skills/hackathon-winner-curation/SKILL.md"
+        }
+      ]
+    },
+    "score": {
+      "label": "おすすめ順の点数",
+      "status": "実装あり",
+      "summary": "キーワードの一致に重みを付ける簡易スコア。",
+      "specification": "title・rawSummary・日本語の各欄を結合し、agent／architecture／MCP／RAG／security等の語に応じて加点する。curated=trueならさらに1点加える。exportとrecompute_scoresで同じ関数を使う。",
+      "constraints": [
+        "利用者の行動を学習する推薦AIではない。キーワードで見落とし・偏りが生じる。意味検索はREADMEで検討段階、当該リポジトリに実装ファイルはない。"
+      ],
+      "sources": [
+        {
+          "label": "servicenow/scripts/lib/score_items.mjs",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scripts/lib/score_items.mjs"
+        },
+        {
+          "label": "servicenow/scripts/recompute_scores.mjs",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scripts/recompute_scores.mjs"
+        },
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/README.md"
+        }
+      ]
+    },
+    "lookup": {
+      "label": "蓄積情報を読むスキル",
+      "status": "実装あり",
+      "summary": "質問に答える前に、保存済み記事を条件で絞って確認する。",
+      "specification": "research-knowledge-lookupは大きなJSONをカテゴリ・キーワード・スコア等で抽出し、日本語分析済みの記事を優先して読む手順。該当がなければ見つからないと回答し、原則は読み取り専用。",
+      "constraints": [
+        "自律的に動き続けるサブエージェントの常駐コードではなく、Claudeに作業手順を教えるSKILL.md。"
+      ],
+      "sources": [
+        {
+          "label": ".claude/skills/research-knowledge-lookup/SKILL.md",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/.claude/skills/research-knowledge-lookup/SKILL.md"
+        }
+      ]
+    },
+    "deploy": {
+      "label": "GitHub Pagesへの公開",
+      "status": "実装あり",
+      "summary": "main更新または手動操作で、静的ファイル一式を公開する。",
+      "specification": "deploy-pages.ymlがリポジトリ全体をartifactへまとめ、GitHub Pagesに配置する。公開済みのindex.htmlとJSONが閲覧者へ配信される。",
+      "constraints": [
+        "エクスポートのpushは標準GITHUB_TOKENを使う構成。このpushから次のpushワークフローは通常起動しないため、定期JSON更新とPages再公開が自動で連鎖するとは言えない。直近8実行ではexport成功が10/12〜17、Pagesの最新成功は10/11。"
+      ],
+      "sources": [
+        {
+          "label": ".github/workflows/deploy-pages.yml",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/.github/workflows/deploy-pages.yml"
+        },
+        {
+          "label": ".github/workflows/servicenow-export-research.yml",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/.github/workflows/servicenow-export-research.yml"
+        },
+        {
+          "label": "GitHub公式：GITHUB_TOKENからの再起動制限",
+          "url": "https://docs.github.com/ja/actions/concepts/security/github_token"
+        },
+        {
+          "label": "今回確認した最新Pages成功：2026-10-11",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/actions/runs/38137351365"
+        }
+      ]
+    },
+    "viewer": {
+      "label": "閲覧画面の内部",
+      "status": "実装あり",
+      "summary": "index.htmlが同じ公開場所のJSONを読み、ブラウザ内で絞り込む。",
+      "specification": "追加のReactや専用Web APIサーバーは使わず、HTML・CSS・JavaScriptで描画する。起動時にdata/research-items.jsonを全件fetchし、日／週／月、カテゴリ、おすすめ／新着、要約済みのみで表示を切り替える。各グループ30件から追加表示し、初期状態は直近側3グループを展開する。",
+      "constraints": [
+        "30件表示は画面描画の区切りで、ネットワーク取得は全JSON。groupKeyForはcreatedAtを優先するため、日付グループは原則として記事の元公開日ではなく収集テーブルの作成日。閲覧画面に編集・投稿・ログインはない。"
+      ],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/index.html"
+        }
+      ]
+    },
+    "setup": {
+      "label": "REST設定とジョブ本文の同期",
+      "status": "実装あり",
+      "summary": "設定用Actionsは手動実行。初期値はdry-runで変更予定だけを見る。",
+      "specification": "verify_source_urlsが情報源URLを検証し、setup_rest_messagesがREST MessageとHTTPメソッドを登録する。sync_scheduled_jobはAIResearchFetcherという目印で既存ジョブを探し、script本文だけPATCHする。ジョブの新規作成や実行頻度は変更しない。",
+      "constraints": [
+        "3つのActionsジョブにneedsの指定はなく、URL検証成功を待つ直列処理ではない。pushをトリガーにした同期でもない。既存RESTメソッドのURLが違っても警告して上書きしない。"
+      ],
+      "sources": [
+        {
+          "label": ".github/workflows/servicenow-setup.yml",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/.github/workflows/servicenow-setup.yml"
+        },
+        {
+          "label": "servicenow/scripts/setup_rest_messages.mjs",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scripts/setup_rest_messages.mjs"
+        },
+        {
+          "label": "servicenow/scripts/sync_scheduled_job.mjs",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scripts/sync_scheduled_job.mjs"
+        }
+      ]
+    },
+    "errors": {
+      "label": "失敗の記録と公開前のマスク",
+      "status": "実装あり",
+      "summary": "情報源ごとの失敗を記録し、JSON化する一部の文字列をマスクする。",
+      "specification": "収集処理は情報源ごとにtry/catchし、最後にinserted／skipped／errorsをgs.infoとgs.errorへ出す。エクスポートはタイトルと原文要約の既知のキー形式をマスクする。Actionsはpush失敗時の診断情報を出して異常終了する。",
+      "constraints": [
+        "マスク対象は指定パターンと欄に限られ、全データの機密性を保証しない。外部取得の成功と、ServiceNowへの登録・Pagesへの反映は別々に確認する必要がある。"
+      ],
+      "sources": [
+        {
+          "label": "servicenow/scheduled_job_ai_research_fetch.js",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scheduled_job_ai_research_fetch.js"
+        },
+        {
+          "label": "servicenow/scripts/export_research_items.mjs",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scripts/export_research_items.mjs"
+        },
+        {
+          "label": ".github/workflows/servicenow-export-research.yml",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/.github/workflows/servicenow-export-research.yml"
+        }
+      ]
+    },
+    "maintenance": {
+      "label": "公開日時の補修",
+      "status": "実装あり",
+      "summary": "以前の空欄データを埋める、一度限りの補助スクリプト。",
+      "specification": "backfill_published_at.jsをServiceNowのBackground Scriptsで手動実行する。arXiv／Hacker News／OpenAI／Hugging Faceを再取得し、既存キーが一致し公開日時が空の行だけ更新する。新規行は作らない。",
+      "constraints": [
+        "全情報源に対応する定期処理ではない。"
+      ],
+      "sources": [
+        {
+          "label": "servicenow/backfill_published_at.js",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/backfill_published_at.js"
+        }
+      ]
+    },
+    "businessrule": {
+      "label": "別用途：カタログ更新ログ",
+      "status": "実装あり",
+      "summary": "AIリサーチ本体とは独立したBusiness Ruleの設定例。",
+      "specification": "専用の手動Actionsがsys_scriptへsc_cat_item更新後のログ出力ルールを作る。実行時はOAuth共通クライアントを使う。既存ならスキップし、dry-run=falseでは有効なカタログアイテムへ同じnameをPATCHしてsyslogの記録を探す。",
+      "constraints": [
+        "記事収集の流れには接続しない。実行するとカタログレコードへ実更新する検証を含むため、通常の設定同期とは別ワークフロー。今回は実行していない。"
+      ],
+      "sources": [
+        {
+          "label": ".github/workflows/servicenow-business-rules.yml",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/.github/workflows/servicenow-business-rules.yml"
+        },
+        {
+          "label": "servicenow/scripts/setup_business_rule_sc_cat_item.mjs",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scripts/setup_business_rule_sc_cat_item.mjs"
+        }
+      ]
+    }
+  },
+  "features": [
+    {
+      "label": "収集・理解・閲覧を分担",
+      "summary": "機械的な収集と、日本語で理解する作業を別にする。",
+      "detail": "ServiceNowは決まった手順で情報を集める。Claudeは必要な記事を選んで読んで分析する。Web画面は出来上がったJSONを表示する。名称はsub-agentだが、収集ジョブ自体にLLM呼出しはない。",
+      "sources": [
+        {
+          "label": "servicenow/scheduled_job_ai_research_fetch.js",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scheduled_job_ai_research_fetch.js"
+        },
+        {
+          "label": "servicenow/scripts/export_research_items.mjs",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scripts/export_research_items.mjs"
+        },
+        {
+          "label": ".claude/skills/research-item-curation/SKILL.md",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/.claude/skills/research-item-curation/SKILL.md"
+        },
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/index.html"
+        }
+      ]
+    },
+    {
+      "label": "ServiceNowが裏側の基盤",
+      "summary": "DB・定期実行・外部通信をServiceNowへまとめる。",
+      "detail": "このリポジトリには独自のExpressやPythonサーバーはない。収集用テーブル、GlideRecord、Scheduled Job、RESTMessageV2が裏側を担い、GitHub Actionsはデータ搬出と管理処理を担う。",
+      "sources": [
+        {
+          "label": "servicenow/scheduled_job_ai_research_fetch.js",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scheduled_job_ai_research_fetch.js"
+        },
+        {
+          "label": "servicenow/scripts/export_research_items.mjs",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scripts/export_research_items.mjs"
+        }
+      ]
+    },
+    {
+      "label": "出典と活用方法を一緒に残す",
+      "summary": "原文データと日本語分析を同じ記事IDで追跡する。",
+      "detail": "sourceUrlとsourceNameで出典を参照し、summaryJa・pointsJa・applicableTechJaで理解と使い道を記録する。ハッカソンは状態変化も別行で残し、あとから傾向を振り返れる。",
+      "sources": [
+        {
+          "label": "servicenow/scheduled_job_ai_research_fetch.js",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scheduled_job_ai_research_fetch.js"
+        },
+        {
+          "label": "servicenow/scripts/export_research_items.mjs",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scripts/export_research_items.mjs"
+        },
+        {
+          "label": ".claude/skills/hackathon-winner-curation/SKILL.md",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/.claude/skills/hackathon-winner-curation/SKILL.md"
+        }
+      ]
+    }
+  ],
+  "flows": [
+    {
+      "title": "A：情報がServiceNowへ入る",
+      "kind": "solid",
+      "columns": [
+        [
+          "sources"
+        ],
+        [
+          "collector"
+        ],
+        [
+          "normalize"
+        ],
+        [
+          "database"
+        ]
+      ],
+      "labels": [
+        "REST Message経由で取得",
+        "形式・日付・カテゴリを揃える",
+        "重複を除いてGlideRecordで保存"
+      ],
+      "sources": [
+        {
+          "label": "servicenow/scheduled_job_ai_research_fetch.js",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scheduled_job_ai_research_fetch.js"
+        }
+      ]
+    },
+    {
+      "title": "B：ServiceNowからWeb用データへ",
+      "kind": "solid",
+      "columns": [
+        [
+          "database"
+        ],
+        [
+          "export"
+        ],
+        [
+          "merge"
+        ],
+        [
+          "json"
+        ]
+      ],
+      "labels": [
+        "OAuth＋Table APIで500件ずつ取得",
+        "sysIdで既存の日本語欄を引き継ぐ",
+        "再採点してJSON保存・変更時push"
+      ],
+      "sources": [
+        {
+          "label": "servicenow/scripts/export_research_items.mjs",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scripts/export_research_items.mjs"
+        },
+        {
+          "label": ".github/workflows/servicenow-export-research.yml",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/.github/workflows/servicenow-export-research.yml"
+        }
+      ]
+    },
+    {
+      "title": "C：JSONをWebで読む（公開条件に注意）",
+      "kind": "solid",
+      "columns": [
+        [
+          "json"
+        ],
+        [
+          "deploy"
+        ],
+        [
+          "viewer"
+        ]
+      ],
+      "labels": [
+        "Pages再デプロイ時に取り込む。exportのbot pushだけでは通常連鎖しない",
+        "公開HTMLが公開JSONをfetchして表示"
+      ],
+      "sources": [
+        {
+          "label": ".github/workflows/deploy-pages.yml",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/.github/workflows/deploy-pages.yml"
+        },
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/index.html"
+        },
+        {
+          "label": ".github/workflows/servicenow-export-research.yml",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/.github/workflows/servicenow-export-research.yml"
+        }
+      ]
+    },
+    {
+      "title": "D：依頼時にAIが日本語分析を加える",
+      "kind": "solid",
+      "columns": [
+        [
+          "json"
+        ],
+        [
+          "curation"
+        ],
+        [
+          "json"
+        ]
+      ],
+      "labels": [
+        "未分析記事と出典を読む",
+        "日本語欄とcuratedを更新。同じJSONの再掲"
+      ],
+      "sources": [
+        {
+          "label": ".claude/skills/research-item-curation/SKILL.md",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/.claude/skills/research-item-curation/SKILL.md"
+        },
+        {
+          "label": "servicenow/scripts/export_research_items.mjs",
+          "url": "https://github.com/gurii-gabreh/servicenow-sub-agent/blob/42d9f2803f99a0927e2f9bb9f9edf87824fdc2b8/servicenow/scripts/export_research_items.mjs"
+        }
+      ]
+    }
+  ]
+}
