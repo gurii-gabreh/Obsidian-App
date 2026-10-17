@@ -1,0 +1,186 @@
+{
+  "mode": "spec",
+  "title": "Gemini Monitor：内部構成・連関図",
+  "repo": "gurii-gabreh/gemini-monitor",
+  "ref": "4eca9d60966ebdc3f7c536ec368b3516368a6fac",
+  "asOf": "2026-10-17 JST",
+  "scope": "モデル別・時間帯別のAPI応答状況を測り、成功率や待ち時間をグラフにする。 上側は役割別の内部構成、下側はデータのつながり。",
+  "limitations": [
+    "既定ブランチ main の固定コミットを確認したスナップショット。",
+    "実装ありはコードの存在を示す。稼働環境・認証設定・実機での動作は未検証。",
+    "技術・モデル・サービス名はコード中の設定や候補。現行の提供状況・料金を保証しない。"
+  ],
+  "categories": [
+    {
+      "key": "category-0",
+      "label": "画面・操作",
+      "ids": [
+        "ui"
+      ]
+    },
+    {
+      "key": "category-1",
+      "label": "処理・連携",
+      "ids": [
+        "api",
+        "measure",
+        "gemini"
+      ]
+    },
+    {
+      "key": "category-2",
+      "label": "データ保存",
+      "ids": [
+        "sheet"
+      ]
+    }
+  ],
+  "items": {
+    "ui": {
+      "label": "Chart.jsのダッシュボード",
+      "status": "実装あり",
+      "summary": "成功率・レイテンシ・規模別結果を比較する。",
+      "specification": "index.htmlがGAS URLをlocalStorageへ保存し、getData／getSettings等を呼ぶ。取得結果をヒートマップや時系列へ集計する。",
+      "constraints": [],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/gemini-monitor/blob/4eca9d60966ebdc3f7c536ec368b3516368a6fac/index.html"
+        }
+      ]
+    },
+    "api": {
+      "label": "GAS Web API",
+      "status": "実装あり",
+      "summary": "取得・設定保存・即時測定を振り分ける。",
+      "specification": "doGetのactionでgetData、getSettings、saveSettings、runNowを処理しJSONを返す。",
+      "constraints": [
+        "個別利用者の認証と稼働中GASへの反映状況は未検証。"
+      ],
+      "sources": [
+        {
+          "label": "gas/Code.gs",
+          "url": "https://github.com/gurii-gabreh/gemini-monitor/blob/4eca9d60966ebdc3f7c536ec368b3516368a6fac/gas/Code.gs"
+        }
+      ]
+    },
+    "measure": {
+      "label": "測定とトリガー",
+      "status": "実装あり",
+      "summary": "対象モデルとプロンプト規模を組み合わせて測定する。",
+      "specification": "runMeasurementは測定時間帯を確認し、Gemini APIへ順次送信して処理時間・HTTPエラー・トークン使用量を記録する。pro系は小サイズだけを対象にする。",
+      "constraints": [
+        "結果は設定モデル・プロンプト・利用枠にも左右されるため、サービス全体の混雑そのものを断定する指標ではない。"
+      ],
+      "sources": [
+        {
+          "label": "gas/Code.gs",
+          "url": "https://github.com/gurii-gabreh/gemini-monitor/blob/4eca9d60966ebdc3f7c536ec368b3516368a6fac/gas/Code.gs"
+        }
+      ]
+    },
+    "gemini": {
+      "label": "Gemini API",
+      "status": "実装あり",
+      "summary": "測定用プロンプトへの応答を返す。",
+      "specification": "generateContentのHTTPコードからsuccess、rate_limit、error等へ分類する。APIキーはGAS側の設定から読む。",
+      "constraints": [
+        "コード中のモデル候補・無料枠の記述は現行の提供条件を保証しない。"
+      ],
+      "sources": [
+        {
+          "label": "gas/Code.gs",
+          "url": "https://github.com/gurii-gabreh/gemini-monitor/blob/4eca9d60966ebdc3f7c536ec368b3516368a6fac/gas/Code.gs"
+        }
+      ]
+    },
+    "sheet": {
+      "label": "測定・設定シート",
+      "status": "実装あり",
+      "summary": "履歴を蓄積し、画面へ返す。",
+      "specification": "SpreadsheetAppで測定行と設定値を保存する。設定変更時は時間トリガーを再設定する。",
+      "constraints": [
+        "トリガーの実時刻や現在の設定値は未確認。"
+      ],
+      "sources": [
+        {
+          "label": "gas/Code.gs",
+          "url": "https://github.com/gurii-gabreh/gemini-monitor/blob/4eca9d60966ebdc3f7c536ec368b3516368a6fac/gas/Code.gs"
+        }
+      ]
+    }
+  },
+  "features": [
+    {
+      "label": "このアプリの特徴",
+      "summary": "ブラウザで測るのではなく、GASが測り、Sheetsに残し、画面が可視化する。",
+      "detail": "モデル別・時間帯別のAPI応答状況を測り、成功率や待ち時間をグラフにする。",
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/gemini-monitor/blob/4eca9d60966ebdc3f7c536ec368b3516368a6fac/index.html"
+        },
+        {
+          "label": "gas/Code.gs",
+          "url": "https://github.com/gurii-gabreh/gemini-monitor/blob/4eca9d60966ebdc3f7c536ec368b3516368a6fac/gas/Code.gs"
+        }
+      ]
+    }
+  ],
+  "flows": [
+    {
+      "title": "測定データがたまる流れ",
+      "kind": "solid",
+      "columns": [
+        [
+          "measure"
+        ],
+        [
+          "gemini"
+        ],
+        [
+          "sheet"
+        ]
+      ],
+      "labels": [
+        "プロンプトを送る",
+        "応答と測定値をGASが保存"
+      ],
+      "sources": [
+        {
+          "label": "gas/Code.gs",
+          "url": "https://github.com/gurii-gabreh/gemini-monitor/blob/4eca9d60966ebdc3f7c536ec368b3516368a6fac/gas/Code.gs"
+        }
+      ]
+    },
+    {
+      "title": "閲覧・設定の流れ",
+      "kind": "solid",
+      "columns": [
+        [
+          "ui"
+        ],
+        [
+          "api"
+        ],
+        [
+          "sheet"
+        ]
+      ],
+      "labels": [
+        "GASへactionを送る",
+        "シートの結果・設定を読み書き"
+      ],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/gemini-monitor/blob/4eca9d60966ebdc3f7c536ec368b3516368a6fac/index.html"
+        },
+        {
+          "label": "gas/Code.gs",
+          "url": "https://github.com/gurii-gabreh/gemini-monitor/blob/4eca9d60966ebdc3f7c536ec368b3516368a6fac/gas/Code.gs"
+        }
+      ]
+    }
+  ]
+}

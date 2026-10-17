@@ -1,0 +1,518 @@
+{
+  "nodes": [
+    {
+      "id": "c3182eaac7dff82a",
+      "type": "group",
+      "x": 500,
+      "y": -45,
+      "width": 2370,
+      "height": 1010,
+      "label": "一覧データ",
+      "color": "5"
+    },
+    {
+      "id": "ce0862df5a189b77",
+      "type": "group",
+      "x": 500,
+      "y": 1135,
+      "width": 2370,
+      "height": 470,
+      "label": "画面・操作",
+      "color": "4"
+    },
+    {
+      "id": "7f16b064687f39c1",
+      "type": "group",
+      "x": 500,
+      "y": 1775,
+      "width": 2370,
+      "height": 470,
+      "label": "個人設定",
+      "color": "6"
+    },
+    {
+      "id": "6c2dbdf47a43157f",
+      "type": "group",
+      "x": 500,
+      "y": 2415,
+      "width": 2370,
+      "height": 390,
+      "label": "アプリの特徴",
+      "color": "6"
+    },
+    {
+      "id": "cc966ef6b18cd6ac",
+      "type": "group",
+      "x": 990,
+      "y": 2990,
+      "width": 3560,
+      "height": 420,
+      "label": "一覧を作り表示する"
+    },
+    {
+      "id": "138d05c4d011886c",
+      "type": "group",
+      "x": 990,
+      "y": 3490,
+      "width": 2480,
+      "height": 420,
+      "label": "個人の見え方を変える"
+    },
+    {
+      "id": "4c6d0eda8fc07c35",
+      "type": "text",
+      "x": 1050,
+      "y": 70,
+      "width": 540,
+      "height": 240,
+      "text": "## Drive一覧のスナップショット\n\n**確認区分：実装あり**\n\nDriveから取得・整理した一覧をファイルとして保存する。",
+      "color": "5"
+    },
+    {
+      "id": "29c0ed5812f0ef8e",
+      "type": "text",
+      "x": 1810,
+      "y": 0,
+      "width": 1000,
+      "height": 380,
+      "text": "## 最終仕様\n\nREADMEではClaudeにDrive検索を依頼し、data/spreadsheets.jsonを更新する運用を示す。\n\n### 現在の制約・確認範囲\n\n- 実行中にDriveを自動スキャンするバックエンドはない。\n\n### 根拠\n\n- [README.md](https://github.com/gurii-gabreh/Knowledge-Dashboard/blob/51be29a23c418b5fc1fe99c70a48ac351de4c7d6/README.md)",
+      "color": "5"
+    },
+    {
+      "id": "6cf8e1b642de1946",
+      "type": "text",
+      "x": 1050,
+      "y": 590,
+      "width": 540,
+      "height": 220,
+      "text": "## HTML内のDATA\n\n**確認区分：実装あり**\n\n画面は埋込みデータを読む。",
+      "color": "5"
+    },
+    {
+      "id": "d3845b5d985dfdcb",
+      "type": "text",
+      "x": 1810,
+      "y": 480,
+      "width": 1000,
+      "height": 440,
+      "text": "## 最終仕様\n\ndashboard.htmlのDATAへシート一覧を内包する。JSONは再生成用の元データで、同じ内容をHTMLにも反映する必要がある。\n\n### 現在の制約・確認範囲\n\n- JSONだけ更新してもHTMLの埋込み一覧は自動更新されない。\n\n### 根拠\n\n- [dashboard.html](https://github.com/gurii-gabreh/Knowledge-Dashboard/blob/51be29a23c418b5fc1fe99c70a48ac351de4c7d6/dashboard.html)\n- [README.md](https://github.com/gurii-gabreh/Knowledge-Dashboard/blob/51be29a23c418b5fc1fe99c70a48ac351de4c7d6/README.md)",
+      "color": "5"
+    },
+    {
+      "id": "ce88dc3083792793",
+      "type": "text",
+      "x": 560,
+      "y": 380,
+      "width": 300,
+      "height": 160,
+      "text": "## 一覧データ\n\n2仕様項目",
+      "color": "5"
+    },
+    {
+      "id": "44dd9a737bbbbc28",
+      "type": "text",
+      "x": 1050,
+      "y": 1260,
+      "width": 540,
+      "height": 220,
+      "text": "## 検索・フォルダ・カテゴリ表示\n\n**確認区分：実装あり**\n\n検索、絞り込み、並び替え、折りたたみで探す。",
+      "color": "4"
+    },
+    {
+      "id": "0b0c5a4157b73f1e",
+      "type": "text",
+      "x": 1810,
+      "y": 1180,
+      "width": 1000,
+      "height": 380,
+      "text": "## 最終仕様\n\nvisibleItemsやmatches等が一覧を処理し、シートのリンクを開く。\n\n### 現在の制約・確認範囲\n\n- シート本文の編集・同期をこの画面が行うわけではない。\n\n### 根拠\n\n- [dashboard.html](https://github.com/gurii-gabreh/Knowledge-Dashboard/blob/51be29a23c418b5fc1fe99c70a48ac351de4c7d6/dashboard.html)",
+      "color": "4"
+    },
+    {
+      "id": "d0cef71666f0f799",
+      "type": "text",
+      "x": 560,
+      "y": 1290,
+      "width": 300,
+      "height": 160,
+      "text": "## 画面・操作\n\n1仕様項目",
+      "color": "4"
+    },
+    {
+      "id": "4822e9549058c5fa",
+      "type": "text",
+      "x": 1050,
+      "y": 1900,
+      "width": 540,
+      "height": 220,
+      "text": "## 表示管理をlocalStorageへ保存\n\n**確認区分：実装あり**\n\n非表示などの個人用表示状態を端末へ残す。",
+      "color": "6"
+    },
+    {
+      "id": "d95cc0fa89694a28",
+      "type": "text",
+      "x": 1810,
+      "y": 1820,
+      "width": 1000,
+      "height": 380,
+      "text": "## 最終仕様\n\nloadState／saveStateと管理モーダルが表示設定を変更する。\n\n### 現在の制約・確認範囲\n\n- この操作はDrive上のシート削除や元一覧の更新ではない。\n\n### 根拠\n\n- [dashboard.html](https://github.com/gurii-gabreh/Knowledge-Dashboard/blob/51be29a23c418b5fc1fe99c70a48ac351de4c7d6/dashboard.html)",
+      "color": "6"
+    },
+    {
+      "id": "ee0bdbcde24b6917",
+      "type": "text",
+      "x": 560,
+      "y": 1930,
+      "width": 300,
+      "height": 160,
+      "text": "## 個人設定\n\n1仕様項目",
+      "color": "6"
+    },
+    {
+      "id": "a57d61a733122d62",
+      "type": "text",
+      "x": 1050,
+      "y": 2520,
+      "width": 540,
+      "height": 180,
+      "text": "## このアプリの特徴\n\nDriveと常時同期するアプリではなく、一覧のスナップショットと端末内表示設定を組み合わせる。",
+      "color": "6"
+    },
+    {
+      "id": "a719bae325d9766d",
+      "type": "text",
+      "x": 1810,
+      "y": 2460,
+      "width": 1000,
+      "height": 300,
+      "text": "## アプリの特徴\n\nGoogle Driveのナレッジ用スプレッドシートを、フォルダ・カテゴリ別に探す一覧画面。\n\n### 根拠\n\n- [README.md](https://github.com/gurii-gabreh/Knowledge-Dashboard/blob/51be29a23c418b5fc1fe99c70a48ac351de4c7d6/README.md)\n- [dashboard.html](https://github.com/gurii-gabreh/Knowledge-Dashboard/blob/51be29a23c418b5fc1fe99c70a48ac351de4c7d6/dashboard.html)",
+      "color": "6"
+    },
+    {
+      "id": "5b8a8b56dada6ce7",
+      "type": "text",
+      "x": 560,
+      "y": 2520,
+      "width": 300,
+      "height": 180,
+      "text": "## アプリの特徴\n\n機能の組合せ・運用方法・設計上の性質",
+      "color": "6"
+    },
+    {
+      "id": "f623ff49da8d81cd",
+      "type": "text",
+      "x": 1050,
+      "y": 3020,
+      "width": 540,
+      "height": 360,
+      "text": "## 一覧を作り表示する\n\n取得結果をJSONとHTMLへ反映\n\n埋込みDATAから描画\n\n記録に基づく前提・対応順\n\n- [README.md](https://github.com/gurii-gabreh/Knowledge-Dashboard/blob/51be29a23c418b5fc1fe99c70a48ac351de4c7d6/README.md)\n- [dashboard.html](https://github.com/gurii-gabreh/Knowledge-Dashboard/blob/51be29a23c418b5fc1fe99c70a48ac351de4c7d6/dashboard.html)",
+      "color": "1"
+    },
+    {
+      "id": "b4395f34967fee2a",
+      "type": "text",
+      "x": 1810,
+      "y": 3020,
+      "width": 620,
+      "height": 280,
+      "text": "## inventory\n\n**Drive一覧のスナップショット**\n\nDriveから取得・整理した一覧をファイルとして保存する。\n\n上側の同じ項目の再掲。",
+      "color": "5"
+    },
+    {
+      "id": "b25d50193955a4fc",
+      "type": "text",
+      "x": 2650,
+      "y": 3020,
+      "width": 760,
+      "height": 280,
+      "text": "## embedded\n\n**HTML内のDATA**\n\n画面は埋込みデータを読む。\n\n上側の同じ項目の再掲。",
+      "color": "5"
+    },
+    {
+      "id": "c0d5017348fb926f",
+      "type": "text",
+      "x": 3650,
+      "y": 3020,
+      "width": 840,
+      "height": 280,
+      "text": "## ui\n\n**検索・フォルダ・カテゴリ表示**\n\n検索、絞り込み、並び替え、折りたたみで探す。\n\n上側の同じ項目の再掲。",
+      "color": "4"
+    },
+    {
+      "id": "17d346ba646448be",
+      "type": "text",
+      "x": 1050,
+      "y": 3560,
+      "width": 540,
+      "height": 280,
+      "text": "## 個人の見え方を変える\n\n表示状態を端末に保存\n\n記録に基づく前提・対応順\n\n- [dashboard.html](https://github.com/gurii-gabreh/Knowledge-Dashboard/blob/51be29a23c418b5fc1fe99c70a48ac351de4c7d6/dashboard.html)",
+      "color": "1"
+    },
+    {
+      "id": "f8b1b8dd9b985c0c",
+      "type": "text",
+      "x": 1810,
+      "y": 3520,
+      "width": 620,
+      "height": 280,
+      "text": "## ui\n\n**検索・フォルダ・カテゴリ表示**\n\n検索、絞り込み、並び替え、折りたたみで探す。\n\n上側の同じ項目の再掲。",
+      "color": "4"
+    },
+    {
+      "id": "4f36c2b17b96a8a1",
+      "type": "text",
+      "x": 2650,
+      "y": 3520,
+      "width": 760,
+      "height": 280,
+      "text": "## local\n\n**表示管理をlocalStorageへ保存**\n\n非表示などの個人用表示状態を端末へ残す。\n\n上側の同じ項目の再掲。",
+      "color": "6"
+    },
+    {
+      "id": "e2ba41af03120f14",
+      "type": "text",
+      "x": 560,
+      "y": 3340,
+      "width": 300,
+      "height": 360,
+      "text": "## つながり\n\n矢印：記録から確認できる前提・対応順\n\n矢印なし＋関連ラベル：依存を意味しない関連\n\nカードは上側の同じ項目の再掲。",
+      "color": "1"
+    },
+    {
+      "id": "4813494d137e1631",
+      "type": "text",
+      "x": 0,
+      "y": 1590,
+      "width": 380,
+      "height": 840,
+      "text": "# Knowledge Dashboard：内部構成・連関図\n\n**gurii-gabreh/Knowledge-Dashboard**\n\nGoogle Driveのナレッジ用スプレッドシートを、フォルダ・カテゴリ別に探す一覧画面。 上側は役割別の内部構成、下側はデータのつながり。\n\nモード：最終仕様・アプリの特徴\n\n記録：2026-10-17 JST\n\n対象：51be29a23c418b5fc1fe99c70a48ac351de4c7d6\n\n- 既定ブランチ claude/spreadsheet-list-dashboard-te7yvs の固定コミットを確認したスナップショット。\n- 実装ありはコードの存在を示す。稼働環境・認証設定・実機での動作は未検証。\n- 技術・モデル・サービス名はコード中の設定や候補。現行の提供状況・料金を保証しない。"
+    }
+  ],
+  "edges": [
+    {
+      "id": "a08a4e2f101bacf2",
+      "fromNode": "4c6d0eda8fc07c35",
+      "fromSide": "right",
+      "toNode": "29c0ed5812f0ef8e",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "5"
+    },
+    {
+      "id": "5392fac69876d913",
+      "fromNode": "6cf8e1b642de1946",
+      "fromSide": "right",
+      "toNode": "d3845b5d985dfdcb",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "5"
+    },
+    {
+      "id": "caf9b13b8c1b8fff",
+      "fromNode": "ce88dc3083792793",
+      "fromSide": "right",
+      "toNode": "4c6d0eda8fc07c35",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "5"
+    },
+    {
+      "id": "9d730df5f9179c08",
+      "fromNode": "ce88dc3083792793",
+      "fromSide": "right",
+      "toNode": "6cf8e1b642de1946",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "5"
+    },
+    {
+      "id": "ca83b9bfbd52aab0",
+      "fromNode": "44dd9a737bbbbc28",
+      "fromSide": "right",
+      "toNode": "0b0c5a4157b73f1e",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "4"
+    },
+    {
+      "id": "891c24186d122573",
+      "fromNode": "d0cef71666f0f799",
+      "fromSide": "right",
+      "toNode": "44dd9a737bbbbc28",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "4"
+    },
+    {
+      "id": "27e727954dd19fad",
+      "fromNode": "4822e9549058c5fa",
+      "fromSide": "right",
+      "toNode": "d95cc0fa89694a28",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "6"
+    },
+    {
+      "id": "5340ddbcde12e9e0",
+      "fromNode": "ee0bdbcde24b6917",
+      "fromSide": "right",
+      "toNode": "4822e9549058c5fa",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "ec5221d2a87b28dd",
+      "fromNode": "a57d61a733122d62",
+      "fromSide": "right",
+      "toNode": "a719bae325d9766d",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "特徴・根拠",
+      "color": "6"
+    },
+    {
+      "id": "da5a1fc396296697",
+      "fromNode": "5b8a8b56dada6ce7",
+      "fromSide": "right",
+      "toNode": "a57d61a733122d62",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "c06b7eca9fcfff6b",
+      "fromNode": "f623ff49da8d81cd",
+      "fromSide": "right",
+      "toNode": "b4395f34967fee2a",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "対象",
+      "color": "1"
+    },
+    {
+      "id": "36962329f86b4b98",
+      "fromNode": "b4395f34967fee2a",
+      "fromSide": "right",
+      "toNode": "b25d50193955a4fc",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "取得結果をJSONとHTMLへ反映",
+      "color": "1"
+    },
+    {
+      "id": "fcf2d81e05d3c121",
+      "fromNode": "b25d50193955a4fc",
+      "fromSide": "right",
+      "toNode": "c0d5017348fb926f",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "埋込みDATAから描画",
+      "color": "1"
+    },
+    {
+      "id": "30e87ad0c6bc4e4d",
+      "fromNode": "17d346ba646448be",
+      "fromSide": "right",
+      "toNode": "f8b1b8dd9b985c0c",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "対象",
+      "color": "1"
+    },
+    {
+      "id": "6fa5322d42595968",
+      "fromNode": "f8b1b8dd9b985c0c",
+      "fromSide": "right",
+      "toNode": "4f36c2b17b96a8a1",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "表示状態を端末に保存",
+      "color": "1"
+    },
+    {
+      "id": "d59c52480844a450",
+      "fromNode": "e2ba41af03120f14",
+      "fromSide": "right",
+      "toNode": "f623ff49da8d81cd",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "507f336edc89e2cd",
+      "fromNode": "e2ba41af03120f14",
+      "fromSide": "right",
+      "toNode": "17d346ba646448be",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "7170b3734c0f59a8",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ce88dc3083792793",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "1811e30ace4c7a14",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "d0cef71666f0f799",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "abef30eaa25e507f",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ee0bdbcde24b6917",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "1ab31319e27faca5",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "5b8a8b56dada6ce7",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "2bf22d27710df3e6",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "e2ba41af03120f14",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    }
+  ]
+}

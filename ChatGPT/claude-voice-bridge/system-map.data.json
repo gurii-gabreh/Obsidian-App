@@ -1,0 +1,365 @@
+{
+  "mode": "spec",
+  "title": "Claude Voice Bridge：内部構成・連関図",
+  "repo": "gurii-gabreh/claude-voice-bridge",
+  "ref": "f6e832014f183fa6890008cfab0d9969b2484c61",
+  "asOf": "2026-10-17 JST",
+  "scope": "Chrome拡張でClaude／Geminiの画面と音声・タスク・ログをつなぎ、GAS経由でGitHubへ記録する。 上側は役割別の内部構成、下側はデータのつながり。",
+  "limitations": [
+    "既定ブランチ main の固定コミットを確認したスナップショット。",
+    "実装ありはコードの存在を示す。稼働環境・認証設定・実機での動作は未検証。",
+    "技術・モデル・サービス名はコード中の設定や候補。現行の提供状況・料金を保証しない。"
+  ],
+  "categories": [
+    {
+      "key": "category-0",
+      "label": "画面・操作",
+      "ids": [
+        "panel"
+      ]
+    },
+    {
+      "key": "category-1",
+      "label": "音声・AI画面",
+      "ids": [
+        "speech",
+        "dom"
+      ]
+    },
+    {
+      "key": "category-2",
+      "label": "ログ・保存",
+      "ids": [
+        "state",
+        "gas",
+        "json"
+      ]
+    },
+    {
+      "key": "category-3",
+      "label": "Web版・他アプリ",
+      "ids": [
+        "web"
+      ]
+    }
+  ],
+  "items": {
+    "panel": {
+      "label": "Chromeサイドパネルとウィジェット",
+      "status": "実装あり",
+      "summary": "音声会話、タスク監査、定型文、設計、ジャーナルを操作する。",
+      "specification": "Manifest V3の拡張としてsidepanelとwidget群を提供する。widget-common等で共通動作をまとめる。",
+      "constraints": [
+        "AI Dev Loggerとは別の拡張。対象AIサイトのログイン状態とUIが必要。"
+      ],
+      "sources": [
+        {
+          "label": "manifest.json",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/manifest.json"
+        },
+        {
+          "label": "sidepanel.js",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/sidepanel.js"
+        },
+        {
+          "label": "widget-common.js",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/widget-common.js"
+        }
+      ]
+    },
+    "speech": {
+      "label": "ブラウザの音声入出力",
+      "status": "実装あり",
+      "summary": "呼びかけを認識して文字を送り、返答を読み上げる。",
+      "specification": "SpeechRecognitionとspeechSynthesisを使い、読み上げ中の再認識を避ける。対象をClaude／Geminiで切り替える。",
+      "constraints": [
+        "独自のAI音声APIサーバーではない。ブラウザの音声機能・権限に依存する。"
+      ],
+      "sources": [
+        {
+          "label": "sidepanel.js",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/sidepanel.js"
+        },
+        {
+          "label": "permission.js",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/permission.js"
+        }
+      ]
+    },
+    "dom": {
+      "label": "content scriptの橋渡し",
+      "status": "実装あり",
+      "summary": "AIサイトの入力欄と応答DOMを操作する。",
+      "specification": "chrome.tabs.sendMessageで文字列を渡し、content.jsが入力・送信・応答監視・抽出を担当する。セレクタ上書きもできる。",
+      "constraints": [
+        "AI APIを直接呼ぶ方式ではなく、Web UIの構造変更に影響される。"
+      ],
+      "sources": [
+        {
+          "label": "content.js",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/content.js"
+        },
+        {
+          "label": "sidepanel.js",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/sidepanel.js"
+        }
+      ]
+    },
+    "state": {
+      "label": "タスクとログの状態管理",
+      "status": "実装あり",
+      "summary": "抽出結果と会話ログを端末に保持する。",
+      "specification": "tracker-store.jsとroom-log-store.jsがchrome.storage.local等へ記録し、一覧や除外状態を管理する。",
+      "constraints": [
+        "自動抽出だけで全タスクを確定するのではなく、AIによる監査結果を受ける経路もある。"
+      ],
+      "sources": [
+        {
+          "label": "tracker-store.js",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/tracker-store.js"
+        },
+        {
+          "label": "room-log-store.js",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/room-log-store.js"
+        },
+        {
+          "label": "sidepanel.js",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/sidepanel.js"
+        }
+      ]
+    },
+    "gas": {
+      "label": "GASのGitHub書込み中継",
+      "status": "実装あり",
+      "summary": "tracker・knowledge・room-log・journalを保存する。",
+      "specification": "doPostが各actionを受け、Script PropertiesのGitHubトークンでContents APIを更新する。ログはidで重複を扱い、競合時は再試行する。",
+      "constraints": [
+        "GASのデプロイ・Script Propertiesは別途設定が必要。今回は実送信していない。"
+      ],
+      "sources": [
+        {
+          "label": "gas/code.gs",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/gas/code.gs"
+        },
+        {
+          "label": "gas/README.md",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/gas/README.md"
+        }
+      ]
+    },
+    "json": {
+      "label": "GitHubのJSON",
+      "status": "実装あり",
+      "summary": "タスク・テンプレート・ログ・ジャーナルを共有する。",
+      "specification": "data配下を共有データとして読み、GASまたはClaude Codeによる更新を受ける。ジャーナルの生トランスクリプトはmirai-journalの分析済みJSONとは別。",
+      "constraints": [],
+      "sources": [
+        {
+          "label": "sidepanel.js",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/sidepanel.js"
+        },
+        {
+          "label": "gas/code.gs",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/gas/code.gs"
+        },
+        {
+          "label": "widget-journal.js",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/widget-journal.js"
+        }
+      ]
+    },
+    "web": {
+      "label": "拡張なしのWebビューア",
+      "status": "実装あり",
+      "summary": "JSONや設計情報を通常ページで参照し、ジャーナルを渡す。",
+      "specification": "webapp/index.htmlがトラッカー・定型文・ジャーナル等を表示する。設計はprogress-tracker-dashboardのrequirements.jsonを参照する。",
+      "constraints": [
+        "Web版にはchrome.tabsによるAI画面操作をそのまま実装できない。音声ブリッジ本体と役割が異なる。"
+      ],
+      "sources": [
+        {
+          "label": "webapp/index.html",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/webapp/index.html"
+        },
+        {
+          "label": "widget-design.js",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/widget-design.js"
+        },
+        {
+          "label": ".github/workflows/deploy-pages.yml",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/.github/workflows/deploy-pages.yml"
+        }
+      ]
+    }
+  },
+  "features": [
+    {
+      "label": "このアプリの特徴",
+      "summary": "AI API連携ではなくWeb画面を操作する拡張。共有記録はGAS→GitHub、Web版は参照・補助に分担する。",
+      "detail": "Chrome拡張でClaude／Geminiの画面と音声・タスク・ログをつなぎ、GAS経由でGitHubへ記録する。",
+      "sources": [
+        {
+          "label": "manifest.json",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/manifest.json"
+        },
+        {
+          "label": "sidepanel.js",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/sidepanel.js"
+        },
+        {
+          "label": "widget-common.js",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/widget-common.js"
+        },
+        {
+          "label": "permission.js",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/permission.js"
+        }
+      ]
+    }
+  ],
+  "flows": [
+    {
+      "title": "音声でAI画面と会話する",
+      "kind": "solid",
+      "columns": [
+        [
+          "speech"
+        ],
+        [
+          "panel"
+        ],
+        [
+          "dom"
+        ],
+        [
+          "speech"
+        ]
+      ],
+      "labels": [
+        "認識した文字を渡す",
+        "対象タブへ送信依頼",
+        "抽出した返答を読み上げへ返す"
+      ],
+      "sources": [
+        {
+          "label": "sidepanel.js",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/sidepanel.js"
+        },
+        {
+          "label": "permission.js",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/permission.js"
+        },
+        {
+          "label": "manifest.json",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/manifest.json"
+        },
+        {
+          "label": "widget-common.js",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/widget-common.js"
+        },
+        {
+          "label": "content.js",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/content.js"
+        }
+      ]
+    },
+    {
+      "title": "タスク・ログを共有する",
+      "kind": "solid",
+      "columns": [
+        [
+          "state"
+        ],
+        [
+          "gas"
+        ],
+        [
+          "json"
+        ],
+        [
+          "web"
+        ]
+      ],
+      "labels": [
+        "保存actionで送信",
+        "GitHub Contents APIで書込",
+        "公開JSONを読んで表示"
+      ],
+      "sources": [
+        {
+          "label": "tracker-store.js",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/tracker-store.js"
+        },
+        {
+          "label": "room-log-store.js",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/room-log-store.js"
+        },
+        {
+          "label": "sidepanel.js",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/sidepanel.js"
+        },
+        {
+          "label": "gas/code.gs",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/gas/code.gs"
+        },
+        {
+          "label": "gas/README.md",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/gas/README.md"
+        },
+        {
+          "label": "widget-journal.js",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/widget-journal.js"
+        },
+        {
+          "label": "webapp/index.html",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/webapp/index.html"
+        },
+        {
+          "label": "widget-design.js",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/widget-design.js"
+        },
+        {
+          "label": ".github/workflows/deploy-pages.yml",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/.github/workflows/deploy-pages.yml"
+        }
+      ]
+    },
+    {
+      "title": "設計情報の参照",
+      "kind": "solid",
+      "columns": [
+        [
+          "json"
+        ],
+        [
+          "panel"
+        ]
+      ],
+      "labels": [
+        "テンプレート・タスクを再読込。設計は別RepoのJSONも参照"
+      ],
+      "sources": [
+        {
+          "label": "sidepanel.js",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/sidepanel.js"
+        },
+        {
+          "label": "gas/code.gs",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/gas/code.gs"
+        },
+        {
+          "label": "widget-journal.js",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/widget-journal.js"
+        },
+        {
+          "label": "manifest.json",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/manifest.json"
+        },
+        {
+          "label": "widget-common.js",
+          "url": "https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/widget-common.js"
+        }
+      ]
+    }
+  ]
+}

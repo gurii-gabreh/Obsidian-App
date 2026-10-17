@@ -1,0 +1,601 @@
+{
+  "nodes": [
+    {
+      "id": "c3182eaac7dff82a",
+      "type": "group",
+      "x": 500,
+      "y": -45,
+      "width": 2370,
+      "height": 370,
+      "label": "画面・操作",
+      "color": "5"
+    },
+    {
+      "id": "ce0862df5a189b77",
+      "type": "group",
+      "x": 500,
+      "y": 495,
+      "width": 2370,
+      "height": 1030,
+      "label": "収集・保存",
+      "color": "4"
+    },
+    {
+      "id": "7f16b064687f39c1",
+      "type": "group",
+      "x": 500,
+      "y": 1695,
+      "width": 2370,
+      "height": 1050,
+      "label": "生成処理",
+      "color": "6"
+    },
+    {
+      "id": "6c2dbdf47a43157f",
+      "type": "group",
+      "x": 500,
+      "y": 2915,
+      "width": 2370,
+      "height": 390,
+      "label": "アプリの特徴",
+      "color": "6"
+    },
+    {
+      "id": "cc966ef6b18cd6ac",
+      "type": "group",
+      "x": 990,
+      "y": 3490,
+      "width": 3560,
+      "height": 420,
+      "label": "参考情報を読む"
+    },
+    {
+      "id": "138d05c4d011886c",
+      "type": "group",
+      "x": 990,
+      "y": 3990,
+      "width": 4560,
+      "height": 500,
+      "label": "条件からプロンプトを生成"
+    },
+    {
+      "id": "44dd9a737bbbbc28",
+      "type": "text",
+      "x": 1050,
+      "y": 20,
+      "width": 540,
+      "height": 240,
+      "text": "## ブラウザのワークフロー\n\n**確認区分：実装あり**\n\n参考資料・回答レベル・プレビュー・生成結果を操作する。",
+      "color": "5"
+    },
+    {
+      "id": "0b0c5a4157b73f1e",
+      "type": "text",
+      "x": 1810,
+      "y": 0,
+      "width": 1000,
+      "height": 280,
+      "text": "## 最終仕様\n\nindex.htmlがGASから一覧を読み、bigram類似度等で参照候補を選ぶ。設定や定型文はlocalStorageへ持つ。\n\n### 根拠\n\n- [index.html](https://github.com/gurii-gabreh/PROMPT-MANAGER/blob/55f777f463cd3f4a4326bb6f2e237a861ddf815b/index.html)",
+      "color": "5"
+    },
+    {
+      "id": "ce88dc3083792793",
+      "type": "text",
+      "x": 560,
+      "y": 60,
+      "width": 300,
+      "height": 160,
+      "text": "## 画面・操作\n\n1仕様項目",
+      "color": "5"
+    },
+    {
+      "id": "5f0850e3d895a247",
+      "type": "text",
+      "x": 1050,
+      "y": 640,
+      "width": 540,
+      "height": 220,
+      "text": "## CHAPRO収集GAS\n\n**確認区分：実装あり**\n\n公開一覧APIと詳細を少しずつ収集する。",
+      "color": "4"
+    },
+    {
+      "id": "05710409cbd73a75",
+      "type": "text",
+      "x": 1810,
+      "y": 540,
+      "width": 1000,
+      "height": 420,
+      "text": "## 最終仕様\n\nCode.gsがIDキュー・重複確認・日次実行カウント・時間トリガーを管理する。doGet／doPostは一覧取得と履歴保存等も受ける。\n\n### 現在の制約・確認範囲\n\n- 外部APIの現在の取得可否と実トリガーは未検証。\n\n### 根拠\n\n- [Code.gs](https://github.com/gurii-gabreh/PROMPT-MANAGER/blob/55f777f463cd3f4a4326bb6f2e237a861ddf815b/Code.gs)",
+      "color": "4"
+    },
+    {
+      "id": "64957349b9c5a2de",
+      "type": "text",
+      "x": 1050,
+      "y": 1160,
+      "width": 540,
+      "height": 220,
+      "text": "## Google Sheets\n\n**確認区分：実装あり**\n\n取得プロンプト・設定・生成履歴を残す。",
+      "color": "4"
+    },
+    {
+      "id": "033432848382ce87",
+      "type": "text",
+      "x": 1810,
+      "y": 1060,
+      "width": 1000,
+      "height": 420,
+      "text": "## 最終仕様\n\nGASがシートのヘッダーを確認し、既存IDを避けて保存する。生成結果は履歴記録ボタンのPOSTで保存する。\n\n### 現在の制約・確認範囲\n\n- 生成しただけでは自動保存しない。GASの実デプロイは別途必要。\n\n### 根拠\n\n- [Code.gs](https://github.com/gurii-gabreh/PROMPT-MANAGER/blob/55f777f463cd3f4a4326bb6f2e237a861ddf815b/Code.gs)\n- [index.html](https://github.com/gurii-gabreh/PROMPT-MANAGER/blob/55f777f463cd3f4a4326bb6f2e237a861ddf815b/index.html)",
+      "color": "4"
+    },
+    {
+      "id": "d0cef71666f0f799",
+      "type": "text",
+      "x": 560,
+      "y": 930,
+      "width": 300,
+      "height": 160,
+      "text": "## 収集・保存\n\n2仕様項目",
+      "color": "4"
+    },
+    {
+      "id": "4822e9549058c5fa",
+      "type": "text",
+      "x": 1050,
+      "y": 1850,
+      "width": 540,
+      "height": 220,
+      "text": "## ローカルNodeサーバー\n\n**確認区分：実装あり**\n\nlocalhostのAPIがClaude CLIへ仕事を渡す。",
+      "color": "6"
+    },
+    {
+      "id": "d95cc0fa89694a28",
+      "type": "text",
+      "x": 1810,
+      "y": 1740,
+      "width": 1000,
+      "height": 440,
+      "text": "## 最終仕様\n\nserver.jsに/health、/generate、/questions、/preview、/shutdownを持つ。JSONの条件を指示文にし、claude -pの結果を解析して返す。\n\n### 現在の制約・確認範囲\n\n- 手元のNodeと認証済みClaude CLIが必要。ローカルサーバーはSheetsへは書かない。\n\n### 根拠\n\n- [local-server/server.js](https://github.com/gurii-gabreh/PROMPT-MANAGER/blob/55f777f463cd3f4a4326bb6f2e237a861ddf815b/local-server/server.js)\n- [local-server/README.md](https://github.com/gurii-gabreh/PROMPT-MANAGER/blob/55f777f463cd3f4a4326bb6f2e237a861ddf815b/local-server/README.md)",
+      "color": "6"
+    },
+    {
+      "id": "63fef035dbefff52",
+      "type": "text",
+      "x": 1050,
+      "y": 2380,
+      "width": 540,
+      "height": 220,
+      "text": "## Claude CLIと手動貼付\n\n**確認区分：実装あり**\n\n指示文の生成・質問・回答例を作る。",
+      "color": "6"
+    },
+    {
+      "id": "cbf5c6f58696cc3d",
+      "type": "text",
+      "x": 1810,
+      "y": 2280,
+      "width": 1000,
+      "height": 420,
+      "text": "## 最終仕様\n\nローカルサーバーが子プロセスでClaudeを呼ぶ。UIには指示コピーと結果貼付の補助手順も実装される。\n\n### 現在の制約・確認範囲\n\n- 生成品質・CLIの利用上限や契約条件はコードから保証できない。\n\n### 根拠\n\n- [local-server/server.js](https://github.com/gurii-gabreh/PROMPT-MANAGER/blob/55f777f463cd3f4a4326bb6f2e237a861ddf815b/local-server/server.js)\n- [index.html](https://github.com/gurii-gabreh/PROMPT-MANAGER/blob/55f777f463cd3f4a4326bb6f2e237a861ddf815b/index.html)",
+      "color": "6"
+    },
+    {
+      "id": "ee0bdbcde24b6917",
+      "type": "text",
+      "x": 560,
+      "y": 2140,
+      "width": 300,
+      "height": 160,
+      "text": "## 生成処理\n\n2仕様項目",
+      "color": "6"
+    },
+    {
+      "id": "a57d61a733122d62",
+      "type": "text",
+      "x": 1050,
+      "y": 3020,
+      "width": 540,
+      "height": 180,
+      "text": "## このアプリの特徴\n\nGASは収集と保存、ローカルNodeは生成だけを担当し、Google認証を生成サーバーへ渡さない。",
+      "color": "6"
+    },
+    {
+      "id": "a719bae325d9766d",
+      "type": "text",
+      "x": 1810,
+      "y": 2960,
+      "width": 1000,
+      "height": 300,
+      "text": "## アプリの特徴\n\n参照プロンプトの収集・検索と、Claude CLIを使うローカル生成を分けたツール。\n\n### 根拠\n\n- [index.html](https://github.com/gurii-gabreh/PROMPT-MANAGER/blob/55f777f463cd3f4a4326bb6f2e237a861ddf815b/index.html)\n- [Code.gs](https://github.com/gurii-gabreh/PROMPT-MANAGER/blob/55f777f463cd3f4a4326bb6f2e237a861ddf815b/Code.gs)",
+      "color": "6"
+    },
+    {
+      "id": "5b8a8b56dada6ce7",
+      "type": "text",
+      "x": 560,
+      "y": 3020,
+      "width": 300,
+      "height": 180,
+      "text": "## アプリの特徴\n\n機能の組合せ・運用方法・設計上の性質",
+      "color": "6"
+    },
+    {
+      "id": "f623ff49da8d81cd",
+      "type": "text",
+      "x": 1050,
+      "y": 3520,
+      "width": 540,
+      "height": 360,
+      "text": "## 参考情報を読む\n\n取得済みプロンプトを保存\n\nGAS経由で検索・表示\n\n記録に基づく前提・対応順\n\n- [Code.gs](https://github.com/gurii-gabreh/PROMPT-MANAGER/blob/55f777f463cd3f4a4326bb6f2e237a861ddf815b/Code.gs)\n- [index.html](https://github.com/gurii-gabreh/PROMPT-MANAGER/blob/55f777f463cd3f4a4326bb6f2e237a861ddf815b/index.html)",
+      "color": "1"
+    },
+    {
+      "id": "b4395f34967fee2a",
+      "type": "text",
+      "x": 1810,
+      "y": 3520,
+      "width": 620,
+      "height": 280,
+      "text": "## collect\n\n**CHAPRO収集GAS**\n\n公開一覧APIと詳細を少しずつ収集する。\n\n上側の同じ項目の再掲。",
+      "color": "4"
+    },
+    {
+      "id": "b25d50193955a4fc",
+      "type": "text",
+      "x": 2650,
+      "y": 3520,
+      "width": 760,
+      "height": 280,
+      "text": "## sheet\n\n**Google Sheets**\n\n取得プロンプト・設定・生成履歴を残す。\n\n上側の同じ項目の再掲。",
+      "color": "4"
+    },
+    {
+      "id": "c0d5017348fb926f",
+      "type": "text",
+      "x": 3650,
+      "y": 3520,
+      "width": 840,
+      "height": 280,
+      "text": "## ui\n\n**ブラウザのワークフロー**\n\n参考資料・回答レベル・プレビュー・生成結果を操作する。\n\n上側の同じ項目の再掲。",
+      "color": "5"
+    },
+    {
+      "id": "17d346ba646448be",
+      "type": "text",
+      "x": 1050,
+      "y": 4020,
+      "width": 540,
+      "height": 440,
+      "text": "## 条件からプロンプトを生成\n\n候補・要望・レベルをPOST\n\nメタプロンプトをCLIへ渡す\n\n結果と参照理由を表示\n\n記録に基づく前提・対応順\n\n- [index.html](https://github.com/gurii-gabreh/PROMPT-MANAGER/blob/55f777f463cd3f4a4326bb6f2e237a861ddf815b/index.html)\n- [local-server/server.js](https://github.com/gurii-gabreh/PROMPT-MANAGER/blob/55f777f463cd3f4a4326bb6f2e237a861ddf815b/local-server/server.js)\n- [local-server/README.md](https://github.com/gurii-gabreh/PROMPT-MANAGER/blob/55f777f463cd3f4a4326bb6f2e237a861ddf815b/local-server/README.md)",
+      "color": "1"
+    },
+    {
+      "id": "f8b1b8dd9b985c0c",
+      "type": "text",
+      "x": 1810,
+      "y": 4020,
+      "width": 620,
+      "height": 280,
+      "text": "## ui\n\n**ブラウザのワークフロー**\n\n参考資料・回答レベル・プレビュー・生成結果を操作する。\n\n上側の同じ項目の再掲。",
+      "color": "5"
+    },
+    {
+      "id": "4f36c2b17b96a8a1",
+      "type": "text",
+      "x": 2650,
+      "y": 4020,
+      "width": 760,
+      "height": 280,
+      "text": "## local\n\n**ローカルNodeサーバー**\n\nlocalhostのAPIがClaude CLIへ仕事を渡す。\n\n上側の同じ項目の再掲。",
+      "color": "6"
+    },
+    {
+      "id": "da0932f1fbf22b7b",
+      "type": "text",
+      "x": 3650,
+      "y": 4020,
+      "width": 840,
+      "height": 280,
+      "text": "## claude\n\n**Claude CLIと手動貼付**\n\n指示文の生成・質問・回答例を作る。\n\n上側の同じ項目の再掲。",
+      "color": "6"
+    },
+    {
+      "id": "6fc35c7463a3dffd",
+      "type": "text",
+      "x": 4730,
+      "y": 4020,
+      "width": 760,
+      "height": 280,
+      "text": "## ui\n\n**ブラウザのワークフロー**\n\n参考資料・回答レベル・プレビュー・生成結果を操作する。\n\n上側の同じ項目の再掲。",
+      "color": "5"
+    },
+    {
+      "id": "e2ba41af03120f14",
+      "type": "text",
+      "x": 560,
+      "y": 3880,
+      "width": 300,
+      "height": 360,
+      "text": "## つながり\n\n矢印：記録から確認できる前提・対応順\n\n矢印なし＋関連ラベル：依存を意味しない関連\n\nカードは上側の同じ項目の再掲。",
+      "color": "1"
+    },
+    {
+      "id": "4813494d137e1631",
+      "type": "text",
+      "x": 0,
+      "y": 1900,
+      "width": 380,
+      "height": 800,
+      "text": "# Prompt Manager：内部構成・連関図\n\n**gurii-gabreh/PROMPT-MANAGER**\n\n参照プロンプトの収集・検索と、Claude CLIを使うローカル生成を分けたツール。 上側は役割別の内部構成、下側はデータのつながり。\n\nモード：最終仕様・アプリの特徴\n\n記録：2026-10-17 JST\n\n対象：55f777f463cd3f4a4326bb6f2e237a861ddf815b\n\n- 既定ブランチ claude/upbeat-cori-cus3xa の固定コミットを確認したスナップショット。\n- 実装ありはコードの存在を示す。稼働環境・認証設定・実機での動作は未検証。\n- 技術・モデル・サービス名はコード中の設定や候補。現行の提供状況・料金を保証しない。"
+    }
+  ],
+  "edges": [
+    {
+      "id": "d6e243df852fa85e",
+      "fromNode": "44dd9a737bbbbc28",
+      "fromSide": "right",
+      "toNode": "0b0c5a4157b73f1e",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "5"
+    },
+    {
+      "id": "da4b403818b00f8a",
+      "fromNode": "ce88dc3083792793",
+      "fromSide": "right",
+      "toNode": "44dd9a737bbbbc28",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "5"
+    },
+    {
+      "id": "e3a5d662562d152b",
+      "fromNode": "5f0850e3d895a247",
+      "fromSide": "right",
+      "toNode": "05710409cbd73a75",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "4"
+    },
+    {
+      "id": "c83e77a83f076287",
+      "fromNode": "64957349b9c5a2de",
+      "fromSide": "right",
+      "toNode": "033432848382ce87",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "4"
+    },
+    {
+      "id": "ae5c06f8e82129b2",
+      "fromNode": "d0cef71666f0f799",
+      "fromSide": "right",
+      "toNode": "5f0850e3d895a247",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "4"
+    },
+    {
+      "id": "38d1b83123534390",
+      "fromNode": "d0cef71666f0f799",
+      "fromSide": "right",
+      "toNode": "64957349b9c5a2de",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "4"
+    },
+    {
+      "id": "27e727954dd19fad",
+      "fromNode": "4822e9549058c5fa",
+      "fromSide": "right",
+      "toNode": "d95cc0fa89694a28",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "6"
+    },
+    {
+      "id": "520dd1a94d5e91bf",
+      "fromNode": "63fef035dbefff52",
+      "fromSide": "right",
+      "toNode": "cbf5c6f58696cc3d",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "6"
+    },
+    {
+      "id": "a3090dfd32415648",
+      "fromNode": "ee0bdbcde24b6917",
+      "fromSide": "right",
+      "toNode": "4822e9549058c5fa",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "7105d805b79be15c",
+      "fromNode": "ee0bdbcde24b6917",
+      "fromSide": "right",
+      "toNode": "63fef035dbefff52",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "44c1644f2f8fbaaf",
+      "fromNode": "a57d61a733122d62",
+      "fromSide": "right",
+      "toNode": "a719bae325d9766d",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "特徴・根拠",
+      "color": "6"
+    },
+    {
+      "id": "07f4ee95b1ffd79b",
+      "fromNode": "5b8a8b56dada6ce7",
+      "fromSide": "right",
+      "toNode": "a57d61a733122d62",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "8b754ae3247289bc",
+      "fromNode": "f623ff49da8d81cd",
+      "fromSide": "right",
+      "toNode": "b4395f34967fee2a",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "対象",
+      "color": "1"
+    },
+    {
+      "id": "50c109f6b68db6d6",
+      "fromNode": "b4395f34967fee2a",
+      "fromSide": "right",
+      "toNode": "b25d50193955a4fc",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "取得済みプロンプトを保存",
+      "color": "1"
+    },
+    {
+      "id": "d1cc354ecc47be03",
+      "fromNode": "b25d50193955a4fc",
+      "fromSide": "right",
+      "toNode": "c0d5017348fb926f",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "GAS経由で検索・表示",
+      "color": "1"
+    },
+    {
+      "id": "1729de1c3440fe86",
+      "fromNode": "17d346ba646448be",
+      "fromSide": "right",
+      "toNode": "f8b1b8dd9b985c0c",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "対象",
+      "color": "1"
+    },
+    {
+      "id": "eaed6e3f958a7361",
+      "fromNode": "f8b1b8dd9b985c0c",
+      "fromSide": "right",
+      "toNode": "4f36c2b17b96a8a1",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "候補・要望・レベルをPOST",
+      "color": "1"
+    },
+    {
+      "id": "d2528de6dbfbfa48",
+      "fromNode": "4f36c2b17b96a8a1",
+      "fromSide": "right",
+      "toNode": "da0932f1fbf22b7b",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "メタプロンプトをCLIへ渡す",
+      "color": "1"
+    },
+    {
+      "id": "9a8007a47e78dc27",
+      "fromNode": "da0932f1fbf22b7b",
+      "fromSide": "right",
+      "toNode": "6fc35c7463a3dffd",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "結果と参照理由を表示",
+      "color": "1"
+    },
+    {
+      "id": "a1746ae34aacc302",
+      "fromNode": "e2ba41af03120f14",
+      "fromSide": "right",
+      "toNode": "f623ff49da8d81cd",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "1cc18a085af43e49",
+      "fromNode": "e2ba41af03120f14",
+      "fromSide": "right",
+      "toNode": "17d346ba646448be",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "9449d4cf80f77b96",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ce88dc3083792793",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "cc44d0637821413e",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "d0cef71666f0f799",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "27d38e8164442d26",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ee0bdbcde24b6917",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "ba1ada4696e11550",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "5b8a8b56dada6ce7",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "af95fa528731f190",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "e2ba41af03120f14",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    }
+  ]
+}

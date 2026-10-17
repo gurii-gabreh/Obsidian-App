@@ -1,0 +1,154 @@
+{
+  "mode": "spec",
+  "title": "My Dashboard：内部構成・連関図",
+  "repo": "gurii-gabreh/my-dashboard",
+  "ref": "f1fd4dabd7a6fa057c56e5343820bc8995dd5595",
+  "asOf": "2026-10-17 JST",
+  "scope": "作成したアプリや作業用リンクを、タブ別にまとめる個人ポータル。 上側は役割別の内部構成、下側はデータのつながり。",
+  "limitations": [
+    "既定ブランチ main の固定コミットを確認したスナップショット。",
+    "実装ありはコードの存在を示す。稼働環境・認証設定・実機での動作は未検証。",
+    "技術・モデル・サービス名はコード中の設定や候補。現行の提供状況・料金を保証しない。"
+  ],
+  "categories": [
+    {
+      "key": "category-0",
+      "label": "画面・操作",
+      "ids": [
+        "ui",
+        "apps"
+      ]
+    },
+    {
+      "key": "category-1",
+      "label": "補助機能",
+      "ids": [
+        "prompt"
+      ]
+    },
+    {
+      "key": "category-2",
+      "label": "構成・保存",
+      "ids": [
+        "storage"
+      ]
+    }
+  ],
+  "items": {
+    "ui": {
+      "label": "静的なリンク集",
+      "status": "実装あり",
+      "summary": "タブ切替で作業先やアプリを探す。",
+      "specification": "index.htmlがリンクカードとshowTab等を内包する。外部アプリはアンカーリンクで開く。",
+      "constraints": [],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/my-dashboard/blob/f1fd4dabd7a6fa057c56e5343820bc8995dd5595/index.html"
+        }
+      ]
+    },
+    "apps": {
+      "label": "他アプリへの入口",
+      "status": "実装あり",
+      "summary": "学習・英会話・価格収集・AIツール等へ移動する。",
+      "specification": "English-Speaking-App、PROMPT-MANAGER、ai-tool-manager、gemini-monitor、study-app、supermarket-price-tracker等の公開ページへのリンクが記載される。",
+      "constraints": [
+        "リンクの存在は他アプリとのデータ同期を意味しない。リンク先の現在の公開状態は未検証。"
+      ],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/my-dashboard/blob/f1fd4dabd7a6fa057c56e5343820bc8995dd5595/index.html"
+        }
+      ]
+    },
+    "prompt": {
+      "label": "文字抽出用プロンプト",
+      "status": "実装あり",
+      "summary": "作業の指示文を表示・コピーする。",
+      "specification": "openTexModal／copyTexPromptで、別のAIへ渡すための文字抽出指示を表示しクリップボードへコピーする。",
+      "constraints": [
+        "このページ自身で画像を解析したりClaudeを呼び出したりする処理ではない。"
+      ],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/my-dashboard/blob/f1fd4dabd7a6fa057c56e5343820bc8995dd5595/index.html"
+        }
+      ]
+    },
+    "storage": {
+      "label": "HTMLに埋め込んだ情報",
+      "status": "実装あり",
+      "summary": "一覧内容をHTMLの編集で更新する。",
+      "specification": "リンクと説明はindex.htmlに直接書かれている。動的DB取得や保存APIのコードは見当たらない。",
+      "constraints": [
+        "共有データの正本や個人別の同期機能を持つアプリではない。"
+      ],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/my-dashboard/blob/f1fd4dabd7a6fa057c56e5343820bc8995dd5595/index.html"
+        }
+      ]
+    }
+  },
+  "features": [
+    {
+      "label": "このアプリの特徴",
+      "summary": "アプリ同士をAPIでつなぐ仕組みではなく、人が移動する入口をまとめたポータル。",
+      "detail": "作成したアプリや作業用リンクを、タブ別にまとめる個人ポータル。",
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/my-dashboard/blob/f1fd4dabd7a6fa057c56e5343820bc8995dd5595/index.html"
+        }
+      ]
+    }
+  ],
+  "flows": [
+    {
+      "title": "アプリへ移動",
+      "kind": "solid",
+      "columns": [
+        [
+          "ui"
+        ],
+        [
+          "apps"
+        ]
+      ],
+      "labels": [
+        "リンクカードから別サイトへ開く"
+      ],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/my-dashboard/blob/f1fd4dabd7a6fa057c56e5343820bc8995dd5595/index.html"
+        }
+      ]
+    },
+    {
+      "title": "作業指示を渡す",
+      "kind": "solid",
+      "columns": [
+        [
+          "ui"
+        ],
+        [
+          "prompt"
+        ]
+      ],
+      "labels": [
+        "モーダルで指示文を表示・コピー"
+      ],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/my-dashboard/blob/f1fd4dabd7a6fa057c56e5343820bc8995dd5595/index.html"
+        }
+      ]
+    }
+  ]
+}

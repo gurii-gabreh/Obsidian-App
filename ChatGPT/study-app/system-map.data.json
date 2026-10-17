@@ -1,0 +1,208 @@
+{
+  "mode": "spec",
+  "title": "Study App：内部構成・連関図",
+  "repo": "gurii-gabreh/study-app",
+  "ref": "bce3874eb42d035aaa49f2a9264c3ea7a6ebd004",
+  "asOf": "2026-10-17 JST",
+  "scope": "教材・クイズ・復習・メモを表示し、学習履歴と途中経過をGitHub JSONへ保存する。 上側は役割別の内部構成、下側はデータのつながり。",
+  "limitations": [
+    "既定ブランチ main の固定コミットを確認したスナップショット。",
+    "実装ありはコードの存在を示す。稼働環境・認証設定・実機での動作は未検証。",
+    "技術・モデル・サービス名はコード中の設定や候補。現行の提供状況・料金を保証しない。"
+  ],
+  "categories": [
+    {
+      "key": "category-0",
+      "label": "画面・操作",
+      "ids": [
+        "ui"
+      ]
+    },
+    {
+      "key": "category-1",
+      "label": "データ構造",
+      "ids": [
+        "json"
+      ]
+    },
+    {
+      "key": "category-2",
+      "label": "保存・同期",
+      "ids": [
+        "local",
+        "gas"
+      ]
+    },
+    {
+      "key": "category-3",
+      "label": "運用・認証",
+      "ids": [
+        "auth"
+      ]
+    }
+  ],
+  "items": {
+    "ui": {
+      "label": "教材・クイズ画面",
+      "status": "実装あり",
+      "summary": "カテゴリ別の教材、複数選択クイズ、苦手問題、履歴を表示する。",
+      "specification": "index.htmlが教材表示・採点・誤答集計・メモ・ランダム出題をまとめて処理する。旧all_lessons_data.htmlも別ファイルとして残る。",
+      "constraints": [],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/study-app/blob/bce3874eb42d035aaa49f2a9264c3ea7a6ebd004/index.html"
+        }
+      ]
+    },
+    "json": {
+      "label": "GitHubの3つのJSON",
+      "status": "実装あり",
+      "summary": "教材・メモ、履歴、途中経過を分けて管理する。",
+      "specification": "data/lessons.json、history.json、progress.jsonを起動時に取得する。教材の問題形式をnormalizeQuizで統一する。",
+      "constraints": [
+        "画面が取得する公開先とGitHubの更新タイミングには差が生じうる。"
+      ],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/study-app/blob/bce3874eb42d035aaa49f2a9264c3ea7a6ebd004/index.html"
+        },
+        {
+          "label": "gas/code.gs",
+          "url": "https://github.com/gurii-gabreh/study-app/blob/bce3874eb42d035aaa49f2a9264c3ea7a6ebd004/gas/code.gs"
+        }
+      ]
+    },
+    "local": {
+      "label": "ブラウザのキャッシュ",
+      "status": "実装あり",
+      "summary": "端末上の状態を保持し、取得失敗時にも使う。",
+      "specification": "localStorageへクイズ状態や誤答集合等を保存する。JSON読込後はローカルのメモ編集を優先する。",
+      "constraints": [
+        "localStorageだけでは他端末に共有されない。"
+      ],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/study-app/blob/bce3874eb42d035aaa49f2a9264c3ea7a6ebd004/index.html"
+        }
+      ]
+    },
+    "gas": {
+      "label": "GASの書込み中継",
+      "status": "実装あり",
+      "summary": "画面から受けた履歴・メモ・途中経過をGitHubへ書く。",
+      "specification": "doPostのsaveHistory／saveMemo／saveProgressがGitHub Contents APIを使う。履歴はidで再送重複を防ぎ、競合時の再試行を行う。",
+      "constraints": [
+        "回答ごとに自動commitする構成ではなく、保存操作に応じて同期する。"
+      ],
+      "sources": [
+        {
+          "label": "gas/code.gs",
+          "url": "https://github.com/gurii-gabreh/study-app/blob/bce3874eb42d035aaa49f2a9264c3ea7a6ebd004/gas/code.gs"
+        },
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/study-app/blob/bce3874eb42d035aaa49f2a9264c3ea7a6ebd004/index.html"
+        }
+      ]
+    },
+    "auth": {
+      "label": "GitHub認証の管理",
+      "status": "実装あり",
+      "summary": "GitHubトークンをGASのプロパティから取り出す。",
+      "specification": "GITHUB_TOKEN、REPO_OWNER、REPO_NAMEをスクリプトプロパティに設定し、GAS側でGitHub APIへ送る。",
+      "constraints": [
+        "GASの実デプロイと権限、利用者ごとの認証は未検証。"
+      ],
+      "sources": [
+        {
+          "label": "gas/code.gs",
+          "url": "https://github.com/gurii-gabreh/study-app/blob/bce3874eb42d035aaa49f2a9264c3ea7a6ebd004/gas/code.gs"
+        },
+        {
+          "label": "gas/README.md",
+          "url": "https://github.com/gurii-gabreh/study-app/blob/bce3874eb42d035aaa49f2a9264c3ea7a6ebd004/gas/README.md"
+        }
+      ]
+    }
+  },
+  "features": [
+    {
+      "label": "このアプリの特徴",
+      "summary": "端末内キャッシュとGitHubの共有JSONを併用し、GASが書込みを中継する。",
+      "detail": "教材・クイズ・復習・メモを表示し、学習履歴と途中経過をGitHub JSONへ保存する。",
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/study-app/blob/bce3874eb42d035aaa49f2a9264c3ea7a6ebd004/index.html"
+        },
+        {
+          "label": "gas/code.gs",
+          "url": "https://github.com/gurii-gabreh/study-app/blob/bce3874eb42d035aaa49f2a9264c3ea7a6ebd004/gas/code.gs"
+        }
+      ]
+    }
+  ],
+  "flows": [
+    {
+      "title": "教材と状態を読む",
+      "kind": "solid",
+      "columns": [
+        [
+          "json"
+        ],
+        [
+          "ui"
+        ],
+        [
+          "local"
+        ]
+      ],
+      "labels": [
+        "問題と履歴を取得",
+        "端末内へ状態をキャッシュ"
+      ],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/study-app/blob/bce3874eb42d035aaa49f2a9264c3ea7a6ebd004/index.html"
+        },
+        {
+          "label": "gas/code.gs",
+          "url": "https://github.com/gurii-gabreh/study-app/blob/bce3874eb42d035aaa49f2a9264c3ea7a6ebd004/gas/code.gs"
+        }
+      ]
+    },
+    {
+      "title": "学習結果を共有保存",
+      "kind": "solid",
+      "columns": [
+        [
+          "ui"
+        ],
+        [
+          "gas"
+        ],
+        [
+          "json"
+        ]
+      ],
+      "labels": [
+        "保存操作でPOST",
+        "トークンを使いJSONを更新"
+      ],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/study-app/blob/bce3874eb42d035aaa49f2a9264c3ea7a6ebd004/index.html"
+        },
+        {
+          "label": "gas/code.gs",
+          "url": "https://github.com/gurii-gabreh/study-app/blob/bce3874eb42d035aaa49f2a9264c3ea7a6ebd004/gas/code.gs"
+        }
+      ]
+    }
+  ]
+}

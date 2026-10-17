@@ -1,0 +1,580 @@
+{
+  "nodes": [
+    {
+      "id": "c3182eaac7dff82a",
+      "type": "group",
+      "x": 500,
+      "y": -45,
+      "width": 2370,
+      "height": 390,
+      "label": "画面・操作",
+      "color": "5"
+    },
+    {
+      "id": "ce0862df5a189b77",
+      "type": "group",
+      "x": 500,
+      "y": 515,
+      "width": 2370,
+      "height": 1530,
+      "label": "処理・連携",
+      "color": "4"
+    },
+    {
+      "id": "7f16b064687f39c1",
+      "type": "group",
+      "x": 500,
+      "y": 2215,
+      "width": 2370,
+      "height": 470,
+      "label": "データ保存",
+      "color": "6"
+    },
+    {
+      "id": "6c2dbdf47a43157f",
+      "type": "group",
+      "x": 500,
+      "y": 2855,
+      "width": 2370,
+      "height": 390,
+      "label": "アプリの特徴",
+      "color": "6"
+    },
+    {
+      "id": "cc966ef6b18cd6ac",
+      "type": "group",
+      "x": 990,
+      "y": 3430,
+      "width": 3560,
+      "height": 420,
+      "label": "測定データがたまる流れ"
+    },
+    {
+      "id": "138d05c4d011886c",
+      "type": "group",
+      "x": 990,
+      "y": 3930,
+      "width": 3560,
+      "height": 420,
+      "label": "閲覧・設定の流れ"
+    },
+    {
+      "id": "44dd9a737bbbbc28",
+      "type": "text",
+      "x": 1050,
+      "y": 40,
+      "width": 540,
+      "height": 220,
+      "text": "## Chart.jsのダッシュボード\n\n**確認区分：実装あり**\n\n成功率・レイテンシ・規模別結果を比較する。",
+      "color": "5"
+    },
+    {
+      "id": "0b0c5a4157b73f1e",
+      "type": "text",
+      "x": 1810,
+      "y": 0,
+      "width": 1000,
+      "height": 300,
+      "text": "## 最終仕様\n\nindex.htmlがGAS URLをlocalStorageへ保存し、getData／getSettings等を呼ぶ。取得結果をヒートマップや時系列へ集計する。\n\n### 根拠\n\n- [index.html](https://github.com/gurii-gabreh/gemini-monitor/blob/4eca9d60966ebdc3f7c536ec368b3516368a6fac/index.html)",
+      "color": "5"
+    },
+    {
+      "id": "ce88dc3083792793",
+      "type": "text",
+      "x": 560,
+      "y": 70,
+      "width": 300,
+      "height": 160,
+      "text": "## 画面・操作\n\n1仕様項目",
+      "color": "5"
+    },
+    {
+      "id": "9cfea4ae5eeba594",
+      "type": "text",
+      "x": 1050,
+      "y": 640,
+      "width": 540,
+      "height": 220,
+      "text": "## GAS Web API\n\n**確認区分：実装あり**\n\n取得・設定保存・即時測定を振り分ける。",
+      "color": "4"
+    },
+    {
+      "id": "214b95d8757c4931",
+      "type": "text",
+      "x": 1810,
+      "y": 560,
+      "width": 1000,
+      "height": 380,
+      "text": "## 最終仕様\n\ndoGetのactionでgetData、getSettings、saveSettings、runNowを処理しJSONを返す。\n\n### 現在の制約・確認範囲\n\n- 個別利用者の認証と稼働中GASへの反映状況は未検証。\n\n### 根拠\n\n- [gas/Code.gs](https://github.com/gurii-gabreh/gemini-monitor/blob/4eca9d60966ebdc3f7c536ec368b3516368a6fac/gas/Code.gs)",
+      "color": "4"
+    },
+    {
+      "id": "ed1b484f59ec7939",
+      "type": "text",
+      "x": 1050,
+      "y": 1150,
+      "width": 540,
+      "height": 220,
+      "text": "## 測定とトリガー\n\n**確認区分：実装あり**\n\n対象モデルとプロンプト規模を組み合わせて測定する。",
+      "color": "4"
+    },
+    {
+      "id": "e1237f27ba91b448",
+      "type": "text",
+      "x": 1810,
+      "y": 1040,
+      "width": 1000,
+      "height": 440,
+      "text": "## 最終仕様\n\nrunMeasurementは測定時間帯を確認し、Gemini APIへ順次送信して処理時間・HTTPエラー・トークン使用量を記録する。pro系は小サイズだけを対象にする。\n\n### 現在の制約・確認範囲\n\n- 結果は設定モデル・プロンプト・利用枠にも左右されるため、サービス全体の混雑そのものを断定する指標ではない。\n\n### 根拠\n\n- [gas/Code.gs](https://github.com/gurii-gabreh/gemini-monitor/blob/4eca9d60966ebdc3f7c536ec368b3516368a6fac/gas/Code.gs)",
+      "color": "4"
+    },
+    {
+      "id": "f06fcf85667e5d6c",
+      "type": "text",
+      "x": 1050,
+      "y": 1680,
+      "width": 540,
+      "height": 220,
+      "text": "## Gemini API\n\n**確認区分：実装あり**\n\n測定用プロンプトへの応答を返す。",
+      "color": "4"
+    },
+    {
+      "id": "138b359576003134",
+      "type": "text",
+      "x": 1810,
+      "y": 1580,
+      "width": 1000,
+      "height": 420,
+      "text": "## 最終仕様\n\ngenerateContentのHTTPコードからsuccess、rate_limit、error等へ分類する。APIキーはGAS側の設定から読む。\n\n### 現在の制約・確認範囲\n\n- コード中のモデル候補・無料枠の記述は現行の提供条件を保証しない。\n\n### 根拠\n\n- [gas/Code.gs](https://github.com/gurii-gabreh/gemini-monitor/blob/4eca9d60966ebdc3f7c536ec368b3516368a6fac/gas/Code.gs)",
+      "color": "4"
+    },
+    {
+      "id": "d0cef71666f0f799",
+      "type": "text",
+      "x": 560,
+      "y": 1200,
+      "width": 300,
+      "height": 160,
+      "text": "## 処理・連携\n\n3仕様項目",
+      "color": "4"
+    },
+    {
+      "id": "64957349b9c5a2de",
+      "type": "text",
+      "x": 1050,
+      "y": 2340,
+      "width": 540,
+      "height": 220,
+      "text": "## 測定・設定シート\n\n**確認区分：実装あり**\n\n履歴を蓄積し、画面へ返す。",
+      "color": "6"
+    },
+    {
+      "id": "033432848382ce87",
+      "type": "text",
+      "x": 1810,
+      "y": 2260,
+      "width": 1000,
+      "height": 380,
+      "text": "## 最終仕様\n\nSpreadsheetAppで測定行と設定値を保存する。設定変更時は時間トリガーを再設定する。\n\n### 現在の制約・確認範囲\n\n- トリガーの実時刻や現在の設定値は未確認。\n\n### 根拠\n\n- [gas/Code.gs](https://github.com/gurii-gabreh/gemini-monitor/blob/4eca9d60966ebdc3f7c536ec368b3516368a6fac/gas/Code.gs)",
+      "color": "6"
+    },
+    {
+      "id": "ee0bdbcde24b6917",
+      "type": "text",
+      "x": 560,
+      "y": 2370,
+      "width": 300,
+      "height": 160,
+      "text": "## データ保存\n\n1仕様項目",
+      "color": "6"
+    },
+    {
+      "id": "a57d61a733122d62",
+      "type": "text",
+      "x": 1050,
+      "y": 2960,
+      "width": 540,
+      "height": 180,
+      "text": "## このアプリの特徴\n\nブラウザで測るのではなく、GASが測り、Sheetsに残し、画面が可視化する。",
+      "color": "6"
+    },
+    {
+      "id": "a719bae325d9766d",
+      "type": "text",
+      "x": 1810,
+      "y": 2900,
+      "width": 1000,
+      "height": 300,
+      "text": "## アプリの特徴\n\nモデル別・時間帯別のAPI応答状況を測り、成功率や待ち時間をグラフにする。\n\n### 根拠\n\n- [index.html](https://github.com/gurii-gabreh/gemini-monitor/blob/4eca9d60966ebdc3f7c536ec368b3516368a6fac/index.html)\n- [gas/Code.gs](https://github.com/gurii-gabreh/gemini-monitor/blob/4eca9d60966ebdc3f7c536ec368b3516368a6fac/gas/Code.gs)",
+      "color": "6"
+    },
+    {
+      "id": "5b8a8b56dada6ce7",
+      "type": "text",
+      "x": 560,
+      "y": 2960,
+      "width": 300,
+      "height": 180,
+      "text": "## アプリの特徴\n\n機能の組合せ・運用方法・設計上の性質",
+      "color": "6"
+    },
+    {
+      "id": "f623ff49da8d81cd",
+      "type": "text",
+      "x": 1050,
+      "y": 3480,
+      "width": 540,
+      "height": 320,
+      "text": "## 測定データがたまる流れ\n\nプロンプトを送る\n\n応答と測定値をGASが保存\n\n記録に基づく前提・対応順\n\n- [gas/Code.gs](https://github.com/gurii-gabreh/gemini-monitor/blob/4eca9d60966ebdc3f7c536ec368b3516368a6fac/gas/Code.gs)",
+      "color": "1"
+    },
+    {
+      "id": "b4395f34967fee2a",
+      "type": "text",
+      "x": 1810,
+      "y": 3460,
+      "width": 620,
+      "height": 280,
+      "text": "## measure\n\n**測定とトリガー**\n\n対象モデルとプロンプト規模を組み合わせて測定する。\n\n上側の同じ項目の再掲。",
+      "color": "4"
+    },
+    {
+      "id": "b25d50193955a4fc",
+      "type": "text",
+      "x": 2650,
+      "y": 3460,
+      "width": 760,
+      "height": 280,
+      "text": "## gemini\n\n**Gemini API**\n\n測定用プロンプトへの応答を返す。\n\n上側の同じ項目の再掲。",
+      "color": "4"
+    },
+    {
+      "id": "c0d5017348fb926f",
+      "type": "text",
+      "x": 3650,
+      "y": 3460,
+      "width": 840,
+      "height": 280,
+      "text": "## sheet\n\n**測定・設定シート**\n\n履歴を蓄積し、画面へ返す。\n\n上側の同じ項目の再掲。",
+      "color": "6"
+    },
+    {
+      "id": "17d346ba646448be",
+      "type": "text",
+      "x": 1050,
+      "y": 3960,
+      "width": 540,
+      "height": 360,
+      "text": "## 閲覧・設定の流れ\n\nGASへactionを送る\n\nシートの結果・設定を読み書き\n\n記録に基づく前提・対応順\n\n- [index.html](https://github.com/gurii-gabreh/gemini-monitor/blob/4eca9d60966ebdc3f7c536ec368b3516368a6fac/index.html)\n- [gas/Code.gs](https://github.com/gurii-gabreh/gemini-monitor/blob/4eca9d60966ebdc3f7c536ec368b3516368a6fac/gas/Code.gs)",
+      "color": "1"
+    },
+    {
+      "id": "f8b1b8dd9b985c0c",
+      "type": "text",
+      "x": 1810,
+      "y": 3960,
+      "width": 620,
+      "height": 280,
+      "text": "## ui\n\n**Chart.jsのダッシュボード**\n\n成功率・レイテンシ・規模別結果を比較する。\n\n上側の同じ項目の再掲。",
+      "color": "5"
+    },
+    {
+      "id": "4f36c2b17b96a8a1",
+      "type": "text",
+      "x": 2650,
+      "y": 3960,
+      "width": 760,
+      "height": 280,
+      "text": "## api\n\n**GAS Web API**\n\n取得・設定保存・即時測定を振り分ける。\n\n上側の同じ項目の再掲。",
+      "color": "4"
+    },
+    {
+      "id": "da0932f1fbf22b7b",
+      "type": "text",
+      "x": 3650,
+      "y": 3960,
+      "width": 840,
+      "height": 280,
+      "text": "## sheet\n\n**測定・設定シート**\n\n履歴を蓄積し、画面へ返す。\n\n上側の同じ項目の再掲。",
+      "color": "6"
+    },
+    {
+      "id": "e2ba41af03120f14",
+      "type": "text",
+      "x": 560,
+      "y": 3780,
+      "width": 300,
+      "height": 360,
+      "text": "## つながり\n\n矢印：記録から確認できる前提・対応順\n\n矢印なし＋関連ラベル：依存を意味しない関連\n\nカードは上側の同じ項目の再掲。",
+      "color": "1"
+    },
+    {
+      "id": "4813494d137e1631",
+      "type": "text",
+      "x": 0,
+      "y": 1840,
+      "width": 380,
+      "height": 780,
+      "text": "# Gemini Monitor：内部構成・連関図\n\n**gurii-gabreh/gemini-monitor**\n\nモデル別・時間帯別のAPI応答状況を測り、成功率や待ち時間をグラフにする。 上側は役割別の内部構成、下側はデータのつながり。\n\nモード：最終仕様・アプリの特徴\n\n記録：2026-10-17 JST\n\n対象：4eca9d60966ebdc3f7c536ec368b3516368a6fac\n\n- 既定ブランチ main の固定コミットを確認したスナップショット。\n- 実装ありはコードの存在を示す。稼働環境・認証設定・実機での動作は未検証。\n- 技術・モデル・サービス名はコード中の設定や候補。現行の提供状況・料金を保証しない。"
+    }
+  ],
+  "edges": [
+    {
+      "id": "d6e243df852fa85e",
+      "fromNode": "44dd9a737bbbbc28",
+      "fromSide": "right",
+      "toNode": "0b0c5a4157b73f1e",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "5"
+    },
+    {
+      "id": "da4b403818b00f8a",
+      "fromNode": "ce88dc3083792793",
+      "fromSide": "right",
+      "toNode": "44dd9a737bbbbc28",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "5"
+    },
+    {
+      "id": "305972bcc5e1dfec",
+      "fromNode": "9cfea4ae5eeba594",
+      "fromSide": "right",
+      "toNode": "214b95d8757c4931",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "4"
+    },
+    {
+      "id": "21bd21b083ab1ad1",
+      "fromNode": "ed1b484f59ec7939",
+      "fromSide": "right",
+      "toNode": "e1237f27ba91b448",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "4"
+    },
+    {
+      "id": "069d1d1acdd5eb02",
+      "fromNode": "f06fcf85667e5d6c",
+      "fromSide": "right",
+      "toNode": "138b359576003134",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "4"
+    },
+    {
+      "id": "f7ada1b77741a21f",
+      "fromNode": "d0cef71666f0f799",
+      "fromSide": "right",
+      "toNode": "9cfea4ae5eeba594",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "4"
+    },
+    {
+      "id": "800f68b2b0cfd037",
+      "fromNode": "d0cef71666f0f799",
+      "fromSide": "right",
+      "toNode": "ed1b484f59ec7939",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "4"
+    },
+    {
+      "id": "a8556aba0a85a507",
+      "fromNode": "d0cef71666f0f799",
+      "fromSide": "right",
+      "toNode": "f06fcf85667e5d6c",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "4"
+    },
+    {
+      "id": "9205f250494b10dc",
+      "fromNode": "64957349b9c5a2de",
+      "fromSide": "right",
+      "toNode": "033432848382ce87",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "6"
+    },
+    {
+      "id": "e37b51275139e400",
+      "fromNode": "ee0bdbcde24b6917",
+      "fromSide": "right",
+      "toNode": "64957349b9c5a2de",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "44c1644f2f8fbaaf",
+      "fromNode": "a57d61a733122d62",
+      "fromSide": "right",
+      "toNode": "a719bae325d9766d",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "特徴・根拠",
+      "color": "6"
+    },
+    {
+      "id": "07f4ee95b1ffd79b",
+      "fromNode": "5b8a8b56dada6ce7",
+      "fromSide": "right",
+      "toNode": "a57d61a733122d62",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "8b754ae3247289bc",
+      "fromNode": "f623ff49da8d81cd",
+      "fromSide": "right",
+      "toNode": "b4395f34967fee2a",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "対象",
+      "color": "1"
+    },
+    {
+      "id": "50c109f6b68db6d6",
+      "fromNode": "b4395f34967fee2a",
+      "fromSide": "right",
+      "toNode": "b25d50193955a4fc",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "プロンプトを送る",
+      "color": "1"
+    },
+    {
+      "id": "d1cc354ecc47be03",
+      "fromNode": "b25d50193955a4fc",
+      "fromSide": "right",
+      "toNode": "c0d5017348fb926f",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "応答と測定値をGASが保存",
+      "color": "1"
+    },
+    {
+      "id": "1729de1c3440fe86",
+      "fromNode": "17d346ba646448be",
+      "fromSide": "right",
+      "toNode": "f8b1b8dd9b985c0c",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "対象",
+      "color": "1"
+    },
+    {
+      "id": "eaed6e3f958a7361",
+      "fromNode": "f8b1b8dd9b985c0c",
+      "fromSide": "right",
+      "toNode": "4f36c2b17b96a8a1",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "GASへactionを送る",
+      "color": "1"
+    },
+    {
+      "id": "d2528de6dbfbfa48",
+      "fromNode": "4f36c2b17b96a8a1",
+      "fromSide": "right",
+      "toNode": "da0932f1fbf22b7b",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "シートの結果・設定を読み書き",
+      "color": "1"
+    },
+    {
+      "id": "1d350ff27059aaba",
+      "fromNode": "e2ba41af03120f14",
+      "fromSide": "right",
+      "toNode": "f623ff49da8d81cd",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "db30f510c4b538b5",
+      "fromNode": "e2ba41af03120f14",
+      "fromSide": "right",
+      "toNode": "17d346ba646448be",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "b6866fcb67d4acec",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ce88dc3083792793",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "add94b23ab8376b4",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "d0cef71666f0f799",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "91dbf1c82b137824",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ee0bdbcde24b6917",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "dfb2eff2ddac5594",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "5b8a8b56dada6ce7",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "39ad7aa662f7c4bd",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "e2ba41af03120f14",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    }
+  ]
+}

@@ -1,0 +1,609 @@
+{
+  "nodes": [
+    {
+      "id": "c3182eaac7dff82a",
+      "type": "group",
+      "x": 500,
+      "y": -45,
+      "width": 2370,
+      "height": 390,
+      "label": "画面・操作",
+      "color": "5"
+    },
+    {
+      "id": "ce0862df5a189b77",
+      "type": "group",
+      "x": 500,
+      "y": 515,
+      "width": 2370,
+      "height": 530,
+      "label": "データ構造",
+      "color": "4"
+    },
+    {
+      "id": "7f16b064687f39c1",
+      "type": "group",
+      "x": 500,
+      "y": 1215,
+      "width": 2370,
+      "height": 1010,
+      "label": "保存・同期",
+      "color": "6"
+    },
+    {
+      "id": "12f34febabbeec4e",
+      "type": "group",
+      "x": 500,
+      "y": 2395,
+      "width": 2370,
+      "height": 510,
+      "label": "運用・認証",
+      "color": "2"
+    },
+    {
+      "id": "6c2dbdf47a43157f",
+      "type": "group",
+      "x": 500,
+      "y": 3075,
+      "width": 2370,
+      "height": 390,
+      "label": "アプリの特徴",
+      "color": "6"
+    },
+    {
+      "id": "cc966ef6b18cd6ac",
+      "type": "group",
+      "x": 990,
+      "y": 3650,
+      "width": 3560,
+      "height": 420,
+      "label": "教材と状態を読む"
+    },
+    {
+      "id": "138d05c4d011886c",
+      "type": "group",
+      "x": 990,
+      "y": 4150,
+      "width": 3560,
+      "height": 420,
+      "label": "学習結果を共有保存"
+    },
+    {
+      "id": "44dd9a737bbbbc28",
+      "type": "text",
+      "x": 1050,
+      "y": 30,
+      "width": 540,
+      "height": 240,
+      "text": "## 教材・クイズ画面\n\n**確認区分：実装あり**\n\nカテゴリ別の教材、複数選択クイズ、苦手問題、履歴を表示する。",
+      "color": "5"
+    },
+    {
+      "id": "0b0c5a4157b73f1e",
+      "type": "text",
+      "x": 1810,
+      "y": 0,
+      "width": 1000,
+      "height": 300,
+      "text": "## 最終仕様\n\nindex.htmlが教材表示・採点・誤答集計・メモ・ランダム出題をまとめて処理する。旧all_lessons_data.htmlも別ファイルとして残る。\n\n### 根拠\n\n- [index.html](https://github.com/gurii-gabreh/study-app/blob/bce3874eb42d035aaa49f2a9264c3ea7a6ebd004/index.html)",
+      "color": "5"
+    },
+    {
+      "id": "ce88dc3083792793",
+      "type": "text",
+      "x": 560,
+      "y": 70,
+      "width": 300,
+      "height": 160,
+      "text": "## 画面・操作\n\n1仕様項目",
+      "color": "5"
+    },
+    {
+      "id": "7beb5b1c6181a43b",
+      "type": "text",
+      "x": 1050,
+      "y": 670,
+      "width": 540,
+      "height": 220,
+      "text": "## GitHubの3つのJSON\n\n**確認区分：実装あり**\n\n教材・メモ、履歴、途中経過を分けて管理する。",
+      "color": "4"
+    },
+    {
+      "id": "ac9da194cc7f6923",
+      "type": "text",
+      "x": 1810,
+      "y": 560,
+      "width": 1000,
+      "height": 440,
+      "text": "## 最終仕様\n\ndata/lessons.json、history.json、progress.jsonを起動時に取得する。教材の問題形式をnormalizeQuizで統一する。\n\n### 現在の制約・確認範囲\n\n- 画面が取得する公開先とGitHubの更新タイミングには差が生じうる。\n\n### 根拠\n\n- [index.html](https://github.com/gurii-gabreh/study-app/blob/bce3874eb42d035aaa49f2a9264c3ea7a6ebd004/index.html)\n- [gas/code.gs](https://github.com/gurii-gabreh/study-app/blob/bce3874eb42d035aaa49f2a9264c3ea7a6ebd004/gas/code.gs)",
+      "color": "4"
+    },
+    {
+      "id": "d0cef71666f0f799",
+      "type": "text",
+      "x": 560,
+      "y": 700,
+      "width": 300,
+      "height": 160,
+      "text": "## データ構造\n\n1仕様項目",
+      "color": "4"
+    },
+    {
+      "id": "4822e9549058c5fa",
+      "type": "text",
+      "x": 1050,
+      "y": 1340,
+      "width": 540,
+      "height": 220,
+      "text": "## ブラウザのキャッシュ\n\n**確認区分：実装あり**\n\n端末上の状態を保持し、取得失敗時にも使う。",
+      "color": "6"
+    },
+    {
+      "id": "d95cc0fa89694a28",
+      "type": "text",
+      "x": 1810,
+      "y": 1260,
+      "width": 1000,
+      "height": 380,
+      "text": "## 最終仕様\n\nlocalStorageへクイズ状態や誤答集合等を保存する。JSON読込後はローカルのメモ編集を優先する。\n\n### 現在の制約・確認範囲\n\n- localStorageだけでは他端末に共有されない。\n\n### 根拠\n\n- [index.html](https://github.com/gurii-gabreh/study-app/blob/bce3874eb42d035aaa49f2a9264c3ea7a6ebd004/index.html)",
+      "color": "6"
+    },
+    {
+      "id": "d6263917c1fdcc64",
+      "type": "text",
+      "x": 1050,
+      "y": 1850,
+      "width": 540,
+      "height": 220,
+      "text": "## GASの書込み中継\n\n**確認区分：実装あり**\n\n画面から受けた履歴・メモ・途中経過をGitHubへ書く。",
+      "color": "6"
+    },
+    {
+      "id": "211ff15ab065821a",
+      "type": "text",
+      "x": 1810,
+      "y": 1740,
+      "width": 1000,
+      "height": 440,
+      "text": "## 最終仕様\n\ndoPostのsaveHistory／saveMemo／saveProgressがGitHub Contents APIを使う。履歴はidで再送重複を防ぎ、競合時の再試行を行う。\n\n### 現在の制約・確認範囲\n\n- 回答ごとに自動commitする構成ではなく、保存操作に応じて同期する。\n\n### 根拠\n\n- [gas/code.gs](https://github.com/gurii-gabreh/study-app/blob/bce3874eb42d035aaa49f2a9264c3ea7a6ebd004/gas/code.gs)\n- [index.html](https://github.com/gurii-gabreh/study-app/blob/bce3874eb42d035aaa49f2a9264c3ea7a6ebd004/index.html)",
+      "color": "6"
+    },
+    {
+      "id": "ee0bdbcde24b6917",
+      "type": "text",
+      "x": 560,
+      "y": 1640,
+      "width": 300,
+      "height": 160,
+      "text": "## 保存・同期\n\n2仕様項目",
+      "color": "6"
+    },
+    {
+      "id": "c09829bb5758a293",
+      "type": "text",
+      "x": 1050,
+      "y": 2540,
+      "width": 540,
+      "height": 220,
+      "text": "## GitHub認証の管理\n\n**確認区分：実装あり**\n\nGitHubトークンをGASのプロパティから取り出す。",
+      "color": "2"
+    },
+    {
+      "id": "9fc5f75dd9f360e5",
+      "type": "text",
+      "x": 1810,
+      "y": 2440,
+      "width": 1000,
+      "height": 420,
+      "text": "## 最終仕様\n\nGITHUB_TOKEN、REPO_OWNER、REPO_NAMEをスクリプトプロパティに設定し、GAS側でGitHub APIへ送る。\n\n### 現在の制約・確認範囲\n\n- GASの実デプロイと権限、利用者ごとの認証は未検証。\n\n### 根拠\n\n- [gas/code.gs](https://github.com/gurii-gabreh/study-app/blob/bce3874eb42d035aaa49f2a9264c3ea7a6ebd004/gas/code.gs)\n- [gas/README.md](https://github.com/gurii-gabreh/study-app/blob/bce3874eb42d035aaa49f2a9264c3ea7a6ebd004/gas/README.md)",
+      "color": "2"
+    },
+    {
+      "id": "ce37eeda8cab1f46",
+      "type": "text",
+      "x": 560,
+      "y": 2570,
+      "width": 300,
+      "height": 160,
+      "text": "## 運用・認証\n\n1仕様項目",
+      "color": "2"
+    },
+    {
+      "id": "a57d61a733122d62",
+      "type": "text",
+      "x": 1050,
+      "y": 3180,
+      "width": 540,
+      "height": 180,
+      "text": "## このアプリの特徴\n\n端末内キャッシュとGitHubの共有JSONを併用し、GASが書込みを中継する。",
+      "color": "6"
+    },
+    {
+      "id": "a719bae325d9766d",
+      "type": "text",
+      "x": 1810,
+      "y": 3120,
+      "width": 1000,
+      "height": 300,
+      "text": "## アプリの特徴\n\n教材・クイズ・復習・メモを表示し、学習履歴と途中経過をGitHub JSONへ保存する。\n\n### 根拠\n\n- [index.html](https://github.com/gurii-gabreh/study-app/blob/bce3874eb42d035aaa49f2a9264c3ea7a6ebd004/index.html)\n- [gas/code.gs](https://github.com/gurii-gabreh/study-app/blob/bce3874eb42d035aaa49f2a9264c3ea7a6ebd004/gas/code.gs)",
+      "color": "6"
+    },
+    {
+      "id": "5b8a8b56dada6ce7",
+      "type": "text",
+      "x": 560,
+      "y": 3180,
+      "width": 300,
+      "height": 180,
+      "text": "## アプリの特徴\n\n機能の組合せ・運用方法・設計上の性質",
+      "color": "6"
+    },
+    {
+      "id": "f623ff49da8d81cd",
+      "type": "text",
+      "x": 1050,
+      "y": 3680,
+      "width": 540,
+      "height": 360,
+      "text": "## 教材と状態を読む\n\n問題と履歴を取得\n\n端末内へ状態をキャッシュ\n\n記録に基づく前提・対応順\n\n- [index.html](https://github.com/gurii-gabreh/study-app/blob/bce3874eb42d035aaa49f2a9264c3ea7a6ebd004/index.html)\n- [gas/code.gs](https://github.com/gurii-gabreh/study-app/blob/bce3874eb42d035aaa49f2a9264c3ea7a6ebd004/gas/code.gs)",
+      "color": "1"
+    },
+    {
+      "id": "b4395f34967fee2a",
+      "type": "text",
+      "x": 1810,
+      "y": 3680,
+      "width": 620,
+      "height": 280,
+      "text": "## json\n\n**GitHubの3つのJSON**\n\n教材・メモ、履歴、途中経過を分けて管理する。\n\n上側の同じ項目の再掲。",
+      "color": "4"
+    },
+    {
+      "id": "b25d50193955a4fc",
+      "type": "text",
+      "x": 2650,
+      "y": 3680,
+      "width": 760,
+      "height": 280,
+      "text": "## ui\n\n**教材・クイズ画面**\n\nカテゴリ別の教材、複数選択クイズ、苦手問題、履歴を表示する。\n\n上側の同じ項目の再掲。",
+      "color": "5"
+    },
+    {
+      "id": "c0d5017348fb926f",
+      "type": "text",
+      "x": 3650,
+      "y": 3680,
+      "width": 840,
+      "height": 280,
+      "text": "## local\n\n**ブラウザのキャッシュ**\n\n端末上の状態を保持し、取得失敗時にも使う。\n\n上側の同じ項目の再掲。",
+      "color": "6"
+    },
+    {
+      "id": "17d346ba646448be",
+      "type": "text",
+      "x": 1050,
+      "y": 4180,
+      "width": 540,
+      "height": 360,
+      "text": "## 学習結果を共有保存\n\n保存操作でPOST\n\nトークンを使いJSONを更新\n\n記録に基づく前提・対応順\n\n- [index.html](https://github.com/gurii-gabreh/study-app/blob/bce3874eb42d035aaa49f2a9264c3ea7a6ebd004/index.html)\n- [gas/code.gs](https://github.com/gurii-gabreh/study-app/blob/bce3874eb42d035aaa49f2a9264c3ea7a6ebd004/gas/code.gs)",
+      "color": "1"
+    },
+    {
+      "id": "f8b1b8dd9b985c0c",
+      "type": "text",
+      "x": 1810,
+      "y": 4180,
+      "width": 620,
+      "height": 280,
+      "text": "## ui\n\n**教材・クイズ画面**\n\nカテゴリ別の教材、複数選択クイズ、苦手問題、履歴を表示する。\n\n上側の同じ項目の再掲。",
+      "color": "5"
+    },
+    {
+      "id": "4f36c2b17b96a8a1",
+      "type": "text",
+      "x": 2650,
+      "y": 4180,
+      "width": 760,
+      "height": 280,
+      "text": "## gas\n\n**GASの書込み中継**\n\n画面から受けた履歴・メモ・途中経過をGitHubへ書く。\n\n上側の同じ項目の再掲。",
+      "color": "6"
+    },
+    {
+      "id": "da0932f1fbf22b7b",
+      "type": "text",
+      "x": 3650,
+      "y": 4180,
+      "width": 840,
+      "height": 280,
+      "text": "## json\n\n**GitHubの3つのJSON**\n\n教材・メモ、履歴、途中経過を分けて管理する。\n\n上側の同じ項目の再掲。",
+      "color": "4"
+    },
+    {
+      "id": "e2ba41af03120f14",
+      "type": "text",
+      "x": 560,
+      "y": 4000,
+      "width": 300,
+      "height": 360,
+      "text": "## つながり\n\n矢印：記録から確認できる前提・対応順\n\n矢印なし＋関連ラベル：依存を意味しない関連\n\nカードは上側の同じ項目の再掲。",
+      "color": "1"
+    },
+    {
+      "id": "4813494d137e1631",
+      "type": "text",
+      "x": 0,
+      "y": 1970,
+      "width": 380,
+      "height": 740,
+      "text": "# Study App：内部構成・連関図\n\n**gurii-gabreh/study-app**\n\n教材・クイズ・復習・メモを表示し、学習履歴と途中経過をGitHub JSONへ保存する。 上側は役割別の内部構成、下側はデータのつながり。\n\nモード：最終仕様・アプリの特徴\n\n記録：2026-10-17 JST\n\n対象：bce3874eb42d035aaa49f2a9264c3ea7a6ebd004\n\n- 既定ブランチ main の固定コミットを確認したスナップショット。\n- 実装ありはコードの存在を示す。稼働環境・認証設定・実機での動作は未検証。\n- 技術・モデル・サービス名はコード中の設定や候補。現行の提供状況・料金を保証しない。"
+    }
+  ],
+  "edges": [
+    {
+      "id": "d6e243df852fa85e",
+      "fromNode": "44dd9a737bbbbc28",
+      "fromSide": "right",
+      "toNode": "0b0c5a4157b73f1e",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "5"
+    },
+    {
+      "id": "da4b403818b00f8a",
+      "fromNode": "ce88dc3083792793",
+      "fromSide": "right",
+      "toNode": "44dd9a737bbbbc28",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "5"
+    },
+    {
+      "id": "c4f95a5febaa10b3",
+      "fromNode": "7beb5b1c6181a43b",
+      "fromSide": "right",
+      "toNode": "ac9da194cc7f6923",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "4"
+    },
+    {
+      "id": "bb4505960cb9fdd5",
+      "fromNode": "d0cef71666f0f799",
+      "fromSide": "right",
+      "toNode": "7beb5b1c6181a43b",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "4"
+    },
+    {
+      "id": "89663976a4d928cc",
+      "fromNode": "4822e9549058c5fa",
+      "fromSide": "right",
+      "toNode": "d95cc0fa89694a28",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "6"
+    },
+    {
+      "id": "59c9d2c8e1d11640",
+      "fromNode": "d6263917c1fdcc64",
+      "fromSide": "right",
+      "toNode": "211ff15ab065821a",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "6"
+    },
+    {
+      "id": "30348a8b6ea103fa",
+      "fromNode": "ee0bdbcde24b6917",
+      "fromSide": "right",
+      "toNode": "4822e9549058c5fa",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "9e1cb3b8abaf8be3",
+      "fromNode": "ee0bdbcde24b6917",
+      "fromSide": "right",
+      "toNode": "d6263917c1fdcc64",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "3a12ed0593b8b4d7",
+      "fromNode": "c09829bb5758a293",
+      "fromSide": "right",
+      "toNode": "9fc5f75dd9f360e5",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "2"
+    },
+    {
+      "id": "859e902ae6a29965",
+      "fromNode": "ce37eeda8cab1f46",
+      "fromSide": "right",
+      "toNode": "c09829bb5758a293",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "2"
+    },
+    {
+      "id": "44c1644f2f8fbaaf",
+      "fromNode": "a57d61a733122d62",
+      "fromSide": "right",
+      "toNode": "a719bae325d9766d",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "特徴・根拠",
+      "color": "6"
+    },
+    {
+      "id": "07f4ee95b1ffd79b",
+      "fromNode": "5b8a8b56dada6ce7",
+      "fromSide": "right",
+      "toNode": "a57d61a733122d62",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "8b754ae3247289bc",
+      "fromNode": "f623ff49da8d81cd",
+      "fromSide": "right",
+      "toNode": "b4395f34967fee2a",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "対象",
+      "color": "1"
+    },
+    {
+      "id": "50c109f6b68db6d6",
+      "fromNode": "b4395f34967fee2a",
+      "fromSide": "right",
+      "toNode": "b25d50193955a4fc",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "問題と履歴を取得",
+      "color": "1"
+    },
+    {
+      "id": "d1cc354ecc47be03",
+      "fromNode": "b25d50193955a4fc",
+      "fromSide": "right",
+      "toNode": "c0d5017348fb926f",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "端末内へ状態をキャッシュ",
+      "color": "1"
+    },
+    {
+      "id": "1729de1c3440fe86",
+      "fromNode": "17d346ba646448be",
+      "fromSide": "right",
+      "toNode": "f8b1b8dd9b985c0c",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "対象",
+      "color": "1"
+    },
+    {
+      "id": "eaed6e3f958a7361",
+      "fromNode": "f8b1b8dd9b985c0c",
+      "fromSide": "right",
+      "toNode": "4f36c2b17b96a8a1",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "保存操作でPOST",
+      "color": "1"
+    },
+    {
+      "id": "d2528de6dbfbfa48",
+      "fromNode": "4f36c2b17b96a8a1",
+      "fromSide": "right",
+      "toNode": "da0932f1fbf22b7b",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "トークンを使いJSONを更新",
+      "color": "1"
+    },
+    {
+      "id": "1d350ff27059aaba",
+      "fromNode": "e2ba41af03120f14",
+      "fromSide": "right",
+      "toNode": "f623ff49da8d81cd",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "db30f510c4b538b5",
+      "fromNode": "e2ba41af03120f14",
+      "fromSide": "right",
+      "toNode": "17d346ba646448be",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "b6866fcb67d4acec",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ce88dc3083792793",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "add94b23ab8376b4",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "d0cef71666f0f799",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "91dbf1c82b137824",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ee0bdbcde24b6917",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "2ab6a5adce9e3e82",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ce37eeda8cab1f46",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "ba1ada4696e11550",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "5b8a8b56dada6ce7",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "af95fa528731f190",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "e2ba41af03120f14",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    }
+  ]
+}

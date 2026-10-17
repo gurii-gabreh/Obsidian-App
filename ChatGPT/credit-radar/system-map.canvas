@@ -1,0 +1,609 @@
+{
+  "nodes": [
+    {
+      "id": "c3182eaac7dff82a",
+      "type": "group",
+      "x": 500,
+      "y": -45,
+      "width": 2370,
+      "height": 530,
+      "label": "画面・操作",
+      "color": "5"
+    },
+    {
+      "id": "ce0862df5a189b77",
+      "type": "group",
+      "x": 500,
+      "y": 655,
+      "width": 2370,
+      "height": 510,
+      "label": "API・認証",
+      "color": "4"
+    },
+    {
+      "id": "7f16b064687f39c1",
+      "type": "group",
+      "x": 500,
+      "y": 1335,
+      "width": 2370,
+      "height": 370,
+      "label": "保存",
+      "color": "6"
+    },
+    {
+      "id": "12f34febabbeec4e",
+      "type": "group",
+      "x": 500,
+      "y": 1875,
+      "width": 2370,
+      "height": 1010,
+      "label": "記録の入口",
+      "color": "2"
+    },
+    {
+      "id": "6c2dbdf47a43157f",
+      "type": "group",
+      "x": 500,
+      "y": 3055,
+      "width": 2370,
+      "height": 410,
+      "label": "アプリの特徴",
+      "color": "6"
+    },
+    {
+      "id": "cc966ef6b18cd6ac",
+      "type": "group",
+      "x": 990,
+      "y": 3650,
+      "width": 4560,
+      "height": 500,
+      "label": "上限を記録する"
+    },
+    {
+      "id": "138d05c4d011886c",
+      "type": "group",
+      "x": 990,
+      "y": 4230,
+      "width": 2480,
+      "height": 420,
+      "label": "外部作業ログの受け口"
+    },
+    {
+      "id": "44dd9a737bbbbc28",
+      "type": "text",
+      "x": 1050,
+      "y": 110,
+      "width": 540,
+      "height": 220,
+      "text": "## 使用量ダッシュボード\n\n**確認区分：実装あり**\n\n件数・所要時間・利用上限ログを並べる。",
+      "color": "5"
+    },
+    {
+      "id": "0b0c5a4157b73f1e",
+      "type": "text",
+      "x": 1810,
+      "y": 0,
+      "width": 1000,
+      "height": 440,
+      "text": "## 最終仕様\n\nindex.htmlがSVGグラフ、表、上限ログ入力を提供する。接続URLと共有トークンは利用者のlocalStorageへ保存する。\n\n### 現在の制約・確認範囲\n\n- Claudeの公式クレジット残量を自動取得するアプリではない。\n\n### 根拠\n\n- [index.html](https://github.com/gurii-gabreh/credit-radar/blob/ba09e5261777e06f0140c995a172d2312fc6da14/index.html)\n- [README.md](https://github.com/gurii-gabreh/credit-radar/blob/ba09e5261777e06f0140c995a172d2312fc6da14/README.md)",
+      "color": "5"
+    },
+    {
+      "id": "ce88dc3083792793",
+      "type": "text",
+      "x": 560,
+      "y": 140,
+      "width": 300,
+      "height": 160,
+      "text": "## 画面・操作\n\n1仕様項目",
+      "color": "5"
+    },
+    {
+      "id": "d6263917c1fdcc64",
+      "type": "text",
+      "x": 1050,
+      "y": 800,
+      "width": 540,
+      "height": 220,
+      "text": "## 専用GAS\n\n**確認区分：実装あり**\n\n一覧取得と2種類のログ書込みを受ける。",
+      "color": "4"
+    },
+    {
+      "id": "211ff15ab065821a",
+      "type": "text",
+      "x": 1810,
+      "y": 700,
+      "width": 1000,
+      "height": 420,
+      "text": "## 最終仕様\n\ndoGet listはJSONを返し、doPostはTOKENを照合してaddLimitLogまたはaddUsageLogへ振り分ける。\n\n### 現在の制約・確認範囲\n\n- progress用GASとは別プロジェクトを使う設計。個人別のログイン認証ではない。\n\n### 根拠\n\n- [gas/Code.gs](https://github.com/gurii-gabreh/credit-radar/blob/ba09e5261777e06f0140c995a172d2312fc6da14/gas/Code.gs)\n- [README.md](https://github.com/gurii-gabreh/credit-radar/blob/ba09e5261777e06f0140c995a172d2312fc6da14/README.md)",
+      "color": "4"
+    },
+    {
+      "id": "d0cef71666f0f799",
+      "type": "text",
+      "x": 560,
+      "y": 830,
+      "width": 300,
+      "height": 160,
+      "text": "## API・認証\n\n1仕様項目",
+      "color": "4"
+    },
+    {
+      "id": "4cdf96d68327f5b1",
+      "type": "text",
+      "x": 1050,
+      "y": 1410,
+      "width": 540,
+      "height": 220,
+      "text": "## 2つのログタブ\n\n**確認区分：実装あり**\n\n共通の進捗管理Sheetに専用タブだけを追加する。",
+      "color": "6"
+    },
+    {
+      "id": "8250b5c7ca60071e",
+      "type": "text",
+      "x": 1810,
+      "y": 1380,
+      "width": 1000,
+      "height": 280,
+      "text": "## 最終仕様\n\n使用量ログと利用上限ログを扱う。使用量ログはrepo・task・着手日時で既存行を探し、あれば更新する。\n\n### 根拠\n\n- [gas/Code.gs](https://github.com/gurii-gabreh/credit-radar/blob/ba09e5261777e06f0140c995a172d2312fc6da14/gas/Code.gs)",
+      "color": "6"
+    },
+    {
+      "id": "ee0bdbcde24b6917",
+      "type": "text",
+      "x": 560,
+      "y": 1440,
+      "width": 300,
+      "height": 160,
+      "text": "## 保存\n\n1仕様項目",
+      "color": "6"
+    },
+    {
+      "id": "df8866557597a7e9",
+      "type": "text",
+      "x": 1050,
+      "y": 2000,
+      "width": 540,
+      "height": 220,
+      "text": "## 利用上限の手動記録\n\n**確認区分：実装あり**\n\n上限に達したと感じた時刻と状況を入力する。",
+      "color": "2"
+    },
+    {
+      "id": "15f9c71a97875cbf",
+      "type": "text",
+      "x": 1810,
+      "y": 1920,
+      "width": 1000,
+      "height": 380,
+      "text": "## 最終仕様\n\nフォームがGASへPOSTし、一覧を再読込してグラフへ反映する。\n\n### 現在の制約・確認範囲\n\n- 自己申告のログ。APIが実際の上限到達を検知しているわけではない。\n\n### 根拠\n\n- [index.html](https://github.com/gurii-gabreh/credit-radar/blob/ba09e5261777e06f0140c995a172d2312fc6da14/index.html)",
+      "color": "2"
+    },
+    {
+      "id": "7352bb780a0db33e",
+      "type": "text",
+      "x": 1050,
+      "y": 2510,
+      "width": 540,
+      "height": 220,
+      "text": "## タスク作業量の記録口\n\n**確認区分：実装あり**\n\n外部Routine等からのログ登録用APIを用意する。",
+      "color": "2"
+    },
+    {
+      "id": "e42e53babf51d34b",
+      "type": "text",
+      "x": 1810,
+      "y": 2400,
+      "width": 1000,
+      "height": 440,
+      "text": "## 最終仕様\n\nGASのaddUsageLogに作業開始・完了等を渡す想定。\n\n### 現在の制約・確認範囲\n\n- 各Routineから自動で呼ぶ接続はREADME上で未実施。受け口があるだけで全作業を自動収集できるとは言えない。\n\n### 根拠\n\n- [gas/Code.gs](https://github.com/gurii-gabreh/credit-radar/blob/ba09e5261777e06f0140c995a172d2312fc6da14/gas/Code.gs)\n- [README.md](https://github.com/gurii-gabreh/credit-radar/blob/ba09e5261777e06f0140c995a172d2312fc6da14/README.md)",
+      "color": "2"
+    },
+    {
+      "id": "ce37eeda8cab1f46",
+      "type": "text",
+      "x": 560,
+      "y": 2300,
+      "width": 300,
+      "height": 160,
+      "text": "## 記録の入口\n\n2仕様項目",
+      "color": "2"
+    },
+    {
+      "id": "a57d61a733122d62",
+      "type": "text",
+      "x": 1050,
+      "y": 3170,
+      "width": 540,
+      "height": 180,
+      "text": "## このアプリの特徴\n\n実測作業ログと自己申告の上限時刻を突き合わせるための道具。公式利用量APIの監視ではない。",
+      "color": "6"
+    },
+    {
+      "id": "a719bae325d9766d",
+      "type": "text",
+      "x": 1810,
+      "y": 3100,
+      "width": 1000,
+      "height": 320,
+      "text": "## アプリの特徴\n\nClaude Codeの作業量と、利用上限に達した時刻を同じ日付軸で比較する。\n\n### 根拠\n\n- [index.html](https://github.com/gurii-gabreh/credit-radar/blob/ba09e5261777e06f0140c995a172d2312fc6da14/index.html)\n- [README.md](https://github.com/gurii-gabreh/credit-radar/blob/ba09e5261777e06f0140c995a172d2312fc6da14/README.md)\n- [gas/Code.gs](https://github.com/gurii-gabreh/credit-radar/blob/ba09e5261777e06f0140c995a172d2312fc6da14/gas/Code.gs)",
+      "color": "6"
+    },
+    {
+      "id": "5b8a8b56dada6ce7",
+      "type": "text",
+      "x": 560,
+      "y": 3170,
+      "width": 300,
+      "height": 180,
+      "text": "## アプリの特徴\n\n機能の組合せ・運用方法・設計上の性質",
+      "color": "6"
+    },
+    {
+      "id": "f623ff49da8d81cd",
+      "type": "text",
+      "x": 1050,
+      "y": 3680,
+      "width": 540,
+      "height": 440,
+      "text": "## 上限を記録する\n\n共有トークン付きで送信\n\n専用ログタブへ保存\n\nGET結果をグラフ・表へ描画\n\n記録に基づく前提・対応順\n\n- [index.html](https://github.com/gurii-gabreh/credit-radar/blob/ba09e5261777e06f0140c995a172d2312fc6da14/index.html)\n- [gas/Code.gs](https://github.com/gurii-gabreh/credit-radar/blob/ba09e5261777e06f0140c995a172d2312fc6da14/gas/Code.gs)\n- [README.md](https://github.com/gurii-gabreh/credit-radar/blob/ba09e5261777e06f0140c995a172d2312fc6da14/README.md)",
+      "color": "1"
+    },
+    {
+      "id": "b4395f34967fee2a",
+      "type": "text",
+      "x": 1810,
+      "y": 3680,
+      "width": 620,
+      "height": 280,
+      "text": "## manual\n\n**利用上限の手動記録**\n\n上限に達したと感じた時刻と状況を入力する。\n\n上側の同じ項目の再掲。",
+      "color": "2"
+    },
+    {
+      "id": "b25d50193955a4fc",
+      "type": "text",
+      "x": 2650,
+      "y": 3680,
+      "width": 760,
+      "height": 280,
+      "text": "## gas\n\n**専用GAS**\n\n一覧取得と2種類のログ書込みを受ける。\n\n上側の同じ項目の再掲。",
+      "color": "4"
+    },
+    {
+      "id": "c0d5017348fb926f",
+      "type": "text",
+      "x": 3650,
+      "y": 3680,
+      "width": 840,
+      "height": 280,
+      "text": "## sheets\n\n**2つのログタブ**\n\n共通の進捗管理Sheetに専用タブだけを追加する。\n\n上側の同じ項目の再掲。",
+      "color": "6"
+    },
+    {
+      "id": "07ab1a462bf44409",
+      "type": "text",
+      "x": 4730,
+      "y": 3680,
+      "width": 760,
+      "height": 280,
+      "text": "## ui\n\n**使用量ダッシュボード**\n\n件数・所要時間・利用上限ログを並べる。\n\n上側の同じ項目の再掲。",
+      "color": "5"
+    },
+    {
+      "id": "17d346ba646448be",
+      "type": "text",
+      "x": 1050,
+      "y": 4290,
+      "width": 540,
+      "height": 300,
+      "text": "## 外部作業ログの受け口\n\naddUsageLogの入力を処理\n\n記録に基づく前提・対応順\n\n- [gas/Code.gs](https://github.com/gurii-gabreh/credit-radar/blob/ba09e5261777e06f0140c995a172d2312fc6da14/gas/Code.gs)\n- [README.md](https://github.com/gurii-gabreh/credit-radar/blob/ba09e5261777e06f0140c995a172d2312fc6da14/README.md)",
+      "color": "1"
+    },
+    {
+      "id": "f8b1b8dd9b985c0c",
+      "type": "text",
+      "x": 1810,
+      "y": 4260,
+      "width": 620,
+      "height": 280,
+      "text": "## usage\n\n**タスク作業量の記録口**\n\n外部Routine等からのログ登録用APIを用意する。\n\n上側の同じ項目の再掲。",
+      "color": "2"
+    },
+    {
+      "id": "4f36c2b17b96a8a1",
+      "type": "text",
+      "x": 2650,
+      "y": 4260,
+      "width": 760,
+      "height": 280,
+      "text": "## gas\n\n**専用GAS**\n\n一覧取得と2種類のログ書込みを受ける。\n\n上側の同じ項目の再掲。",
+      "color": "4"
+    },
+    {
+      "id": "e2ba41af03120f14",
+      "type": "text",
+      "x": 560,
+      "y": 4040,
+      "width": 300,
+      "height": 360,
+      "text": "## つながり\n\n矢印：記録から確認できる前提・対応順\n\n矢印なし＋関連ラベル：依存を意味しない関連\n\nカードは上側の同じ項目の再掲。",
+      "color": "1"
+    },
+    {
+      "id": "4813494d137e1631",
+      "type": "text",
+      "x": 0,
+      "y": 1990,
+      "width": 380,
+      "height": 780,
+      "text": "# Credit Radar：内部構成・連関図\n\n**gurii-gabreh/credit-radar**\n\nClaude Codeの作業量と、利用上限に達した時刻を同じ日付軸で比較する。 上側は役割別の内部構成、下側はデータのつながり。\n\nモード：最終仕様・アプリの特徴\n\n記録：2026-10-17 JST\n\n対象：ba09e5261777e06f0140c995a172d2312fc6da14\n\n- 既定ブランチ claude/usage-analytics-dashboard-kh5fj0 の固定コミットを確認したスナップショット。\n- 実装ありはコードの存在を示す。稼働環境・認証設定・実機での動作は未検証。\n- 技術・モデル・サービス名はコード中の設定や候補。現行の提供状況・料金を保証しない。"
+    }
+  ],
+  "edges": [
+    {
+      "id": "d6e243df852fa85e",
+      "fromNode": "44dd9a737bbbbc28",
+      "fromSide": "right",
+      "toNode": "0b0c5a4157b73f1e",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "5"
+    },
+    {
+      "id": "da4b403818b00f8a",
+      "fromNode": "ce88dc3083792793",
+      "fromSide": "right",
+      "toNode": "44dd9a737bbbbc28",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "5"
+    },
+    {
+      "id": "f89ee3b5925646ae",
+      "fromNode": "d6263917c1fdcc64",
+      "fromSide": "right",
+      "toNode": "211ff15ab065821a",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "4"
+    },
+    {
+      "id": "26db8f46ad3128ad",
+      "fromNode": "d0cef71666f0f799",
+      "fromSide": "right",
+      "toNode": "d6263917c1fdcc64",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "4"
+    },
+    {
+      "id": "2981de07debe6e11",
+      "fromNode": "4cdf96d68327f5b1",
+      "fromSide": "right",
+      "toNode": "8250b5c7ca60071e",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "6"
+    },
+    {
+      "id": "e563dd535e43112d",
+      "fromNode": "ee0bdbcde24b6917",
+      "fromSide": "right",
+      "toNode": "4cdf96d68327f5b1",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "a78ff6de385097fb",
+      "fromNode": "df8866557597a7e9",
+      "fromSide": "right",
+      "toNode": "15f9c71a97875cbf",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "2"
+    },
+    {
+      "id": "ce9547555729c0e1",
+      "fromNode": "7352bb780a0db33e",
+      "fromSide": "right",
+      "toNode": "e42e53babf51d34b",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "2"
+    },
+    {
+      "id": "d18681f9831e695b",
+      "fromNode": "ce37eeda8cab1f46",
+      "fromSide": "right",
+      "toNode": "df8866557597a7e9",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "2"
+    },
+    {
+      "id": "9235069485eff2b1",
+      "fromNode": "ce37eeda8cab1f46",
+      "fromSide": "right",
+      "toNode": "7352bb780a0db33e",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "2"
+    },
+    {
+      "id": "44c1644f2f8fbaaf",
+      "fromNode": "a57d61a733122d62",
+      "fromSide": "right",
+      "toNode": "a719bae325d9766d",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "特徴・根拠",
+      "color": "6"
+    },
+    {
+      "id": "07f4ee95b1ffd79b",
+      "fromNode": "5b8a8b56dada6ce7",
+      "fromSide": "right",
+      "toNode": "a57d61a733122d62",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "8b754ae3247289bc",
+      "fromNode": "f623ff49da8d81cd",
+      "fromSide": "right",
+      "toNode": "b4395f34967fee2a",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "対象",
+      "color": "1"
+    },
+    {
+      "id": "50c109f6b68db6d6",
+      "fromNode": "b4395f34967fee2a",
+      "fromSide": "right",
+      "toNode": "b25d50193955a4fc",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "共有トークン付きで送信",
+      "color": "1"
+    },
+    {
+      "id": "d1cc354ecc47be03",
+      "fromNode": "b25d50193955a4fc",
+      "fromSide": "right",
+      "toNode": "c0d5017348fb926f",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "専用ログタブへ保存",
+      "color": "1"
+    },
+    {
+      "id": "ac7289e9a6d79e62",
+      "fromNode": "c0d5017348fb926f",
+      "fromSide": "right",
+      "toNode": "07ab1a462bf44409",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "GET結果をグラフ・表へ描画",
+      "color": "1"
+    },
+    {
+      "id": "3fca74f53856ed6a",
+      "fromNode": "17d346ba646448be",
+      "fromSide": "right",
+      "toNode": "f8b1b8dd9b985c0c",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "対象",
+      "color": "1"
+    },
+    {
+      "id": "3cba177ace174171",
+      "fromNode": "f8b1b8dd9b985c0c",
+      "fromSide": "right",
+      "toNode": "4f36c2b17b96a8a1",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "addUsageLogの入力を処理",
+      "color": "1"
+    },
+    {
+      "id": "1d350ff27059aaba",
+      "fromNode": "e2ba41af03120f14",
+      "fromSide": "right",
+      "toNode": "f623ff49da8d81cd",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "db30f510c4b538b5",
+      "fromNode": "e2ba41af03120f14",
+      "fromSide": "right",
+      "toNode": "17d346ba646448be",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "b6866fcb67d4acec",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ce88dc3083792793",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "add94b23ab8376b4",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "d0cef71666f0f799",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "91dbf1c82b137824",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ee0bdbcde24b6917",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "2ab6a5adce9e3e82",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ce37eeda8cab1f46",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "ba1ada4696e11550",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "5b8a8b56dada6ce7",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "af95fa528731f190",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "e2ba41af03120f14",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    }
+  ]
+}

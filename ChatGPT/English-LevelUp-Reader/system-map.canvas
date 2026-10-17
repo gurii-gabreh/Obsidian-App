@@ -1,0 +1,580 @@
+{
+  "nodes": [
+    {
+      "id": "c3182eaac7dff82a",
+      "type": "group",
+      "x": 500,
+      "y": -45,
+      "width": 2370,
+      "height": 1010,
+      "label": "教材・進捗",
+      "color": "5"
+    },
+    {
+      "id": "ce0862df5a189b77",
+      "type": "group",
+      "x": 500,
+      "y": 1135,
+      "width": 2370,
+      "height": 530,
+      "label": "本体の画面",
+      "color": "4"
+    },
+    {
+      "id": "7f16b064687f39c1",
+      "type": "group",
+      "x": 500,
+      "y": 1835,
+      "width": 2370,
+      "height": 1030,
+      "label": "発音チェックの試作",
+      "color": "6"
+    },
+    {
+      "id": "6c2dbdf47a43157f",
+      "type": "group",
+      "x": 500,
+      "y": 3035,
+      "width": 2370,
+      "height": 410,
+      "label": "アプリの特徴",
+      "color": "6"
+    },
+    {
+      "id": "cc966ef6b18cd6ac",
+      "type": "group",
+      "x": 990,
+      "y": 3630,
+      "width": 3560,
+      "height": 440,
+      "label": "本体で教材を読む"
+    },
+    {
+      "id": "138d05c4d011886c",
+      "type": "group",
+      "x": 990,
+      "y": 4150,
+      "width": 3560,
+      "height": 420,
+      "label": "試作の発音チェック"
+    },
+    {
+      "id": "7beb5b1c6181a43b",
+      "type": "text",
+      "x": 1050,
+      "y": 110,
+      "width": 540,
+      "height": 220,
+      "text": "## 教材JSON\n\n**確認区分：実装あり**\n\nレベル・トピック・英文等を静的データで管理する。",
+      "color": "5"
+    },
+    {
+      "id": "ac9da194cc7f6923",
+      "type": "text",
+      "x": 1810,
+      "y": 0,
+      "width": 1000,
+      "height": 440,
+      "text": "## 最終仕様\n\napp.jsがdata/lessons.jsonを取得し、レベル一覧と教材を描画する。\n\n### 現在の制約・確認範囲\n\n- READMEではレベル1の骨組みまで、2〜10の教材は準備中とされる。実教材の全件内容までは今回評価していない。\n\n### 根拠\n\n- [js/app.js](https://github.com/gurii-gabreh/English-LevelUp-Reader/blob/31eb7971f0583586e53b3e19b0e34440112ebbd2/js/app.js)\n- [README.md](https://github.com/gurii-gabreh/English-LevelUp-Reader/blob/31eb7971f0583586e53b3e19b0e34440112ebbd2/README.md)",
+      "color": "5"
+    },
+    {
+      "id": "f4adceb8e326fd16",
+      "type": "text",
+      "x": 1050,
+      "y": 620,
+      "width": 540,
+      "height": 220,
+      "text": "## localStorageの進捗\n\n**確認区分：実装あり**\n\nレッスンの完了状態を端末ごとに保存する。",
+      "color": "5"
+    },
+    {
+      "id": "cef9a26f4df887e1",
+      "type": "text",
+      "x": 1810,
+      "y": 540,
+      "width": 1000,
+      "height": 380,
+      "text": "## 最終仕様\n\nloadProgress／saveProgressがlocalStorageへ記録する。\n\n### 現在の制約・確認範囲\n\n- GitHubや他端末へ進捗を送信しない。\n\n### 根拠\n\n- [js/app.js](https://github.com/gurii-gabreh/English-LevelUp-Reader/blob/31eb7971f0583586e53b3e19b0e34440112ebbd2/js/app.js)",
+      "color": "5"
+    },
+    {
+      "id": "ce88dc3083792793",
+      "type": "text",
+      "x": 560,
+      "y": 380,
+      "width": 300,
+      "height": 160,
+      "text": "## 教材・進捗\n\n2仕様項目",
+      "color": "5"
+    },
+    {
+      "id": "44dd9a737bbbbc28",
+      "type": "text",
+      "x": 1050,
+      "y": 1290,
+      "width": 540,
+      "height": 220,
+      "text": "## レベル別の読解画面\n\n**確認区分：実装あり**\n\n教材を選んで表示し、読み上げる。",
+      "color": "4"
+    },
+    {
+      "id": "0b0c5a4157b73f1e",
+      "type": "text",
+      "x": 1810,
+      "y": 1180,
+      "width": 1000,
+      "height": 440,
+      "text": "## 最終仕様\n\nindex.htmlとapp.jsが画面切替、レッスン表示、SpeechSynthesisによる読み上げを行う。\n\n### 現在の制約・確認範囲\n\n- 今回の対象端末はREADME上PC専用。\n\n### 根拠\n\n- [index.html](https://github.com/gurii-gabreh/English-LevelUp-Reader/blob/31eb7971f0583586e53b3e19b0e34440112ebbd2/index.html)\n- [js/app.js](https://github.com/gurii-gabreh/English-LevelUp-Reader/blob/31eb7971f0583586e53b3e19b0e34440112ebbd2/js/app.js)\n- [README.md](https://github.com/gurii-gabreh/English-LevelUp-Reader/blob/31eb7971f0583586e53b3e19b0e34440112ebbd2/README.md)",
+      "color": "4"
+    },
+    {
+      "id": "d0cef71666f0f799",
+      "type": "text",
+      "x": 560,
+      "y": 1320,
+      "width": 300,
+      "height": 160,
+      "text": "## 本体の画面\n\n1仕様項目",
+      "color": "4"
+    },
+    {
+      "id": "8822436a22016bbb",
+      "type": "text",
+      "x": 1050,
+      "y": 2000,
+      "width": 540,
+      "height": 220,
+      "text": "## Whisper/WASM検証ページ\n\n**確認区分：実装あり**\n\n録音した音声をブラウザ内モデルで認識する試作。",
+      "color": "6"
+    },
+    {
+      "id": "7a9913fb157eb705",
+      "type": "text",
+      "x": 1810,
+      "y": 1880,
+      "width": 1000,
+      "height": 460,
+      "text": "## 最終仕様\n\nprototype/whisper-test.htmlがTransformers.jsを読込み、WhisperモデルとMediaRecorder等で認識・所要時間・単語一致率を確認する。\n\n### 現在の制約・確認範囲\n\n- 本体app.jsへの発音チェック統合は未完了。モデルとライブラリの初回取得は通信が必要で、精度・速度の実機確認待ち。\n\n### 根拠\n\n- [prototype/whisper-test.html](https://github.com/gurii-gabreh/English-LevelUp-Reader/blob/31eb7971f0583586e53b3e19b0e34440112ebbd2/prototype/whisper-test.html)\n- [prototype/README.md](https://github.com/gurii-gabreh/English-LevelUp-Reader/blob/31eb7971f0583586e53b3e19b0e34440112ebbd2/prototype/README.md)",
+      "color": "6"
+    },
+    {
+      "id": "1a1238e7755e929a",
+      "type": "text",
+      "x": 1050,
+      "y": 2520,
+      "width": 540,
+      "height": 220,
+      "text": "## モデル配信とブラウザ内推論\n\n**確認区分：実装あり**\n\nライブラリとモデルを取得し、端末内で認識する。",
+      "color": "6"
+    },
+    {
+      "id": "c92fc1362637066e",
+      "type": "text",
+      "x": 1810,
+      "y": 2440,
+      "width": 1000,
+      "height": 380,
+      "text": "## 最終仕様\n\nCDNのTransformers.jsとWhisper系モデルを試作で使用する。録音・波形変換・ASRパイプラインをつなぐ。\n\n### 現在の制約・確認範囲\n\n- クラウド音声APIへ録音を送る実装とは異なるが、配信元の取得可否や端末性能に依存する。\n\n### 根拠\n\n- [prototype/whisper-test.html](https://github.com/gurii-gabreh/English-LevelUp-Reader/blob/31eb7971f0583586e53b3e19b0e34440112ebbd2/prototype/whisper-test.html)",
+      "color": "6"
+    },
+    {
+      "id": "ee0bdbcde24b6917",
+      "type": "text",
+      "x": 560,
+      "y": 2270,
+      "width": 300,
+      "height": 160,
+      "text": "## 発音チェックの試作\n\n2仕様項目",
+      "color": "6"
+    },
+    {
+      "id": "a57d61a733122d62",
+      "type": "text",
+      "x": 1050,
+      "y": 3150,
+      "width": 540,
+      "height": 180,
+      "text": "## このアプリの特徴\n\n本体の読解・TTSと、発音認識の検証ページは別。試作があることを本体完成とは扱わない。",
+      "color": "6"
+    },
+    {
+      "id": "a719bae325d9766d",
+      "type": "text",
+      "x": 1810,
+      "y": 3080,
+      "width": 1000,
+      "height": 320,
+      "text": "## アプリの特徴\n\n段階的な英語読解と読み上げを行う本体と、Whisper発音チェックの試作を分けたアプリ。\n\n### 根拠\n\n- [js/app.js](https://github.com/gurii-gabreh/English-LevelUp-Reader/blob/31eb7971f0583586e53b3e19b0e34440112ebbd2/js/app.js)\n- [README.md](https://github.com/gurii-gabreh/English-LevelUp-Reader/blob/31eb7971f0583586e53b3e19b0e34440112ebbd2/README.md)\n- [index.html](https://github.com/gurii-gabreh/English-LevelUp-Reader/blob/31eb7971f0583586e53b3e19b0e34440112ebbd2/index.html)",
+      "color": "6"
+    },
+    {
+      "id": "5b8a8b56dada6ce7",
+      "type": "text",
+      "x": 560,
+      "y": 3150,
+      "width": 300,
+      "height": 180,
+      "text": "## アプリの特徴\n\n機能の組合せ・運用方法・設計上の性質",
+      "color": "6"
+    },
+    {
+      "id": "f623ff49da8d81cd",
+      "type": "text",
+      "x": 1050,
+      "y": 3660,
+      "width": 540,
+      "height": 380,
+      "text": "## 本体で教材を読む\n\n教材を読み込む\n\n完了状態を端末に保存\n\n記録に基づく前提・対応順\n\n- [js/app.js](https://github.com/gurii-gabreh/English-LevelUp-Reader/blob/31eb7971f0583586e53b3e19b0e34440112ebbd2/js/app.js)\n- [README.md](https://github.com/gurii-gabreh/English-LevelUp-Reader/blob/31eb7971f0583586e53b3e19b0e34440112ebbd2/README.md)\n- [index.html](https://github.com/gurii-gabreh/English-LevelUp-Reader/blob/31eb7971f0583586e53b3e19b0e34440112ebbd2/index.html)",
+      "color": "1"
+    },
+    {
+      "id": "b4395f34967fee2a",
+      "type": "text",
+      "x": 1810,
+      "y": 3660,
+      "width": 620,
+      "height": 280,
+      "text": "## json\n\n**教材JSON**\n\nレベル・トピック・英文等を静的データで管理する。\n\n上側の同じ項目の再掲。",
+      "color": "5"
+    },
+    {
+      "id": "b25d50193955a4fc",
+      "type": "text",
+      "x": 2650,
+      "y": 3660,
+      "width": 760,
+      "height": 280,
+      "text": "## ui\n\n**レベル別の読解画面**\n\n教材を選んで表示し、読み上げる。\n\n上側の同じ項目の再掲。",
+      "color": "4"
+    },
+    {
+      "id": "c0d5017348fb926f",
+      "type": "text",
+      "x": 3650,
+      "y": 3660,
+      "width": 840,
+      "height": 280,
+      "text": "## progress\n\n**localStorageの進捗**\n\nレッスンの完了状態を端末ごとに保存する。\n\n上側の同じ項目の再掲。",
+      "color": "5"
+    },
+    {
+      "id": "17d346ba646448be",
+      "type": "text",
+      "x": 1050,
+      "y": 4180,
+      "width": 540,
+      "height": 360,
+      "text": "## 試作の発音チェック\n\nライブラリ・モデルを読み込む\n\nブラウザ内で文字起こしして結果を表示\n\n記録に基づく前提・対応順\n\n- [prototype/whisper-test.html](https://github.com/gurii-gabreh/English-LevelUp-Reader/blob/31eb7971f0583586e53b3e19b0e34440112ebbd2/prototype/whisper-test.html)\n- [prototype/README.md](https://github.com/gurii-gabreh/English-LevelUp-Reader/blob/31eb7971f0583586e53b3e19b0e34440112ebbd2/prototype/README.md)",
+      "color": "1"
+    },
+    {
+      "id": "f8b1b8dd9b985c0c",
+      "type": "text",
+      "x": 1810,
+      "y": 4180,
+      "width": 620,
+      "height": 280,
+      "text": "## prototype\n\n**Whisper/WASM検証ページ**\n\n録音した音声をブラウザ内モデルで認識する試作。\n\n上側の同じ項目の再掲。",
+      "color": "6"
+    },
+    {
+      "id": "4f36c2b17b96a8a1",
+      "type": "text",
+      "x": 2650,
+      "y": 4180,
+      "width": 760,
+      "height": 280,
+      "text": "## model\n\n**モデル配信とブラウザ内推論**\n\nライブラリとモデルを取得し、端末内で認識する。\n\n上側の同じ項目の再掲。",
+      "color": "6"
+    },
+    {
+      "id": "da0932f1fbf22b7b",
+      "type": "text",
+      "x": 3650,
+      "y": 4180,
+      "width": 840,
+      "height": 280,
+      "text": "## prototype\n\n**Whisper/WASM検証ページ**\n\n録音した音声をブラウザ内モデルで認識する試作。\n\n上側の同じ項目の再掲。",
+      "color": "6"
+    },
+    {
+      "id": "e2ba41af03120f14",
+      "type": "text",
+      "x": 560,
+      "y": 3990,
+      "width": 300,
+      "height": 360,
+      "text": "## つながり\n\n矢印：記録から確認できる前提・対応順\n\n矢印なし＋関連ラベル：依存を意味しない関連\n\nカードは上側の同じ項目の再掲。",
+      "color": "1"
+    },
+    {
+      "id": "4813494d137e1631",
+      "type": "text",
+      "x": 0,
+      "y": 1940,
+      "width": 380,
+      "height": 800,
+      "text": "# English LevelUp Reader：内部構成・連関図\n\n**gurii-gabreh/English-LevelUp-Reader**\n\n段階的な英語読解と読み上げを行う本体と、Whisper発音チェックの試作を分けたアプリ。 上側は役割別の内部構成、下側はデータのつながり。\n\nモード：最終仕様・アプリの特徴\n\n記録：2026-10-17 JST\n\n対象：31eb7971f0583586e53b3e19b0e34440112ebbd2\n\n- 既定ブランチ main の固定コミットを確認したスナップショット。\n- 実装ありはコードの存在を示す。稼働環境・認証設定・実機での動作は未検証。\n- 技術・モデル・サービス名はコード中の設定や候補。現行の提供状況・料金を保証しない。"
+    }
+  ],
+  "edges": [
+    {
+      "id": "31e21fea93e2b122",
+      "fromNode": "7beb5b1c6181a43b",
+      "fromSide": "right",
+      "toNode": "ac9da194cc7f6923",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "5"
+    },
+    {
+      "id": "d8142705d426c732",
+      "fromNode": "f4adceb8e326fd16",
+      "fromSide": "right",
+      "toNode": "cef9a26f4df887e1",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "5"
+    },
+    {
+      "id": "73f0b6bef6a947e8",
+      "fromNode": "ce88dc3083792793",
+      "fromSide": "right",
+      "toNode": "7beb5b1c6181a43b",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "5"
+    },
+    {
+      "id": "147c7a9eb3f18ece",
+      "fromNode": "ce88dc3083792793",
+      "fromSide": "right",
+      "toNode": "f4adceb8e326fd16",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "5"
+    },
+    {
+      "id": "ca83b9bfbd52aab0",
+      "fromNode": "44dd9a737bbbbc28",
+      "fromSide": "right",
+      "toNode": "0b0c5a4157b73f1e",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "4"
+    },
+    {
+      "id": "891c24186d122573",
+      "fromNode": "d0cef71666f0f799",
+      "fromSide": "right",
+      "toNode": "44dd9a737bbbbc28",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "4"
+    },
+    {
+      "id": "726ad1cd476eac52",
+      "fromNode": "8822436a22016bbb",
+      "fromSide": "right",
+      "toNode": "7a9913fb157eb705",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "6"
+    },
+    {
+      "id": "6fb13b9a01e37484",
+      "fromNode": "1a1238e7755e929a",
+      "fromSide": "right",
+      "toNode": "c92fc1362637066e",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "6"
+    },
+    {
+      "id": "b08416b82bf4f54b",
+      "fromNode": "ee0bdbcde24b6917",
+      "fromSide": "right",
+      "toNode": "8822436a22016bbb",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "36aea3fcbb0a0b50",
+      "fromNode": "ee0bdbcde24b6917",
+      "fromSide": "right",
+      "toNode": "1a1238e7755e929a",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "44c1644f2f8fbaaf",
+      "fromNode": "a57d61a733122d62",
+      "fromSide": "right",
+      "toNode": "a719bae325d9766d",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "特徴・根拠",
+      "color": "6"
+    },
+    {
+      "id": "07f4ee95b1ffd79b",
+      "fromNode": "5b8a8b56dada6ce7",
+      "fromSide": "right",
+      "toNode": "a57d61a733122d62",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "8b754ae3247289bc",
+      "fromNode": "f623ff49da8d81cd",
+      "fromSide": "right",
+      "toNode": "b4395f34967fee2a",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "対象",
+      "color": "1"
+    },
+    {
+      "id": "50c109f6b68db6d6",
+      "fromNode": "b4395f34967fee2a",
+      "fromSide": "right",
+      "toNode": "b25d50193955a4fc",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "教材を読み込む",
+      "color": "1"
+    },
+    {
+      "id": "d1cc354ecc47be03",
+      "fromNode": "b25d50193955a4fc",
+      "fromSide": "right",
+      "toNode": "c0d5017348fb926f",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "完了状態を端末に保存",
+      "color": "1"
+    },
+    {
+      "id": "1729de1c3440fe86",
+      "fromNode": "17d346ba646448be",
+      "fromSide": "right",
+      "toNode": "f8b1b8dd9b985c0c",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "対象",
+      "color": "1"
+    },
+    {
+      "id": "eaed6e3f958a7361",
+      "fromNode": "f8b1b8dd9b985c0c",
+      "fromSide": "right",
+      "toNode": "4f36c2b17b96a8a1",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "ライブラリ・モデルを読み込む",
+      "color": "1"
+    },
+    {
+      "id": "d2528de6dbfbfa48",
+      "fromNode": "4f36c2b17b96a8a1",
+      "fromSide": "right",
+      "toNode": "da0932f1fbf22b7b",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "ブラウザ内で文字起こしして結果を表示",
+      "color": "1"
+    },
+    {
+      "id": "1d350ff27059aaba",
+      "fromNode": "e2ba41af03120f14",
+      "fromSide": "right",
+      "toNode": "f623ff49da8d81cd",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "db30f510c4b538b5",
+      "fromNode": "e2ba41af03120f14",
+      "fromSide": "right",
+      "toNode": "17d346ba646448be",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "b6866fcb67d4acec",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ce88dc3083792793",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "add94b23ab8376b4",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "d0cef71666f0f799",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "91dbf1c82b137824",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ee0bdbcde24b6917",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "dfb2eff2ddac5594",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "5b8a8b56dada6ce7",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "39ad7aa662f7c4bd",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "e2ba41af03120f14",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    }
+  ]
+}

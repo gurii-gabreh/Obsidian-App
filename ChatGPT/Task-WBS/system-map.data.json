@@ -1,0 +1,206 @@
+{
+  "mode": "spec",
+  "title": "Task WBS／Study Schedule：内部構成・連関図",
+  "repo": "gurii-gabreh/Task-WBS",
+  "ref": "32e24a75335800153651dc81cf1ca12f0105b3f8",
+  "asOf": "2026-10-17 JST",
+  "scope": "学習タスクを階層と日付で整理し、WBS・ガント・今日の作業として読む。 上側は役割別の内部構成、下側はデータのつながり。",
+  "limitations": [
+    "既定ブランチ main の固定コミットを確認したスナップショット。",
+    "実装ありはコードの存在を示す。稼働環境・認証設定・実機での動作は未検証。",
+    "技術・モデル・サービス名はコード中の設定や候補。現行の提供状況・料金を保証しない。"
+  ],
+  "categories": [
+    {
+      "key": "category-0",
+      "label": "データ更新",
+      "ids": [
+        "writer"
+      ]
+    },
+    {
+      "key": "category-1",
+      "label": "データ構造",
+      "ids": [
+        "json"
+      ]
+    },
+    {
+      "key": "category-2",
+      "label": "画面・集計",
+      "ids": [
+        "wbs",
+        "today"
+      ]
+    },
+    {
+      "key": "category-3",
+      "label": "公開",
+      "ids": [
+        "deploy"
+      ]
+    }
+  ],
+  "items": {
+    "writer": {
+      "label": "Claude Codeによるタスク更新",
+      "status": "実装あり",
+      "summary": "チャットで依頼し、tasks.jsonを更新する運用。",
+      "specification": "READMEはタスク追加・状態変更をClaude Codeで行う方式を示す。サイトはJSONを読む側を担当する。",
+      "constraints": [
+        "画面上で共有タスクを直接保存するAPIはない。"
+      ],
+      "sources": [
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/Task-WBS/blob/32e24a75335800153651dc81cf1ca12f0105b3f8/README.md"
+        },
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/Task-WBS/blob/32e24a75335800153651dc81cf1ca12f0105b3f8/index.html"
+        }
+      ]
+    },
+    "json": {
+      "label": "再帰的なタスクツリー",
+      "status": "実装あり",
+      "summary": "childrenで目標から実行タスクまでを表す。",
+      "specification": "末端の葉がstart／plannedEnd／actualEnd／status／priorityを持つ。中間ノードの期間や進捗は子から集計する。",
+      "constraints": [],
+      "sources": [
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/Task-WBS/blob/32e24a75335800153651dc81cf1ca12f0105b3f8/README.md"
+        },
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/Task-WBS/blob/32e24a75335800153651dc81cf1ca12f0105b3f8/index.html"
+        }
+      ]
+    },
+    "wbs": {
+      "label": "WBS・ガント表示",
+      "status": "実装あり",
+      "summary": "期間・遅延・完了数を計算して日別に表示する。",
+      "specification": "computeNodeで再帰集計し、カレンダーセルと階層行を描く。実績ログの表示も行う。",
+      "constraints": [],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/Task-WBS/blob/32e24a75335800153651dc81cf1ca12f0105b3f8/index.html"
+        }
+      ]
+    },
+    "today": {
+      "label": "今日の作業ページ",
+      "status": "実装あり",
+      "summary": "実行タスクを取り出して今日の対象等を表示する。",
+      "specification": "today.htmlがJSONから葉を集め、期日・状態等で分類して一覧を表示する。",
+      "constraints": [
+        "READMEの「唯一のビューア」という旧記述より、現在のコードにある追加ページを優先して図示する。"
+      ],
+      "sources": [
+        {
+          "label": "today.html",
+          "url": "https://github.com/gurii-gabreh/Task-WBS/blob/32e24a75335800153651dc81cf1ca12f0105b3f8/today.html"
+        }
+      ]
+    },
+    "deploy": {
+      "label": "GitHub Pages",
+      "status": "実装あり",
+      "summary": "main更新から静的ページを配信する。",
+      "specification": "deploy-pages.ymlが静的ファイルを公開する。画面はdata/tasks.jsonをfetchする。",
+      "constraints": [
+        "現在の公開設定や実データの最新反映は未検証。"
+      ],
+      "sources": [
+        {
+          "label": ".github/workflows/deploy-pages.yml",
+          "url": "https://github.com/gurii-gabreh/Task-WBS/blob/32e24a75335800153651dc81cf1ca12f0105b3f8/.github/workflows/deploy-pages.yml"
+        },
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/Task-WBS/blob/32e24a75335800153651dc81cf1ca12f0105b3f8/index.html"
+        }
+      ]
+    }
+  },
+  "features": [
+    {
+      "label": "このアプリの特徴",
+      "summary": "入力をClaude Code、集計・表示をブラウザが担当し、親の状態を重複管理しない。",
+      "detail": "学習タスクを階層と日付で整理し、WBS・ガント・今日の作業として読む。",
+      "sources": [
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/Task-WBS/blob/32e24a75335800153651dc81cf1ca12f0105b3f8/README.md"
+        },
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/Task-WBS/blob/32e24a75335800153651dc81cf1ca12f0105b3f8/index.html"
+        }
+      ]
+    }
+  ],
+  "flows": [
+    {
+      "title": "データからWBSへ",
+      "kind": "solid",
+      "columns": [
+        [
+          "writer"
+        ],
+        [
+          "json"
+        ],
+        [
+          "wbs"
+        ]
+      ],
+      "labels": [
+        "タスクのJSONをcommit",
+        "末端から集計して描画"
+      ],
+      "sources": [
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/Task-WBS/blob/32e24a75335800153651dc81cf1ca12f0105b3f8/README.md"
+        },
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/Task-WBS/blob/32e24a75335800153651dc81cf1ca12f0105b3f8/index.html"
+        }
+      ]
+    },
+    {
+      "title": "今日の作業を見る",
+      "kind": "solid",
+      "columns": [
+        [
+          "json"
+        ],
+        [
+          "today"
+        ]
+      ],
+      "labels": [
+        "葉タスクを抽出・分類して表示"
+      ],
+      "sources": [
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/Task-WBS/blob/32e24a75335800153651dc81cf1ca12f0105b3f8/README.md"
+        },
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/Task-WBS/blob/32e24a75335800153651dc81cf1ca12f0105b3f8/index.html"
+        },
+        {
+          "label": "today.html",
+          "url": "https://github.com/gurii-gabreh/Task-WBS/blob/32e24a75335800153651dc81cf1ca12f0105b3f8/today.html"
+        }
+      ]
+    }
+  ]
+}

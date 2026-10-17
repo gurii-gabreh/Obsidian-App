@@ -1,0 +1,162 @@
+{
+  "mode": "spec",
+  "title": "AI Oracle：内部構成・連関図",
+  "repo": "gurii-gabreh/AI-Oracle",
+  "ref": "461872e7d607c1f7ee9a79f45782191e42670890",
+  "asOf": "2026-10-17 JST",
+  "scope": "質問を設定済みの外部サーバーへ送り、複数回答やまとめを表示するチャット画面。 上側は役割別の内部構成、下側はデータのつながり。",
+  "limitations": [
+    "既定ブランチ main の固定コミットを確認したスナップショット。",
+    "実装ありはコードの存在を示す。稼働環境・認証設定・実機での動作は未検証。",
+    "技術・モデル・サービス名はコード中の設定や候補。現行の提供状況・料金を保証しない。"
+  ],
+  "categories": [
+    {
+      "key": "category-0",
+      "label": "画面・操作",
+      "ids": [
+        "ui"
+      ]
+    },
+    {
+      "key": "category-1",
+      "label": "通信",
+      "ids": [
+        "client",
+        "server"
+      ]
+    },
+    {
+      "key": "category-2",
+      "label": "データ保存",
+      "ids": [
+        "storage"
+      ]
+    }
+  ],
+  "items": {
+    "ui": {
+      "label": "チャットUI",
+      "status": "実装あり",
+      "summary": "質問、回答、チャット一覧をブラウザで表示する。",
+      "specification": "index.htmlで新規会話・切替・削除・入力・回答折りたたみを実装する。",
+      "constraints": [],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/AI-Oracle/blob/461872e7d607c1f7ee9a79f45782191e42670890/index.html"
+        }
+      ]
+    },
+    "client": {
+      "label": "質問の送信",
+      "status": "実装あり",
+      "summary": "設定したサーバーURLの/askへ質問だけを送る。",
+      "specification": "askがPOST JSONで{question}を送り、返却JSONを描画する。画面上にはGemini CLIの処理待ち表示がある。",
+      "constraints": [
+        "送信本文は質問であり、過去の会話全体がサーバーへ送られる実装とは確認できない。"
+      ],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/AI-Oracle/blob/461872e7d607c1f7ee9a79f45782191e42670890/index.html"
+        }
+      ]
+    },
+    "server": {
+      "label": "外部サーバーへの依存",
+      "status": "実装あり",
+      "summary": "回答を作る処理は、このリポジトリの外にある。",
+      "specification": "画面はdata.answers等を受け取る前提で描画する。設定の既定値はLAN内のHTTPサーバー。",
+      "constraints": [
+        "/askのサーバーコードやCLI実行処理はリポジトリにない。複数AIの実際の呼出し方式は確認できない。"
+      ],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/AI-Oracle/blob/461872e7d607c1f7ee9a79f45782191e42670890/index.html"
+        }
+      ]
+    },
+    "storage": {
+      "label": "localStorage",
+      "status": "実装あり",
+      "summary": "チャット履歴と接続設定を端末へ保存する。",
+      "specification": "チャット配列と設定をlocalStorageへ読み書きする。新規質問時・回答取得後の表示を管理する。",
+      "constraints": [
+        "別端末への自動同期や共有DBは含まない。"
+      ],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/AI-Oracle/blob/461872e7d607c1f7ee9a79f45782191e42670890/index.html"
+        }
+      ]
+    }
+  },
+  "features": [
+    {
+      "label": "このアプリの特徴",
+      "summary": "実体はフロントエンド。回答サーバーをこのリポジトリだけで再現できるとは言えない。",
+      "detail": "質問を設定済みの外部サーバーへ送り、複数回答やまとめを表示するチャット画面。",
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/AI-Oracle/blob/461872e7d607c1f7ee9a79f45782191e42670890/index.html"
+        }
+      ]
+    }
+  ],
+  "flows": [
+    {
+      "title": "質問から回答表示まで",
+      "kind": "solid",
+      "columns": [
+        [
+          "ui"
+        ],
+        [
+          "client"
+        ],
+        [
+          "server"
+        ],
+        [
+          "ui"
+        ]
+      ],
+      "labels": [
+        "質問を入力",
+        "設定URLへPOST /ask",
+        "返却JSONの回答を描画"
+      ],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/AI-Oracle/blob/461872e7d607c1f7ee9a79f45782191e42670890/index.html"
+        }
+      ]
+    },
+    {
+      "title": "端末内の履歴",
+      "kind": "solid",
+      "columns": [
+        [
+          "ui"
+        ],
+        [
+          "storage"
+        ]
+      ],
+      "labels": [
+        "チャットと接続設定を保存"
+      ],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/AI-Oracle/blob/461872e7d607c1f7ee9a79f45782191e42670890/index.html"
+        }
+      ]
+    }
+  ]
+}

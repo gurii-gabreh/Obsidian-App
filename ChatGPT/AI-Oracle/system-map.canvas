@@ -1,0 +1,539 @@
+{
+  "nodes": [
+    {
+      "id": "c3182eaac7dff82a",
+      "type": "group",
+      "x": 500,
+      "y": -45,
+      "width": 2370,
+      "height": 370,
+      "label": "画面・操作",
+      "color": "5"
+    },
+    {
+      "id": "ce0862df5a189b77",
+      "type": "group",
+      "x": 500,
+      "y": 495,
+      "width": 2370,
+      "height": 950,
+      "label": "通信",
+      "color": "4"
+    },
+    {
+      "id": "7f16b064687f39c1",
+      "type": "group",
+      "x": 500,
+      "y": 1615,
+      "width": 2370,
+      "height": 470,
+      "label": "データ保存",
+      "color": "6"
+    },
+    {
+      "id": "6c2dbdf47a43157f",
+      "type": "group",
+      "x": 500,
+      "y": 2255,
+      "width": 2370,
+      "height": 370,
+      "label": "アプリの特徴",
+      "color": "6"
+    },
+    {
+      "id": "cc966ef6b18cd6ac",
+      "type": "group",
+      "x": 990,
+      "y": 2810,
+      "width": 4560,
+      "height": 440,
+      "label": "質問から回答表示まで"
+    },
+    {
+      "id": "138d05c4d011886c",
+      "type": "group",
+      "x": 990,
+      "y": 3330,
+      "width": 2480,
+      "height": 420,
+      "label": "端末内の履歴"
+    },
+    {
+      "id": "44dd9a737bbbbc28",
+      "type": "text",
+      "x": 1050,
+      "y": 30,
+      "width": 540,
+      "height": 220,
+      "text": "## チャットUI\n\n**確認区分：実装あり**\n\n質問、回答、チャット一覧をブラウザで表示する。",
+      "color": "5"
+    },
+    {
+      "id": "0b0c5a4157b73f1e",
+      "type": "text",
+      "x": 1810,
+      "y": 0,
+      "width": 1000,
+      "height": 280,
+      "text": "## 最終仕様\n\nindex.htmlで新規会話・切替・削除・入力・回答折りたたみを実装する。\n\n### 根拠\n\n- [index.html](https://github.com/gurii-gabreh/AI-Oracle/blob/461872e7d607c1f7ee9a79f45782191e42670890/index.html)",
+      "color": "5"
+    },
+    {
+      "id": "ce88dc3083792793",
+      "type": "text",
+      "x": 560,
+      "y": 60,
+      "width": 300,
+      "height": 160,
+      "text": "## 画面・操作\n\n1仕様項目",
+      "color": "5"
+    },
+    {
+      "id": "33e1924d397f90c5",
+      "type": "text",
+      "x": 1050,
+      "y": 620,
+      "width": 540,
+      "height": 220,
+      "text": "## 質問の送信\n\n**確認区分：実装あり**\n\n設定したサーバーURLの/askへ質問だけを送る。",
+      "color": "4"
+    },
+    {
+      "id": "bb1a102b6c288383",
+      "type": "text",
+      "x": 1810,
+      "y": 540,
+      "width": 1000,
+      "height": 380,
+      "text": "## 最終仕様\n\naskがPOST JSONで{question}を送り、返却JSONを描画する。画面上にはGemini CLIの処理待ち表示がある。\n\n### 現在の制約・確認範囲\n\n- 送信本文は質問であり、過去の会話全体がサーバーへ送られる実装とは確認できない。\n\n### 根拠\n\n- [index.html](https://github.com/gurii-gabreh/AI-Oracle/blob/461872e7d607c1f7ee9a79f45782191e42670890/index.html)",
+      "color": "4"
+    },
+    {
+      "id": "a9c1ea17f2f08a43",
+      "type": "text",
+      "x": 1050,
+      "y": 1100,
+      "width": 540,
+      "height": 220,
+      "text": "## 外部サーバーへの依存\n\n**確認区分：実装あり**\n\n回答を作る処理は、このリポジトリの外にある。",
+      "color": "4"
+    },
+    {
+      "id": "1427946c34a0121f",
+      "type": "text",
+      "x": 1810,
+      "y": 1020,
+      "width": 1000,
+      "height": 380,
+      "text": "## 最終仕様\n\n画面はdata.answers等を受け取る前提で描画する。設定の既定値はLAN内のHTTPサーバー。\n\n### 現在の制約・確認範囲\n\n- /askのサーバーコードやCLI実行処理はリポジトリにない。複数AIの実際の呼出し方式は確認できない。\n\n### 根拠\n\n- [index.html](https://github.com/gurii-gabreh/AI-Oracle/blob/461872e7d607c1f7ee9a79f45782191e42670890/index.html)",
+      "color": "4"
+    },
+    {
+      "id": "d0cef71666f0f799",
+      "type": "text",
+      "x": 560,
+      "y": 890,
+      "width": 300,
+      "height": 160,
+      "text": "## 通信\n\n2仕様項目",
+      "color": "4"
+    },
+    {
+      "id": "939a09475543e338",
+      "type": "text",
+      "x": 1050,
+      "y": 1740,
+      "width": 540,
+      "height": 220,
+      "text": "## localStorage\n\n**確認区分：実装あり**\n\nチャット履歴と接続設定を端末へ保存する。",
+      "color": "6"
+    },
+    {
+      "id": "9e68a28e38528c1d",
+      "type": "text",
+      "x": 1810,
+      "y": 1660,
+      "width": 1000,
+      "height": 380,
+      "text": "## 最終仕様\n\nチャット配列と設定をlocalStorageへ読み書きする。新規質問時・回答取得後の表示を管理する。\n\n### 現在の制約・確認範囲\n\n- 別端末への自動同期や共有DBは含まない。\n\n### 根拠\n\n- [index.html](https://github.com/gurii-gabreh/AI-Oracle/blob/461872e7d607c1f7ee9a79f45782191e42670890/index.html)",
+      "color": "6"
+    },
+    {
+      "id": "ee0bdbcde24b6917",
+      "type": "text",
+      "x": 560,
+      "y": 1770,
+      "width": 300,
+      "height": 160,
+      "text": "## データ保存\n\n1仕様項目",
+      "color": "6"
+    },
+    {
+      "id": "a57d61a733122d62",
+      "type": "text",
+      "x": 1050,
+      "y": 2350,
+      "width": 540,
+      "height": 180,
+      "text": "## このアプリの特徴\n\n実体はフロントエンド。回答サーバーをこのリポジトリだけで再現できるとは言えない。",
+      "color": "6"
+    },
+    {
+      "id": "a719bae325d9766d",
+      "type": "text",
+      "x": 1810,
+      "y": 2300,
+      "width": 1000,
+      "height": 280,
+      "text": "## アプリの特徴\n\n質問を設定済みの外部サーバーへ送り、複数回答やまとめを表示するチャット画面。\n\n### 根拠\n\n- [index.html](https://github.com/gurii-gabreh/AI-Oracle/blob/461872e7d607c1f7ee9a79f45782191e42670890/index.html)",
+      "color": "6"
+    },
+    {
+      "id": "5b8a8b56dada6ce7",
+      "type": "text",
+      "x": 560,
+      "y": 2350,
+      "width": 300,
+      "height": 180,
+      "text": "## アプリの特徴\n\n機能の組合せ・運用方法・設計上の性質",
+      "color": "6"
+    },
+    {
+      "id": "f623ff49da8d81cd",
+      "type": "text",
+      "x": 1050,
+      "y": 2840,
+      "width": 540,
+      "height": 380,
+      "text": "## 質問から回答表示まで\n\n質問を入力\n\n設定URLへPOST /ask\n\n返却JSONの回答を描画\n\n記録に基づく前提・対応順\n\n- [index.html](https://github.com/gurii-gabreh/AI-Oracle/blob/461872e7d607c1f7ee9a79f45782191e42670890/index.html)",
+      "color": "1"
+    },
+    {
+      "id": "b4395f34967fee2a",
+      "type": "text",
+      "x": 1810,
+      "y": 2840,
+      "width": 620,
+      "height": 280,
+      "text": "## ui\n\n**チャットUI**\n\n質問、回答、チャット一覧をブラウザで表示する。\n\n上側の同じ項目の再掲。",
+      "color": "5"
+    },
+    {
+      "id": "b25d50193955a4fc",
+      "type": "text",
+      "x": 2650,
+      "y": 2840,
+      "width": 760,
+      "height": 280,
+      "text": "## client\n\n**質問の送信**\n\n設定したサーバーURLの/askへ質問だけを送る。\n\n上側の同じ項目の再掲。",
+      "color": "4"
+    },
+    {
+      "id": "c0d5017348fb926f",
+      "type": "text",
+      "x": 3650,
+      "y": 2840,
+      "width": 840,
+      "height": 280,
+      "text": "## server\n\n**外部サーバーへの依存**\n\n回答を作る処理は、このリポジトリの外にある。\n\n上側の同じ項目の再掲。",
+      "color": "4"
+    },
+    {
+      "id": "07ab1a462bf44409",
+      "type": "text",
+      "x": 4730,
+      "y": 2840,
+      "width": 760,
+      "height": 280,
+      "text": "## ui\n\n**チャットUI**\n\n質問、回答、チャット一覧をブラウザで表示する。\n\n上側の同じ項目の再掲。",
+      "color": "5"
+    },
+    {
+      "id": "17d346ba646448be",
+      "type": "text",
+      "x": 1050,
+      "y": 3400,
+      "width": 540,
+      "height": 280,
+      "text": "## 端末内の履歴\n\nチャットと接続設定を保存\n\n記録に基づく前提・対応順\n\n- [index.html](https://github.com/gurii-gabreh/AI-Oracle/blob/461872e7d607c1f7ee9a79f45782191e42670890/index.html)",
+      "color": "1"
+    },
+    {
+      "id": "f8b1b8dd9b985c0c",
+      "type": "text",
+      "x": 1810,
+      "y": 3360,
+      "width": 620,
+      "height": 280,
+      "text": "## ui\n\n**チャットUI**\n\n質問、回答、チャット一覧をブラウザで表示する。\n\n上側の同じ項目の再掲。",
+      "color": "5"
+    },
+    {
+      "id": "4f36c2b17b96a8a1",
+      "type": "text",
+      "x": 2650,
+      "y": 3360,
+      "width": 760,
+      "height": 280,
+      "text": "## storage\n\n**localStorage**\n\nチャット履歴と接続設定を端末へ保存する。\n\n上側の同じ項目の再掲。",
+      "color": "6"
+    },
+    {
+      "id": "e2ba41af03120f14",
+      "type": "text",
+      "x": 560,
+      "y": 3170,
+      "width": 300,
+      "height": 360,
+      "text": "## つながり\n\n矢印：記録から確認できる前提・対応順\n\n矢印なし＋関連ラベル：依存を意味しない関連\n\nカードは上側の同じ項目の再掲。",
+      "color": "1"
+    },
+    {
+      "id": "4813494d137e1631",
+      "type": "text",
+      "x": 0,
+      "y": 1560,
+      "width": 380,
+      "height": 740,
+      "text": "# AI Oracle：内部構成・連関図\n\n**gurii-gabreh/AI-Oracle**\n\n質問を設定済みの外部サーバーへ送り、複数回答やまとめを表示するチャット画面。 上側は役割別の内部構成、下側はデータのつながり。\n\nモード：最終仕様・アプリの特徴\n\n記録：2026-10-17 JST\n\n対象：461872e7d607c1f7ee9a79f45782191e42670890\n\n- 既定ブランチ main の固定コミットを確認したスナップショット。\n- 実装ありはコードの存在を示す。稼働環境・認証設定・実機での動作は未検証。\n- 技術・モデル・サービス名はコード中の設定や候補。現行の提供状況・料金を保証しない。"
+    }
+  ],
+  "edges": [
+    {
+      "id": "d6e243df852fa85e",
+      "fromNode": "44dd9a737bbbbc28",
+      "fromSide": "right",
+      "toNode": "0b0c5a4157b73f1e",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "5"
+    },
+    {
+      "id": "da4b403818b00f8a",
+      "fromNode": "ce88dc3083792793",
+      "fromSide": "right",
+      "toNode": "44dd9a737bbbbc28",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "5"
+    },
+    {
+      "id": "dcbec986f0b15772",
+      "fromNode": "33e1924d397f90c5",
+      "fromSide": "right",
+      "toNode": "bb1a102b6c288383",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "4"
+    },
+    {
+      "id": "b60bebfe5db14a6d",
+      "fromNode": "a9c1ea17f2f08a43",
+      "fromSide": "right",
+      "toNode": "1427946c34a0121f",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "4"
+    },
+    {
+      "id": "5614489fcd0b31b0",
+      "fromNode": "d0cef71666f0f799",
+      "fromSide": "right",
+      "toNode": "33e1924d397f90c5",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "4"
+    },
+    {
+      "id": "b2e87b72c2539793",
+      "fromNode": "d0cef71666f0f799",
+      "fromSide": "right",
+      "toNode": "a9c1ea17f2f08a43",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "4"
+    },
+    {
+      "id": "22260f34651dc79b",
+      "fromNode": "939a09475543e338",
+      "fromSide": "right",
+      "toNode": "9e68a28e38528c1d",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "6"
+    },
+    {
+      "id": "f8301ff1d467bfb5",
+      "fromNode": "ee0bdbcde24b6917",
+      "fromSide": "right",
+      "toNode": "939a09475543e338",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "ec5221d2a87b28dd",
+      "fromNode": "a57d61a733122d62",
+      "fromSide": "right",
+      "toNode": "a719bae325d9766d",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "特徴・根拠",
+      "color": "6"
+    },
+    {
+      "id": "da5a1fc396296697",
+      "fromNode": "5b8a8b56dada6ce7",
+      "fromSide": "right",
+      "toNode": "a57d61a733122d62",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "c06b7eca9fcfff6b",
+      "fromNode": "f623ff49da8d81cd",
+      "fromSide": "right",
+      "toNode": "b4395f34967fee2a",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "対象",
+      "color": "1"
+    },
+    {
+      "id": "36962329f86b4b98",
+      "fromNode": "b4395f34967fee2a",
+      "fromSide": "right",
+      "toNode": "b25d50193955a4fc",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "質問を入力",
+      "color": "1"
+    },
+    {
+      "id": "fcf2d81e05d3c121",
+      "fromNode": "b25d50193955a4fc",
+      "fromSide": "right",
+      "toNode": "c0d5017348fb926f",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "設定URLへPOST /ask",
+      "color": "1"
+    },
+    {
+      "id": "41333ef47afc1c0e",
+      "fromNode": "c0d5017348fb926f",
+      "fromSide": "right",
+      "toNode": "07ab1a462bf44409",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "返却JSONの回答を描画",
+      "color": "1"
+    },
+    {
+      "id": "48a8d996ae8b068e",
+      "fromNode": "17d346ba646448be",
+      "fromSide": "right",
+      "toNode": "f8b1b8dd9b985c0c",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "対象",
+      "color": "1"
+    },
+    {
+      "id": "7a06d954fee4f784",
+      "fromNode": "f8b1b8dd9b985c0c",
+      "fromSide": "right",
+      "toNode": "4f36c2b17b96a8a1",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "チャットと接続設定を保存",
+      "color": "1"
+    },
+    {
+      "id": "327a7639edcfa661",
+      "fromNode": "e2ba41af03120f14",
+      "fromSide": "right",
+      "toNode": "f623ff49da8d81cd",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "6327d5c3cb8d8ced",
+      "fromNode": "e2ba41af03120f14",
+      "fromSide": "right",
+      "toNode": "17d346ba646448be",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "668ce6aa2eb1500b",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ce88dc3083792793",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "f191b49ca903eed4",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "d0cef71666f0f799",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "e944c730ad1ea065",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ee0bdbcde24b6917",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "194b2233a6690ec3",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "5b8a8b56dada6ce7",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "093f1ba51ebdad10",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "e2ba41af03120f14",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    }
+  ]
+}

@@ -1,0 +1,234 @@
+{
+  "mode": "spec",
+  "title": "AI Dev Logger：内部構成・連関図",
+  "repo": "gurii-gabreh/AI-Dev-Logger",
+  "ref": "bc1d5af3807cbf6caca2d30d06c444d4255fe5cd",
+  "asOf": "2026-10-17 JST",
+  "scope": "ZIPに収められたChrome拡張。AIとの会話から進捗・問題・技術を抽出しNotionへ同期する。 上側は役割別の内部構成、下側はデータのつながり。",
+  "limitations": [
+    "既定ブランチ main の固定コミットを確認したスナップショット。",
+    "実装ありはコードの存在を示す。稼働環境・認証設定・実機での動作は未検証。",
+    "技術・モデル・サービス名はコード中の設定や候補。現行の提供状況・料金を保証しない。"
+  ],
+  "categories": [
+    {
+      "key": "category-0",
+      "label": "画面・操作",
+      "ids": [
+        "panel"
+      ]
+    },
+    {
+      "key": "category-1",
+      "label": "会話取得",
+      "ids": [
+        "dom"
+      ]
+    },
+    {
+      "key": "category-2",
+      "label": "解析・通信",
+      "ids": [
+        "worker",
+        "ai"
+      ]
+    },
+    {
+      "key": "category-3",
+      "label": "保存・同期",
+      "ids": [
+        "notion"
+      ]
+    }
+  ],
+  "items": {
+    "panel": {
+      "label": "Chromeサイドパネル",
+      "status": "実装あり",
+      "summary": "情報取得・システム選択・Notion同期を操作する。",
+      "specification": "Manifest V3の拡張としてsidepanel.html／sidepanel.jsを表示する。設定・累積ログはchrome.storage.localで管理する。",
+      "constraints": [
+        "通常のWebページではなく、ZIP内のdev-loggerフォルダを拡張として読み込む。"
+      ],
+      "sources": [
+        {
+          "label": "dev-logger.zip 内 dev-logger/manifest.json",
+          "url": "https://github.com/gurii-gabreh/AI-Dev-Logger/blob/bc1d5af3807cbf6caca2d30d06c444d4255fe5cd/dev-logger.zip"
+        },
+        {
+          "label": "dev-logger.zip 内 dev-logger/sidepanel.js",
+          "url": "https://github.com/gurii-gabreh/AI-Dev-Logger/blob/bc1d5af3807cbf6caca2d30d06c444d4255fe5cd/dev-logger.zip"
+        }
+      ]
+    },
+    "dom": {
+      "label": "content script",
+      "status": "実装あり",
+      "summary": "対応サイトの会話DOMから差分テキストを抽出する。",
+      "specification": "Claude.ai、Gemini、ChatGPT、AI Studio等の会話を対象とし、前回のターン数等から追加部分を取得する。",
+      "constraints": [
+        "サイトのDOM変更で抽出が壊れる可能性がある。"
+      ],
+      "sources": [
+        {
+          "label": "dev-logger.zip 内 dev-logger/content_script.js",
+          "url": "https://github.com/gurii-gabreh/AI-Dev-Logger/blob/bc1d5af3807cbf6caca2d30d06c444d4255fe5cd/dev-logger.zip"
+        }
+      ]
+    },
+    "worker": {
+      "label": "拡張のbackground",
+      "status": "実装あり",
+      "summary": "メッセージを受け、Gemini・Notionへの通信を担当する。",
+      "specification": "FETCH_AND_ANALYZE等のメッセージを処理し、GeminiのJSONを既存ログやNotionデータとマージする。",
+      "constraints": [
+        "この拡張はClaude用の音声ブリッジとは別アプリ。"
+      ],
+      "sources": [
+        {
+          "label": "dev-logger.zip 内 dev-logger/background.js",
+          "url": "https://github.com/gurii-gabreh/AI-Dev-Logger/blob/bc1d5af3807cbf6caca2d30d06c444d4255fe5cd/dev-logger.zip"
+        }
+      ]
+    },
+    "ai": {
+      "label": "Gemini API",
+      "status": "実装あり",
+      "summary": "会話を進捗・問題・技術の構造へ変える。",
+      "specification": "generateContentへ会話と抽出指示を送り、progress／issues／techStack／summaryを解析する。",
+      "constraints": [
+        "選択した会話内容が外部AIへ送られる。キー・モデル設定は利用者側で必要。"
+      ],
+      "sources": [
+        {
+          "label": "dev-logger.zip 内 dev-logger/background.js",
+          "url": "https://github.com/gurii-gabreh/AI-Dev-Logger/blob/bc1d5af3807cbf6caca2d30d06c444d4255fe5cd/dev-logger.zip"
+        }
+      ]
+    },
+    "notion": {
+      "label": "Notionデータベース",
+      "status": "実装あり",
+      "summary": "プロジェクト単位の進捗・問題・技術を保存する。",
+      "specification": "現行コードのwriteToNotionはページpropertiesをPATCHする。同期日時、進捗タスク、問題ログ、使用技術、廃止技術などのプロパティへマージ済みテキストを書き込む。",
+      "constraints": [
+        "READMEの「本文ブロックへ追記」という説明とは異なる。コードが使うプロパティ名・型の準備が必要。"
+      ],
+      "sources": [
+        {
+          "label": "dev-logger.zip 内 dev-logger/background.js",
+          "url": "https://github.com/gurii-gabreh/AI-Dev-Logger/blob/bc1d5af3807cbf6caca2d30d06c444d4255fe5cd/dev-logger.zip"
+        },
+        {
+          "label": "dev-logger.zip 内 dev-logger/README.md",
+          "url": "https://github.com/gurii-gabreh/AI-Dev-Logger/blob/bc1d5af3807cbf6caca2d30d06c444d4255fe5cd/dev-logger.zip"
+        }
+      ]
+    }
+  },
+  "features": [
+    {
+      "label": "このアプリの特徴",
+      "summary": "公開ソースはZIPのみなので中身を展開して確認。Notionの実装はREADMEよりコードを優先して説明する。",
+      "detail": "ZIPに収められたChrome拡張。AIとの会話から進捗・問題・技術を抽出しNotionへ同期する。",
+      "sources": [
+        {
+          "label": "dev-logger.zip 内 dev-logger/manifest.json",
+          "url": "https://github.com/gurii-gabreh/AI-Dev-Logger/blob/bc1d5af3807cbf6caca2d30d06c444d4255fe5cd/dev-logger.zip"
+        },
+        {
+          "label": "dev-logger.zip 内 dev-logger/sidepanel.js",
+          "url": "https://github.com/gurii-gabreh/AI-Dev-Logger/blob/bc1d5af3807cbf6caca2d30d06c444d4255fe5cd/dev-logger.zip"
+        },
+        {
+          "label": "dev-logger.zip 内 dev-logger/content_script.js",
+          "url": "https://github.com/gurii-gabreh/AI-Dev-Logger/blob/bc1d5af3807cbf6caca2d30d06c444d4255fe5cd/dev-logger.zip"
+        }
+      ]
+    }
+  ],
+  "flows": [
+    {
+      "title": "会話を解析する",
+      "kind": "solid",
+      "columns": [
+        [
+          "panel"
+        ],
+        [
+          "dom"
+        ],
+        [
+          "worker"
+        ],
+        [
+          "ai"
+        ]
+      ],
+      "labels": [
+        "取得ボタンで対象タブへ依頼",
+        "会話の差分を返す",
+        "構造化解析を依頼"
+      ],
+      "sources": [
+        {
+          "label": "dev-logger.zip 内 dev-logger/manifest.json",
+          "url": "https://github.com/gurii-gabreh/AI-Dev-Logger/blob/bc1d5af3807cbf6caca2d30d06c444d4255fe5cd/dev-logger.zip"
+        },
+        {
+          "label": "dev-logger.zip 内 dev-logger/sidepanel.js",
+          "url": "https://github.com/gurii-gabreh/AI-Dev-Logger/blob/bc1d5af3807cbf6caca2d30d06c444d4255fe5cd/dev-logger.zip"
+        },
+        {
+          "label": "dev-logger.zip 内 dev-logger/content_script.js",
+          "url": "https://github.com/gurii-gabreh/AI-Dev-Logger/blob/bc1d5af3807cbf6caca2d30d06c444d4255fe5cd/dev-logger.zip"
+        },
+        {
+          "label": "dev-logger.zip 内 dev-logger/background.js",
+          "url": "https://github.com/gurii-gabreh/AI-Dev-Logger/blob/bc1d5af3807cbf6caca2d30d06c444d4255fe5cd/dev-logger.zip"
+        }
+      ]
+    },
+    {
+      "title": "解析結果を保存する",
+      "kind": "solid",
+      "columns": [
+        [
+          "ai"
+        ],
+        [
+          "worker"
+        ],
+        [
+          "notion"
+        ],
+        [
+          "panel"
+        ]
+      ],
+      "labels": [
+        "結果をマージ",
+        "選択プロジェクトのpropertiesを更新",
+        "同期結果を表示"
+      ],
+      "sources": [
+        {
+          "label": "dev-logger.zip 内 dev-logger/background.js",
+          "url": "https://github.com/gurii-gabreh/AI-Dev-Logger/blob/bc1d5af3807cbf6caca2d30d06c444d4255fe5cd/dev-logger.zip"
+        },
+        {
+          "label": "dev-logger.zip 内 dev-logger/README.md",
+          "url": "https://github.com/gurii-gabreh/AI-Dev-Logger/blob/bc1d5af3807cbf6caca2d30d06c444d4255fe5cd/dev-logger.zip"
+        },
+        {
+          "label": "dev-logger.zip 内 dev-logger/manifest.json",
+          "url": "https://github.com/gurii-gabreh/AI-Dev-Logger/blob/bc1d5af3807cbf6caca2d30d06c444d4255fe5cd/dev-logger.zip"
+        },
+        {
+          "label": "dev-logger.zip 内 dev-logger/sidepanel.js",
+          "url": "https://github.com/gurii-gabreh/AI-Dev-Logger/blob/bc1d5af3807cbf6caca2d30d06c444d4255fe5cd/dev-logger.zip"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,630 @@
+{
+  "nodes": [
+    {
+      "id": "c3182eaac7dff82a",
+      "type": "group",
+      "x": 500,
+      "y": -45,
+      "width": 2370,
+      "height": 530,
+      "label": "実行の入口",
+      "color": "5"
+    },
+    {
+      "id": "ce0862df5a189b77",
+      "type": "group",
+      "x": 500,
+      "y": 655,
+      "width": 2370,
+      "height": 530,
+      "label": "画像と認証",
+      "color": "4"
+    },
+    {
+      "id": "7f16b064687f39c1",
+      "type": "group",
+      "x": 500,
+      "y": 1355,
+      "width": 2370,
+      "height": 930,
+      "label": "処理",
+      "color": "6"
+    },
+    {
+      "id": "12f34febabbeec4e",
+      "type": "group",
+      "x": 500,
+      "y": 2455,
+      "width": 2370,
+      "height": 590,
+      "label": "出力・保存",
+      "color": "2"
+    },
+    {
+      "id": "6c2dbdf47a43157f",
+      "type": "group",
+      "x": 500,
+      "y": 3215,
+      "width": 2370,
+      "height": 470,
+      "label": "アプリの特徴",
+      "color": "6"
+    },
+    {
+      "id": "cc966ef6b18cd6ac",
+      "type": "group",
+      "x": 990,
+      "y": 3870,
+      "width": 4560,
+      "height": 580,
+      "label": "画像から問題データへ"
+    },
+    {
+      "id": "138d05c4d011886c",
+      "type": "group",
+      "x": 990,
+      "y": 4530,
+      "width": 3560,
+      "height": 500,
+      "label": "抽出成功後の保存"
+    },
+    {
+      "id": "44dd9a737bbbbc28",
+      "type": "text",
+      "x": 1050,
+      "y": 110,
+      "width": 540,
+      "height": 220,
+      "text": "## Flask画面とbatch.py\n\n**確認区分：実装あり**\n\n設定画面から手動実行、またはcronで同じ処理を呼ぶ。",
+      "color": "5"
+    },
+    {
+      "id": "0b0c5a4157b73f1e",
+      "type": "text",
+      "x": 1810,
+      "y": 0,
+      "width": 1000,
+      "height": 440,
+      "text": "## 最終仕様\n\nFlaskは127.0.0.1:5000で設定・フォルダ選択・/runを提供する。batch.pyも共通のrun_processingを使う。\n\n### 現在の制約・確認範囲\n\n- Webサーバーを起動せずbatch.pyをcronから呼べる。cronの登録自体は別途必要。\n\n### 根拠\n\n- [app.py](https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/app.py)\n- [batch.py](https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/batch.py)\n- [README.md](https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/README.md)",
+      "color": "5"
+    },
+    {
+      "id": "ce88dc3083792793",
+      "type": "text",
+      "x": 560,
+      "y": 140,
+      "width": 300,
+      "height": 160,
+      "text": "## 実行の入口\n\n1仕様項目",
+      "color": "5"
+    },
+    {
+      "id": "aa4f35877de2aaf0",
+      "type": "text",
+      "x": 1050,
+      "y": 810,
+      "width": 540,
+      "height": 220,
+      "text": "## Google Drive API\n\n**確認区分：実装あり**\n\nサービスアカウントで画像の一覧・取得・移動を行う。",
+      "color": "4"
+    },
+    {
+      "id": "d94445a686054754",
+      "type": "text",
+      "x": 1810,
+      "y": 700,
+      "width": 1000,
+      "height": 440,
+      "text": "## 最終仕様\n\n認証JSONからDrive・Sheets用の資格情報を作る。画像を一時ディレクトリへダウンロードする。\n\n### 現在の制約・確認範囲\n\n- 対象フォルダとシートへの共有設定が必要。list_imagesのページ送り処理は見当たらないため、大量画像の全件処理は別途確認が必要。\n\n### 根拠\n\n- [core/drive_client.py](https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/core/drive_client.py)\n- [core/processor.py](https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/core/processor.py)",
+      "color": "4"
+    },
+    {
+      "id": "d0cef71666f0f799",
+      "type": "text",
+      "x": 560,
+      "y": 840,
+      "width": 300,
+      "height": 160,
+      "text": "## 画像と認証\n\n1仕様項目",
+      "color": "4"
+    },
+    {
+      "id": "c7646b3db5cb9b4c",
+      "type": "text",
+      "x": 1050,
+      "y": 1440,
+      "width": 540,
+      "height": 220,
+      "text": "## 共通の処理パイプライン\n\n**確認区分：実装あり**\n\n画像ごとの抽出・記録・移動を順番に進める。",
+      "color": "6"
+    },
+    {
+      "id": "b11617948215f2fa",
+      "type": "text",
+      "x": 1810,
+      "y": 1400,
+      "width": 1000,
+      "height": 300,
+      "text": "## 最終仕様\n\nrun_processingが設定検証、ヘッダー確認、画像処理を制御する。画像ごとに例外を扱い、失敗をログへ残して次へ進む。\n\n### 根拠\n\n- [core/processor.py](https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/core/processor.py)",
+      "color": "6"
+    },
+    {
+      "id": "63fef035dbefff52",
+      "type": "text",
+      "x": 1050,
+      "y": 1900,
+      "width": 540,
+      "height": 240,
+      "text": "## Claude Code CLI\n\n**確認区分：実装あり**\n\nReadツールとJSON Schemaで問題番号・本文・選択肢・正解を抽出する。",
+      "color": "6"
+    },
+    {
+      "id": "cbf5c6f58696cc3d",
+      "type": "text",
+      "x": 1810,
+      "y": 1800,
+      "width": 1000,
+      "height": 440,
+      "text": "## 最終仕様\n\nsubprocessでclaude -pを起動し、モデル・タイムアウト・構造化出力を指定する。欠損やUNREADABLEは失敗とする。\n\n### 現在の制約・確認範囲\n\n- Claude CLIのインストール・認証が必要。コードはRead限定のツール指定に加え権限確認を省略する起動オプションも使用する。今回は実行していない。\n\n### 根拠\n\n- [core/claude_extractor.py](https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/core/claude_extractor.py)",
+      "color": "6"
+    },
+    {
+      "id": "ee0bdbcde24b6917",
+      "type": "text",
+      "x": 560,
+      "y": 1740,
+      "width": 300,
+      "height": 160,
+      "text": "## 処理\n\n2仕様項目",
+      "color": "6"
+    },
+    {
+      "id": "4cdf96d68327f5b1",
+      "type": "text",
+      "x": 1050,
+      "y": 2640,
+      "width": 540,
+      "height": 220,
+      "text": "## Sheetsへの追記と画像移動\n\n**確認区分：実装あり**\n\n抽出結果を1行追記し、成功した画像を処理済みへ移す。",
+      "color": "2"
+    },
+    {
+      "id": "8250b5c7ca60071e",
+      "type": "text",
+      "x": 1810,
+      "y": 2500,
+      "width": 1000,
+      "height": 500,
+      "text": "## 最終仕様\n\nSheetsへ問題項目と元ファイル名を追記後、Driveの親フォルダを変更する。設定はローカルconfig.jsonへ保存する。\n\n### 現在の制約・確認範囲\n\n- 追記と移動は一体のトランザクションではない。移動だけ失敗して再実行すると再追記されうる。\n\n### 根拠\n\n- [core/sheets_client.py](https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/core/sheets_client.py)\n- [core/drive_client.py](https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/core/drive_client.py)\n- [core/config.py](https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/core/config.py)\n- [core/processor.py](https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/core/processor.py)",
+      "color": "2"
+    },
+    {
+      "id": "ce37eeda8cab1f46",
+      "type": "text",
+      "x": 560,
+      "y": 2670,
+      "width": 300,
+      "height": 160,
+      "text": "## 出力・保存\n\n1仕様項目",
+      "color": "2"
+    },
+    {
+      "id": "a57d61a733122d62",
+      "type": "text",
+      "x": 1050,
+      "y": 3360,
+      "width": 540,
+      "height": 180,
+      "text": "## このアプリの特徴\n\nローカルPythonが調整役。画像認識はClaude CLI、保管と出力はGoogle APIが担当する。",
+      "color": "6"
+    },
+    {
+      "id": "a719bae325d9766d",
+      "type": "text",
+      "x": 1810,
+      "y": 3260,
+      "width": 1000,
+      "height": 380,
+      "text": "## アプリの特徴\n\n試験問題の画像をClaude CLIで構造化し、Google Sheetsへ記録して処理済みフォルダへ移す。\n\n### 根拠\n\n- [app.py](https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/app.py)\n- [batch.py](https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/batch.py)\n- [README.md](https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/README.md)\n- [core/drive_client.py](https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/core/drive_client.py)\n- [core/processor.py](https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/core/processor.py)",
+      "color": "6"
+    },
+    {
+      "id": "5b8a8b56dada6ce7",
+      "type": "text",
+      "x": 560,
+      "y": 3360,
+      "width": 300,
+      "height": 180,
+      "text": "## アプリの特徴\n\n機能の組合せ・運用方法・設計上の性質",
+      "color": "6"
+    },
+    {
+      "id": "f623ff49da8d81cd",
+      "type": "text",
+      "x": 1050,
+      "y": 3900,
+      "width": 540,
+      "height": 520,
+      "text": "## 画像から問題データへ\n\n共通処理を起動\n\n画像を一時取得\n\n画像パスを渡して構造化抽出\n\n記録に基づく前提・対応順\n\n- [app.py](https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/app.py)\n- [batch.py](https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/batch.py)\n- [README.md](https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/README.md)\n- [core/processor.py](https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/core/processor.py)\n- [core/drive_client.py](https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/core/drive_client.py)\n- [core/claude_extractor.py](https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/core/claude_extractor.py)",
+      "color": "1"
+    },
+    {
+      "id": "b4395f34967fee2a",
+      "type": "text",
+      "x": 1810,
+      "y": 3900,
+      "width": 620,
+      "height": 280,
+      "text": "## ui\n\n**Flask画面とbatch.py**\n\n設定画面から手動実行、またはcronで同じ処理を呼ぶ。\n\n上側の同じ項目の再掲。",
+      "color": "5"
+    },
+    {
+      "id": "b25d50193955a4fc",
+      "type": "text",
+      "x": 2650,
+      "y": 3900,
+      "width": 760,
+      "height": 280,
+      "text": "## pipeline\n\n**共通の処理パイプライン**\n\n画像ごとの抽出・記録・移動を順番に進める。\n\n上側の同じ項目の再掲。",
+      "color": "6"
+    },
+    {
+      "id": "c0d5017348fb926f",
+      "type": "text",
+      "x": 3650,
+      "y": 3900,
+      "width": 840,
+      "height": 280,
+      "text": "## drive\n\n**Google Drive API**\n\nサービスアカウントで画像の一覧・取得・移動を行う。\n\n上側の同じ項目の再掲。",
+      "color": "4"
+    },
+    {
+      "id": "07ab1a462bf44409",
+      "type": "text",
+      "x": 4730,
+      "y": 3900,
+      "width": 760,
+      "height": 280,
+      "text": "## claude\n\n**Claude Code CLI**\n\nReadツールとJSON Schemaで問題番号・本文・選択肢・正解を抽出する。\n\n上側の同じ項目の再掲。",
+      "color": "6"
+    },
+    {
+      "id": "17d346ba646448be",
+      "type": "text",
+      "x": 1050,
+      "y": 4560,
+      "width": 540,
+      "height": 440,
+      "text": "## 抽出成功後の保存\n\n問題項目を行として追記\n\n記録後に処理済みへ移動\n\n記録に基づく前提・対応順\n\n- [core/claude_extractor.py](https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/core/claude_extractor.py)\n- [core/sheets_client.py](https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/core/sheets_client.py)\n- [core/drive_client.py](https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/core/drive_client.py)\n- [core/config.py](https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/core/config.py)\n- [core/processor.py](https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/core/processor.py)",
+      "color": "1"
+    },
+    {
+      "id": "f8b1b8dd9b985c0c",
+      "type": "text",
+      "x": 1810,
+      "y": 4560,
+      "width": 620,
+      "height": 300,
+      "text": "## claude\n\n**Claude Code CLI**\n\nReadツールとJSON Schemaで問題番号・本文・選択肢・正解を抽出する。\n\n上側の同じ項目の再掲。",
+      "color": "6"
+    },
+    {
+      "id": "4f36c2b17b96a8a1",
+      "type": "text",
+      "x": 2650,
+      "y": 4560,
+      "width": 760,
+      "height": 280,
+      "text": "## sheets\n\n**Sheetsへの追記と画像移動**\n\n抽出結果を1行追記し、成功した画像を処理済みへ移す。\n\n上側の同じ項目の再掲。",
+      "color": "2"
+    },
+    {
+      "id": "da0932f1fbf22b7b",
+      "type": "text",
+      "x": 3650,
+      "y": 4560,
+      "width": 840,
+      "height": 280,
+      "text": "## drive\n\n**Google Drive API**\n\nサービスアカウントで画像の一覧・取得・移動を行う。\n\n上側の同じ項目の再掲。",
+      "color": "4"
+    },
+    {
+      "id": "e2ba41af03120f14",
+      "type": "text",
+      "x": 560,
+      "y": 4340,
+      "width": 300,
+      "height": 360,
+      "text": "## つながり\n\n矢印：記録から確認できる前提・対応順\n\n矢印なし＋関連ラベル：依存を意味しない関連\n\nカードは上側の同じ項目の再掲。",
+      "color": "1"
+    },
+    {
+      "id": "4813494d137e1631",
+      "type": "text",
+      "x": 0,
+      "y": 2170,
+      "width": 380,
+      "height": 800,
+      "text": "# Text Extraction：内部構成・連関図\n\n**gurii-gabreh/Text-Extraction**\n\n試験問題の画像をClaude CLIで構造化し、Google Sheetsへ記録して処理済みフォルダへ移す。 上側は役割別の内部構成、下側はデータのつながり。\n\nモード：最終仕様・アプリの特徴\n\n記録：2026-10-17 JST\n\n対象：4f3343099b369800554b14475f9e1c42035d58f8\n\n- 既定ブランチ claude/app-creation-resources-eenb15 の固定コミットを確認したスナップショット。\n- 実装ありはコードの存在を示す。稼働環境・認証設定・実機での動作は未検証。\n- 技術・モデル・サービス名はコード中の設定や候補。現行の提供状況・料金を保証しない。"
+    }
+  ],
+  "edges": [
+    {
+      "id": "d6e243df852fa85e",
+      "fromNode": "44dd9a737bbbbc28",
+      "fromSide": "right",
+      "toNode": "0b0c5a4157b73f1e",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "5"
+    },
+    {
+      "id": "da4b403818b00f8a",
+      "fromNode": "ce88dc3083792793",
+      "fromSide": "right",
+      "toNode": "44dd9a737bbbbc28",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "5"
+    },
+    {
+      "id": "7785b0c922ee3e49",
+      "fromNode": "aa4f35877de2aaf0",
+      "fromSide": "right",
+      "toNode": "d94445a686054754",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "4"
+    },
+    {
+      "id": "92ed6f0c376323dc",
+      "fromNode": "d0cef71666f0f799",
+      "fromSide": "right",
+      "toNode": "aa4f35877de2aaf0",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "4"
+    },
+    {
+      "id": "f8b71d3fa8d3f8d4",
+      "fromNode": "c7646b3db5cb9b4c",
+      "fromSide": "right",
+      "toNode": "b11617948215f2fa",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "6"
+    },
+    {
+      "id": "8818bb29d83d3e01",
+      "fromNode": "63fef035dbefff52",
+      "fromSide": "right",
+      "toNode": "cbf5c6f58696cc3d",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "6"
+    },
+    {
+      "id": "98887c2b75365b42",
+      "fromNode": "ee0bdbcde24b6917",
+      "fromSide": "right",
+      "toNode": "c7646b3db5cb9b4c",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "dab9961d095dbc86",
+      "fromNode": "ee0bdbcde24b6917",
+      "fromSide": "right",
+      "toNode": "63fef035dbefff52",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "354a9b8832c044e2",
+      "fromNode": "4cdf96d68327f5b1",
+      "fromSide": "right",
+      "toNode": "8250b5c7ca60071e",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "2"
+    },
+    {
+      "id": "0d691d6c4d859765",
+      "fromNode": "ce37eeda8cab1f46",
+      "fromSide": "right",
+      "toNode": "4cdf96d68327f5b1",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "2"
+    },
+    {
+      "id": "44c1644f2f8fbaaf",
+      "fromNode": "a57d61a733122d62",
+      "fromSide": "right",
+      "toNode": "a719bae325d9766d",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "特徴・根拠",
+      "color": "6"
+    },
+    {
+      "id": "07f4ee95b1ffd79b",
+      "fromNode": "5b8a8b56dada6ce7",
+      "fromSide": "right",
+      "toNode": "a57d61a733122d62",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "8b754ae3247289bc",
+      "fromNode": "f623ff49da8d81cd",
+      "fromSide": "right",
+      "toNode": "b4395f34967fee2a",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "対象",
+      "color": "1"
+    },
+    {
+      "id": "50c109f6b68db6d6",
+      "fromNode": "b4395f34967fee2a",
+      "fromSide": "right",
+      "toNode": "b25d50193955a4fc",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "共通処理を起動",
+      "color": "1"
+    },
+    {
+      "id": "d1cc354ecc47be03",
+      "fromNode": "b25d50193955a4fc",
+      "fromSide": "right",
+      "toNode": "c0d5017348fb926f",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "画像を一時取得",
+      "color": "1"
+    },
+    {
+      "id": "ac7289e9a6d79e62",
+      "fromNode": "c0d5017348fb926f",
+      "fromSide": "right",
+      "toNode": "07ab1a462bf44409",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "画像パスを渡して構造化抽出",
+      "color": "1"
+    },
+    {
+      "id": "3fca74f53856ed6a",
+      "fromNode": "17d346ba646448be",
+      "fromSide": "right",
+      "toNode": "f8b1b8dd9b985c0c",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "対象",
+      "color": "1"
+    },
+    {
+      "id": "3cba177ace174171",
+      "fromNode": "f8b1b8dd9b985c0c",
+      "fromSide": "right",
+      "toNode": "4f36c2b17b96a8a1",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "問題項目を行として追記",
+      "color": "1"
+    },
+    {
+      "id": "86a453407a0491b4",
+      "fromNode": "4f36c2b17b96a8a1",
+      "fromSide": "right",
+      "toNode": "da0932f1fbf22b7b",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "記録後に処理済みへ移動",
+      "color": "1"
+    },
+    {
+      "id": "a1746ae34aacc302",
+      "fromNode": "e2ba41af03120f14",
+      "fromSide": "right",
+      "toNode": "f623ff49da8d81cd",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "1cc18a085af43e49",
+      "fromNode": "e2ba41af03120f14",
+      "fromSide": "right",
+      "toNode": "17d346ba646448be",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "9449d4cf80f77b96",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ce88dc3083792793",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "cc44d0637821413e",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "d0cef71666f0f799",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "27d38e8164442d26",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ee0bdbcde24b6917",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "81c992abc5c80264",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ce37eeda8cab1f46",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "41c9e7d96bd8b90b",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "5b8a8b56dada6ce7",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "4a12ac9f9de35ea3",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "e2ba41af03120f14",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    }
+  ]
+}

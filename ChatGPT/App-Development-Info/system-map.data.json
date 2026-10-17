@@ -1,0 +1,188 @@
+{
+  "mode": "spec",
+  "title": "App Development Info：内部構成・連関図",
+  "repo": "gurii-gabreh/App-Development-Info",
+  "ref": "74dd21a58f133b43c0e0aa7edaa3331f1b296ec1",
+  "asOf": "2026-10-17 JST",
+  "scope": "アプリ開発の学習資料と、自分の理解・正誤・第二意見の記録を分けて読む静的サイト。 上側は役割別の内部構成、下側はデータのつながり。",
+  "limitations": [
+    "既定ブランチ main の固定コミットを確認したスナップショット。",
+    "実装ありはコードの存在を示す。稼働環境・認証設定・実機での動作は未検証。",
+    "技術・モデル・サービス名はコード中の設定や候補。現行の提供状況・料金を保証しない。"
+  ],
+  "categories": [
+    {
+      "key": "category-0",
+      "label": "画面・操作",
+      "ids": [
+        "home"
+      ]
+    },
+    {
+      "key": "category-1",
+      "label": "コンテンツ",
+      "ids": [
+        "materials",
+        "records"
+      ]
+    },
+    {
+      "key": "category-2",
+      "label": "方針・公開",
+      "ids": [
+        "policy",
+        "deploy"
+      ]
+    }
+  ],
+  "items": {
+    "home": {
+      "label": "分野一覧",
+      "status": "実装あり",
+      "summary": "学習資料と記録へリンクする入口。",
+      "specification": "index.htmlからアーキテクチャ、サーバー、セキュリティ、AI、DB、テスト、設計等のページを開く。",
+      "constraints": [],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/App-Development-Info/blob/74dd21a58f133b43c0e0aa7edaa3331f1b296ec1/index.html"
+        },
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/App-Development-Info/blob/74dd21a58f133b43c0e0aa7edaa3331f1b296ec1/README.md"
+        }
+      ]
+    },
+    "materials": {
+      "label": "学習資料",
+      "status": "実装あり",
+      "summary": "分野ごとの説明とレッスンをHTMLで保持する。",
+      "specification": "materials配下の分野ページとlessonページに内容を直接記載する。画面はHTML同士のリンクで遷移する。",
+      "constraints": [
+        "動的な教材DBや外部AI自動生成のランタイムではない。"
+      ],
+      "sources": [
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/App-Development-Info/blob/74dd21a58f133b43c0e0aa7edaa3331f1b296ec1/README.md"
+        },
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/App-Development-Info/blob/74dd21a58f133b43c0e0aa7edaa3331f1b296ec1/index.html"
+        }
+      ]
+    },
+    "records": {
+      "label": "学習記録",
+      "status": "実装あり",
+      "summary": "理解の原文、正誤、他AI確認の記録を分ける。",
+      "specification": "records配下に記録を置き、資料とは別に管理する。未実施の確認は未実施として残す方針。",
+      "constraints": [
+        "サイトに学習記録の入力・自動採点・保存APIは見当たらない。"
+      ],
+      "sources": [
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/App-Development-Info/blob/74dd21a58f133b43c0e0aa7edaa3331f1b296ec1/README.md"
+        }
+      ]
+    },
+    "policy": {
+      "label": "学習・開発の方針",
+      "status": "実装あり",
+      "summary": "確認の基準や進め方をページとして示す。",
+      "specification": "policy.htmlを独立させ、学習の進め方と記録の扱いを参照できるようにする。",
+      "constraints": [],
+      "sources": [
+        {
+          "label": "policy.html",
+          "url": "https://github.com/gurii-gabreh/App-Development-Info/blob/74dd21a58f133b43c0e0aa7edaa3331f1b296ec1/policy.html"
+        }
+      ]
+    },
+    "deploy": {
+      "label": "静的公開",
+      "status": "実装あり",
+      "summary": "GitHub ActionsからHTMLをPagesへ公開する。",
+      "specification": "deploy-pages.ymlがmain更新を入口に静的ページを配置する。更新はHTMLの編集・commitで行う。",
+      "constraints": [
+        "外部サービスの稼働や現在の公開結果は未検証。"
+      ],
+      "sources": [
+        {
+          "label": ".github/workflows/deploy-pages.yml",
+          "url": "https://github.com/gurii-gabreh/App-Development-Info/blob/74dd21a58f133b43c0e0aa7edaa3331f1b296ec1/.github/workflows/deploy-pages.yml"
+        }
+      ]
+    }
+  },
+  "features": [
+    {
+      "label": "このアプリの特徴",
+      "summary": "学習資料そのものと、自分がどう理解したかの記録を別のHTMLとして管理する。",
+      "detail": "アプリ開発の学習資料と、自分の理解・正誤・第二意見の記録を分けて読む静的サイト。",
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/App-Development-Info/blob/74dd21a58f133b43c0e0aa7edaa3331f1b296ec1/index.html"
+        },
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/App-Development-Info/blob/74dd21a58f133b43c0e0aa7edaa3331f1b296ec1/README.md"
+        }
+      ]
+    }
+  ],
+  "flows": [
+    {
+      "title": "学習の参照経路",
+      "kind": "solid",
+      "columns": [
+        [
+          "home"
+        ],
+        [
+          "materials"
+        ]
+      ],
+      "labels": [
+        "分野・レッスンのHTMLへ遷移"
+      ],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/App-Development-Info/blob/74dd21a58f133b43c0e0aa7edaa3331f1b296ec1/index.html"
+        },
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/App-Development-Info/blob/74dd21a58f133b43c0e0aa7edaa3331f1b296ec1/README.md"
+        }
+      ]
+    },
+    {
+      "title": "理解の振り返り",
+      "kind": "solid",
+      "columns": [
+        [
+          "home"
+        ],
+        [
+          "records"
+        ]
+      ],
+      "labels": [
+        "別の記録ページを開いて比較"
+      ],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/App-Development-Info/blob/74dd21a58f133b43c0e0aa7edaa3331f1b296ec1/index.html"
+        },
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/App-Development-Info/blob/74dd21a58f133b43c0e0aa7edaa3331f1b296ec1/README.md"
+        }
+      ]
+    }
+  ]
+}

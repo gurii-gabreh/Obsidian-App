@@ -1,0 +1,297 @@
+{
+  "mode": "spec",
+  "title": "Supermarket Price Tracker：内部構成・連関図",
+  "repo": "gurii-gabreh/supermarket-price-tracker",
+  "ref": "8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97",
+  "asOf": "2026-10-17 JST",
+  "scope": "住所周辺の店舗とチラシ画像から商品価格を収集し、日付・店舗別に閲覧する。 上側は役割別の内部構成、下側はデータのつながり。",
+  "limitations": [
+    "既定ブランチ main の固定コミットを確認したスナップショット。",
+    "実装ありはコードの存在を示す。稼働環境・認証設定・実機での動作は未検証。",
+    "技術・モデル・サービス名はコード中の設定や候補。現行の提供状況・料金を保証しない。"
+  ],
+  "categories": [
+    {
+      "key": "category-0",
+      "label": "画面・操作",
+      "ids": [
+        "ui"
+      ]
+    },
+    {
+      "key": "category-1",
+      "label": "処理・外部連携",
+      "ids": [
+        "gas",
+        "flyer",
+        "gemini"
+      ]
+    },
+    {
+      "key": "category-2",
+      "label": "保存・表示",
+      "ids": [
+        "sheet"
+      ]
+    },
+    {
+      "key": "category-3",
+      "label": "定期処理",
+      "ids": [
+        "schedule"
+      ]
+    }
+  ],
+  "items": {
+    "ui": {
+      "label": "画面とJSモジュール",
+      "status": "実装あり",
+      "summary": "店舗設定・収集操作・価格一覧を分けて表示する。",
+      "specification": "index.html、home.html、prices.htmlとapp.js／ui.js／scraper.jsで構成する。設定済みGASへactionを送って取得・保存する。",
+      "constraints": [
+        "接続先の稼働環境は未検証。"
+      ],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/index.html"
+        },
+        {
+          "label": "prices.html",
+          "url": "https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/prices.html"
+        },
+        {
+          "label": "js/app.js",
+          "url": "https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/js/app.js"
+        },
+        {
+          "label": "js/scraper.js",
+          "url": "https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/js/scraper.js"
+        }
+      ]
+    },
+    "gas": {
+      "label": "GAS API",
+      "status": "実装あり",
+      "summary": "Webからの依頼を受け、店舗検索・取得・保存を振り分ける。",
+      "specification": "doGet／doPostがfindStores、scrape、save等を受け、UrlFetchAppとSpreadsheetAppの処理へ渡す。",
+      "constraints": [
+        "読み取り以外の操作にもGET入口がある。個別利用者の認証は今回確認していない。"
+      ],
+      "sources": [
+        {
+          "label": "Code.gs",
+          "url": "https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/Code.gs"
+        }
+      ]
+    },
+    "flyer": {
+      "label": "トクバイとチラシ画像",
+      "status": "実装あり",
+      "summary": "店舗URL・掲載画像を調べ、価格解析の入力にする。",
+      "specification": "住所検索、店舗URLの検証、チラシ画像URL抽出を行う。画像取得不能時の処理もGAS側へまとめる。",
+      "constraints": [
+        "対象サイトのHTMLやURL構造に依存する。"
+      ],
+      "sources": [
+        {
+          "label": "Code.gs",
+          "url": "https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/Code.gs"
+        },
+        {
+          "label": "js/scraper.js",
+          "url": "https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/js/scraper.js"
+        }
+      ]
+    },
+    "gemini": {
+      "label": "Geminiによる価格抽出",
+      "status": "実装あり",
+      "summary": "画像から商品・価格・期間などを構造化する。",
+      "specification": "analyzeChirashiImagesが画像と指示をGeminiへ送り、JSONを解析する。表記揺れ・日付・重複の調整処理を持つ。",
+      "constraints": [
+        "AIの抽出結果であり、印刷価格との一致をコードだけでは保証できない。"
+      ],
+      "sources": [
+        {
+          "label": "Code.gs",
+          "url": "https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/Code.gs"
+        }
+      ]
+    },
+    "sheet": {
+      "label": "Google Sheets",
+      "status": "実装あり",
+      "summary": "店舗・価格履歴・設定・平均価格などを保存する。",
+      "specification": "価格の保存、登録店舗と日付の読込、フィルタ候補生成、平均価格集計をGASが担当し、画面へ返す。",
+      "constraints": [],
+      "sources": [
+        {
+          "label": "Code.gs",
+          "url": "https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/Code.gs"
+        },
+        {
+          "label": "prices.html",
+          "url": "https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/prices.html"
+        }
+      ]
+    },
+    "schedule": {
+      "label": "更新チェックと収集待ちリスト",
+      "status": "実装あり",
+      "summary": "定期処理は更新店舗を待ちリストへ登録する。",
+      "specification": "autoCollectは自動ONを確認し、更新店舗を「収集待ちリスト」へ記録して平均価格を集計する。トリガーの作成・切替処理がある。",
+      "constraints": [
+        "この定期関数はPython側の価格取得を想定しており、このリポジトリにはそのPythonコードがない。定期実行だけで価格解析まで完了するとは言えない。"
+      ],
+      "sources": [
+        {
+          "label": "Code.gs",
+          "url": "https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/Code.gs"
+        }
+      ]
+    }
+  },
+  "features": [
+    {
+      "label": "このアプリの特徴",
+      "summary": "手動取得と定期の更新チェックは別経路。外部にある想定のPython処理を完了済みと扱わない。",
+      "detail": "住所周辺の店舗とチラシ画像から商品価格を収集し、日付・店舗別に閲覧する。",
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/index.html"
+        },
+        {
+          "label": "prices.html",
+          "url": "https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/prices.html"
+        },
+        {
+          "label": "js/app.js",
+          "url": "https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/js/app.js"
+        },
+        {
+          "label": "js/scraper.js",
+          "url": "https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/js/scraper.js"
+        },
+        {
+          "label": "Code.gs",
+          "url": "https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/Code.gs"
+        }
+      ]
+    }
+  ],
+  "flows": [
+    {
+      "title": "手動の価格取得",
+      "kind": "solid",
+      "columns": [
+        [
+          "ui"
+        ],
+        [
+          "gas"
+        ],
+        [
+          "flyer"
+        ],
+        [
+          "gemini"
+        ]
+      ],
+      "labels": [
+        "actionで収集依頼",
+        "店舗・画像を取得",
+        "画像から商品情報を抽出"
+      ],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/index.html"
+        },
+        {
+          "label": "prices.html",
+          "url": "https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/prices.html"
+        },
+        {
+          "label": "js/app.js",
+          "url": "https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/js/app.js"
+        },
+        {
+          "label": "js/scraper.js",
+          "url": "https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/js/scraper.js"
+        },
+        {
+          "label": "Code.gs",
+          "url": "https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/Code.gs"
+        }
+      ]
+    },
+    {
+      "title": "保存して閲覧",
+      "kind": "solid",
+      "columns": [
+        [
+          "gemini"
+        ],
+        [
+          "sheet"
+        ],
+        [
+          "ui"
+        ]
+      ],
+      "labels": [
+        "価格・店舗・収集日時を保存",
+        "条件に合う履歴を返す"
+      ],
+      "sources": [
+        {
+          "label": "Code.gs",
+          "url": "https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/Code.gs"
+        },
+        {
+          "label": "prices.html",
+          "url": "https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/prices.html"
+        },
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/index.html"
+        },
+        {
+          "label": "js/app.js",
+          "url": "https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/js/app.js"
+        },
+        {
+          "label": "js/scraper.js",
+          "url": "https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/js/scraper.js"
+        }
+      ]
+    },
+    {
+      "title": "定期処理の範囲",
+      "kind": "solid",
+      "columns": [
+        [
+          "schedule"
+        ],
+        [
+          "sheet"
+        ]
+      ],
+      "labels": [
+        "更新店舗の待ちリストと平均価格を更新"
+      ],
+      "sources": [
+        {
+          "label": "Code.gs",
+          "url": "https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/Code.gs"
+        },
+        {
+          "label": "prices.html",
+          "url": "https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/prices.html"
+        }
+      ]
+    }
+  ]
+}

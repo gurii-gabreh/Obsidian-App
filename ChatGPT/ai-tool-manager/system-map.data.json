@@ -1,0 +1,202 @@
+{
+  "mode": "spec",
+  "title": "AI Tool Manager：内部構成・連関図",
+  "repo": "gurii-gabreh/ai-tool-manager",
+  "ref": "f9aba42f6fc117a04f16f69357e77aeab1baf202",
+  "asOf": "2026-10-17 JST",
+  "scope": "AIツール情報の取得・整理・一覧表示とGoogle Sheetsへの保存を、単一HTMLから操作する。 上側は役割別の内部構成、下側はデータのつながり。",
+  "limitations": [
+    "既定ブランチ main の固定コミットを確認したスナップショット。",
+    "実装ありはコードの存在を示す。稼働環境・認証設定・実機での動作は未検証。",
+    "技術・モデル・サービス名はコード中の設定や候補。現行の提供状況・料金を保証しない。"
+  ],
+  "categories": [
+    {
+      "key": "category-0",
+      "label": "画面・操作",
+      "ids": [
+        "ui"
+      ]
+    },
+    {
+      "key": "category-1",
+      "label": "情報収集",
+      "ids": [
+        "source",
+        "ai"
+      ]
+    },
+    {
+      "key": "category-2",
+      "label": "保存・認証",
+      "ids": [
+        "auth",
+        "sheets"
+      ]
+    },
+    {
+      "key": "category-3",
+      "label": "連携・運用",
+      "ids": [
+        "gas"
+      ]
+    }
+  ],
+  "items": {
+    "ui": {
+      "label": "単一HTMLの管理画面",
+      "status": "実装あり",
+      "summary": "カテゴリ検索・並び替え・収集・同期をブラウザで操作する。",
+      "specification": "index.html内にUI、一覧データ、収集・整形・保存の処理をまとめる。取得済みツールと設定はlocalStorageへ保存する。",
+      "constraints": [
+        "端末をまたぐ共有にはSheetsからの読込または同期が必要。"
+      ],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/ai-tool-manager/blob/f9aba42f6fc117a04f16f69357e77aeab1baf202/index.html"
+        }
+      ]
+    },
+    "source": {
+      "label": "AI GalleryのREST API",
+      "status": "実装あり",
+      "summary": "公開WordPress APIをページ送りしてツール一覧を取得する。",
+      "specification": "toolsとtool-category APIを使う。総ページ数を読み、残りを5ページずつ取得する。差分取得やカテゴリ情報の補完も実装する。",
+      "constraints": [
+        "取得先APIの現在の応答や件数は未検証。"
+      ],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/ai-tool-manager/blob/f9aba42f6fc117a04f16f69357e77aeab1baf202/index.html"
+        }
+      ]
+    },
+    "ai": {
+      "label": "Gemini補完と手動受け渡し",
+      "status": "実装あり",
+      "summary": "説明の補完をAPIまたはコピー＆貼付の手順で行う。",
+      "specification": "ブラウザからGemini generateContentへ送る経路と、取得情報を100件単位に分けてGemini画面へ手動で渡し、戻ったJSONを読む経路を持つ。",
+      "constraints": [
+        "手動受け渡しは自動API連携ではない。設定したAPIキーを使う経路の利用上限・料金は未確認。"
+      ],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/ai-tool-manager/blob/f9aba42f6fc117a04f16f69357e77aeab1baf202/index.html"
+        }
+      ]
+    },
+    "auth": {
+      "label": "Googleログイン",
+      "status": "実装あり",
+      "summary": "OAuthでSheetsへのアクセス権を得る。",
+      "specification": "Google Identity ServicesのinitTokenClientでSheetsスコープのアクセストークンを取得し、ブラウザ内で利用する。",
+      "constraints": [
+        "認証設定やOAuthクライアントの現在の動作は未検証。"
+      ],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/ai-tool-manager/blob/f9aba42f6fc117a04f16f69357e77aeab1baf202/index.html"
+        }
+      ]
+    },
+    "sheets": {
+      "label": "Google Sheetsへの同期",
+      "status": "実装あり",
+      "summary": "取得済みデータを一覧シートへ書き込む。",
+      "specification": "syncToSheetsは対象シートの値をclearしてから一覧をPUTし、書式設定を適用する。Sheetsから読み直す処理も持つ。",
+      "constraints": [
+        "この同期経路は差分追記ではなくクリア後の書き直し。対象範囲に注意する。"
+      ],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/ai-tool-manager/blob/f9aba42f6fc117a04f16f69357e77aeab1baf202/index.html"
+        }
+      ]
+    },
+    "gas": {
+      "label": "外部GASの補助機能",
+      "status": "実装あり",
+      "summary": "保存・スケジュール・収集ログを設定済みGASへ依頼する。",
+      "specification": "callGasApiはGAS URLへGETでactionを送る。setSchedule等の呼出し口をUIに備える。",
+      "constraints": [
+        "GAS本体のコードはこのリポジトリに存在しない。外部にある実装や実際のスケジュール稼働は確認できない。"
+      ],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/ai-tool-manager/blob/f9aba42f6fc117a04f16f69357e77aeab1baf202/index.html"
+        }
+      ]
+    }
+  },
+  "features": [
+    {
+      "label": "このアプリの特徴",
+      "summary": "ブラウザで取得・AI補完・保存をつなぐ。独自サーバーは含まず、GAS機能は外部依存。",
+      "detail": "AIツール情報の取得・整理・一覧表示とGoogle Sheetsへの保存を、単一HTMLから操作する。",
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/ai-tool-manager/blob/f9aba42f6fc117a04f16f69357e77aeab1baf202/index.html"
+        }
+      ]
+    }
+  ],
+  "flows": [
+    {
+      "title": "ツールの取得と整理",
+      "kind": "solid",
+      "columns": [
+        [
+          "source"
+        ],
+        [
+          "ai"
+        ],
+        [
+          "ui"
+        ]
+      ],
+      "labels": [
+        "取得情報を補完・整形",
+        "結果を一覧へ反映"
+      ],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/ai-tool-manager/blob/f9aba42f6fc117a04f16f69357e77aeab1baf202/index.html"
+        }
+      ]
+    },
+    {
+      "title": "一覧の共有保存",
+      "kind": "solid",
+      "columns": [
+        [
+          "ui"
+        ],
+        [
+          "auth"
+        ],
+        [
+          "sheets"
+        ]
+      ],
+      "labels": [
+        "Googleログインで権限取得",
+        "トークンでSheetsを読み書き"
+      ],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/ai-tool-manager/blob/f9aba42f6fc117a04f16f69357e77aeab1baf202/index.html"
+        }
+      ]
+    }
+  ]
+}

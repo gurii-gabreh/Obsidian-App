@@ -1,0 +1,742 @@
+{
+  "nodes": [
+    {
+      "id": "c3182eaac7dff82a",
+      "type": "group",
+      "x": 500,
+      "y": -45,
+      "width": 2370,
+      "height": 590,
+      "label": "画面・操作",
+      "color": "5"
+    },
+    {
+      "id": "ce0862df5a189b77",
+      "type": "group",
+      "x": 500,
+      "y": 715,
+      "width": 2370,
+      "height": 1510,
+      "label": "処理・外部連携",
+      "color": "4"
+    },
+    {
+      "id": "7f16b064687f39c1",
+      "type": "group",
+      "x": 500,
+      "y": 2395,
+      "width": 2370,
+      "height": 390,
+      "label": "保存・表示",
+      "color": "6"
+    },
+    {
+      "id": "12f34febabbeec4e",
+      "type": "group",
+      "x": 500,
+      "y": 2955,
+      "width": 2370,
+      "height": 530,
+      "label": "定期処理",
+      "color": "2"
+    },
+    {
+      "id": "6c2dbdf47a43157f",
+      "type": "group",
+      "x": 500,
+      "y": 3655,
+      "width": 2370,
+      "height": 470,
+      "label": "アプリの特徴",
+      "color": "6"
+    },
+    {
+      "id": "cc966ef6b18cd6ac",
+      "type": "group",
+      "x": 990,
+      "y": 4310,
+      "width": 4560,
+      "height": 560,
+      "label": "手動の価格取得"
+    },
+    {
+      "id": "138d05c4d011886c",
+      "type": "group",
+      "x": 990,
+      "y": 4950,
+      "width": 3560,
+      "height": 500,
+      "label": "保存して閲覧"
+    },
+    {
+      "id": "5fd76cf72f0bd6eb",
+      "type": "group",
+      "x": 990,
+      "y": 5530,
+      "width": 2480,
+      "height": 420,
+      "label": "定期処理の範囲"
+    },
+    {
+      "id": "44dd9a737bbbbc28",
+      "type": "text",
+      "x": 1050,
+      "y": 140,
+      "width": 540,
+      "height": 220,
+      "text": "## 画面とJSモジュール\n\n**確認区分：実装あり**\n\n店舗設定・収集操作・価格一覧を分けて表示する。",
+      "color": "5"
+    },
+    {
+      "id": "0b0c5a4157b73f1e",
+      "type": "text",
+      "x": 1810,
+      "y": 0,
+      "width": 1000,
+      "height": 500,
+      "text": "## 最終仕様\n\nindex.html、home.html、prices.htmlとapp.js／ui.js／scraper.jsで構成する。設定済みGASへactionを送って取得・保存する。\n\n### 現在の制約・確認範囲\n\n- 接続先の稼働環境は未検証。\n\n### 根拠\n\n- [index.html](https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/index.html)\n- [prices.html](https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/prices.html)\n- [js/app.js](https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/js/app.js)\n- [js/scraper.js](https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/js/scraper.js)",
+      "color": "5"
+    },
+    {
+      "id": "ce88dc3083792793",
+      "type": "text",
+      "x": 560,
+      "y": 170,
+      "width": 300,
+      "height": 160,
+      "text": "## 画面・操作\n\n1仕様項目",
+      "color": "5"
+    },
+    {
+      "id": "d6263917c1fdcc64",
+      "type": "text",
+      "x": 1050,
+      "y": 830,
+      "width": 540,
+      "height": 240,
+      "text": "## GAS API\n\n**確認区分：実装あり**\n\nWebからの依頼を受け、店舗検索・取得・保存を振り分ける。",
+      "color": "4"
+    },
+    {
+      "id": "211ff15ab065821a",
+      "type": "text",
+      "x": 1810,
+      "y": 760,
+      "width": 1000,
+      "height": 380,
+      "text": "## 最終仕様\n\ndoGet／doPostがfindStores、scrape、save等を受け、UrlFetchAppとSpreadsheetAppの処理へ渡す。\n\n### 現在の制約・確認範囲\n\n- 読み取り以外の操作にもGET入口がある。個別利用者の認証は今回確認していない。\n\n### 根拠\n\n- [Code.gs](https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/Code.gs)",
+      "color": "4"
+    },
+    {
+      "id": "b608bb69d1b3f94f",
+      "type": "text",
+      "x": 1050,
+      "y": 1340,
+      "width": 540,
+      "height": 220,
+      "text": "## トクバイとチラシ画像\n\n**確認区分：実装あり**\n\n店舗URL・掲載画像を調べ、価格解析の入力にする。",
+      "color": "4"
+    },
+    {
+      "id": "fac80d6c8aa9dc55",
+      "type": "text",
+      "x": 1810,
+      "y": 1240,
+      "width": 1000,
+      "height": 420,
+      "text": "## 最終仕様\n\n住所検索、店舗URLの検証、チラシ画像URL抽出を行う。画像取得不能時の処理もGAS側へまとめる。\n\n### 現在の制約・確認範囲\n\n- 対象サイトのHTMLやURL構造に依存する。\n\n### 根拠\n\n- [Code.gs](https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/Code.gs)\n- [js/scraper.js](https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/js/scraper.js)",
+      "color": "4"
+    },
+    {
+      "id": "f06fcf85667e5d6c",
+      "type": "text",
+      "x": 1050,
+      "y": 1860,
+      "width": 540,
+      "height": 220,
+      "text": "## Geminiによる価格抽出\n\n**確認区分：実装あり**\n\n画像から商品・価格・期間などを構造化する。",
+      "color": "4"
+    },
+    {
+      "id": "138b359576003134",
+      "type": "text",
+      "x": 1810,
+      "y": 1760,
+      "width": 1000,
+      "height": 420,
+      "text": "## 最終仕様\n\nanalyzeChirashiImagesが画像と指示をGeminiへ送り、JSONを解析する。表記揺れ・日付・重複の調整処理を持つ。\n\n### 現在の制約・確認範囲\n\n- AIの抽出結果であり、印刷価格との一致をコードだけでは保証できない。\n\n### 根拠\n\n- [Code.gs](https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/Code.gs)",
+      "color": "4"
+    },
+    {
+      "id": "d0cef71666f0f799",
+      "type": "text",
+      "x": 560,
+      "y": 1390,
+      "width": 300,
+      "height": 160,
+      "text": "## 処理・外部連携\n\n3仕様項目",
+      "color": "4"
+    },
+    {
+      "id": "64957349b9c5a2de",
+      "type": "text",
+      "x": 1050,
+      "y": 2480,
+      "width": 540,
+      "height": 220,
+      "text": "## Google Sheets\n\n**確認区分：実装あり**\n\n店舗・価格履歴・設定・平均価格などを保存する。",
+      "color": "6"
+    },
+    {
+      "id": "033432848382ce87",
+      "type": "text",
+      "x": 1810,
+      "y": 2440,
+      "width": 1000,
+      "height": 300,
+      "text": "## 最終仕様\n\n価格の保存、登録店舗と日付の読込、フィルタ候補生成、平均価格集計をGASが担当し、画面へ返す。\n\n### 根拠\n\n- [Code.gs](https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/Code.gs)\n- [prices.html](https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/prices.html)",
+      "color": "6"
+    },
+    {
+      "id": "ee0bdbcde24b6917",
+      "type": "text",
+      "x": 560,
+      "y": 2510,
+      "width": 300,
+      "height": 160,
+      "text": "## 保存・表示\n\n1仕様項目",
+      "color": "6"
+    },
+    {
+      "id": "9e9f5b4550adc6e6",
+      "type": "text",
+      "x": 1050,
+      "y": 3110,
+      "width": 540,
+      "height": 220,
+      "text": "## 更新チェックと収集待ちリスト\n\n**確認区分：実装あり**\n\n定期処理は更新店舗を待ちリストへ登録する。",
+      "color": "2"
+    },
+    {
+      "id": "4e21c405a639e5a3",
+      "type": "text",
+      "x": 1810,
+      "y": 3000,
+      "width": 1000,
+      "height": 440,
+      "text": "## 最終仕様\n\nautoCollectは自動ONを確認し、更新店舗を「収集待ちリスト」へ記録して平均価格を集計する。トリガーの作成・切替処理がある。\n\n### 現在の制約・確認範囲\n\n- この定期関数はPython側の価格取得を想定しており、このリポジトリにはそのPythonコードがない。定期実行だけで価格解析まで完了するとは言えない。\n\n### 根拠\n\n- [Code.gs](https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/Code.gs)",
+      "color": "2"
+    },
+    {
+      "id": "ce37eeda8cab1f46",
+      "type": "text",
+      "x": 560,
+      "y": 3140,
+      "width": 300,
+      "height": 160,
+      "text": "## 定期処理\n\n1仕様項目",
+      "color": "2"
+    },
+    {
+      "id": "a57d61a733122d62",
+      "type": "text",
+      "x": 1050,
+      "y": 3800,
+      "width": 540,
+      "height": 180,
+      "text": "## このアプリの特徴\n\n手動取得と定期の更新チェックは別経路。外部にある想定のPython処理を完了済みと扱わない。",
+      "color": "6"
+    },
+    {
+      "id": "a719bae325d9766d",
+      "type": "text",
+      "x": 1810,
+      "y": 3700,
+      "width": 1000,
+      "height": 380,
+      "text": "## アプリの特徴\n\n住所周辺の店舗とチラシ画像から商品価格を収集し、日付・店舗別に閲覧する。\n\n### 根拠\n\n- [index.html](https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/index.html)\n- [prices.html](https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/prices.html)\n- [js/app.js](https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/js/app.js)\n- [js/scraper.js](https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/js/scraper.js)\n- [Code.gs](https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/Code.gs)",
+      "color": "6"
+    },
+    {
+      "id": "5b8a8b56dada6ce7",
+      "type": "text",
+      "x": 560,
+      "y": 3800,
+      "width": 300,
+      "height": 180,
+      "text": "## アプリの特徴\n\n機能の組合せ・運用方法・設計上の性質",
+      "color": "6"
+    },
+    {
+      "id": "f623ff49da8d81cd",
+      "type": "text",
+      "x": 1050,
+      "y": 4340,
+      "width": 540,
+      "height": 500,
+      "text": "## 手動の価格取得\n\nactionで収集依頼\n\n店舗・画像を取得\n\n画像から商品情報を抽出\n\n記録に基づく前提・対応順\n\n- [index.html](https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/index.html)\n- [prices.html](https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/prices.html)\n- [js/app.js](https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/js/app.js)\n- [js/scraper.js](https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/js/scraper.js)\n- [Code.gs](https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/Code.gs)",
+      "color": "1"
+    },
+    {
+      "id": "b4395f34967fee2a",
+      "type": "text",
+      "x": 1810,
+      "y": 4340,
+      "width": 620,
+      "height": 280,
+      "text": "## ui\n\n**画面とJSモジュール**\n\n店舗設定・収集操作・価格一覧を分けて表示する。\n\n上側の同じ項目の再掲。",
+      "color": "5"
+    },
+    {
+      "id": "b25d50193955a4fc",
+      "type": "text",
+      "x": 2650,
+      "y": 4340,
+      "width": 760,
+      "height": 280,
+      "text": "## gas\n\n**GAS API**\n\nWebからの依頼を受け、店舗検索・取得・保存を振り分ける。\n\n上側の同じ項目の再掲。",
+      "color": "4"
+    },
+    {
+      "id": "c0d5017348fb926f",
+      "type": "text",
+      "x": 3650,
+      "y": 4340,
+      "width": 840,
+      "height": 280,
+      "text": "## flyer\n\n**トクバイとチラシ画像**\n\n店舗URL・掲載画像を調べ、価格解析の入力にする。\n\n上側の同じ項目の再掲。",
+      "color": "4"
+    },
+    {
+      "id": "07ab1a462bf44409",
+      "type": "text",
+      "x": 4730,
+      "y": 4340,
+      "width": 760,
+      "height": 280,
+      "text": "## gemini\n\n**Geminiによる価格抽出**\n\n画像から商品・価格・期間などを構造化する。\n\n上側の同じ項目の再掲。",
+      "color": "4"
+    },
+    {
+      "id": "17d346ba646448be",
+      "type": "text",
+      "x": 1050,
+      "y": 4980,
+      "width": 540,
+      "height": 440,
+      "text": "## 保存して閲覧\n\n価格・店舗・収集日時を保存\n\n条件に合う履歴を返す\n\n記録に基づく前提・対応順\n\n- [Code.gs](https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/Code.gs)\n- [prices.html](https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/prices.html)\n- [index.html](https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/index.html)\n- [js/app.js](https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/js/app.js)\n- [js/scraper.js](https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/js/scraper.js)",
+      "color": "1"
+    },
+    {
+      "id": "f8b1b8dd9b985c0c",
+      "type": "text",
+      "x": 1810,
+      "y": 4980,
+      "width": 620,
+      "height": 280,
+      "text": "## gemini\n\n**Geminiによる価格抽出**\n\n画像から商品・価格・期間などを構造化する。\n\n上側の同じ項目の再掲。",
+      "color": "4"
+    },
+    {
+      "id": "4f36c2b17b96a8a1",
+      "type": "text",
+      "x": 2650,
+      "y": 4980,
+      "width": 760,
+      "height": 280,
+      "text": "## sheet\n\n**Google Sheets**\n\n店舗・価格履歴・設定・平均価格などを保存する。\n\n上側の同じ項目の再掲。",
+      "color": "6"
+    },
+    {
+      "id": "da0932f1fbf22b7b",
+      "type": "text",
+      "x": 3650,
+      "y": 4980,
+      "width": 840,
+      "height": 280,
+      "text": "## ui\n\n**画面とJSモジュール**\n\n店舗設定・収集操作・価格一覧を分けて表示する。\n\n上側の同じ項目の再掲。",
+      "color": "5"
+    },
+    {
+      "id": "a114a8acdd550009",
+      "type": "text",
+      "x": 1050,
+      "y": 5590,
+      "width": 540,
+      "height": 300,
+      "text": "## 定期処理の範囲\n\n更新店舗の待ちリストと平均価格を更新\n\n記録に基づく前提・対応順\n\n- [Code.gs](https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/Code.gs)\n- [prices.html](https://github.com/gurii-gabreh/supermarket-price-tracker/blob/8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97/prices.html)",
+      "color": "1"
+    },
+    {
+      "id": "ab5021b459cab156",
+      "type": "text",
+      "x": 1810,
+      "y": 5560,
+      "width": 620,
+      "height": 280,
+      "text": "## schedule\n\n**更新チェックと収集待ちリスト**\n\n定期処理は更新店舗を待ちリストへ登録する。\n\n上側の同じ項目の再掲。",
+      "color": "2"
+    },
+    {
+      "id": "0b4dc6d157889e4e",
+      "type": "text",
+      "x": 2650,
+      "y": 5560,
+      "width": 760,
+      "height": 280,
+      "text": "## sheet\n\n**Google Sheets**\n\n店舗・価格履歴・設定・平均価格などを保存する。\n\n上側の同じ項目の再掲。",
+      "color": "6"
+    },
+    {
+      "id": "e2ba41af03120f14",
+      "type": "text",
+      "x": 560,
+      "y": 5020,
+      "width": 300,
+      "height": 360,
+      "text": "## つながり\n\n矢印：記録から確認できる前提・対応順\n\n矢印なし＋関連ラベル：依存を意味しない関連\n\nカードは上側の同じ項目の再掲。",
+      "color": "1"
+    },
+    {
+      "id": "4813494d137e1631",
+      "type": "text",
+      "x": 0,
+      "y": 2630,
+      "width": 380,
+      "height": 800,
+      "text": "# Supermarket Price Tracker：内部構成・連関図\n\n**gurii-gabreh/supermarket-price-tracker**\n\n住所周辺の店舗とチラシ画像から商品価格を収集し、日付・店舗別に閲覧する。 上側は役割別の内部構成、下側はデータのつながり。\n\nモード：最終仕様・アプリの特徴\n\n記録：2026-10-17 JST\n\n対象：8e4c251f4a91d7b2e424f1cfc5a5c92aab899b97\n\n- 既定ブランチ main の固定コミットを確認したスナップショット。\n- 実装ありはコードの存在を示す。稼働環境・認証設定・実機での動作は未検証。\n- 技術・モデル・サービス名はコード中の設定や候補。現行の提供状況・料金を保証しない。"
+    }
+  ],
+  "edges": [
+    {
+      "id": "d6e243df852fa85e",
+      "fromNode": "44dd9a737bbbbc28",
+      "fromSide": "right",
+      "toNode": "0b0c5a4157b73f1e",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "5"
+    },
+    {
+      "id": "da4b403818b00f8a",
+      "fromNode": "ce88dc3083792793",
+      "fromSide": "right",
+      "toNode": "44dd9a737bbbbc28",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "5"
+    },
+    {
+      "id": "f89ee3b5925646ae",
+      "fromNode": "d6263917c1fdcc64",
+      "fromSide": "right",
+      "toNode": "211ff15ab065821a",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "4"
+    },
+    {
+      "id": "fe31025b56f67395",
+      "fromNode": "b608bb69d1b3f94f",
+      "fromSide": "right",
+      "toNode": "fac80d6c8aa9dc55",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "4"
+    },
+    {
+      "id": "069d1d1acdd5eb02",
+      "fromNode": "f06fcf85667e5d6c",
+      "fromSide": "right",
+      "toNode": "138b359576003134",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "4"
+    },
+    {
+      "id": "0accccdd87b92036",
+      "fromNode": "d0cef71666f0f799",
+      "fromSide": "right",
+      "toNode": "d6263917c1fdcc64",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "4"
+    },
+    {
+      "id": "cbdaeceff9a7d71f",
+      "fromNode": "d0cef71666f0f799",
+      "fromSide": "right",
+      "toNode": "b608bb69d1b3f94f",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "4"
+    },
+    {
+      "id": "a8556aba0a85a507",
+      "fromNode": "d0cef71666f0f799",
+      "fromSide": "right",
+      "toNode": "f06fcf85667e5d6c",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "4"
+    },
+    {
+      "id": "9205f250494b10dc",
+      "fromNode": "64957349b9c5a2de",
+      "fromSide": "right",
+      "toNode": "033432848382ce87",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "6"
+    },
+    {
+      "id": "e37b51275139e400",
+      "fromNode": "ee0bdbcde24b6917",
+      "fromSide": "right",
+      "toNode": "64957349b9c5a2de",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "832d345f207bf111",
+      "fromNode": "9e9f5b4550adc6e6",
+      "fromSide": "right",
+      "toNode": "4e21c405a639e5a3",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "2"
+    },
+    {
+      "id": "845b6cfe357a281f",
+      "fromNode": "ce37eeda8cab1f46",
+      "fromSide": "right",
+      "toNode": "9e9f5b4550adc6e6",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "2"
+    },
+    {
+      "id": "6cb427e911baf6b9",
+      "fromNode": "a57d61a733122d62",
+      "fromSide": "right",
+      "toNode": "a719bae325d9766d",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "特徴・根拠",
+      "color": "6"
+    },
+    {
+      "id": "2b00e69b1e7cbdc6",
+      "fromNode": "5b8a8b56dada6ce7",
+      "fromSide": "right",
+      "toNode": "a57d61a733122d62",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "1d8c82cc1c586024",
+      "fromNode": "f623ff49da8d81cd",
+      "fromSide": "right",
+      "toNode": "b4395f34967fee2a",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "対象",
+      "color": "1"
+    },
+    {
+      "id": "88abb2a288cc0340",
+      "fromNode": "b4395f34967fee2a",
+      "fromSide": "right",
+      "toNode": "b25d50193955a4fc",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "actionで収集依頼",
+      "color": "1"
+    },
+    {
+      "id": "76b09dedc63865ff",
+      "fromNode": "b25d50193955a4fc",
+      "fromSide": "right",
+      "toNode": "c0d5017348fb926f",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "店舗・画像を取得",
+      "color": "1"
+    },
+    {
+      "id": "9048732be728ba6e",
+      "fromNode": "c0d5017348fb926f",
+      "fromSide": "right",
+      "toNode": "07ab1a462bf44409",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "画像から商品情報を抽出",
+      "color": "1"
+    },
+    {
+      "id": "1ce0ee41fbcfcd16",
+      "fromNode": "17d346ba646448be",
+      "fromSide": "right",
+      "toNode": "f8b1b8dd9b985c0c",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "対象",
+      "color": "1"
+    },
+    {
+      "id": "e641a54b6b9ee530",
+      "fromNode": "f8b1b8dd9b985c0c",
+      "fromSide": "right",
+      "toNode": "4f36c2b17b96a8a1",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "価格・店舗・収集日時を保存",
+      "color": "1"
+    },
+    {
+      "id": "85a5bc377d43477d",
+      "fromNode": "4f36c2b17b96a8a1",
+      "fromSide": "right",
+      "toNode": "da0932f1fbf22b7b",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "条件に合う履歴を返す",
+      "color": "1"
+    },
+    {
+      "id": "6d3c4ff4dad10d25",
+      "fromNode": "a114a8acdd550009",
+      "fromSide": "right",
+      "toNode": "ab5021b459cab156",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "対象",
+      "color": "1"
+    },
+    {
+      "id": "2d93832bbfacdb82",
+      "fromNode": "ab5021b459cab156",
+      "fromSide": "right",
+      "toNode": "0b4dc6d157889e4e",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "更新店舗の待ちリストと平均価格を更新",
+      "color": "1"
+    },
+    {
+      "id": "50cf9b97ca409dbe",
+      "fromNode": "e2ba41af03120f14",
+      "fromSide": "right",
+      "toNode": "f623ff49da8d81cd",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "c430f57278c147cf",
+      "fromNode": "e2ba41af03120f14",
+      "fromSide": "right",
+      "toNode": "17d346ba646448be",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "70dcc246c1929c56",
+      "fromNode": "e2ba41af03120f14",
+      "fromSide": "right",
+      "toNode": "a114a8acdd550009",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "5145b22327e2fb3a",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ce88dc3083792793",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "3c07761d4b76552b",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "d0cef71666f0f799",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "1d76aa95b0f28424",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ee0bdbcde24b6917",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "0042dcd6d3816f37",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ce37eeda8cab1f46",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "7cfc9006fd350501",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "5b8a8b56dada6ce7",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "7f9b55e4664dd8f1",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "e2ba41af03120f14",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    }
+  ]
+}

@@ -1,0 +1,264 @@
+{
+  "mode": "spec",
+  "title": "Text Extraction：内部構成・連関図",
+  "repo": "gurii-gabreh/Text-Extraction",
+  "ref": "4f3343099b369800554b14475f9e1c42035d58f8",
+  "asOf": "2026-10-17 JST",
+  "scope": "試験問題の画像をClaude CLIで構造化し、Google Sheetsへ記録して処理済みフォルダへ移す。 上側は役割別の内部構成、下側はデータのつながり。",
+  "limitations": [
+    "既定ブランチ claude/app-creation-resources-eenb15 の固定コミットを確認したスナップショット。",
+    "実装ありはコードの存在を示す。稼働環境・認証設定・実機での動作は未検証。",
+    "技術・モデル・サービス名はコード中の設定や候補。現行の提供状況・料金を保証しない。"
+  ],
+  "categories": [
+    {
+      "key": "category-0",
+      "label": "実行の入口",
+      "ids": [
+        "ui"
+      ]
+    },
+    {
+      "key": "category-1",
+      "label": "画像と認証",
+      "ids": [
+        "drive"
+      ]
+    },
+    {
+      "key": "category-2",
+      "label": "処理",
+      "ids": [
+        "pipeline",
+        "claude"
+      ]
+    },
+    {
+      "key": "category-3",
+      "label": "出力・保存",
+      "ids": [
+        "sheets"
+      ]
+    }
+  ],
+  "items": {
+    "ui": {
+      "label": "Flask画面とbatch.py",
+      "status": "実装あり",
+      "summary": "設定画面から手動実行、またはcronで同じ処理を呼ぶ。",
+      "specification": "Flaskは127.0.0.1:5000で設定・フォルダ選択・/runを提供する。batch.pyも共通のrun_processingを使う。",
+      "constraints": [
+        "Webサーバーを起動せずbatch.pyをcronから呼べる。cronの登録自体は別途必要。"
+      ],
+      "sources": [
+        {
+          "label": "app.py",
+          "url": "https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/app.py"
+        },
+        {
+          "label": "batch.py",
+          "url": "https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/batch.py"
+        },
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/README.md"
+        }
+      ]
+    },
+    "drive": {
+      "label": "Google Drive API",
+      "status": "実装あり",
+      "summary": "サービスアカウントで画像の一覧・取得・移動を行う。",
+      "specification": "認証JSONからDrive・Sheets用の資格情報を作る。画像を一時ディレクトリへダウンロードする。",
+      "constraints": [
+        "対象フォルダとシートへの共有設定が必要。list_imagesのページ送り処理は見当たらないため、大量画像の全件処理は別途確認が必要。"
+      ],
+      "sources": [
+        {
+          "label": "core/drive_client.py",
+          "url": "https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/core/drive_client.py"
+        },
+        {
+          "label": "core/processor.py",
+          "url": "https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/core/processor.py"
+        }
+      ]
+    },
+    "pipeline": {
+      "label": "共通の処理パイプライン",
+      "status": "実装あり",
+      "summary": "画像ごとの抽出・記録・移動を順番に進める。",
+      "specification": "run_processingが設定検証、ヘッダー確認、画像処理を制御する。画像ごとに例外を扱い、失敗をログへ残して次へ進む。",
+      "constraints": [],
+      "sources": [
+        {
+          "label": "core/processor.py",
+          "url": "https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/core/processor.py"
+        }
+      ]
+    },
+    "claude": {
+      "label": "Claude Code CLI",
+      "status": "実装あり",
+      "summary": "ReadツールとJSON Schemaで問題番号・本文・選択肢・正解を抽出する。",
+      "specification": "subprocessでclaude -pを起動し、モデル・タイムアウト・構造化出力を指定する。欠損やUNREADABLEは失敗とする。",
+      "constraints": [
+        "Claude CLIのインストール・認証が必要。コードはRead限定のツール指定に加え権限確認を省略する起動オプションも使用する。今回は実行していない。"
+      ],
+      "sources": [
+        {
+          "label": "core/claude_extractor.py",
+          "url": "https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/core/claude_extractor.py"
+        }
+      ]
+    },
+    "sheets": {
+      "label": "Sheetsへの追記と画像移動",
+      "status": "実装あり",
+      "summary": "抽出結果を1行追記し、成功した画像を処理済みへ移す。",
+      "specification": "Sheetsへ問題項目と元ファイル名を追記後、Driveの親フォルダを変更する。設定はローカルconfig.jsonへ保存する。",
+      "constraints": [
+        "追記と移動は一体のトランザクションではない。移動だけ失敗して再実行すると再追記されうる。"
+      ],
+      "sources": [
+        {
+          "label": "core/sheets_client.py",
+          "url": "https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/core/sheets_client.py"
+        },
+        {
+          "label": "core/drive_client.py",
+          "url": "https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/core/drive_client.py"
+        },
+        {
+          "label": "core/config.py",
+          "url": "https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/core/config.py"
+        },
+        {
+          "label": "core/processor.py",
+          "url": "https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/core/processor.py"
+        }
+      ]
+    }
+  },
+  "features": [
+    {
+      "label": "このアプリの特徴",
+      "summary": "ローカルPythonが調整役。画像認識はClaude CLI、保管と出力はGoogle APIが担当する。",
+      "detail": "試験問題の画像をClaude CLIで構造化し、Google Sheetsへ記録して処理済みフォルダへ移す。",
+      "sources": [
+        {
+          "label": "app.py",
+          "url": "https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/app.py"
+        },
+        {
+          "label": "batch.py",
+          "url": "https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/batch.py"
+        },
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/README.md"
+        },
+        {
+          "label": "core/drive_client.py",
+          "url": "https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/core/drive_client.py"
+        },
+        {
+          "label": "core/processor.py",
+          "url": "https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/core/processor.py"
+        }
+      ]
+    }
+  ],
+  "flows": [
+    {
+      "title": "画像から問題データへ",
+      "kind": "solid",
+      "columns": [
+        [
+          "ui"
+        ],
+        [
+          "pipeline"
+        ],
+        [
+          "drive"
+        ],
+        [
+          "claude"
+        ]
+      ],
+      "labels": [
+        "共通処理を起動",
+        "画像を一時取得",
+        "画像パスを渡して構造化抽出"
+      ],
+      "sources": [
+        {
+          "label": "app.py",
+          "url": "https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/app.py"
+        },
+        {
+          "label": "batch.py",
+          "url": "https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/batch.py"
+        },
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/README.md"
+        },
+        {
+          "label": "core/processor.py",
+          "url": "https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/core/processor.py"
+        },
+        {
+          "label": "core/drive_client.py",
+          "url": "https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/core/drive_client.py"
+        },
+        {
+          "label": "core/claude_extractor.py",
+          "url": "https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/core/claude_extractor.py"
+        }
+      ]
+    },
+    {
+      "title": "抽出成功後の保存",
+      "kind": "solid",
+      "columns": [
+        [
+          "claude"
+        ],
+        [
+          "sheets"
+        ],
+        [
+          "drive"
+        ]
+      ],
+      "labels": [
+        "問題項目を行として追記",
+        "記録後に処理済みへ移動"
+      ],
+      "sources": [
+        {
+          "label": "core/claude_extractor.py",
+          "url": "https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/core/claude_extractor.py"
+        },
+        {
+          "label": "core/sheets_client.py",
+          "url": "https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/core/sheets_client.py"
+        },
+        {
+          "label": "core/drive_client.py",
+          "url": "https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/core/drive_client.py"
+        },
+        {
+          "label": "core/config.py",
+          "url": "https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/core/config.py"
+        },
+        {
+          "label": "core/processor.py",
+          "url": "https://github.com/gurii-gabreh/Text-Extraction/blob/4f3343099b369800554b14475f9e1c42035d58f8/core/processor.py"
+        }
+      ]
+    }
+  ]
+}

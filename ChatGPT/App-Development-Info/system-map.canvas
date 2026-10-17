@@ -1,0 +1,538 @@
+{
+  "nodes": [
+    {
+      "id": "c3182eaac7dff82a",
+      "type": "group",
+      "x": 500,
+      "y": -45,
+      "width": 2370,
+      "height": 390,
+      "label": "画面・操作",
+      "color": "5"
+    },
+    {
+      "id": "ce0862df5a189b77",
+      "type": "group",
+      "x": 500,
+      "y": 515,
+      "width": 2370,
+      "height": 990,
+      "label": "コンテンツ",
+      "color": "4"
+    },
+    {
+      "id": "7f16b064687f39c1",
+      "type": "group",
+      "x": 500,
+      "y": 1675,
+      "width": 2370,
+      "height": 850,
+      "label": "方針・公開",
+      "color": "6"
+    },
+    {
+      "id": "6c2dbdf47a43157f",
+      "type": "group",
+      "x": 500,
+      "y": 2695,
+      "width": 2370,
+      "height": 390,
+      "label": "アプリの特徴",
+      "color": "6"
+    },
+    {
+      "id": "cc966ef6b18cd6ac",
+      "type": "group",
+      "x": 990,
+      "y": 3270,
+      "width": 2480,
+      "height": 420,
+      "label": "学習の参照経路"
+    },
+    {
+      "id": "138d05c4d011886c",
+      "type": "group",
+      "x": 990,
+      "y": 3770,
+      "width": 2480,
+      "height": 420,
+      "label": "理解の振り返り"
+    },
+    {
+      "id": "782c93ef342a8c46",
+      "type": "text",
+      "x": 1050,
+      "y": 40,
+      "width": 540,
+      "height": 220,
+      "text": "## 分野一覧\n\n**確認区分：実装あり**\n\n学習資料と記録へリンクする入口。",
+      "color": "5"
+    },
+    {
+      "id": "3df1b3a89c168f62",
+      "type": "text",
+      "x": 1810,
+      "y": 0,
+      "width": 1000,
+      "height": 300,
+      "text": "## 最終仕様\n\nindex.htmlからアーキテクチャ、サーバー、セキュリティ、AI、DB、テスト、設計等のページを開く。\n\n### 根拠\n\n- [index.html](https://github.com/gurii-gabreh/App-Development-Info/blob/74dd21a58f133b43c0e0aa7edaa3331f1b296ec1/index.html)\n- [README.md](https://github.com/gurii-gabreh/App-Development-Info/blob/74dd21a58f133b43c0e0aa7edaa3331f1b296ec1/README.md)",
+      "color": "5"
+    },
+    {
+      "id": "ce88dc3083792793",
+      "type": "text",
+      "x": 560,
+      "y": 70,
+      "width": 300,
+      "height": 160,
+      "text": "## 画面・操作\n\n1仕様項目",
+      "color": "5"
+    },
+    {
+      "id": "a04ee825b51e45ff",
+      "type": "text",
+      "x": 1050,
+      "y": 660,
+      "width": 540,
+      "height": 220,
+      "text": "## 学習資料\n\n**確認区分：実装あり**\n\n分野ごとの説明とレッスンをHTMLで保持する。",
+      "color": "4"
+    },
+    {
+      "id": "be953c598e227981",
+      "type": "text",
+      "x": 1810,
+      "y": 560,
+      "width": 1000,
+      "height": 420,
+      "text": "## 最終仕様\n\nmaterials配下の分野ページとlessonページに内容を直接記載する。画面はHTML同士のリンクで遷移する。\n\n### 現在の制約・確認範囲\n\n- 動的な教材DBや外部AI自動生成のランタイムではない。\n\n### 根拠\n\n- [README.md](https://github.com/gurii-gabreh/App-Development-Info/blob/74dd21a58f133b43c0e0aa7edaa3331f1b296ec1/README.md)\n- [index.html](https://github.com/gurii-gabreh/App-Development-Info/blob/74dd21a58f133b43c0e0aa7edaa3331f1b296ec1/index.html)",
+      "color": "4"
+    },
+    {
+      "id": "c55287f9c79437d7",
+      "type": "text",
+      "x": 1050,
+      "y": 1160,
+      "width": 540,
+      "height": 220,
+      "text": "## 学習記録\n\n**確認区分：実装あり**\n\n理解の原文、正誤、他AI確認の記録を分ける。",
+      "color": "4"
+    },
+    {
+      "id": "74fd24de496faa6b",
+      "type": "text",
+      "x": 1810,
+      "y": 1080,
+      "width": 1000,
+      "height": 380,
+      "text": "## 最終仕様\n\nrecords配下に記録を置き、資料とは別に管理する。未実施の確認は未実施として残す方針。\n\n### 現在の制約・確認範囲\n\n- サイトに学習記録の入力・自動採点・保存APIは見当たらない。\n\n### 根拠\n\n- [README.md](https://github.com/gurii-gabreh/App-Development-Info/blob/74dd21a58f133b43c0e0aa7edaa3331f1b296ec1/README.md)",
+      "color": "4"
+    },
+    {
+      "id": "d0cef71666f0f799",
+      "type": "text",
+      "x": 560,
+      "y": 930,
+      "width": 300,
+      "height": 160,
+      "text": "## コンテンツ\n\n2仕様項目",
+      "color": "4"
+    },
+    {
+      "id": "b652b9fb6cf4f375",
+      "type": "text",
+      "x": 1050,
+      "y": 1750,
+      "width": 540,
+      "height": 220,
+      "text": "## 学習・開発の方針\n\n**確認区分：実装あり**\n\n確認の基準や進め方をページとして示す。",
+      "color": "6"
+    },
+    {
+      "id": "cde5fabb58c6df07",
+      "type": "text",
+      "x": 1810,
+      "y": 1720,
+      "width": 1000,
+      "height": 280,
+      "text": "## 最終仕様\n\npolicy.htmlを独立させ、学習の進め方と記録の扱いを参照できるようにする。\n\n### 根拠\n\n- [policy.html](https://github.com/gurii-gabreh/App-Development-Info/blob/74dd21a58f133b43c0e0aa7edaa3331f1b296ec1/policy.html)",
+      "color": "6"
+    },
+    {
+      "id": "5962e691aa58603b",
+      "type": "text",
+      "x": 1050,
+      "y": 2180,
+      "width": 540,
+      "height": 220,
+      "text": "## 静的公開\n\n**確認区分：実装あり**\n\nGitHub ActionsからHTMLをPagesへ公開する。",
+      "color": "6"
+    },
+    {
+      "id": "1389d57940226d30",
+      "type": "text",
+      "x": 1810,
+      "y": 2100,
+      "width": 1000,
+      "height": 380,
+      "text": "## 最終仕様\n\ndeploy-pages.ymlがmain更新を入口に静的ページを配置する。更新はHTMLの編集・commitで行う。\n\n### 現在の制約・確認範囲\n\n- 外部サービスの稼働や現在の公開結果は未検証。\n\n### 根拠\n\n- [.github/workflows/deploy-pages.yml](https://github.com/gurii-gabreh/App-Development-Info/blob/74dd21a58f133b43c0e0aa7edaa3331f1b296ec1/.github/workflows/deploy-pages.yml)",
+      "color": "6"
+    },
+    {
+      "id": "ee0bdbcde24b6917",
+      "type": "text",
+      "x": 560,
+      "y": 2020,
+      "width": 300,
+      "height": 160,
+      "text": "## 方針・公開\n\n2仕様項目",
+      "color": "6"
+    },
+    {
+      "id": "a57d61a733122d62",
+      "type": "text",
+      "x": 1050,
+      "y": 2800,
+      "width": 540,
+      "height": 180,
+      "text": "## このアプリの特徴\n\n学習資料そのものと、自分がどう理解したかの記録を別のHTMLとして管理する。",
+      "color": "6"
+    },
+    {
+      "id": "a719bae325d9766d",
+      "type": "text",
+      "x": 1810,
+      "y": 2740,
+      "width": 1000,
+      "height": 300,
+      "text": "## アプリの特徴\n\nアプリ開発の学習資料と、自分の理解・正誤・第二意見の記録を分けて読む静的サイト。\n\n### 根拠\n\n- [index.html](https://github.com/gurii-gabreh/App-Development-Info/blob/74dd21a58f133b43c0e0aa7edaa3331f1b296ec1/index.html)\n- [README.md](https://github.com/gurii-gabreh/App-Development-Info/blob/74dd21a58f133b43c0e0aa7edaa3331f1b296ec1/README.md)",
+      "color": "6"
+    },
+    {
+      "id": "5b8a8b56dada6ce7",
+      "type": "text",
+      "x": 560,
+      "y": 2800,
+      "width": 300,
+      "height": 180,
+      "text": "## アプリの特徴\n\n機能の組合せ・運用方法・設計上の性質",
+      "color": "6"
+    },
+    {
+      "id": "f623ff49da8d81cd",
+      "type": "text",
+      "x": 1050,
+      "y": 3330,
+      "width": 540,
+      "height": 300,
+      "text": "## 学習の参照経路\n\n分野・レッスンのHTMLへ遷移\n\n記録に基づく前提・対応順\n\n- [index.html](https://github.com/gurii-gabreh/App-Development-Info/blob/74dd21a58f133b43c0e0aa7edaa3331f1b296ec1/index.html)\n- [README.md](https://github.com/gurii-gabreh/App-Development-Info/blob/74dd21a58f133b43c0e0aa7edaa3331f1b296ec1/README.md)",
+      "color": "1"
+    },
+    {
+      "id": "b4395f34967fee2a",
+      "type": "text",
+      "x": 1810,
+      "y": 3300,
+      "width": 620,
+      "height": 280,
+      "text": "## home\n\n**分野一覧**\n\n学習資料と記録へリンクする入口。\n\n上側の同じ項目の再掲。",
+      "color": "5"
+    },
+    {
+      "id": "b25d50193955a4fc",
+      "type": "text",
+      "x": 2650,
+      "y": 3300,
+      "width": 760,
+      "height": 280,
+      "text": "## materials\n\n**学習資料**\n\n分野ごとの説明とレッスンをHTMLで保持する。\n\n上側の同じ項目の再掲。",
+      "color": "4"
+    },
+    {
+      "id": "17d346ba646448be",
+      "type": "text",
+      "x": 1050,
+      "y": 3830,
+      "width": 540,
+      "height": 300,
+      "text": "## 理解の振り返り\n\n別の記録ページを開いて比較\n\n記録に基づく前提・対応順\n\n- [index.html](https://github.com/gurii-gabreh/App-Development-Info/blob/74dd21a58f133b43c0e0aa7edaa3331f1b296ec1/index.html)\n- [README.md](https://github.com/gurii-gabreh/App-Development-Info/blob/74dd21a58f133b43c0e0aa7edaa3331f1b296ec1/README.md)",
+      "color": "1"
+    },
+    {
+      "id": "f8b1b8dd9b985c0c",
+      "type": "text",
+      "x": 1810,
+      "y": 3800,
+      "width": 620,
+      "height": 280,
+      "text": "## home\n\n**分野一覧**\n\n学習資料と記録へリンクする入口。\n\n上側の同じ項目の再掲。",
+      "color": "5"
+    },
+    {
+      "id": "4f36c2b17b96a8a1",
+      "type": "text",
+      "x": 2650,
+      "y": 3800,
+      "width": 760,
+      "height": 280,
+      "text": "## records\n\n**学習記録**\n\n理解の原文、正誤、他AI確認の記録を分ける。\n\n上側の同じ項目の再掲。",
+      "color": "4"
+    },
+    {
+      "id": "e2ba41af03120f14",
+      "type": "text",
+      "x": 560,
+      "y": 3620,
+      "width": 300,
+      "height": 360,
+      "text": "## つながり\n\n矢印：記録から確認できる前提・対応順\n\n矢印なし＋関連ラベル：依存を意味しない関連\n\nカードは上側の同じ項目の再掲。",
+      "color": "1"
+    },
+    {
+      "id": "4813494d137e1631",
+      "type": "text",
+      "x": 0,
+      "y": 1750,
+      "width": 380,
+      "height": 800,
+      "text": "# App Development Info：内部構成・連関図\n\n**gurii-gabreh/App-Development-Info**\n\nアプリ開発の学習資料と、自分の理解・正誤・第二意見の記録を分けて読む静的サイト。 上側は役割別の内部構成、下側はデータのつながり。\n\nモード：最終仕様・アプリの特徴\n\n記録：2026-10-17 JST\n\n対象：74dd21a58f133b43c0e0aa7edaa3331f1b296ec1\n\n- 既定ブランチ main の固定コミットを確認したスナップショット。\n- 実装ありはコードの存在を示す。稼働環境・認証設定・実機での動作は未検証。\n- 技術・モデル・サービス名はコード中の設定や候補。現行の提供状況・料金を保証しない。"
+    }
+  ],
+  "edges": [
+    {
+      "id": "1dab954be99397ed",
+      "fromNode": "782c93ef342a8c46",
+      "fromSide": "right",
+      "toNode": "3df1b3a89c168f62",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "5"
+    },
+    {
+      "id": "4735af3fbc1e77bb",
+      "fromNode": "ce88dc3083792793",
+      "fromSide": "right",
+      "toNode": "782c93ef342a8c46",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "5"
+    },
+    {
+      "id": "37d28b6771aef8de",
+      "fromNode": "a04ee825b51e45ff",
+      "fromSide": "right",
+      "toNode": "be953c598e227981",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "4"
+    },
+    {
+      "id": "7bf966c8419ddb13",
+      "fromNode": "c55287f9c79437d7",
+      "fromSide": "right",
+      "toNode": "74fd24de496faa6b",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "4"
+    },
+    {
+      "id": "c835e68fc1007133",
+      "fromNode": "d0cef71666f0f799",
+      "fromSide": "right",
+      "toNode": "a04ee825b51e45ff",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "4"
+    },
+    {
+      "id": "d58a4a359bdd64d2",
+      "fromNode": "d0cef71666f0f799",
+      "fromSide": "right",
+      "toNode": "c55287f9c79437d7",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "4"
+    },
+    {
+      "id": "ab530ef71dcd7d3a",
+      "fromNode": "b652b9fb6cf4f375",
+      "fromSide": "right",
+      "toNode": "cde5fabb58c6df07",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "6"
+    },
+    {
+      "id": "e37447dbc42de5fc",
+      "fromNode": "5962e691aa58603b",
+      "fromSide": "right",
+      "toNode": "1389d57940226d30",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "6"
+    },
+    {
+      "id": "1c94670eecdf552c",
+      "fromNode": "ee0bdbcde24b6917",
+      "fromSide": "right",
+      "toNode": "b652b9fb6cf4f375",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "7ad39a833cbf1503",
+      "fromNode": "ee0bdbcde24b6917",
+      "fromSide": "right",
+      "toNode": "5962e691aa58603b",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "44c1644f2f8fbaaf",
+      "fromNode": "a57d61a733122d62",
+      "fromSide": "right",
+      "toNode": "a719bae325d9766d",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "特徴・根拠",
+      "color": "6"
+    },
+    {
+      "id": "07f4ee95b1ffd79b",
+      "fromNode": "5b8a8b56dada6ce7",
+      "fromSide": "right",
+      "toNode": "a57d61a733122d62",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "8b754ae3247289bc",
+      "fromNode": "f623ff49da8d81cd",
+      "fromSide": "right",
+      "toNode": "b4395f34967fee2a",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "対象",
+      "color": "1"
+    },
+    {
+      "id": "50c109f6b68db6d6",
+      "fromNode": "b4395f34967fee2a",
+      "fromSide": "right",
+      "toNode": "b25d50193955a4fc",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "分野・レッスンのHTMLへ遷移",
+      "color": "1"
+    },
+    {
+      "id": "48a8d996ae8b068e",
+      "fromNode": "17d346ba646448be",
+      "fromSide": "right",
+      "toNode": "f8b1b8dd9b985c0c",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "対象",
+      "color": "1"
+    },
+    {
+      "id": "7a06d954fee4f784",
+      "fromNode": "f8b1b8dd9b985c0c",
+      "fromSide": "right",
+      "toNode": "4f36c2b17b96a8a1",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "別の記録ページを開いて比較",
+      "color": "1"
+    },
+    {
+      "id": "327a7639edcfa661",
+      "fromNode": "e2ba41af03120f14",
+      "fromSide": "right",
+      "toNode": "f623ff49da8d81cd",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "6327d5c3cb8d8ced",
+      "fromNode": "e2ba41af03120f14",
+      "fromSide": "right",
+      "toNode": "17d346ba646448be",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "668ce6aa2eb1500b",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ce88dc3083792793",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "f191b49ca903eed4",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "d0cef71666f0f799",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "e944c730ad1ea065",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ee0bdbcde24b6917",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "194b2233a6690ec3",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "5b8a8b56dada6ce7",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "093f1ba51ebdad10",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "e2ba41af03120f14",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    }
+  ]
+}

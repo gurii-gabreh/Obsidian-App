@@ -1,0 +1,833 @@
+{
+  "nodes": [
+    {
+      "id": "c3182eaac7dff82a",
+      "type": "group",
+      "x": 500,
+      "y": -45,
+      "width": 2370,
+      "height": 550,
+      "label": "画面・操作",
+      "color": "5"
+    },
+    {
+      "id": "ce0862df5a189b77",
+      "type": "group",
+      "x": 500,
+      "y": 675,
+      "width": 2370,
+      "height": 390,
+      "label": "バックエンド",
+      "color": "4"
+    },
+    {
+      "id": "7f16b064687f39c1",
+      "type": "group",
+      "x": 500,
+      "y": 1235,
+      "width": 2370,
+      "height": 1090,
+      "label": "データ・認証",
+      "color": "6"
+    },
+    {
+      "id": "12f34febabbeec4e",
+      "type": "group",
+      "x": 500,
+      "y": 2495,
+      "width": 2370,
+      "height": 1110,
+      "label": "AIと保守",
+      "color": "2"
+    },
+    {
+      "id": "441f5dfeb4a1b330",
+      "type": "group",
+      "x": 500,
+      "y": 3775,
+      "width": 2370,
+      "height": 610,
+      "label": "試作・データ作成",
+      "color": "3"
+    },
+    {
+      "id": "6c2dbdf47a43157f",
+      "type": "group",
+      "x": 500,
+      "y": 4555,
+      "width": 2370,
+      "height": 450,
+      "label": "アプリの特徴",
+      "color": "6"
+    },
+    {
+      "id": "cc966ef6b18cd6ac",
+      "type": "group",
+      "x": 990,
+      "y": 5190,
+      "width": 4560,
+      "height": 660,
+      "label": "共有情報を保存する"
+    },
+    {
+      "id": "138d05c4d011886c",
+      "type": "group",
+      "x": 990,
+      "y": 5930,
+      "width": 4560,
+      "height": 580,
+      "label": "傾聴チャット"
+    },
+    {
+      "id": "5fd76cf72f0bd6eb",
+      "type": "group",
+      "x": 990,
+      "y": 6590,
+      "width": 2480,
+      "height": 480,
+      "label": "終了後の保守"
+    },
+    {
+      "id": "44dd9a737bbbbc28",
+      "type": "text",
+      "x": 1050,
+      "y": 110,
+      "width": 540,
+      "height": 240,
+      "text": "## Web画面・音声入力\n\n**確認区分：実装あり**\n\n地図、事前問診・間取り、前兆報告、傾聴チャットを表示する。",
+      "color": "5"
+    },
+    {
+      "id": "0b0c5a4157b73f1e",
+      "type": "text",
+      "x": 1810,
+      "y": 0,
+      "width": 1000,
+      "height": 460,
+      "text": "## 最終仕様\n\nバニラJSとLeafletで構成する。Web Speechによる一問一答で入力し、文字起こしを利用者が確認する。別クライアントの情報はポーリング等で取り込む。\n\n### 現在の制約・確認範囲\n\n- 端末の音声・位置情報権限に依存する。救助の予測や判断をするアプリではない。\n\n### 根拠\n\n- [kizashi-app/src/public/app.js](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/public/app.js)\n- [kizashi-app/src/public/voiceIntake.js](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/public/voiceIntake.js)\n- [kizashi-app/src/README.md](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/README.md)",
+      "color": "5"
+    },
+    {
+      "id": "ce88dc3083792793",
+      "type": "text",
+      "x": 560,
+      "y": 150,
+      "width": 300,
+      "height": 160,
+      "text": "## 画面・操作\n\n1仕様項目",
+      "color": "5"
+    },
+    {
+      "id": "92e641f7007aa305",
+      "type": "text",
+      "x": 1050,
+      "y": 750,
+      "width": 540,
+      "height": 240,
+      "text": "## Cloudflare Worker\n\n**確認区分：実装あり**\n\n静的ファイルと/api/rooms以下のAPIを同じWorkerから提供する。",
+      "color": "4"
+    },
+    {
+      "id": "5b9d81ec35671ab6",
+      "type": "text",
+      "x": 1810,
+      "y": 720,
+      "width": 1000,
+      "height": 300,
+      "text": "## 最終仕様\n\nfetchがルーム作成・確認・終了、問診、間取り、前兆、チャットの各ルートへ振り分ける。API以外はenv.ASSETSで配信する。\n\n### 根拠\n\n- [kizashi-app/src/worker/index.js](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/worker/index.js)",
+      "color": "4"
+    },
+    {
+      "id": "d0cef71666f0f799",
+      "type": "text",
+      "x": 560,
+      "y": 790,
+      "width": 300,
+      "height": 160,
+      "text": "## バックエンド\n\n1仕様項目",
+      "color": "4"
+    },
+    {
+      "id": "f78d4cec418532e4",
+      "type": "text",
+      "x": 1050,
+      "y": 1400,
+      "width": 540,
+      "height": 220,
+      "text": "## ルームとD1\n\n**確認区分：実装あり**\n\n6桁コードを共有範囲にし、事案と関連データを保存する。",
+      "color": "6"
+    },
+    {
+      "id": "f84949ff7bd94fb6",
+      "type": "text",
+      "x": 1810,
+      "y": 1280,
+      "width": 1000,
+      "height": 460,
+      "text": "## 最終仕様\n\nincidents、family_intake、floor_plans、precursor_signsをD1へ保存する。各ルートでresolveRoomを使い、ルームコードと期限を確認する。\n\n### 現在の制約・確認範囲\n\n- 個人ごとのログイン・管理者ロールではない。コードを知る人を単位に共有する方式。\n\n### 根拠\n\n- [kizashi-app/src/worker/lib/roomAuth.js](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/worker/lib/roomAuth.js)\n- [kizashi-app/src/migrations/0001_init.sql](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/migrations/0001_init.sql)\n- [kizashi-app/src/worker/routes/incidents.js](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/worker/routes/incidents.js)",
+      "color": "6"
+    },
+    {
+      "id": "5baedeb214799f45",
+      "type": "text",
+      "x": 1050,
+      "y": 1950,
+      "width": 540,
+      "height": 220,
+      "text": "## 問診の暗号化\n\n**確認区分：実装あり**\n\n問診データをAES-GCMで暗号化して保存する。",
+      "color": "6"
+    },
+    {
+      "id": "0ca733b280819fe6",
+      "type": "text",
+      "x": 1810,
+      "y": 1840,
+      "width": 1000,
+      "height": 440,
+      "text": "## 最終仕様\n\ncrypto.jsがサーバー側の秘密鍵を使いランダムIVで暗号化する。intake APIが許可した項目を1ルーム1件として保存・復号する。\n\n### 現在の制約・確認範囲\n\n- 暗号化対象は問診。すべてのテーブルや端末表示が暗号文になるわけではない。鍵の実設定は未確認。\n\n### 根拠\n\n- [kizashi-app/src/worker/lib/crypto.js](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/worker/lib/crypto.js)\n- [kizashi-app/src/worker/routes/intake.js](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/worker/routes/intake.js)",
+      "color": "6"
+    },
+    {
+      "id": "ee0bdbcde24b6917",
+      "type": "text",
+      "x": 560,
+      "y": 1700,
+      "width": 300,
+      "height": 160,
+      "text": "## データ・認証\n\n2仕様項目",
+      "color": "6"
+    },
+    {
+      "id": "f89a96ba27668ee9",
+      "type": "text",
+      "x": 1050,
+      "y": 2660,
+      "width": 540,
+      "height": 220,
+      "text": "## Workers AIの傾聴チャット\n\n**確認区分：実装あり**\n\n危機のキーワード確認を先に行い、通常はAIへ送る。",
+      "color": "2"
+    },
+    {
+      "id": "6db95f2c84bdb14c",
+      "type": "text",
+      "x": 1810,
+      "y": 2540,
+      "width": 1000,
+      "height": 460,
+      "text": "## 最終仕様\n\nchat APIはルーム確認、入力長制限、危機キーワード検知を行う。AIバインディングがない場合はスタブを返す。会話はクライアントから渡す直近履歴を使用しDBへ永続化しない。\n\n### 現在の制約・確認範囲\n\n- 助言・救助予測をしない指示は実装されるが、応答の完全な保証ではない。ここでは相談先の番号等は転載しない。\n\n### 根拠\n\n- [kizashi-app/src/worker/routes/chat.js](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/worker/routes/chat.js)\n- [kizashi-app/src/public/chat.js](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/public/chat.js)",
+      "color": "2"
+    },
+    {
+      "id": "29ebac086598f791",
+      "type": "text",
+      "x": 1050,
+      "y": 3210,
+      "width": 540,
+      "height": 240,
+      "text": "## 期限切れの削除\n\n**確認区分：実装あり**\n\n終了から30日後を期限とし、日次処理で関連データを消す。",
+      "color": "2"
+    },
+    {
+      "id": "e0a856f1eec982de",
+      "type": "text",
+      "x": 1810,
+      "y": 3100,
+      "width": 1000,
+      "height": 460,
+      "text": "## 最終仕様\n\nルーム終了操作でexpires_atを設定し、scheduledから期限切れの問診・間取り・前兆・事案をdb.batchで削除する。\n\n### 現在の制約・確認範囲\n\n- 終了していない事案に30日の期限が自動設定されるわけではない。\n\n### 根拠\n\n- [kizashi-app/src/worker/routes/incidents.js](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/worker/routes/incidents.js)\n- [kizashi-app/src/worker/scheduled/purgeExpiredIncidents.js](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/worker/scheduled/purgeExpiredIncidents.js)\n- [kizashi-app/src/wrangler.toml](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/wrangler.toml)",
+      "color": "2"
+    },
+    {
+      "id": "ce37eeda8cab1f46",
+      "type": "text",
+      "x": 560,
+      "y": 2970,
+      "width": 300,
+      "height": 160,
+      "text": "## AIと保守\n\n2仕様項目",
+      "color": "2"
+    },
+    {
+      "id": "ae3b287d8411bee0",
+      "type": "text",
+      "x": 1050,
+      "y": 3970,
+      "width": 540,
+      "height": 220,
+      "text": "## 地図変換・検証用ツール\n\n**確認区分：実装あり**\n\n本体と別に、プロトタイプとデータ変換・XML検証を置く。",
+      "color": "3"
+    },
+    {
+      "id": "941f5628d220b48b",
+      "type": "text",
+      "x": 1810,
+      "y": 3820,
+      "width": 1000,
+      "height": 520,
+      "text": "## 最終仕様\n\nprototypeはUI検証用。convert_ksj_a33.pyは区域データを変換し、d1-pocはDBスキーマ検証、jma-xml-pocはサンプル警報XMLの解析を行う。\n\n### 現在の制約・確認範囲\n\n- 気象庁XMLの継続取得やWeb Push／LINE通知が本体へ接続済みとは確認できない。wranglerのD1 IDはプレースホルダで本番稼働は未確認。\n\n### 根拠\n\n- [kizashi-app/prototype/doshasai-prototype.html](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/prototype/doshasai-prototype.html)\n- [kizashi-app/tools/convert_ksj_a33.py](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/tools/convert_ksj_a33.py)\n- [kizashi-app/tools/jma-xml-poc/parse.mjs](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/tools/jma-xml-poc/parse.mjs)\n- [kizashi-app/src/wrangler.toml](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/wrangler.toml)",
+      "color": "3"
+    },
+    {
+      "id": "d5a8f6b50744bdd1",
+      "type": "text",
+      "x": 560,
+      "y": 4000,
+      "width": 300,
+      "height": 160,
+      "text": "## 試作・データ作成\n\n1仕様項目",
+      "color": "3"
+    },
+    {
+      "id": "a57d61a733122d62",
+      "type": "text",
+      "x": 1050,
+      "y": 4690,
+      "width": 540,
+      "height": 180,
+      "text": "## このアプリの特徴\n\n単一Workerが画面・APIを担う。災害の予測や救助判断ではなく、共有と傾聴を中心に分担する。",
+      "color": "6"
+    },
+    {
+      "id": "a719bae325d9766d",
+      "type": "text",
+      "x": 1810,
+      "y": 4600,
+      "width": 1000,
+      "height": 360,
+      "text": "## アプリの特徴\n\n災害現場の家族・関係者が、ルーム単位で問診・間取り・前兆報告を共有するWebアプリ。\n\n### 根拠\n\n- [kizashi-app/src/public/app.js](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/public/app.js)\n- [kizashi-app/src/public/voiceIntake.js](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/public/voiceIntake.js)\n- [kizashi-app/src/README.md](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/README.md)\n- [kizashi-app/src/worker/index.js](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/worker/index.js)",
+      "color": "6"
+    },
+    {
+      "id": "5b8a8b56dada6ce7",
+      "type": "text",
+      "x": 560,
+      "y": 4690,
+      "width": 300,
+      "height": 180,
+      "text": "## アプリの特徴\n\n機能の組合せ・運用方法・設計上の性質",
+      "color": "6"
+    },
+    {
+      "id": "f623ff49da8d81cd",
+      "type": "text",
+      "x": 1050,
+      "y": 5220,
+      "width": 540,
+      "height": 600,
+      "text": "## 共有情報を保存する\n\nルームコード付きAPIへ送信\n\n問診データを暗号化\n\nD1へルーム単位で保存\n\n記録に基づく前提・対応順\n\n- [kizashi-app/src/public/app.js](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/public/app.js)\n- [kizashi-app/src/public/voiceIntake.js](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/public/voiceIntake.js)\n- [kizashi-app/src/README.md](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/README.md)\n- [kizashi-app/src/worker/index.js](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/worker/index.js)\n- [kizashi-app/src/worker/lib/crypto.js](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/worker/lib/crypto.js)\n- [kizashi-app/src/worker/routes/intake.js](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/worker/routes/intake.js)\n- [kizashi-app/src/worker/lib/roomAuth.js](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/worker/lib/roomAuth.js)\n- [kizashi-app/src/migrations/0001_init.sql](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/migrations/0001_init.sql)\n- [kizashi-app/src/worker/routes/incidents.js](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/worker/routes/incidents.js)",
+      "color": "1"
+    },
+    {
+      "id": "b4395f34967fee2a",
+      "type": "text",
+      "x": 1810,
+      "y": 5220,
+      "width": 620,
+      "height": 280,
+      "text": "## ui\n\n**Web画面・音声入力**\n\n地図、事前問診・間取り、前兆報告、傾聴チャットを表示する。\n\n上側の同じ項目の再掲。",
+      "color": "5"
+    },
+    {
+      "id": "b25d50193955a4fc",
+      "type": "text",
+      "x": 2650,
+      "y": 5220,
+      "width": 760,
+      "height": 280,
+      "text": "## worker\n\n**Cloudflare Worker**\n\n静的ファイルと/api/rooms以下のAPIを同じWorkerから提供する。\n\n上側の同じ項目の再掲。",
+      "color": "4"
+    },
+    {
+      "id": "c0d5017348fb926f",
+      "type": "text",
+      "x": 3650,
+      "y": 5220,
+      "width": 840,
+      "height": 280,
+      "text": "## crypto\n\n**問診の暗号化**\n\n問診データをAES-GCMで暗号化して保存する。\n\n上側の同じ項目の再掲。",
+      "color": "6"
+    },
+    {
+      "id": "07ab1a462bf44409",
+      "type": "text",
+      "x": 4730,
+      "y": 5220,
+      "width": 760,
+      "height": 280,
+      "text": "## rooms\n\n**ルームとD1**\n\n6桁コードを共有範囲にし、事案と関連データを保存する。\n\n上側の同じ項目の再掲。",
+      "color": "6"
+    },
+    {
+      "id": "17d346ba646448be",
+      "type": "text",
+      "x": 1050,
+      "y": 5960,
+      "width": 540,
+      "height": 520,
+      "text": "## 傾聴チャット\n\n履歴と発話をPOST\n\n入力確認後にチャット処理\n\n通常AIまたは固定・スタブ応答を表示\n\n記録に基づく前提・対応順\n\n- [kizashi-app/src/public/app.js](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/public/app.js)\n- [kizashi-app/src/public/voiceIntake.js](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/public/voiceIntake.js)\n- [kizashi-app/src/README.md](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/README.md)\n- [kizashi-app/src/worker/index.js](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/worker/index.js)\n- [kizashi-app/src/worker/routes/chat.js](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/worker/routes/chat.js)\n- [kizashi-app/src/public/chat.js](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/public/chat.js)",
+      "color": "1"
+    },
+    {
+      "id": "f8b1b8dd9b985c0c",
+      "type": "text",
+      "x": 1810,
+      "y": 5960,
+      "width": 620,
+      "height": 280,
+      "text": "## ui\n\n**Web画面・音声入力**\n\n地図、事前問診・間取り、前兆報告、傾聴チャットを表示する。\n\n上側の同じ項目の再掲。",
+      "color": "5"
+    },
+    {
+      "id": "4f36c2b17b96a8a1",
+      "type": "text",
+      "x": 2650,
+      "y": 5960,
+      "width": 760,
+      "height": 280,
+      "text": "## worker\n\n**Cloudflare Worker**\n\n静的ファイルと/api/rooms以下のAPIを同じWorkerから提供する。\n\n上側の同じ項目の再掲。",
+      "color": "4"
+    },
+    {
+      "id": "da0932f1fbf22b7b",
+      "type": "text",
+      "x": 3650,
+      "y": 5960,
+      "width": 840,
+      "height": 280,
+      "text": "## chat\n\n**Workers AIの傾聴チャット**\n\n危機のキーワード確認を先に行い、通常はAIへ送る。\n\n上側の同じ項目の再掲。",
+      "color": "2"
+    },
+    {
+      "id": "6fc35c7463a3dffd",
+      "type": "text",
+      "x": 4730,
+      "y": 5960,
+      "width": 760,
+      "height": 280,
+      "text": "## ui\n\n**Web画面・音声入力**\n\n地図、事前問診・間取り、前兆報告、傾聴チャットを表示する。\n\n上側の同じ項目の再掲。",
+      "color": "5"
+    },
+    {
+      "id": "a114a8acdd550009",
+      "type": "text",
+      "x": 1050,
+      "y": 6620,
+      "width": 540,
+      "height": 420,
+      "text": "## 終了後の保守\n\nexpires_atを過ぎた事案と関連データを削除\n\n記録に基づく前提・対応順\n\n- [kizashi-app/src/worker/lib/roomAuth.js](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/worker/lib/roomAuth.js)\n- [kizashi-app/src/migrations/0001_init.sql](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/migrations/0001_init.sql)\n- [kizashi-app/src/worker/routes/incidents.js](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/worker/routes/incidents.js)\n- [kizashi-app/src/worker/scheduled/purgeExpiredIncidents.js](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/worker/scheduled/purgeExpiredIncidents.js)\n- [kizashi-app/src/wrangler.toml](https://github.com/gurii-gabreh/Kizashi/blob/993811179cc4ab2c63843e8e0d325ca34c9f9145/kizashi-app/src/wrangler.toml)",
+      "color": "1"
+    },
+    {
+      "id": "ab5021b459cab156",
+      "type": "text",
+      "x": 1810,
+      "y": 6620,
+      "width": 620,
+      "height": 280,
+      "text": "## rooms\n\n**ルームとD1**\n\n6桁コードを共有範囲にし、事案と関連データを保存する。\n\n上側の同じ項目の再掲。",
+      "color": "6"
+    },
+    {
+      "id": "0b4dc6d157889e4e",
+      "type": "text",
+      "x": 2650,
+      "y": 6620,
+      "width": 760,
+      "height": 280,
+      "text": "## purge\n\n**期限切れの削除**\n\n終了から30日後を期限とし、日次処理で関連データを消す。\n\n上側の同じ項目の再掲。",
+      "color": "2"
+    },
+    {
+      "id": "e2ba41af03120f14",
+      "type": "text",
+      "x": 560,
+      "y": 6020,
+      "width": 300,
+      "height": 360,
+      "text": "## つながり\n\n矢印：記録から確認できる前提・対応順\n\n矢印なし＋関連ラベル：依存を意味しない関連\n\nカードは上側の同じ項目の再掲。",
+      "color": "1"
+    },
+    {
+      "id": "4813494d137e1631",
+      "type": "text",
+      "x": 0,
+      "y": 3200,
+      "width": 380,
+      "height": 780,
+      "text": "# 結（Yui／Kizashi）：内部構成・連関図\n\n**gurii-gabreh/Kizashi**\n\n災害現場の家族・関係者が、ルーム単位で問診・間取り・前兆報告を共有するWebアプリ。 上側は役割別の内部構成、下側はデータのつながり。\n\nモード：最終仕様・アプリの特徴\n\n記録：2026-10-17 JST\n\n対象：993811179cc4ab2c63843e8e0d325ca34c9f9145\n\n- 既定ブランチ main の固定コミットを確認したスナップショット。\n- 実装ありはコードの存在を示す。稼働環境・認証設定・実機での動作は未検証。\n- 技術・モデル・サービス名はコード中の設定や候補。現行の提供状況・料金を保証しない。"
+    }
+  ],
+  "edges": [
+    {
+      "id": "d6e243df852fa85e",
+      "fromNode": "44dd9a737bbbbc28",
+      "fromSide": "right",
+      "toNode": "0b0c5a4157b73f1e",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "5"
+    },
+    {
+      "id": "da4b403818b00f8a",
+      "fromNode": "ce88dc3083792793",
+      "fromSide": "right",
+      "toNode": "44dd9a737bbbbc28",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "5"
+    },
+    {
+      "id": "67ee05d4b5dbf4ca",
+      "fromNode": "92e641f7007aa305",
+      "fromSide": "right",
+      "toNode": "5b9d81ec35671ab6",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "4"
+    },
+    {
+      "id": "88a2b02b5945f980",
+      "fromNode": "d0cef71666f0f799",
+      "fromSide": "right",
+      "toNode": "92e641f7007aa305",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "4"
+    },
+    {
+      "id": "a4bba49fe70b8d1e",
+      "fromNode": "f78d4cec418532e4",
+      "fromSide": "right",
+      "toNode": "f84949ff7bd94fb6",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "6"
+    },
+    {
+      "id": "cb0d0b17f4f6862a",
+      "fromNode": "5baedeb214799f45",
+      "fromSide": "right",
+      "toNode": "0ca733b280819fe6",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "6"
+    },
+    {
+      "id": "996a7834c60a9890",
+      "fromNode": "ee0bdbcde24b6917",
+      "fromSide": "right",
+      "toNode": "f78d4cec418532e4",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "f644124d8a276554",
+      "fromNode": "ee0bdbcde24b6917",
+      "fromSide": "right",
+      "toNode": "5baedeb214799f45",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "35e40603dcf52cbc",
+      "fromNode": "f89a96ba27668ee9",
+      "fromSide": "right",
+      "toNode": "6db95f2c84bdb14c",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "2"
+    },
+    {
+      "id": "5e5163b6bf9f58ed",
+      "fromNode": "29ebac086598f791",
+      "fromSide": "right",
+      "toNode": "e0a856f1eec982de",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "2"
+    },
+    {
+      "id": "f8ca9d676fb40e45",
+      "fromNode": "ce37eeda8cab1f46",
+      "fromSide": "right",
+      "toNode": "f89a96ba27668ee9",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "2"
+    },
+    {
+      "id": "ac4ddb2ba18fd6c3",
+      "fromNode": "ce37eeda8cab1f46",
+      "fromSide": "right",
+      "toNode": "29ebac086598f791",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "2"
+    },
+    {
+      "id": "48e20c3a57874778",
+      "fromNode": "ae3b287d8411bee0",
+      "fromSide": "right",
+      "toNode": "941f5628d220b48b",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "3"
+    },
+    {
+      "id": "e0eb08ad2940e4e9",
+      "fromNode": "d5a8f6b50744bdd1",
+      "fromSide": "right",
+      "toNode": "ae3b287d8411bee0",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "3"
+    },
+    {
+      "id": "ef1e340f45131d90",
+      "fromNode": "a57d61a733122d62",
+      "fromSide": "right",
+      "toNode": "a719bae325d9766d",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "特徴・根拠",
+      "color": "6"
+    },
+    {
+      "id": "92ce88946f76b54d",
+      "fromNode": "5b8a8b56dada6ce7",
+      "fromSide": "right",
+      "toNode": "a57d61a733122d62",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "55e4b4cc930cdb02",
+      "fromNode": "f623ff49da8d81cd",
+      "fromSide": "right",
+      "toNode": "b4395f34967fee2a",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "対象",
+      "color": "1"
+    },
+    {
+      "id": "516d8e301ed11692",
+      "fromNode": "b4395f34967fee2a",
+      "fromSide": "right",
+      "toNode": "b25d50193955a4fc",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "ルームコード付きAPIへ送信",
+      "color": "1"
+    },
+    {
+      "id": "7ac39aeaccb8daec",
+      "fromNode": "b25d50193955a4fc",
+      "fromSide": "right",
+      "toNode": "c0d5017348fb926f",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "問診データを暗号化",
+      "color": "1"
+    },
+    {
+      "id": "911d7cfe01b000a7",
+      "fromNode": "c0d5017348fb926f",
+      "fromSide": "right",
+      "toNode": "07ab1a462bf44409",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "D1へルーム単位で保存",
+      "color": "1"
+    },
+    {
+      "id": "722f0a6d9a5dc96f",
+      "fromNode": "17d346ba646448be",
+      "fromSide": "right",
+      "toNode": "f8b1b8dd9b985c0c",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "対象",
+      "color": "1"
+    },
+    {
+      "id": "c9f85138ae1bed14",
+      "fromNode": "f8b1b8dd9b985c0c",
+      "fromSide": "right",
+      "toNode": "4f36c2b17b96a8a1",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "履歴と発話をPOST",
+      "color": "1"
+    },
+    {
+      "id": "937efd4d5ef41f81",
+      "fromNode": "4f36c2b17b96a8a1",
+      "fromSide": "right",
+      "toNode": "da0932f1fbf22b7b",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "入力確認後にチャット処理",
+      "color": "1"
+    },
+    {
+      "id": "506c70458b5669a0",
+      "fromNode": "da0932f1fbf22b7b",
+      "fromSide": "right",
+      "toNode": "6fc35c7463a3dffd",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "通常AIまたは固定・スタブ応答を表示",
+      "color": "1"
+    },
+    {
+      "id": "e7641c44227ccc0e",
+      "fromNode": "a114a8acdd550009",
+      "fromSide": "right",
+      "toNode": "ab5021b459cab156",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "対象",
+      "color": "1"
+    },
+    {
+      "id": "ffce5c5d430908ed",
+      "fromNode": "ab5021b459cab156",
+      "fromSide": "right",
+      "toNode": "0b4dc6d157889e4e",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "expires_atを過ぎた事案と関連データを削除",
+      "color": "1"
+    },
+    {
+      "id": "d32fe90d62efd459",
+      "fromNode": "e2ba41af03120f14",
+      "fromSide": "right",
+      "toNode": "f623ff49da8d81cd",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "6827b46e64da68e7",
+      "fromNode": "e2ba41af03120f14",
+      "fromSide": "right",
+      "toNode": "17d346ba646448be",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "ef9c3bd9f9036317",
+      "fromNode": "e2ba41af03120f14",
+      "fromSide": "right",
+      "toNode": "a114a8acdd550009",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "1bbad22b48fb2c18",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ce88dc3083792793",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "4070bf0bdd9f4a6a",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "d0cef71666f0f799",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "afc67758d58bd9ae",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ee0bdbcde24b6917",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "1387928c1a15e359",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ce37eeda8cab1f46",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "c0c804ac3d041a0e",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "d5a8f6b50744bdd1",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "292d0e5d32d3c1dc",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "5b8a8b56dada6ce7",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "76e8318879558c3c",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "e2ba41af03120f14",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    }
+  ]
+}

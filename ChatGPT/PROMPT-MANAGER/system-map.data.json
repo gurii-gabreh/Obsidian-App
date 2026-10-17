@@ -1,0 +1,210 @@
+{
+  "mode": "spec",
+  "title": "Prompt Manager：内部構成・連関図",
+  "repo": "gurii-gabreh/PROMPT-MANAGER",
+  "ref": "55f777f463cd3f4a4326bb6f2e237a861ddf815b",
+  "asOf": "2026-10-17 JST",
+  "scope": "参照プロンプトの収集・検索と、Claude CLIを使うローカル生成を分けたツール。 上側は役割別の内部構成、下側はデータのつながり。",
+  "limitations": [
+    "既定ブランチ claude/upbeat-cori-cus3xa の固定コミットを確認したスナップショット。",
+    "実装ありはコードの存在を示す。稼働環境・認証設定・実機での動作は未検証。",
+    "技術・モデル・サービス名はコード中の設定や候補。現行の提供状況・料金を保証しない。"
+  ],
+  "categories": [
+    {
+      "key": "category-0",
+      "label": "画面・操作",
+      "ids": [
+        "ui"
+      ]
+    },
+    {
+      "key": "category-1",
+      "label": "収集・保存",
+      "ids": [
+        "collect",
+        "sheet"
+      ]
+    },
+    {
+      "key": "category-2",
+      "label": "生成処理",
+      "ids": [
+        "local",
+        "claude"
+      ]
+    }
+  ],
+  "items": {
+    "ui": {
+      "label": "ブラウザのワークフロー",
+      "status": "実装あり",
+      "summary": "参考資料・回答レベル・プレビュー・生成結果を操作する。",
+      "specification": "index.htmlがGASから一覧を読み、bigram類似度等で参照候補を選ぶ。設定や定型文はlocalStorageへ持つ。",
+      "constraints": [],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/PROMPT-MANAGER/blob/55f777f463cd3f4a4326bb6f2e237a861ddf815b/index.html"
+        }
+      ]
+    },
+    "collect": {
+      "label": "CHAPRO収集GAS",
+      "status": "実装あり",
+      "summary": "公開一覧APIと詳細を少しずつ収集する。",
+      "specification": "Code.gsがIDキュー・重複確認・日次実行カウント・時間トリガーを管理する。doGet／doPostは一覧取得と履歴保存等も受ける。",
+      "constraints": [
+        "外部APIの現在の取得可否と実トリガーは未検証。"
+      ],
+      "sources": [
+        {
+          "label": "Code.gs",
+          "url": "https://github.com/gurii-gabreh/PROMPT-MANAGER/blob/55f777f463cd3f4a4326bb6f2e237a861ddf815b/Code.gs"
+        }
+      ]
+    },
+    "sheet": {
+      "label": "Google Sheets",
+      "status": "実装あり",
+      "summary": "取得プロンプト・設定・生成履歴を残す。",
+      "specification": "GASがシートのヘッダーを確認し、既存IDを避けて保存する。生成結果は履歴記録ボタンのPOSTで保存する。",
+      "constraints": [
+        "生成しただけでは自動保存しない。GASの実デプロイは別途必要。"
+      ],
+      "sources": [
+        {
+          "label": "Code.gs",
+          "url": "https://github.com/gurii-gabreh/PROMPT-MANAGER/blob/55f777f463cd3f4a4326bb6f2e237a861ddf815b/Code.gs"
+        },
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/PROMPT-MANAGER/blob/55f777f463cd3f4a4326bb6f2e237a861ddf815b/index.html"
+        }
+      ]
+    },
+    "local": {
+      "label": "ローカルNodeサーバー",
+      "status": "実装あり",
+      "summary": "localhostのAPIがClaude CLIへ仕事を渡す。",
+      "specification": "server.jsに/health、/generate、/questions、/preview、/shutdownを持つ。JSONの条件を指示文にし、claude -pの結果を解析して返す。",
+      "constraints": [
+        "手元のNodeと認証済みClaude CLIが必要。ローカルサーバーはSheetsへは書かない。"
+      ],
+      "sources": [
+        {
+          "label": "local-server/server.js",
+          "url": "https://github.com/gurii-gabreh/PROMPT-MANAGER/blob/55f777f463cd3f4a4326bb6f2e237a861ddf815b/local-server/server.js"
+        },
+        {
+          "label": "local-server/README.md",
+          "url": "https://github.com/gurii-gabreh/PROMPT-MANAGER/blob/55f777f463cd3f4a4326bb6f2e237a861ddf815b/local-server/README.md"
+        }
+      ]
+    },
+    "claude": {
+      "label": "Claude CLIと手動貼付",
+      "status": "実装あり",
+      "summary": "指示文の生成・質問・回答例を作る。",
+      "specification": "ローカルサーバーが子プロセスでClaudeを呼ぶ。UIには指示コピーと結果貼付の補助手順も実装される。",
+      "constraints": [
+        "生成品質・CLIの利用上限や契約条件はコードから保証できない。"
+      ],
+      "sources": [
+        {
+          "label": "local-server/server.js",
+          "url": "https://github.com/gurii-gabreh/PROMPT-MANAGER/blob/55f777f463cd3f4a4326bb6f2e237a861ddf815b/local-server/server.js"
+        },
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/PROMPT-MANAGER/blob/55f777f463cd3f4a4326bb6f2e237a861ddf815b/index.html"
+        }
+      ]
+    }
+  },
+  "features": [
+    {
+      "label": "このアプリの特徴",
+      "summary": "GASは収集と保存、ローカルNodeは生成だけを担当し、Google認証を生成サーバーへ渡さない。",
+      "detail": "参照プロンプトの収集・検索と、Claude CLIを使うローカル生成を分けたツール。",
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/PROMPT-MANAGER/blob/55f777f463cd3f4a4326bb6f2e237a861ddf815b/index.html"
+        },
+        {
+          "label": "Code.gs",
+          "url": "https://github.com/gurii-gabreh/PROMPT-MANAGER/blob/55f777f463cd3f4a4326bb6f2e237a861ddf815b/Code.gs"
+        }
+      ]
+    }
+  ],
+  "flows": [
+    {
+      "title": "参考情報を読む",
+      "kind": "solid",
+      "columns": [
+        [
+          "collect"
+        ],
+        [
+          "sheet"
+        ],
+        [
+          "ui"
+        ]
+      ],
+      "labels": [
+        "取得済みプロンプトを保存",
+        "GAS経由で検索・表示"
+      ],
+      "sources": [
+        {
+          "label": "Code.gs",
+          "url": "https://github.com/gurii-gabreh/PROMPT-MANAGER/blob/55f777f463cd3f4a4326bb6f2e237a861ddf815b/Code.gs"
+        },
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/PROMPT-MANAGER/blob/55f777f463cd3f4a4326bb6f2e237a861ddf815b/index.html"
+        }
+      ]
+    },
+    {
+      "title": "条件からプロンプトを生成",
+      "kind": "solid",
+      "columns": [
+        [
+          "ui"
+        ],
+        [
+          "local"
+        ],
+        [
+          "claude"
+        ],
+        [
+          "ui"
+        ]
+      ],
+      "labels": [
+        "候補・要望・レベルをPOST",
+        "メタプロンプトをCLIへ渡す",
+        "結果と参照理由を表示"
+      ],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/PROMPT-MANAGER/blob/55f777f463cd3f4a4326bb6f2e237a861ddf815b/index.html"
+        },
+        {
+          "label": "local-server/server.js",
+          "url": "https://github.com/gurii-gabreh/PROMPT-MANAGER/blob/55f777f463cd3f4a4326bb6f2e237a861ddf815b/local-server/server.js"
+        },
+        {
+          "label": "local-server/README.md",
+          "url": "https://github.com/gurii-gabreh/PROMPT-MANAGER/blob/55f777f463cd3f4a4326bb6f2e237a861ddf815b/local-server/README.md"
+        }
+      ]
+    }
+  ]
+}

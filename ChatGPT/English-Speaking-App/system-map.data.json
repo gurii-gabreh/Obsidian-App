@@ -1,0 +1,238 @@
+{
+  "mode": "spec",
+  "title": "English Speaking Practice：内部構成・連関図",
+  "repo": "gurii-gabreh/English-Speaking-App",
+  "ref": "de277a4c68ad1385b2676fb5b400a7f8ec117910",
+  "asOf": "2026-10-17 JST",
+  "scope": "自作の音声練習と、ChatGPTでのレッスン案内・レポート閲覧を同じ入口にまとめる。 上側は役割別の内部構成、下側はデータのつながり。",
+  "limitations": [
+    "既定ブランチ main の固定コミットを確認したスナップショット。",
+    "実装ありはコードの存在を示す。稼働環境・認証設定・実機での動作は未検証。",
+    "技術・モデル・サービス名はコード中の設定や候補。現行の提供状況・料金を保証しない。"
+  ],
+  "categories": [
+    {
+      "key": "category-0",
+      "label": "画面・操作",
+      "ids": [
+        "entry"
+      ]
+    },
+    {
+      "key": "category-1",
+      "label": "自作アプリ",
+      "ids": [
+        "speech",
+        "groq",
+        "local"
+      ]
+    },
+    {
+      "key": "category-2",
+      "label": "外部レッスン",
+      "ids": [
+        "chatgpt",
+        "report"
+      ]
+    }
+  ],
+  "items": {
+    "entry": {
+      "label": "トップと2つの練習経路",
+      "status": "実装あり",
+      "summary": "自作アプリかChatGPTレッスン案内を選ぶ。",
+      "specification": "index.htmlからapp.htmlとchatgpt.htmlへ遷移する。lessons.htmlは別途レポート一覧を表示する。",
+      "constraints": [],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/English-Speaking-App/blob/de277a4c68ad1385b2676fb5b400a7f8ec117910/index.html"
+        },
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/English-Speaking-App/blob/de277a4c68ad1385b2676fb5b400a7f8ec117910/README.md"
+        }
+      ]
+    },
+    "speech": {
+      "label": "音声認識・読み上げ",
+      "status": "実装あり",
+      "summary": "ブラウザの音声機能で発話とお手本を扱う。",
+      "specification": "app.htmlがSpeechRecognition系APIとspeechSynthesisを使い、会話・反復練習・録音状態を制御する。単語一致等の簡易スコアも持つ。",
+      "constraints": [
+        "ブラウザ標準音声認識は端末・ブラウザにより対応や動作が異なる。完全オフラインとは断定しない。"
+      ],
+      "sources": [
+        {
+          "label": "app.html",
+          "url": "https://github.com/gurii-gabreh/English-Speaking-App/blob/de277a4c68ad1385b2676fb5b400a7f8ec117910/app.html"
+        }
+      ]
+    },
+    "groq": {
+      "label": "Groq API",
+      "status": "実装あり",
+      "summary": "対話・翻訳・発音やニュアンスの補助解析を行う。",
+      "specification": "ブラウザからchat/completionsへ利用者のAPIキーで送信する。発話補正・日本語入力の英訳等にも使用する。",
+      "constraints": [
+        "アプリにはAPIキー設定が必要。サービスの現行モデルや利用枠は未確認。"
+      ],
+      "sources": [
+        {
+          "label": "app.html",
+          "url": "https://github.com/gurii-gabreh/English-Speaking-App/blob/de277a4c68ad1385b2676fb5b400a7f8ec117910/app.html"
+        }
+      ]
+    },
+    "local": {
+      "label": "端末内の履歴・設定",
+      "status": "実装あり",
+      "summary": "会話・練習・訂正・テンプレートを保存する。",
+      "specification": "localStorageにキー・履歴・テンプレート等を保存し、再表示やファイル出力を行う。",
+      "constraints": [
+        "この経路はGitHubへ自動同期しない。"
+      ],
+      "sources": [
+        {
+          "label": "app.html",
+          "url": "https://github.com/gurii-gabreh/English-Speaking-App/blob/de277a4c68ad1385b2676fb5b400a7f8ec117910/app.html"
+        }
+      ]
+    },
+    "chatgpt": {
+      "label": "ChatGPT向けの案内",
+      "status": "実装あり",
+      "summary": "プロンプトをコピーし、ChatGPTの画面で練習する。",
+      "specification": "chatgpt.htmlにレッスンの指示文・進行コマンド・記録方法を掲載する。",
+      "constraints": [
+        "この案内ページがChatGPT APIを呼ぶわけではない。教材本体のアップロード等は利用者側の操作。"
+      ],
+      "sources": [
+        {
+          "label": "chatgpt.html",
+          "url": "https://github.com/gurii-gabreh/English-Speaking-App/blob/de277a4c68ad1385b2676fb5b400a7f8ec117910/chatgpt.html"
+        },
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/English-Speaking-App/blob/de277a4c68ad1385b2676fb5b400a7f8ec117910/README.md"
+        }
+      ]
+    },
+    "report": {
+      "label": "レポートJSONとビューア",
+      "status": "実装あり",
+      "summary": "記録済みレポートを読み取り専用で見る。",
+      "specification": "Claude Codeへレポートを渡してdata/lessons.jsonを更新する運用。lessons.htmlはJSONをfetchして表示する。",
+      "constraints": [
+        "サイトからレポートを保存・編集する機能ではない。"
+      ],
+      "sources": [
+        {
+          "label": "lessons.html",
+          "url": "https://github.com/gurii-gabreh/English-Speaking-App/blob/de277a4c68ad1385b2676fb5b400a7f8ec117910/lessons.html"
+        },
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/English-Speaking-App/blob/de277a4c68ad1385b2676fb5b400a7f8ec117910/README.md"
+        }
+      ]
+    }
+  },
+  "features": [
+    {
+      "label": "このアプリの特徴",
+      "summary": "自作API連携と、ChatGPTへ手動で渡す学習経路を明確に分けている。",
+      "detail": "自作の音声練習と、ChatGPTでのレッスン案内・レポート閲覧を同じ入口にまとめる。",
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/English-Speaking-App/blob/de277a4c68ad1385b2676fb5b400a7f8ec117910/index.html"
+        },
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/English-Speaking-App/blob/de277a4c68ad1385b2676fb5b400a7f8ec117910/README.md"
+        },
+        {
+          "label": "app.html",
+          "url": "https://github.com/gurii-gabreh/English-Speaking-App/blob/de277a4c68ad1385b2676fb5b400a7f8ec117910/app.html"
+        }
+      ]
+    }
+  ],
+  "flows": [
+    {
+      "title": "自作の音声練習",
+      "kind": "solid",
+      "columns": [
+        [
+          "entry"
+        ],
+        [
+          "speech"
+        ],
+        [
+          "groq"
+        ],
+        [
+          "local"
+        ]
+      ],
+      "labels": [
+        "app.htmlへ進む",
+        "認識テキストを対話・解析に使う",
+        "結果を端末内に保存"
+      ],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/English-Speaking-App/blob/de277a4c68ad1385b2676fb5b400a7f8ec117910/index.html"
+        },
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/English-Speaking-App/blob/de277a4c68ad1385b2676fb5b400a7f8ec117910/README.md"
+        },
+        {
+          "label": "app.html",
+          "url": "https://github.com/gurii-gabreh/English-Speaking-App/blob/de277a4c68ad1385b2676fb5b400a7f8ec117910/app.html"
+        }
+      ]
+    },
+    {
+      "title": "ChatGPTでの練習記録",
+      "kind": "solid",
+      "columns": [
+        [
+          "entry"
+        ],
+        [
+          "chatgpt"
+        ],
+        [
+          "report"
+        ]
+      ],
+      "labels": [
+        "案内ページを選ぶ",
+        "外部で練習後、Claude Code経由で記録"
+      ],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/English-Speaking-App/blob/de277a4c68ad1385b2676fb5b400a7f8ec117910/index.html"
+        },
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/English-Speaking-App/blob/de277a4c68ad1385b2676fb5b400a7f8ec117910/README.md"
+        },
+        {
+          "label": "chatgpt.html",
+          "url": "https://github.com/gurii-gabreh/English-Speaking-App/blob/de277a4c68ad1385b2676fb5b400a7f8ec117910/chatgpt.html"
+        },
+        {
+          "label": "lessons.html",
+          "url": "https://github.com/gurii-gabreh/English-Speaking-App/blob/de277a4c68ad1385b2676fb5b400a7f8ec117910/lessons.html"
+        }
+      ]
+    }
+  ]
+}

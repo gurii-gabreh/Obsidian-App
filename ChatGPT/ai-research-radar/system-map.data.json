@@ -1,0 +1,261 @@
+{
+  "mode": "spec",
+  "title": "AI Research Radar：内部構成・連関図",
+  "repo": "gurii-gabreh/ai-research-radar",
+  "ref": "e4de992173d6642e1ed0cdb9ac84c5163be3b947",
+  "asOf": "2026-10-17 JST",
+  "scope": "Sheetsの依頼タスクに従ってGeminiで調べ、収集ログを蓄積して閲覧する。 上側は役割別の内部構成、下側はデータのつながり。",
+  "limitations": [
+    "既定ブランチ main の固定コミットを確認したスナップショット。",
+    "実装ありはコードの存在を示す。稼働環境・認証設定・実機での動作は未検証。",
+    "技術・モデル・サービス名はコード中の設定や候補。現行の提供状況・料金を保証しない。"
+  ],
+  "categories": [
+    {
+      "key": "category-0",
+      "label": "依頼・調査",
+      "ids": [
+        "task",
+        "gas",
+        "gemini"
+      ]
+    },
+    {
+      "key": "category-1",
+      "label": "保存・閲覧",
+      "ids": [
+        "sheet",
+        "mirror",
+        "ui"
+      ]
+    },
+    {
+      "key": "category-2",
+      "label": "代替経路",
+      "ids": [
+        "fallback"
+      ]
+    }
+  ],
+  "items": {
+    "task": {
+      "label": "Sheetsの依頼タスク",
+      "status": "実装あり",
+      "summary": "Repo・Task・状態・備考から調査対象を選ぶ。",
+      "specification": "対象Repoの未完了タスクをGASが読み、毎日／N回マーカーを解析して繰り返し回数を管理する。",
+      "constraints": [],
+      "sources": [
+        {
+          "label": "gas/Code.gs",
+          "url": "https://github.com/gurii-gabreh/ai-research-radar/blob/e4de992173d6642e1ed0cdb9ac84c5163be3b947/gas/Code.gs"
+        },
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/ai-research-radar/blob/e4de992173d6642e1ed0cdb9ac84c5163be3b947/README.md"
+        }
+      ]
+    },
+    "gas": {
+      "label": "GASの調査ループ",
+      "status": "実装あり",
+      "summary": "調査・保存・状態更新と代替結果の取込みを担当する。",
+      "specification": "collectAIResearchが各キーワードを処理する。レート制限等を扱い、時間トリガーや測定結果に基づく時刻選定の補助関数を持つ。",
+      "constraints": [
+        "実際のトリガーと実行成功は未確認。"
+      ],
+      "sources": [
+        {
+          "label": "gas/Code.gs",
+          "url": "https://github.com/gurii-gabreh/ai-research-radar/blob/e4de992173d6642e1ed0cdb9ac84c5163be3b947/gas/Code.gs"
+        }
+      ]
+    },
+    "gemini": {
+      "label": "検索付きGemini",
+      "status": "実装あり",
+      "summary": "キーワードに合う情報を検索して要約する。",
+      "specification": "generateContentにgoogle_searchを指定し、カテゴリ・タイトル・日本語要約・出典URLのJSONを要求する。",
+      "constraints": [
+        "モデルの回答とURLをそのまま事実保証するものではない。"
+      ],
+      "sources": [
+        {
+          "label": "gas/Code.gs",
+          "url": "https://github.com/gurii-gabreh/ai-research-radar/blob/e4de992173d6642e1ed0cdb9ac84c5163be3b947/gas/Code.gs"
+        }
+      ]
+    },
+    "sheet": {
+      "label": "収集ログのSheet",
+      "status": "実装あり",
+      "summary": "調査結果を追加し、GASのGETで返す。",
+      "specification": "収集ログを正本とし、doGetが行を新しい順のJSONへ変換する。ソースURL等で重複を扱う。",
+      "constraints": [],
+      "sources": [
+        {
+          "label": "gas/Code.gs",
+          "url": "https://github.com/gurii-gabreh/ai-research-radar/blob/e4de992173d6642e1ed0cdb9ac84c5163be3b947/gas/Code.gs"
+        }
+      ]
+    },
+    "mirror": {
+      "label": "GitHubのJSONミラー",
+      "status": "実装あり",
+      "summary": "Sheetの結果をresearch-log.jsonへ書き出す。",
+      "specification": "exportResearchLogToGithub_が既存ファイルと比較し、変更時だけGitHub Contents APIで更新する。",
+      "constraints": [
+        "GitHub認証はGASのプロパティ設定が必要。"
+      ],
+      "sources": [
+        {
+          "label": "gas/Code.gs",
+          "url": "https://github.com/gurii-gabreh/ai-research-radar/blob/e4de992173d6642e1ed0cdb9ac84c5163be3b947/gas/Code.gs"
+        }
+      ]
+    },
+    "ui": {
+      "label": "記事一覧の静的画面",
+      "status": "実装あり",
+      "summary": "設定した取得先から記事を読み、カテゴリ等で表示する。",
+      "specification": "index.htmlのloadDataがGAS URLをfetchし、一覧・分類を描画する。接続設定をlocalStorageで保持する。",
+      "constraints": [
+        "GASの接続先とWeb公開状態は未検証。"
+      ],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/ai-research-radar/blob/e4de992173d6642e1ed0cdb9ac84c5163be3b947/index.html"
+        }
+      ]
+    },
+    "fallback": {
+      "label": "Claudeによる代替調査",
+      "status": "実装あり",
+      "summary": "API制限時などに、外部のClaude作業結果をGitHub経由で渡す。",
+      "specification": "Claudeがdata/claude-fallback-results.jsonへ追記する運用を持ち、GASがキーワードを突き合わせて取り込む。",
+      "constraints": [
+        "Claude作業そのものをGASが自動起動するコードではない。"
+      ],
+      "sources": [
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/ai-research-radar/blob/e4de992173d6642e1ed0cdb9ac84c5163be3b947/README.md"
+        },
+        {
+          "label": "gas/Code.gs",
+          "url": "https://github.com/gurii-gabreh/ai-research-radar/blob/e4de992173d6642e1ed0cdb9ac84c5163be3b947/gas/Code.gs"
+        }
+      ]
+    }
+  },
+  "features": [
+    {
+      "label": "このアプリの特徴",
+      "summary": "ServiceNow版とは別方式。依頼管理と正本はGoogle Sheets、調査担当はGemini＋必要時のClaude。",
+      "detail": "Sheetsの依頼タスクに従ってGeminiで調べ、収集ログを蓄積して閲覧する。",
+      "sources": [
+        {
+          "label": "gas/Code.gs",
+          "url": "https://github.com/gurii-gabreh/ai-research-radar/blob/e4de992173d6642e1ed0cdb9ac84c5163be3b947/gas/Code.gs"
+        },
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/ai-research-radar/blob/e4de992173d6642e1ed0cdb9ac84c5163be3b947/README.md"
+        }
+      ]
+    }
+  ],
+  "flows": [
+    {
+      "title": "依頼から収集ログへ",
+      "kind": "solid",
+      "columns": [
+        [
+          "task"
+        ],
+        [
+          "gas"
+        ],
+        [
+          "gemini"
+        ],
+        [
+          "sheet"
+        ]
+      ],
+      "labels": [
+        "対象キーワードを読む",
+        "検索・要約を依頼",
+        "結果をGAS経由で追記"
+      ],
+      "sources": [
+        {
+          "label": "gas/Code.gs",
+          "url": "https://github.com/gurii-gabreh/ai-research-radar/blob/e4de992173d6642e1ed0cdb9ac84c5163be3b947/gas/Code.gs"
+        },
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/ai-research-radar/blob/e4de992173d6642e1ed0cdb9ac84c5163be3b947/README.md"
+        }
+      ]
+    },
+    {
+      "title": "閲覧と外部保存",
+      "kind": "solid",
+      "columns": [
+        [
+          "sheet"
+        ],
+        [
+          "ui"
+        ]
+      ],
+      "labels": [
+        "GAS GETのJSONで表示"
+      ],
+      "sources": [
+        {
+          "label": "gas/Code.gs",
+          "url": "https://github.com/gurii-gabreh/ai-research-radar/blob/e4de992173d6642e1ed0cdb9ac84c5163be3b947/gas/Code.gs"
+        },
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/ai-research-radar/blob/e4de992173d6642e1ed0cdb9ac84c5163be3b947/index.html"
+        }
+      ]
+    },
+    {
+      "title": "Claude代替結果の取込み",
+      "kind": "solid",
+      "columns": [
+        [
+          "fallback"
+        ],
+        [
+          "gas"
+        ],
+        [
+          "sheet"
+        ],
+        [
+          "mirror"
+        ]
+      ],
+      "labels": [
+        "公開JSONをGASが取得",
+        "未取込の結果を保存",
+        "内容が変わればGitHubへミラー"
+      ],
+      "sources": [
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/ai-research-radar/blob/e4de992173d6642e1ed0cdb9ac84c5163be3b947/README.md"
+        },
+        {
+          "label": "gas/Code.gs",
+          "url": "https://github.com/gurii-gabreh/ai-research-radar/blob/e4de992173d6642e1ed0cdb9ac84c5163be3b947/gas/Code.gs"
+        }
+      ]
+    }
+  ]
+}

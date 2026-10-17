@@ -1,0 +1,588 @@
+{
+  "nodes": [
+    {
+      "id": "c3182eaac7dff82a",
+      "type": "group",
+      "x": 500,
+      "y": -45,
+      "width": 2370,
+      "height": 510,
+      "label": "データ更新",
+      "color": "5"
+    },
+    {
+      "id": "ce0862df5a189b77",
+      "type": "group",
+      "x": 500,
+      "y": 635,
+      "width": 2370,
+      "height": 410,
+      "label": "データ構造",
+      "color": "4"
+    },
+    {
+      "id": "7f16b064687f39c1",
+      "type": "group",
+      "x": 500,
+      "y": 1215,
+      "width": 2370,
+      "height": 850,
+      "label": "画面・集計",
+      "color": "6"
+    },
+    {
+      "id": "12f34febabbeec4e",
+      "type": "group",
+      "x": 500,
+      "y": 2235,
+      "width": 2370,
+      "height": 510,
+      "label": "公開",
+      "color": "2"
+    },
+    {
+      "id": "6c2dbdf47a43157f",
+      "type": "group",
+      "x": 500,
+      "y": 2915,
+      "width": 2370,
+      "height": 390,
+      "label": "アプリの特徴",
+      "color": "6"
+    },
+    {
+      "id": "cc966ef6b18cd6ac",
+      "type": "group",
+      "x": 990,
+      "y": 3490,
+      "width": 3560,
+      "height": 420,
+      "label": "データからWBSへ"
+    },
+    {
+      "id": "138d05c4d011886c",
+      "type": "group",
+      "x": 990,
+      "y": 3990,
+      "width": 2480,
+      "height": 420,
+      "label": "今日の作業を見る"
+    },
+    {
+      "id": "739bebdb2d264677",
+      "type": "text",
+      "x": 1050,
+      "y": 100,
+      "width": 540,
+      "height": 220,
+      "text": "## Claude Codeによるタスク更新\n\n**確認区分：実装あり**\n\nチャットで依頼し、tasks.jsonを更新する運用。",
+      "color": "5"
+    },
+    {
+      "id": "b76a2a86dfcf2836",
+      "type": "text",
+      "x": 1810,
+      "y": 0,
+      "width": 1000,
+      "height": 420,
+      "text": "## 最終仕様\n\nREADMEはタスク追加・状態変更をClaude Codeで行う方式を示す。サイトはJSONを読む側を担当する。\n\n### 現在の制約・確認範囲\n\n- 画面上で共有タスクを直接保存するAPIはない。\n\n### 根拠\n\n- [README.md](https://github.com/gurii-gabreh/Task-WBS/blob/32e24a75335800153651dc81cf1ca12f0105b3f8/README.md)\n- [index.html](https://github.com/gurii-gabreh/Task-WBS/blob/32e24a75335800153651dc81cf1ca12f0105b3f8/index.html)",
+      "color": "5"
+    },
+    {
+      "id": "ce88dc3083792793",
+      "type": "text",
+      "x": 560,
+      "y": 130,
+      "width": 300,
+      "height": 160,
+      "text": "## データ更新\n\n1仕様項目",
+      "color": "5"
+    },
+    {
+      "id": "7beb5b1c6181a43b",
+      "type": "text",
+      "x": 1050,
+      "y": 730,
+      "width": 540,
+      "height": 220,
+      "text": "## 再帰的なタスクツリー\n\n**確認区分：実装あり**\n\nchildrenで目標から実行タスクまでを表す。",
+      "color": "4"
+    },
+    {
+      "id": "ac9da194cc7f6923",
+      "type": "text",
+      "x": 1810,
+      "y": 680,
+      "width": 1000,
+      "height": 320,
+      "text": "## 最終仕様\n\n末端の葉がstart／plannedEnd／actualEnd／status／priorityを持つ。中間ノードの期間や進捗は子から集計する。\n\n### 根拠\n\n- [README.md](https://github.com/gurii-gabreh/Task-WBS/blob/32e24a75335800153651dc81cf1ca12f0105b3f8/README.md)\n- [index.html](https://github.com/gurii-gabreh/Task-WBS/blob/32e24a75335800153651dc81cf1ca12f0105b3f8/index.html)",
+      "color": "4"
+    },
+    {
+      "id": "d0cef71666f0f799",
+      "type": "text",
+      "x": 560,
+      "y": 760,
+      "width": 300,
+      "height": 160,
+      "text": "## データ構造\n\n1仕様項目",
+      "color": "4"
+    },
+    {
+      "id": "8e102af6fa893630",
+      "type": "text",
+      "x": 1050,
+      "y": 1290,
+      "width": 540,
+      "height": 220,
+      "text": "## WBS・ガント表示\n\n**確認区分：実装あり**\n\n期間・遅延・完了数を計算して日別に表示する。",
+      "color": "6"
+    },
+    {
+      "id": "24abcd0f22e8d559",
+      "type": "text",
+      "x": 1810,
+      "y": 1260,
+      "width": 1000,
+      "height": 280,
+      "text": "## 最終仕様\n\ncomputeNodeで再帰集計し、カレンダーセルと階層行を描く。実績ログの表示も行う。\n\n### 根拠\n\n- [index.html](https://github.com/gurii-gabreh/Task-WBS/blob/32e24a75335800153651dc81cf1ca12f0105b3f8/index.html)",
+      "color": "6"
+    },
+    {
+      "id": "a6eaefd2ab3f9b3d",
+      "type": "text",
+      "x": 1050,
+      "y": 1720,
+      "width": 540,
+      "height": 220,
+      "text": "## 今日の作業ページ\n\n**確認区分：実装あり**\n\n実行タスクを取り出して今日の対象等を表示する。",
+      "color": "6"
+    },
+    {
+      "id": "67bcdd867670105c",
+      "type": "text",
+      "x": 1810,
+      "y": 1640,
+      "width": 1000,
+      "height": 380,
+      "text": "## 最終仕様\n\ntoday.htmlがJSONから葉を集め、期日・状態等で分類して一覧を表示する。\n\n### 現在の制約・確認範囲\n\n- READMEの「唯一のビューア」という旧記述より、現在のコードにある追加ページを優先して図示する。\n\n### 根拠\n\n- [today.html](https://github.com/gurii-gabreh/Task-WBS/blob/32e24a75335800153651dc81cf1ca12f0105b3f8/today.html)",
+      "color": "6"
+    },
+    {
+      "id": "ee0bdbcde24b6917",
+      "type": "text",
+      "x": 560,
+      "y": 1560,
+      "width": 300,
+      "height": 160,
+      "text": "## 画面・集計\n\n2仕様項目",
+      "color": "6"
+    },
+    {
+      "id": "5962e691aa58603b",
+      "type": "text",
+      "x": 1050,
+      "y": 2380,
+      "width": 540,
+      "height": 220,
+      "text": "## GitHub Pages\n\n**確認区分：実装あり**\n\nmain更新から静的ページを配信する。",
+      "color": "2"
+    },
+    {
+      "id": "1389d57940226d30",
+      "type": "text",
+      "x": 1810,
+      "y": 2280,
+      "width": 1000,
+      "height": 420,
+      "text": "## 最終仕様\n\ndeploy-pages.ymlが静的ファイルを公開する。画面はdata/tasks.jsonをfetchする。\n\n### 現在の制約・確認範囲\n\n- 現在の公開設定や実データの最新反映は未検証。\n\n### 根拠\n\n- [.github/workflows/deploy-pages.yml](https://github.com/gurii-gabreh/Task-WBS/blob/32e24a75335800153651dc81cf1ca12f0105b3f8/.github/workflows/deploy-pages.yml)\n- [index.html](https://github.com/gurii-gabreh/Task-WBS/blob/32e24a75335800153651dc81cf1ca12f0105b3f8/index.html)",
+      "color": "2"
+    },
+    {
+      "id": "ce37eeda8cab1f46",
+      "type": "text",
+      "x": 560,
+      "y": 2410,
+      "width": 300,
+      "height": 160,
+      "text": "## 公開\n\n1仕様項目",
+      "color": "2"
+    },
+    {
+      "id": "a57d61a733122d62",
+      "type": "text",
+      "x": 1050,
+      "y": 3020,
+      "width": 540,
+      "height": 180,
+      "text": "## このアプリの特徴\n\n入力をClaude Code、集計・表示をブラウザが担当し、親の状態を重複管理しない。",
+      "color": "6"
+    },
+    {
+      "id": "a719bae325d9766d",
+      "type": "text",
+      "x": 1810,
+      "y": 2960,
+      "width": 1000,
+      "height": 300,
+      "text": "## アプリの特徴\n\n学習タスクを階層と日付で整理し、WBS・ガント・今日の作業として読む。\n\n### 根拠\n\n- [README.md](https://github.com/gurii-gabreh/Task-WBS/blob/32e24a75335800153651dc81cf1ca12f0105b3f8/README.md)\n- [index.html](https://github.com/gurii-gabreh/Task-WBS/blob/32e24a75335800153651dc81cf1ca12f0105b3f8/index.html)",
+      "color": "6"
+    },
+    {
+      "id": "5b8a8b56dada6ce7",
+      "type": "text",
+      "x": 560,
+      "y": 3020,
+      "width": 300,
+      "height": 180,
+      "text": "## アプリの特徴\n\n機能の組合せ・運用方法・設計上の性質",
+      "color": "6"
+    },
+    {
+      "id": "f623ff49da8d81cd",
+      "type": "text",
+      "x": 1050,
+      "y": 3520,
+      "width": 540,
+      "height": 360,
+      "text": "## データからWBSへ\n\nタスクのJSONをcommit\n\n末端から集計して描画\n\n記録に基づく前提・対応順\n\n- [README.md](https://github.com/gurii-gabreh/Task-WBS/blob/32e24a75335800153651dc81cf1ca12f0105b3f8/README.md)\n- [index.html](https://github.com/gurii-gabreh/Task-WBS/blob/32e24a75335800153651dc81cf1ca12f0105b3f8/index.html)",
+      "color": "1"
+    },
+    {
+      "id": "b4395f34967fee2a",
+      "type": "text",
+      "x": 1810,
+      "y": 3520,
+      "width": 620,
+      "height": 280,
+      "text": "## writer\n\n**Claude Codeによるタスク更新**\n\nチャットで依頼し、tasks.jsonを更新する運用。\n\n上側の同じ項目の再掲。",
+      "color": "5"
+    },
+    {
+      "id": "b25d50193955a4fc",
+      "type": "text",
+      "x": 2650,
+      "y": 3520,
+      "width": 760,
+      "height": 280,
+      "text": "## json\n\n**再帰的なタスクツリー**\n\nchildrenで目標から実行タスクまでを表す。\n\n上側の同じ項目の再掲。",
+      "color": "4"
+    },
+    {
+      "id": "c0d5017348fb926f",
+      "type": "text",
+      "x": 3650,
+      "y": 3520,
+      "width": 840,
+      "height": 280,
+      "text": "## wbs\n\n**WBS・ガント表示**\n\n期間・遅延・完了数を計算して日別に表示する。\n\n上側の同じ項目の再掲。",
+      "color": "6"
+    },
+    {
+      "id": "17d346ba646448be",
+      "type": "text",
+      "x": 1050,
+      "y": 4040,
+      "width": 540,
+      "height": 320,
+      "text": "## 今日の作業を見る\n\n葉タスクを抽出・分類して表示\n\n記録に基づく前提・対応順\n\n- [README.md](https://github.com/gurii-gabreh/Task-WBS/blob/32e24a75335800153651dc81cf1ca12f0105b3f8/README.md)\n- [index.html](https://github.com/gurii-gabreh/Task-WBS/blob/32e24a75335800153651dc81cf1ca12f0105b3f8/index.html)\n- [today.html](https://github.com/gurii-gabreh/Task-WBS/blob/32e24a75335800153651dc81cf1ca12f0105b3f8/today.html)",
+      "color": "1"
+    },
+    {
+      "id": "f8b1b8dd9b985c0c",
+      "type": "text",
+      "x": 1810,
+      "y": 4020,
+      "width": 620,
+      "height": 280,
+      "text": "## json\n\n**再帰的なタスクツリー**\n\nchildrenで目標から実行タスクまでを表す。\n\n上側の同じ項目の再掲。",
+      "color": "4"
+    },
+    {
+      "id": "4f36c2b17b96a8a1",
+      "type": "text",
+      "x": 2650,
+      "y": 4020,
+      "width": 760,
+      "height": 280,
+      "text": "## today\n\n**今日の作業ページ**\n\n実行タスクを取り出して今日の対象等を表示する。\n\n上側の同じ項目の再掲。",
+      "color": "6"
+    },
+    {
+      "id": "e2ba41af03120f14",
+      "type": "text",
+      "x": 560,
+      "y": 3840,
+      "width": 300,
+      "height": 360,
+      "text": "## つながり\n\n矢印：記録から確認できる前提・対応順\n\n矢印なし＋関連ラベル：依存を意味しない関連\n\nカードは上側の同じ項目の再掲。",
+      "color": "1"
+    },
+    {
+      "id": "4813494d137e1631",
+      "type": "text",
+      "x": 0,
+      "y": 1870,
+      "width": 380,
+      "height": 780,
+      "text": "# Task WBS／Study Schedule：内部構成・連関図\n\n**gurii-gabreh/Task-WBS**\n\n学習タスクを階層と日付で整理し、WBS・ガント・今日の作業として読む。 上側は役割別の内部構成、下側はデータのつながり。\n\nモード：最終仕様・アプリの特徴\n\n記録：2026-10-17 JST\n\n対象：32e24a75335800153651dc81cf1ca12f0105b3f8\n\n- 既定ブランチ main の固定コミットを確認したスナップショット。\n- 実装ありはコードの存在を示す。稼働環境・認証設定・実機での動作は未検証。\n- 技術・モデル・サービス名はコード中の設定や候補。現行の提供状況・料金を保証しない。"
+    }
+  ],
+  "edges": [
+    {
+      "id": "ae7b68746dbca739",
+      "fromNode": "739bebdb2d264677",
+      "fromSide": "right",
+      "toNode": "b76a2a86dfcf2836",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "5"
+    },
+    {
+      "id": "8ccf5f0a2330c376",
+      "fromNode": "ce88dc3083792793",
+      "fromSide": "right",
+      "toNode": "739bebdb2d264677",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "5"
+    },
+    {
+      "id": "c4f95a5febaa10b3",
+      "fromNode": "7beb5b1c6181a43b",
+      "fromSide": "right",
+      "toNode": "ac9da194cc7f6923",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "4"
+    },
+    {
+      "id": "bb4505960cb9fdd5",
+      "fromNode": "d0cef71666f0f799",
+      "fromSide": "right",
+      "toNode": "7beb5b1c6181a43b",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "4"
+    },
+    {
+      "id": "6f295b7148cb1657",
+      "fromNode": "8e102af6fa893630",
+      "fromSide": "right",
+      "toNode": "24abcd0f22e8d559",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "6"
+    },
+    {
+      "id": "bff8ad27e180753c",
+      "fromNode": "a6eaefd2ab3f9b3d",
+      "fromSide": "right",
+      "toNode": "67bcdd867670105c",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "6"
+    },
+    {
+      "id": "2b89eef4a1401015",
+      "fromNode": "ee0bdbcde24b6917",
+      "fromSide": "right",
+      "toNode": "8e102af6fa893630",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "e4876f511a75d5f0",
+      "fromNode": "ee0bdbcde24b6917",
+      "fromSide": "right",
+      "toNode": "a6eaefd2ab3f9b3d",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "59a981365a863518",
+      "fromNode": "5962e691aa58603b",
+      "fromSide": "right",
+      "toNode": "1389d57940226d30",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "2"
+    },
+    {
+      "id": "67b59ef44936e659",
+      "fromNode": "ce37eeda8cab1f46",
+      "fromSide": "right",
+      "toNode": "5962e691aa58603b",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "2"
+    },
+    {
+      "id": "44c1644f2f8fbaaf",
+      "fromNode": "a57d61a733122d62",
+      "fromSide": "right",
+      "toNode": "a719bae325d9766d",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "特徴・根拠",
+      "color": "6"
+    },
+    {
+      "id": "07f4ee95b1ffd79b",
+      "fromNode": "5b8a8b56dada6ce7",
+      "fromSide": "right",
+      "toNode": "a57d61a733122d62",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "8b754ae3247289bc",
+      "fromNode": "f623ff49da8d81cd",
+      "fromSide": "right",
+      "toNode": "b4395f34967fee2a",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "対象",
+      "color": "1"
+    },
+    {
+      "id": "50c109f6b68db6d6",
+      "fromNode": "b4395f34967fee2a",
+      "fromSide": "right",
+      "toNode": "b25d50193955a4fc",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "タスクのJSONをcommit",
+      "color": "1"
+    },
+    {
+      "id": "d1cc354ecc47be03",
+      "fromNode": "b25d50193955a4fc",
+      "fromSide": "right",
+      "toNode": "c0d5017348fb926f",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "末端から集計して描画",
+      "color": "1"
+    },
+    {
+      "id": "1729de1c3440fe86",
+      "fromNode": "17d346ba646448be",
+      "fromSide": "right",
+      "toNode": "f8b1b8dd9b985c0c",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "対象",
+      "color": "1"
+    },
+    {
+      "id": "eaed6e3f958a7361",
+      "fromNode": "f8b1b8dd9b985c0c",
+      "fromSide": "right",
+      "toNode": "4f36c2b17b96a8a1",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "葉タスクを抽出・分類して表示",
+      "color": "1"
+    },
+    {
+      "id": "bc39008d6fb78193",
+      "fromNode": "e2ba41af03120f14",
+      "fromSide": "right",
+      "toNode": "f623ff49da8d81cd",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "82c80aaaa9dcd535",
+      "fromNode": "e2ba41af03120f14",
+      "fromSide": "right",
+      "toNode": "17d346ba646448be",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "170621fc29df7845",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ce88dc3083792793",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "e398a6d667d4fc2e",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "d0cef71666f0f799",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "ebd08ddb8ed30b72",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ee0bdbcde24b6917",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "f9019dd3a82fcac0",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ce37eeda8cab1f46",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "dfb2eff2ddac5594",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "5b8a8b56dada6ce7",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "39ad7aa662f7c4bd",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "e2ba41af03120f14",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    }
+  ]
+}

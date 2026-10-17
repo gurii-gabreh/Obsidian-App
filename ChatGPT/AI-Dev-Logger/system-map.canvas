@@ -1,0 +1,651 @@
+{
+  "nodes": [
+    {
+      "id": "c3182eaac7dff82a",
+      "type": "group",
+      "x": 500,
+      "y": -45,
+      "width": 2370,
+      "height": 530,
+      "label": "画面・操作",
+      "color": "5"
+    },
+    {
+      "id": "ce0862df5a189b77",
+      "type": "group",
+      "x": 500,
+      "y": 655,
+      "width": 2370,
+      "height": 470,
+      "label": "会話取得",
+      "color": "4"
+    },
+    {
+      "id": "7f16b064687f39c1",
+      "type": "group",
+      "x": 500,
+      "y": 1295,
+      "width": 2370,
+      "height": 950,
+      "label": "解析・通信",
+      "color": "6"
+    },
+    {
+      "id": "12f34febabbeec4e",
+      "type": "group",
+      "x": 500,
+      "y": 2415,
+      "width": 2370,
+      "height": 530,
+      "label": "保存・同期",
+      "color": "2"
+    },
+    {
+      "id": "6c2dbdf47a43157f",
+      "type": "group",
+      "x": 500,
+      "y": 3115,
+      "width": 2370,
+      "height": 410,
+      "label": "アプリの特徴",
+      "color": "6"
+    },
+    {
+      "id": "cc966ef6b18cd6ac",
+      "type": "group",
+      "x": 990,
+      "y": 3710,
+      "width": 4560,
+      "height": 520,
+      "label": "会話を解析する"
+    },
+    {
+      "id": "138d05c4d011886c",
+      "type": "group",
+      "x": 990,
+      "y": 4310,
+      "width": 4560,
+      "height": 520,
+      "label": "解析結果を保存する"
+    },
+    {
+      "id": "015e2c89b0e20777",
+      "type": "text",
+      "x": 1050,
+      "y": 110,
+      "width": 540,
+      "height": 220,
+      "text": "## Chromeサイドパネル\n\n**確認区分：実装あり**\n\n情報取得・システム選択・Notion同期を操作する。",
+      "color": "5"
+    },
+    {
+      "id": "529409f9de46037e",
+      "type": "text",
+      "x": 1810,
+      "y": 0,
+      "width": 1000,
+      "height": 440,
+      "text": "## 最終仕様\n\nManifest V3の拡張としてsidepanel.html／sidepanel.jsを表示する。設定・累積ログはchrome.storage.localで管理する。\n\n### 現在の制約・確認範囲\n\n- 通常のWebページではなく、ZIP内のdev-loggerフォルダを拡張として読み込む。\n\n### 根拠\n\n- [dev-logger.zip 内 dev-logger/manifest.json](https://github.com/gurii-gabreh/AI-Dev-Logger/blob/bc1d5af3807cbf6caca2d30d06c444d4255fe5cd/dev-logger.zip)\n- [dev-logger.zip 内 dev-logger/sidepanel.js](https://github.com/gurii-gabreh/AI-Dev-Logger/blob/bc1d5af3807cbf6caca2d30d06c444d4255fe5cd/dev-logger.zip)",
+      "color": "5"
+    },
+    {
+      "id": "ce88dc3083792793",
+      "type": "text",
+      "x": 560,
+      "y": 140,
+      "width": 300,
+      "height": 160,
+      "text": "## 画面・操作\n\n1仕様項目",
+      "color": "5"
+    },
+    {
+      "id": "154b1fc20d41489a",
+      "type": "text",
+      "x": 1050,
+      "y": 780,
+      "width": 540,
+      "height": 220,
+      "text": "## content script\n\n**確認区分：実装あり**\n\n対応サイトの会話DOMから差分テキストを抽出する。",
+      "color": "4"
+    },
+    {
+      "id": "c49b2f71bf18ba96",
+      "type": "text",
+      "x": 1810,
+      "y": 700,
+      "width": 1000,
+      "height": 380,
+      "text": "## 最終仕様\n\nClaude.ai、Gemini、ChatGPT、AI Studio等の会話を対象とし、前回のターン数等から追加部分を取得する。\n\n### 現在の制約・確認範囲\n\n- サイトのDOM変更で抽出が壊れる可能性がある。\n\n### 根拠\n\n- [dev-logger.zip 内 dev-logger/content_script.js](https://github.com/gurii-gabreh/AI-Dev-Logger/blob/bc1d5af3807cbf6caca2d30d06c444d4255fe5cd/dev-logger.zip)",
+      "color": "4"
+    },
+    {
+      "id": "d0cef71666f0f799",
+      "type": "text",
+      "x": 560,
+      "y": 810,
+      "width": 300,
+      "height": 160,
+      "text": "## 会話取得\n\n1仕様項目",
+      "color": "4"
+    },
+    {
+      "id": "92e641f7007aa305",
+      "type": "text",
+      "x": 1050,
+      "y": 1420,
+      "width": 540,
+      "height": 220,
+      "text": "## 拡張のbackground\n\n**確認区分：実装あり**\n\nメッセージを受け、Gemini・Notionへの通信を担当する。",
+      "color": "6"
+    },
+    {
+      "id": "5b9d81ec35671ab6",
+      "type": "text",
+      "x": 1810,
+      "y": 1340,
+      "width": 1000,
+      "height": 380,
+      "text": "## 最終仕様\n\nFETCH_AND_ANALYZE等のメッセージを処理し、GeminiのJSONを既存ログやNotionデータとマージする。\n\n### 現在の制約・確認範囲\n\n- この拡張はClaude用の音声ブリッジとは別アプリ。\n\n### 根拠\n\n- [dev-logger.zip 内 dev-logger/background.js](https://github.com/gurii-gabreh/AI-Dev-Logger/blob/bc1d5af3807cbf6caca2d30d06c444d4255fe5cd/dev-logger.zip)",
+      "color": "6"
+    },
+    {
+      "id": "47f2af5dee615c93",
+      "type": "text",
+      "x": 1050,
+      "y": 1900,
+      "width": 540,
+      "height": 220,
+      "text": "## Gemini API\n\n**確認区分：実装あり**\n\n会話を進捗・問題・技術の構造へ変える。",
+      "color": "6"
+    },
+    {
+      "id": "5363549aad0dcfbb",
+      "type": "text",
+      "x": 1810,
+      "y": 1820,
+      "width": 1000,
+      "height": 380,
+      "text": "## 最終仕様\n\ngenerateContentへ会話と抽出指示を送り、progress／issues／techStack／summaryを解析する。\n\n### 現在の制約・確認範囲\n\n- 選択した会話内容が外部AIへ送られる。キー・モデル設定は利用者側で必要。\n\n### 根拠\n\n- [dev-logger.zip 内 dev-logger/background.js](https://github.com/gurii-gabreh/AI-Dev-Logger/blob/bc1d5af3807cbf6caca2d30d06c444d4255fe5cd/dev-logger.zip)",
+      "color": "6"
+    },
+    {
+      "id": "ee0bdbcde24b6917",
+      "type": "text",
+      "x": 560,
+      "y": 1690,
+      "width": 300,
+      "height": 160,
+      "text": "## 解析・通信\n\n2仕様項目",
+      "color": "6"
+    },
+    {
+      "id": "facbdf9651221a2a",
+      "type": "text",
+      "x": 1050,
+      "y": 2570,
+      "width": 540,
+      "height": 220,
+      "text": "## Notionデータベース\n\n**確認区分：実装あり**\n\nプロジェクト単位の進捗・問題・技術を保存する。",
+      "color": "2"
+    },
+    {
+      "id": "d487d1610a33c786",
+      "type": "text",
+      "x": 1810,
+      "y": 2460,
+      "width": 1000,
+      "height": 440,
+      "text": "## 最終仕様\n\n現行コードのwriteToNotionはページpropertiesをPATCHする。同期日時、進捗タスク、問題ログ、使用技術、廃止技術などのプロパティへマージ済みテキストを書き込む。\n\n### 現在の制約・確認範囲\n\n- READMEの「本文ブロックへ追記」という説明とは異なる。コードが使うプロパティ名・型の準備が必要。\n\n### 根拠\n\n- [dev-logger.zip 内 dev-logger/background.js](https://github.com/gurii-gabreh/AI-Dev-Logger/blob/bc1d5af3807cbf6caca2d30d06c444d4255fe5cd/dev-logger.zip)\n- [dev-logger.zip 内 dev-logger/README.md](https://github.com/gurii-gabreh/AI-Dev-Logger/blob/bc1d5af3807cbf6caca2d30d06c444d4255fe5cd/dev-logger.zip)",
+      "color": "2"
+    },
+    {
+      "id": "ce37eeda8cab1f46",
+      "type": "text",
+      "x": 560,
+      "y": 2600,
+      "width": 300,
+      "height": 160,
+      "text": "## 保存・同期\n\n1仕様項目",
+      "color": "2"
+    },
+    {
+      "id": "a57d61a733122d62",
+      "type": "text",
+      "x": 1050,
+      "y": 3230,
+      "width": 540,
+      "height": 180,
+      "text": "## このアプリの特徴\n\n公開ソースはZIPのみなので中身を展開して確認。Notionの実装はREADMEよりコードを優先して説明する。",
+      "color": "6"
+    },
+    {
+      "id": "a719bae325d9766d",
+      "type": "text",
+      "x": 1810,
+      "y": 3160,
+      "width": 1000,
+      "height": 320,
+      "text": "## アプリの特徴\n\nZIPに収められたChrome拡張。AIとの会話から進捗・問題・技術を抽出しNotionへ同期する。\n\n### 根拠\n\n- [dev-logger.zip 内 dev-logger/manifest.json](https://github.com/gurii-gabreh/AI-Dev-Logger/blob/bc1d5af3807cbf6caca2d30d06c444d4255fe5cd/dev-logger.zip)\n- [dev-logger.zip 内 dev-logger/sidepanel.js](https://github.com/gurii-gabreh/AI-Dev-Logger/blob/bc1d5af3807cbf6caca2d30d06c444d4255fe5cd/dev-logger.zip)\n- [dev-logger.zip 内 dev-logger/content_script.js](https://github.com/gurii-gabreh/AI-Dev-Logger/blob/bc1d5af3807cbf6caca2d30d06c444d4255fe5cd/dev-logger.zip)",
+      "color": "6"
+    },
+    {
+      "id": "5b8a8b56dada6ce7",
+      "type": "text",
+      "x": 560,
+      "y": 3230,
+      "width": 300,
+      "height": 180,
+      "text": "## アプリの特徴\n\n機能の組合せ・運用方法・設計上の性質",
+      "color": "6"
+    },
+    {
+      "id": "f623ff49da8d81cd",
+      "type": "text",
+      "x": 1050,
+      "y": 3740,
+      "width": 540,
+      "height": 460,
+      "text": "## 会話を解析する\n\n取得ボタンで対象タブへ依頼\n\n会話の差分を返す\n\n構造化解析を依頼\n\n記録に基づく前提・対応順\n\n- [dev-logger.zip 内 dev-logger/manifest.json](https://github.com/gurii-gabreh/AI-Dev-Logger/blob/bc1d5af3807cbf6caca2d30d06c444d4255fe5cd/dev-logger.zip)\n- [dev-logger.zip 内 dev-logger/sidepanel.js](https://github.com/gurii-gabreh/AI-Dev-Logger/blob/bc1d5af3807cbf6caca2d30d06c444d4255fe5cd/dev-logger.zip)\n- [dev-logger.zip 内 dev-logger/content_script.js](https://github.com/gurii-gabreh/AI-Dev-Logger/blob/bc1d5af3807cbf6caca2d30d06c444d4255fe5cd/dev-logger.zip)\n- [dev-logger.zip 内 dev-logger/background.js](https://github.com/gurii-gabreh/AI-Dev-Logger/blob/bc1d5af3807cbf6caca2d30d06c444d4255fe5cd/dev-logger.zip)",
+      "color": "1"
+    },
+    {
+      "id": "b4395f34967fee2a",
+      "type": "text",
+      "x": 1810,
+      "y": 3740,
+      "width": 620,
+      "height": 280,
+      "text": "## panel\n\n**Chromeサイドパネル**\n\n情報取得・システム選択・Notion同期を操作する。\n\n上側の同じ項目の再掲。",
+      "color": "5"
+    },
+    {
+      "id": "b25d50193955a4fc",
+      "type": "text",
+      "x": 2650,
+      "y": 3740,
+      "width": 760,
+      "height": 280,
+      "text": "## dom\n\n**content script**\n\n対応サイトの会話DOMから差分テキストを抽出する。\n\n上側の同じ項目の再掲。",
+      "color": "4"
+    },
+    {
+      "id": "c0d5017348fb926f",
+      "type": "text",
+      "x": 3650,
+      "y": 3740,
+      "width": 840,
+      "height": 280,
+      "text": "## worker\n\n**拡張のbackground**\n\nメッセージを受け、Gemini・Notionへの通信を担当する。\n\n上側の同じ項目の再掲。",
+      "color": "6"
+    },
+    {
+      "id": "07ab1a462bf44409",
+      "type": "text",
+      "x": 4730,
+      "y": 3740,
+      "width": 760,
+      "height": 280,
+      "text": "## ai\n\n**Gemini API**\n\n会話を進捗・問題・技術の構造へ変える。\n\n上側の同じ項目の再掲。",
+      "color": "6"
+    },
+    {
+      "id": "17d346ba646448be",
+      "type": "text",
+      "x": 1050,
+      "y": 4340,
+      "width": 540,
+      "height": 460,
+      "text": "## 解析結果を保存する\n\n結果をマージ\n\n選択プロジェクトのpropertiesを更新\n\n同期結果を表示\n\n記録に基づく前提・対応順\n\n- [dev-logger.zip 内 dev-logger/background.js](https://github.com/gurii-gabreh/AI-Dev-Logger/blob/bc1d5af3807cbf6caca2d30d06c444d4255fe5cd/dev-logger.zip)\n- [dev-logger.zip 内 dev-logger/README.md](https://github.com/gurii-gabreh/AI-Dev-Logger/blob/bc1d5af3807cbf6caca2d30d06c444d4255fe5cd/dev-logger.zip)\n- [dev-logger.zip 内 dev-logger/manifest.json](https://github.com/gurii-gabreh/AI-Dev-Logger/blob/bc1d5af3807cbf6caca2d30d06c444d4255fe5cd/dev-logger.zip)\n- [dev-logger.zip 内 dev-logger/sidepanel.js](https://github.com/gurii-gabreh/AI-Dev-Logger/blob/bc1d5af3807cbf6caca2d30d06c444d4255fe5cd/dev-logger.zip)",
+      "color": "1"
+    },
+    {
+      "id": "f8b1b8dd9b985c0c",
+      "type": "text",
+      "x": 1810,
+      "y": 4340,
+      "width": 620,
+      "height": 280,
+      "text": "## ai\n\n**Gemini API**\n\n会話を進捗・問題・技術の構造へ変える。\n\n上側の同じ項目の再掲。",
+      "color": "6"
+    },
+    {
+      "id": "4f36c2b17b96a8a1",
+      "type": "text",
+      "x": 2650,
+      "y": 4340,
+      "width": 760,
+      "height": 280,
+      "text": "## worker\n\n**拡張のbackground**\n\nメッセージを受け、Gemini・Notionへの通信を担当する。\n\n上側の同じ項目の再掲。",
+      "color": "6"
+    },
+    {
+      "id": "da0932f1fbf22b7b",
+      "type": "text",
+      "x": 3650,
+      "y": 4340,
+      "width": 840,
+      "height": 280,
+      "text": "## notion\n\n**Notionデータベース**\n\nプロジェクト単位の進捗・問題・技術を保存する。\n\n上側の同じ項目の再掲。",
+      "color": "2"
+    },
+    {
+      "id": "6fc35c7463a3dffd",
+      "type": "text",
+      "x": 4730,
+      "y": 4340,
+      "width": 760,
+      "height": 280,
+      "text": "## panel\n\n**Chromeサイドパネル**\n\n情報取得・システム選択・Notion同期を操作する。\n\n上側の同じ項目の再掲。",
+      "color": "5"
+    },
+    {
+      "id": "e2ba41af03120f14",
+      "type": "text",
+      "x": 560,
+      "y": 4160,
+      "width": 300,
+      "height": 360,
+      "text": "## つながり\n\n矢印：記録から確認できる前提・対応順\n\n矢印なし＋関連ラベル：依存を意味しない関連\n\nカードは上側の同じ項目の再掲。",
+      "color": "1"
+    },
+    {
+      "id": "4813494d137e1631",
+      "type": "text",
+      "x": 0,
+      "y": 2100,
+      "width": 380,
+      "height": 740,
+      "text": "# AI Dev Logger：内部構成・連関図\n\n**gurii-gabreh/AI-Dev-Logger**\n\nZIPに収められたChrome拡張。AIとの会話から進捗・問題・技術を抽出しNotionへ同期する。 上側は役割別の内部構成、下側はデータのつながり。\n\nモード：最終仕様・アプリの特徴\n\n記録：2026-10-17 JST\n\n対象：bc1d5af3807cbf6caca2d30d06c444d4255fe5cd\n\n- 既定ブランチ main の固定コミットを確認したスナップショット。\n- 実装ありはコードの存在を示す。稼働環境・認証設定・実機での動作は未検証。\n- 技術・モデル・サービス名はコード中の設定や候補。現行の提供状況・料金を保証しない。"
+    }
+  ],
+  "edges": [
+    {
+      "id": "842ec36c7bad40e3",
+      "fromNode": "015e2c89b0e20777",
+      "fromSide": "right",
+      "toNode": "529409f9de46037e",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "5"
+    },
+    {
+      "id": "96b7240ab6d8fffc",
+      "fromNode": "ce88dc3083792793",
+      "fromSide": "right",
+      "toNode": "015e2c89b0e20777",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "5"
+    },
+    {
+      "id": "370ab6fdd7aba886",
+      "fromNode": "154b1fc20d41489a",
+      "fromSide": "right",
+      "toNode": "c49b2f71bf18ba96",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "4"
+    },
+    {
+      "id": "304dc380407b4fc4",
+      "fromNode": "d0cef71666f0f799",
+      "fromSide": "right",
+      "toNode": "154b1fc20d41489a",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "4"
+    },
+    {
+      "id": "8a3bf096e6143e61",
+      "fromNode": "92e641f7007aa305",
+      "fromSide": "right",
+      "toNode": "5b9d81ec35671ab6",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "6"
+    },
+    {
+      "id": "7aaa8f2b7e157060",
+      "fromNode": "47f2af5dee615c93",
+      "fromSide": "right",
+      "toNode": "5363549aad0dcfbb",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "6"
+    },
+    {
+      "id": "0a35ac8049e37675",
+      "fromNode": "ee0bdbcde24b6917",
+      "fromSide": "right",
+      "toNode": "92e641f7007aa305",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "080db2f16b15cbec",
+      "fromNode": "ee0bdbcde24b6917",
+      "fromSide": "right",
+      "toNode": "47f2af5dee615c93",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "0c588761c443d2f6",
+      "fromNode": "facbdf9651221a2a",
+      "fromSide": "right",
+      "toNode": "d487d1610a33c786",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "2"
+    },
+    {
+      "id": "afc8ad918e91805f",
+      "fromNode": "ce37eeda8cab1f46",
+      "fromSide": "right",
+      "toNode": "facbdf9651221a2a",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "2"
+    },
+    {
+      "id": "44c1644f2f8fbaaf",
+      "fromNode": "a57d61a733122d62",
+      "fromSide": "right",
+      "toNode": "a719bae325d9766d",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "特徴・根拠",
+      "color": "6"
+    },
+    {
+      "id": "07f4ee95b1ffd79b",
+      "fromNode": "5b8a8b56dada6ce7",
+      "fromSide": "right",
+      "toNode": "a57d61a733122d62",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "8b754ae3247289bc",
+      "fromNode": "f623ff49da8d81cd",
+      "fromSide": "right",
+      "toNode": "b4395f34967fee2a",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "対象",
+      "color": "1"
+    },
+    {
+      "id": "50c109f6b68db6d6",
+      "fromNode": "b4395f34967fee2a",
+      "fromSide": "right",
+      "toNode": "b25d50193955a4fc",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "取得ボタンで対象タブへ依頼",
+      "color": "1"
+    },
+    {
+      "id": "d1cc354ecc47be03",
+      "fromNode": "b25d50193955a4fc",
+      "fromSide": "right",
+      "toNode": "c0d5017348fb926f",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "会話の差分を返す",
+      "color": "1"
+    },
+    {
+      "id": "ac7289e9a6d79e62",
+      "fromNode": "c0d5017348fb926f",
+      "fromSide": "right",
+      "toNode": "07ab1a462bf44409",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "構造化解析を依頼",
+      "color": "1"
+    },
+    {
+      "id": "3fca74f53856ed6a",
+      "fromNode": "17d346ba646448be",
+      "fromSide": "right",
+      "toNode": "f8b1b8dd9b985c0c",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "対象",
+      "color": "1"
+    },
+    {
+      "id": "3cba177ace174171",
+      "fromNode": "f8b1b8dd9b985c0c",
+      "fromSide": "right",
+      "toNode": "4f36c2b17b96a8a1",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "結果をマージ",
+      "color": "1"
+    },
+    {
+      "id": "86a453407a0491b4",
+      "fromNode": "4f36c2b17b96a8a1",
+      "fromSide": "right",
+      "toNode": "da0932f1fbf22b7b",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "選択プロジェクトのpropertiesを更新",
+      "color": "1"
+    },
+    {
+      "id": "6913dea0d5caab8f",
+      "fromNode": "da0932f1fbf22b7b",
+      "fromSide": "right",
+      "toNode": "6fc35c7463a3dffd",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "同期結果を表示",
+      "color": "1"
+    },
+    {
+      "id": "533396f944180c43",
+      "fromNode": "e2ba41af03120f14",
+      "fromSide": "right",
+      "toNode": "f623ff49da8d81cd",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "bc1b96d48048766e",
+      "fromNode": "e2ba41af03120f14",
+      "fromSide": "right",
+      "toNode": "17d346ba646448be",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "9e8b1764b3c84ca1",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ce88dc3083792793",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "238ce85e16eddc5a",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "d0cef71666f0f799",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "c070ef01e21c72b1",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ee0bdbcde24b6917",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "0fe7a955a378dbee",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ce37eeda8cab1f46",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "b677aaeccb2cf158",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "5b8a8b56dada6ce7",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "0bd5a7b071368092",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "e2ba41af03120f14",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    }
+  ]
+}

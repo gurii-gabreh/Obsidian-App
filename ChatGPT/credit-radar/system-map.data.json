@@ -1,0 +1,216 @@
+{
+  "mode": "spec",
+  "title": "Credit Radar：内部構成・連関図",
+  "repo": "gurii-gabreh/credit-radar",
+  "ref": "ba09e5261777e06f0140c995a172d2312fc6da14",
+  "asOf": "2026-10-17 JST",
+  "scope": "Claude Codeの作業量と、利用上限に達した時刻を同じ日付軸で比較する。 上側は役割別の内部構成、下側はデータのつながり。",
+  "limitations": [
+    "既定ブランチ claude/usage-analytics-dashboard-kh5fj0 の固定コミットを確認したスナップショット。",
+    "実装ありはコードの存在を示す。稼働環境・認証設定・実機での動作は未検証。",
+    "技術・モデル・サービス名はコード中の設定や候補。現行の提供状況・料金を保証しない。"
+  ],
+  "categories": [
+    {
+      "key": "category-0",
+      "label": "画面・操作",
+      "ids": [
+        "ui"
+      ]
+    },
+    {
+      "key": "category-1",
+      "label": "API・認証",
+      "ids": [
+        "gas"
+      ]
+    },
+    {
+      "key": "category-2",
+      "label": "保存",
+      "ids": [
+        "sheets"
+      ]
+    },
+    {
+      "key": "category-3",
+      "label": "記録の入口",
+      "ids": [
+        "manual",
+        "usage"
+      ]
+    }
+  ],
+  "items": {
+    "ui": {
+      "label": "使用量ダッシュボード",
+      "status": "実装あり",
+      "summary": "件数・所要時間・利用上限ログを並べる。",
+      "specification": "index.htmlがSVGグラフ、表、上限ログ入力を提供する。接続URLと共有トークンは利用者のlocalStorageへ保存する。",
+      "constraints": [
+        "Claudeの公式クレジット残量を自動取得するアプリではない。"
+      ],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/credit-radar/blob/ba09e5261777e06f0140c995a172d2312fc6da14/index.html"
+        },
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/credit-radar/blob/ba09e5261777e06f0140c995a172d2312fc6da14/README.md"
+        }
+      ]
+    },
+    "gas": {
+      "label": "専用GAS",
+      "status": "実装あり",
+      "summary": "一覧取得と2種類のログ書込みを受ける。",
+      "specification": "doGet listはJSONを返し、doPostはTOKENを照合してaddLimitLogまたはaddUsageLogへ振り分ける。",
+      "constraints": [
+        "progress用GASとは別プロジェクトを使う設計。個人別のログイン認証ではない。"
+      ],
+      "sources": [
+        {
+          "label": "gas/Code.gs",
+          "url": "https://github.com/gurii-gabreh/credit-radar/blob/ba09e5261777e06f0140c995a172d2312fc6da14/gas/Code.gs"
+        },
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/credit-radar/blob/ba09e5261777e06f0140c995a172d2312fc6da14/README.md"
+        }
+      ]
+    },
+    "sheets": {
+      "label": "2つのログタブ",
+      "status": "実装あり",
+      "summary": "共通の進捗管理Sheetに専用タブだけを追加する。",
+      "specification": "使用量ログと利用上限ログを扱う。使用量ログはrepo・task・着手日時で既存行を探し、あれば更新する。",
+      "constraints": [],
+      "sources": [
+        {
+          "label": "gas/Code.gs",
+          "url": "https://github.com/gurii-gabreh/credit-radar/blob/ba09e5261777e06f0140c995a172d2312fc6da14/gas/Code.gs"
+        }
+      ]
+    },
+    "manual": {
+      "label": "利用上限の手動記録",
+      "status": "実装あり",
+      "summary": "上限に達したと感じた時刻と状況を入力する。",
+      "specification": "フォームがGASへPOSTし、一覧を再読込してグラフへ反映する。",
+      "constraints": [
+        "自己申告のログ。APIが実際の上限到達を検知しているわけではない。"
+      ],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/credit-radar/blob/ba09e5261777e06f0140c995a172d2312fc6da14/index.html"
+        }
+      ]
+    },
+    "usage": {
+      "label": "タスク作業量の記録口",
+      "status": "実装あり",
+      "summary": "外部Routine等からのログ登録用APIを用意する。",
+      "specification": "GASのaddUsageLogに作業開始・完了等を渡す想定。",
+      "constraints": [
+        "各Routineから自動で呼ぶ接続はREADME上で未実施。受け口があるだけで全作業を自動収集できるとは言えない。"
+      ],
+      "sources": [
+        {
+          "label": "gas/Code.gs",
+          "url": "https://github.com/gurii-gabreh/credit-radar/blob/ba09e5261777e06f0140c995a172d2312fc6da14/gas/Code.gs"
+        },
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/credit-radar/blob/ba09e5261777e06f0140c995a172d2312fc6da14/README.md"
+        }
+      ]
+    }
+  },
+  "features": [
+    {
+      "label": "このアプリの特徴",
+      "summary": "実測作業ログと自己申告の上限時刻を突き合わせるための道具。公式利用量APIの監視ではない。",
+      "detail": "Claude Codeの作業量と、利用上限に達した時刻を同じ日付軸で比較する。",
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/credit-radar/blob/ba09e5261777e06f0140c995a172d2312fc6da14/index.html"
+        },
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/credit-radar/blob/ba09e5261777e06f0140c995a172d2312fc6da14/README.md"
+        },
+        {
+          "label": "gas/Code.gs",
+          "url": "https://github.com/gurii-gabreh/credit-radar/blob/ba09e5261777e06f0140c995a172d2312fc6da14/gas/Code.gs"
+        }
+      ]
+    }
+  ],
+  "flows": [
+    {
+      "title": "上限を記録する",
+      "kind": "solid",
+      "columns": [
+        [
+          "manual"
+        ],
+        [
+          "gas"
+        ],
+        [
+          "sheets"
+        ],
+        [
+          "ui"
+        ]
+      ],
+      "labels": [
+        "共有トークン付きで送信",
+        "専用ログタブへ保存",
+        "GET結果をグラフ・表へ描画"
+      ],
+      "sources": [
+        {
+          "label": "index.html",
+          "url": "https://github.com/gurii-gabreh/credit-radar/blob/ba09e5261777e06f0140c995a172d2312fc6da14/index.html"
+        },
+        {
+          "label": "gas/Code.gs",
+          "url": "https://github.com/gurii-gabreh/credit-radar/blob/ba09e5261777e06f0140c995a172d2312fc6da14/gas/Code.gs"
+        },
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/credit-radar/blob/ba09e5261777e06f0140c995a172d2312fc6da14/README.md"
+        }
+      ]
+    },
+    {
+      "title": "外部作業ログの受け口",
+      "kind": "solid",
+      "columns": [
+        [
+          "usage"
+        ],
+        [
+          "gas"
+        ]
+      ],
+      "labels": [
+        "addUsageLogの入力を処理"
+      ],
+      "sources": [
+        {
+          "label": "gas/Code.gs",
+          "url": "https://github.com/gurii-gabreh/credit-radar/blob/ba09e5261777e06f0140c995a172d2312fc6da14/gas/Code.gs"
+        },
+        {
+          "label": "README.md",
+          "url": "https://github.com/gurii-gabreh/credit-radar/blob/ba09e5261777e06f0140c995a172d2312fc6da14/README.md"
+        }
+      ]
+    }
+  ]
+}

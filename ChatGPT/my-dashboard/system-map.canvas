@@ -1,0 +1,497 @@
+{
+  "nodes": [
+    {
+      "id": "c3182eaac7dff82a",
+      "type": "group",
+      "x": 500,
+      "y": -45,
+      "width": 2370,
+      "height": 890,
+      "label": "画面・操作",
+      "color": "5"
+    },
+    {
+      "id": "ce0862df5a189b77",
+      "type": "group",
+      "x": 500,
+      "y": 1015,
+      "width": 2370,
+      "height": 470,
+      "label": "補助機能",
+      "color": "4"
+    },
+    {
+      "id": "7f16b064687f39c1",
+      "type": "group",
+      "x": 500,
+      "y": 1655,
+      "width": 2370,
+      "height": 470,
+      "label": "構成・保存",
+      "color": "6"
+    },
+    {
+      "id": "6c2dbdf47a43157f",
+      "type": "group",
+      "x": 500,
+      "y": 2295,
+      "width": 2370,
+      "height": 370,
+      "label": "アプリの特徴",
+      "color": "6"
+    },
+    {
+      "id": "cc966ef6b18cd6ac",
+      "type": "group",
+      "x": 990,
+      "y": 2850,
+      "width": 2480,
+      "height": 420,
+      "label": "アプリへ移動"
+    },
+    {
+      "id": "138d05c4d011886c",
+      "type": "group",
+      "x": 990,
+      "y": 3350,
+      "width": 2480,
+      "height": 420,
+      "label": "作業指示を渡す"
+    },
+    {
+      "id": "44dd9a737bbbbc28",
+      "type": "text",
+      "x": 1050,
+      "y": 30,
+      "width": 540,
+      "height": 220,
+      "text": "## 静的なリンク集\n\n**確認区分：実装あり**\n\nタブ切替で作業先やアプリを探す。",
+      "color": "5"
+    },
+    {
+      "id": "0b0c5a4157b73f1e",
+      "type": "text",
+      "x": 1810,
+      "y": 0,
+      "width": 1000,
+      "height": 280,
+      "text": "## 最終仕様\n\nindex.htmlがリンクカードとshowTab等を内包する。外部アプリはアンカーリンクで開く。\n\n### 根拠\n\n- [index.html](https://github.com/gurii-gabreh/my-dashboard/blob/f1fd4dabd7a6fa057c56e5343820bc8995dd5595/index.html)",
+      "color": "5"
+    },
+    {
+      "id": "44b8dcf10fb4f2c7",
+      "type": "text",
+      "x": 1050,
+      "y": 480,
+      "width": 540,
+      "height": 220,
+      "text": "## 他アプリへの入口\n\n**確認区分：実装あり**\n\n学習・英会話・価格収集・AIツール等へ移動する。",
+      "color": "5"
+    },
+    {
+      "id": "38c8a3e207f536b6",
+      "type": "text",
+      "x": 1810,
+      "y": 380,
+      "width": 1000,
+      "height": 420,
+      "text": "## 最終仕様\n\nEnglish-Speaking-App、PROMPT-MANAGER、ai-tool-manager、gemini-monitor、study-app、supermarket-price-tracker等の公開ページへのリンクが記載される。\n\n### 現在の制約・確認範囲\n\n- リンクの存在は他アプリとのデータ同期を意味しない。リンク先の現在の公開状態は未検証。\n\n### 根拠\n\n- [index.html](https://github.com/gurii-gabreh/my-dashboard/blob/f1fd4dabd7a6fa057c56e5343820bc8995dd5595/index.html)",
+      "color": "5"
+    },
+    {
+      "id": "ce88dc3083792793",
+      "type": "text",
+      "x": 560,
+      "y": 320,
+      "width": 300,
+      "height": 160,
+      "text": "## 画面・操作\n\n2仕様項目",
+      "color": "5"
+    },
+    {
+      "id": "84047cc57fd33a15",
+      "type": "text",
+      "x": 1050,
+      "y": 1140,
+      "width": 540,
+      "height": 220,
+      "text": "## 文字抽出用プロンプト\n\n**確認区分：実装あり**\n\n作業の指示文を表示・コピーする。",
+      "color": "4"
+    },
+    {
+      "id": "0a66e5dd528bf7ea",
+      "type": "text",
+      "x": 1810,
+      "y": 1060,
+      "width": 1000,
+      "height": 380,
+      "text": "## 最終仕様\n\nopenTexModal／copyTexPromptで、別のAIへ渡すための文字抽出指示を表示しクリップボードへコピーする。\n\n### 現在の制約・確認範囲\n\n- このページ自身で画像を解析したりClaudeを呼び出したりする処理ではない。\n\n### 根拠\n\n- [index.html](https://github.com/gurii-gabreh/my-dashboard/blob/f1fd4dabd7a6fa057c56e5343820bc8995dd5595/index.html)",
+      "color": "4"
+    },
+    {
+      "id": "d0cef71666f0f799",
+      "type": "text",
+      "x": 560,
+      "y": 1170,
+      "width": 300,
+      "height": 160,
+      "text": "## 補助機能\n\n1仕様項目",
+      "color": "4"
+    },
+    {
+      "id": "939a09475543e338",
+      "type": "text",
+      "x": 1050,
+      "y": 1780,
+      "width": 540,
+      "height": 220,
+      "text": "## HTMLに埋め込んだ情報\n\n**確認区分：実装あり**\n\n一覧内容をHTMLの編集で更新する。",
+      "color": "6"
+    },
+    {
+      "id": "9e68a28e38528c1d",
+      "type": "text",
+      "x": 1810,
+      "y": 1700,
+      "width": 1000,
+      "height": 380,
+      "text": "## 最終仕様\n\nリンクと説明はindex.htmlに直接書かれている。動的DB取得や保存APIのコードは見当たらない。\n\n### 現在の制約・確認範囲\n\n- 共有データの正本や個人別の同期機能を持つアプリではない。\n\n### 根拠\n\n- [index.html](https://github.com/gurii-gabreh/my-dashboard/blob/f1fd4dabd7a6fa057c56e5343820bc8995dd5595/index.html)",
+      "color": "6"
+    },
+    {
+      "id": "ee0bdbcde24b6917",
+      "type": "text",
+      "x": 560,
+      "y": 1810,
+      "width": 300,
+      "height": 160,
+      "text": "## 構成・保存\n\n1仕様項目",
+      "color": "6"
+    },
+    {
+      "id": "a57d61a733122d62",
+      "type": "text",
+      "x": 1050,
+      "y": 2390,
+      "width": 540,
+      "height": 180,
+      "text": "## このアプリの特徴\n\nアプリ同士をAPIでつなぐ仕組みではなく、人が移動する入口をまとめたポータル。",
+      "color": "6"
+    },
+    {
+      "id": "a719bae325d9766d",
+      "type": "text",
+      "x": 1810,
+      "y": 2340,
+      "width": 1000,
+      "height": 280,
+      "text": "## アプリの特徴\n\n作成したアプリや作業用リンクを、タブ別にまとめる個人ポータル。\n\n### 根拠\n\n- [index.html](https://github.com/gurii-gabreh/my-dashboard/blob/f1fd4dabd7a6fa057c56e5343820bc8995dd5595/index.html)",
+      "color": "6"
+    },
+    {
+      "id": "5b8a8b56dada6ce7",
+      "type": "text",
+      "x": 560,
+      "y": 2390,
+      "width": 300,
+      "height": 180,
+      "text": "## アプリの特徴\n\n機能の組合せ・運用方法・設計上の性質",
+      "color": "6"
+    },
+    {
+      "id": "f623ff49da8d81cd",
+      "type": "text",
+      "x": 1050,
+      "y": 2920,
+      "width": 540,
+      "height": 280,
+      "text": "## アプリへ移動\n\nリンクカードから別サイトへ開く\n\n記録に基づく前提・対応順\n\n- [index.html](https://github.com/gurii-gabreh/my-dashboard/blob/f1fd4dabd7a6fa057c56e5343820bc8995dd5595/index.html)",
+      "color": "1"
+    },
+    {
+      "id": "b4395f34967fee2a",
+      "type": "text",
+      "x": 1810,
+      "y": 2880,
+      "width": 620,
+      "height": 280,
+      "text": "## ui\n\n**静的なリンク集**\n\nタブ切替で作業先やアプリを探す。\n\n上側の同じ項目の再掲。",
+      "color": "5"
+    },
+    {
+      "id": "b25d50193955a4fc",
+      "type": "text",
+      "x": 2650,
+      "y": 2880,
+      "width": 760,
+      "height": 280,
+      "text": "## apps\n\n**他アプリへの入口**\n\n学習・英会話・価格収集・AIツール等へ移動する。\n\n上側の同じ項目の再掲。",
+      "color": "5"
+    },
+    {
+      "id": "17d346ba646448be",
+      "type": "text",
+      "x": 1050,
+      "y": 3420,
+      "width": 540,
+      "height": 280,
+      "text": "## 作業指示を渡す\n\nモーダルで指示文を表示・コピー\n\n記録に基づく前提・対応順\n\n- [index.html](https://github.com/gurii-gabreh/my-dashboard/blob/f1fd4dabd7a6fa057c56e5343820bc8995dd5595/index.html)",
+      "color": "1"
+    },
+    {
+      "id": "f8b1b8dd9b985c0c",
+      "type": "text",
+      "x": 1810,
+      "y": 3380,
+      "width": 620,
+      "height": 280,
+      "text": "## ui\n\n**静的なリンク集**\n\nタブ切替で作業先やアプリを探す。\n\n上側の同じ項目の再掲。",
+      "color": "5"
+    },
+    {
+      "id": "4f36c2b17b96a8a1",
+      "type": "text",
+      "x": 2650,
+      "y": 3380,
+      "width": 760,
+      "height": 280,
+      "text": "## prompt\n\n**文字抽出用プロンプト**\n\n作業の指示文を表示・コピーする。\n\n上側の同じ項目の再掲。",
+      "color": "4"
+    },
+    {
+      "id": "e2ba41af03120f14",
+      "type": "text",
+      "x": 560,
+      "y": 3200,
+      "width": 300,
+      "height": 360,
+      "text": "## つながり\n\n矢印：記録から確認できる前提・対応順\n\n矢印なし＋関連ラベル：依存を意味しない関連\n\nカードは上側の同じ項目の再掲。",
+      "color": "1"
+    },
+    {
+      "id": "4813494d137e1631",
+      "type": "text",
+      "x": 0,
+      "y": 1570,
+      "width": 380,
+      "height": 740,
+      "text": "# My Dashboard：内部構成・連関図\n\n**gurii-gabreh/my-dashboard**\n\n作成したアプリや作業用リンクを、タブ別にまとめる個人ポータル。 上側は役割別の内部構成、下側はデータのつながり。\n\nモード：最終仕様・アプリの特徴\n\n記録：2026-10-17 JST\n\n対象：f1fd4dabd7a6fa057c56e5343820bc8995dd5595\n\n- 既定ブランチ main の固定コミットを確認したスナップショット。\n- 実装ありはコードの存在を示す。稼働環境・認証設定・実機での動作は未検証。\n- 技術・モデル・サービス名はコード中の設定や候補。現行の提供状況・料金を保証しない。"
+    }
+  ],
+  "edges": [
+    {
+      "id": "d6e243df852fa85e",
+      "fromNode": "44dd9a737bbbbc28",
+      "fromSide": "right",
+      "toNode": "0b0c5a4157b73f1e",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "5"
+    },
+    {
+      "id": "574f41d3772755dc",
+      "fromNode": "44b8dcf10fb4f2c7",
+      "fromSide": "right",
+      "toNode": "38c8a3e207f536b6",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "5"
+    },
+    {
+      "id": "2ea94e346da265f1",
+      "fromNode": "ce88dc3083792793",
+      "fromSide": "right",
+      "toNode": "44dd9a737bbbbc28",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "5"
+    },
+    {
+      "id": "c3de2cdaf4d7ef4d",
+      "fromNode": "ce88dc3083792793",
+      "fromSide": "right",
+      "toNode": "44b8dcf10fb4f2c7",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "5"
+    },
+    {
+      "id": "c5ad98f14c8fe144",
+      "fromNode": "84047cc57fd33a15",
+      "fromSide": "right",
+      "toNode": "0a66e5dd528bf7ea",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "4"
+    },
+    {
+      "id": "accd5351be137d00",
+      "fromNode": "d0cef71666f0f799",
+      "fromSide": "right",
+      "toNode": "84047cc57fd33a15",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "4"
+    },
+    {
+      "id": "22260f34651dc79b",
+      "fromNode": "939a09475543e338",
+      "fromSide": "right",
+      "toNode": "9e68a28e38528c1d",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "6"
+    },
+    {
+      "id": "f8301ff1d467bfb5",
+      "fromNode": "ee0bdbcde24b6917",
+      "fromSide": "right",
+      "toNode": "939a09475543e338",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "ec5221d2a87b28dd",
+      "fromNode": "a57d61a733122d62",
+      "fromSide": "right",
+      "toNode": "a719bae325d9766d",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "特徴・根拠",
+      "color": "6"
+    },
+    {
+      "id": "da5a1fc396296697",
+      "fromNode": "5b8a8b56dada6ce7",
+      "fromSide": "right",
+      "toNode": "a57d61a733122d62",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "c06b7eca9fcfff6b",
+      "fromNode": "f623ff49da8d81cd",
+      "fromSide": "right",
+      "toNode": "b4395f34967fee2a",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "対象",
+      "color": "1"
+    },
+    {
+      "id": "36962329f86b4b98",
+      "fromNode": "b4395f34967fee2a",
+      "fromSide": "right",
+      "toNode": "b25d50193955a4fc",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "リンクカードから別サイトへ開く",
+      "color": "1"
+    },
+    {
+      "id": "ce429f740173de1f",
+      "fromNode": "17d346ba646448be",
+      "fromSide": "right",
+      "toNode": "f8b1b8dd9b985c0c",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "対象",
+      "color": "1"
+    },
+    {
+      "id": "c88bdbf2d5b98ff4",
+      "fromNode": "f8b1b8dd9b985c0c",
+      "fromSide": "right",
+      "toNode": "4f36c2b17b96a8a1",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "モーダルで指示文を表示・コピー",
+      "color": "1"
+    },
+    {
+      "id": "8aa566ef59cc3fab",
+      "fromNode": "e2ba41af03120f14",
+      "fromSide": "right",
+      "toNode": "f623ff49da8d81cd",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "d13265f9c06538df",
+      "fromNode": "e2ba41af03120f14",
+      "fromSide": "right",
+      "toNode": "17d346ba646448be",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "4dbaae493691f67f",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ce88dc3083792793",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "33f5541e8ad7f3a2",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "d0cef71666f0f799",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "6751e4e23f7cca29",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ee0bdbcde24b6917",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "00741a86a27bbe8b",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "5b8a8b56dada6ce7",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "de33ddce7263b63f",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "e2ba41af03120f14",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    }
+  ]
+}

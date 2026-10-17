@@ -1,0 +1,804 @@
+{
+  "nodes": [
+    {
+      "id": "c3182eaac7dff82a",
+      "type": "group",
+      "x": 500,
+      "y": -45,
+      "width": 2370,
+      "height": 530,
+      "label": "画面・操作",
+      "color": "5"
+    },
+    {
+      "id": "ce0862df5a189b77",
+      "type": "group",
+      "x": 500,
+      "y": 655,
+      "width": 2370,
+      "height": 1070,
+      "label": "音声・AI画面",
+      "color": "4"
+    },
+    {
+      "id": "7f16b064687f39c1",
+      "type": "group",
+      "x": 500,
+      "y": 1895,
+      "width": 2370,
+      "height": 1530,
+      "label": "ログ・保存",
+      "color": "6"
+    },
+    {
+      "id": "12f34febabbeec4e",
+      "type": "group",
+      "x": 500,
+      "y": 3595,
+      "width": 2370,
+      "height": 550,
+      "label": "Web版・他アプリ",
+      "color": "2"
+    },
+    {
+      "id": "6c2dbdf47a43157f",
+      "type": "group",
+      "x": 500,
+      "y": 4315,
+      "width": 2370,
+      "height": 450,
+      "label": "アプリの特徴",
+      "color": "6"
+    },
+    {
+      "id": "cc966ef6b18cd6ac",
+      "type": "group",
+      "x": 990,
+      "y": 4950,
+      "width": 4560,
+      "height": 560,
+      "label": "音声でAI画面と会話する"
+    },
+    {
+      "id": "138d05c4d011886c",
+      "type": "group",
+      "x": 990,
+      "y": 5590,
+      "width": 4560,
+      "height": 660,
+      "label": "タスク・ログを共有する"
+    },
+    {
+      "id": "5fd76cf72f0bd6eb",
+      "type": "group",
+      "x": 990,
+      "y": 6330,
+      "width": 2480,
+      "height": 480,
+      "label": "設計情報の参照"
+    },
+    {
+      "id": "015e2c89b0e20777",
+      "type": "text",
+      "x": 1050,
+      "y": 100,
+      "width": 540,
+      "height": 240,
+      "text": "## Chromeサイドパネルとウィジェット\n\n**確認区分：実装あり**\n\n音声会話、タスク監査、定型文、設計、ジャーナルを操作する。",
+      "color": "5"
+    },
+    {
+      "id": "529409f9de46037e",
+      "type": "text",
+      "x": 1810,
+      "y": 0,
+      "width": 1000,
+      "height": 440,
+      "text": "## 最終仕様\n\nManifest V3の拡張としてsidepanelとwidget群を提供する。widget-common等で共通動作をまとめる。\n\n### 現在の制約・確認範囲\n\n- AI Dev Loggerとは別の拡張。対象AIサイトのログイン状態とUIが必要。\n\n### 根拠\n\n- [manifest.json](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/manifest.json)\n- [sidepanel.js](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/sidepanel.js)\n- [widget-common.js](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/widget-common.js)",
+      "color": "5"
+    },
+    {
+      "id": "ce88dc3083792793",
+      "type": "text",
+      "x": 560,
+      "y": 140,
+      "width": 300,
+      "height": 160,
+      "text": "## 画面・操作\n\n1仕様項目",
+      "color": "5"
+    },
+    {
+      "id": "a4bbbe9cc47220b7",
+      "type": "text",
+      "x": 1050,
+      "y": 810,
+      "width": 540,
+      "height": 220,
+      "text": "## ブラウザの音声入出力\n\n**確認区分：実装あり**\n\n呼びかけを認識して文字を送り、返答を読み上げる。",
+      "color": "4"
+    },
+    {
+      "id": "ea57d4dbb9289634",
+      "type": "text",
+      "x": 1810,
+      "y": 700,
+      "width": 1000,
+      "height": 440,
+      "text": "## 最終仕様\n\nSpeechRecognitionとspeechSynthesisを使い、読み上げ中の再認識を避ける。対象をClaude／Geminiで切り替える。\n\n### 現在の制約・確認範囲\n\n- 独自のAI音声APIサーバーではない。ブラウザの音声機能・権限に依存する。\n\n### 根拠\n\n- [sidepanel.js](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/sidepanel.js)\n- [permission.js](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/permission.js)",
+      "color": "4"
+    },
+    {
+      "id": "154b1fc20d41489a",
+      "type": "text",
+      "x": 1050,
+      "y": 1350,
+      "width": 540,
+      "height": 220,
+      "text": "## content scriptの橋渡し\n\n**確認区分：実装あり**\n\nAIサイトの入力欄と応答DOMを操作する。",
+      "color": "4"
+    },
+    {
+      "id": "c49b2f71bf18ba96",
+      "type": "text",
+      "x": 1810,
+      "y": 1240,
+      "width": 1000,
+      "height": 440,
+      "text": "## 最終仕様\n\nchrome.tabs.sendMessageで文字列を渡し、content.jsが入力・送信・応答監視・抽出を担当する。セレクタ上書きもできる。\n\n### 現在の制約・確認範囲\n\n- AI APIを直接呼ぶ方式ではなく、Web UIの構造変更に影響される。\n\n### 根拠\n\n- [content.js](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/content.js)\n- [sidepanel.js](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/sidepanel.js)",
+      "color": "4"
+    },
+    {
+      "id": "d0cef71666f0f799",
+      "type": "text",
+      "x": 560,
+      "y": 1110,
+      "width": 300,
+      "height": 160,
+      "text": "## 音声・AI画面\n\n2仕様項目",
+      "color": "4"
+    },
+    {
+      "id": "8fcadf19125582fa",
+      "type": "text",
+      "x": 1050,
+      "y": 2050,
+      "width": 540,
+      "height": 220,
+      "text": "## タスクとログの状態管理\n\n**確認区分：実装あり**\n\n抽出結果と会話ログを端末に保持する。",
+      "color": "6"
+    },
+    {
+      "id": "ba9c70c6543bb7fa",
+      "type": "text",
+      "x": 1810,
+      "y": 1940,
+      "width": 1000,
+      "height": 440,
+      "text": "## 最終仕様\n\ntracker-store.jsとroom-log-store.jsがchrome.storage.local等へ記録し、一覧や除外状態を管理する。\n\n### 現在の制約・確認範囲\n\n- 自動抽出だけで全タスクを確定するのではなく、AIによる監査結果を受ける経路もある。\n\n### 根拠\n\n- [tracker-store.js](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/tracker-store.js)\n- [room-log-store.js](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/room-log-store.js)\n- [sidepanel.js](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/sidepanel.js)",
+      "color": "6"
+    },
+    {
+      "id": "d6263917c1fdcc64",
+      "type": "text",
+      "x": 1050,
+      "y": 2590,
+      "width": 540,
+      "height": 220,
+      "text": "## GASのGitHub書込み中継\n\n**確認区分：実装あり**\n\ntracker・knowledge・room-log・journalを保存する。",
+      "color": "6"
+    },
+    {
+      "id": "211ff15ab065821a",
+      "type": "text",
+      "x": 1810,
+      "y": 2480,
+      "width": 1000,
+      "height": 440,
+      "text": "## 最終仕様\n\ndoPostが各actionを受け、Script PropertiesのGitHubトークンでContents APIを更新する。ログはidで重複を扱い、競合時は再試行する。\n\n### 現在の制約・確認範囲\n\n- GASのデプロイ・Script Propertiesは別途設定が必要。今回は実送信していない。\n\n### 根拠\n\n- [gas/code.gs](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/gas/code.gs)\n- [gas/README.md](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/gas/README.md)",
+      "color": "6"
+    },
+    {
+      "id": "7beb5b1c6181a43b",
+      "type": "text",
+      "x": 1050,
+      "y": 3090,
+      "width": 540,
+      "height": 220,
+      "text": "## GitHubのJSON\n\n**確認区分：実装あり**\n\nタスク・テンプレート・ログ・ジャーナルを共有する。",
+      "color": "6"
+    },
+    {
+      "id": "ac9da194cc7f6923",
+      "type": "text",
+      "x": 1810,
+      "y": 3020,
+      "width": 1000,
+      "height": 360,
+      "text": "## 最終仕様\n\ndata配下を共有データとして読み、GASまたはClaude Codeによる更新を受ける。ジャーナルの生トランスクリプトはmirai-journalの分析済みJSONとは別。\n\n### 根拠\n\n- [sidepanel.js](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/sidepanel.js)\n- [gas/code.gs](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/gas/code.gs)\n- [widget-journal.js](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/widget-journal.js)",
+      "color": "6"
+    },
+    {
+      "id": "ee0bdbcde24b6917",
+      "type": "text",
+      "x": 560,
+      "y": 2580,
+      "width": 300,
+      "height": 160,
+      "text": "## ログ・保存\n\n3仕様項目",
+      "color": "6"
+    },
+    {
+      "id": "030001737bf41c8f",
+      "type": "text",
+      "x": 1050,
+      "y": 3750,
+      "width": 540,
+      "height": 240,
+      "text": "## 拡張なしのWebビューア\n\n**確認区分：実装あり**\n\nJSONや設計情報を通常ページで参照し、ジャーナルを渡す。",
+      "color": "2"
+    },
+    {
+      "id": "a87033ff9372b9d5",
+      "type": "text",
+      "x": 1810,
+      "y": 3640,
+      "width": 1000,
+      "height": 460,
+      "text": "## 最終仕様\n\nwebapp/index.htmlがトラッカー・定型文・ジャーナル等を表示する。設計はprogress-tracker-dashboardのrequirements.jsonを参照する。\n\n### 現在の制約・確認範囲\n\n- Web版にはchrome.tabsによるAI画面操作をそのまま実装できない。音声ブリッジ本体と役割が異なる。\n\n### 根拠\n\n- [webapp/index.html](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/webapp/index.html)\n- [widget-design.js](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/widget-design.js)\n- [.github/workflows/deploy-pages.yml](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/.github/workflows/deploy-pages.yml)",
+      "color": "2"
+    },
+    {
+      "id": "ce37eeda8cab1f46",
+      "type": "text",
+      "x": 560,
+      "y": 3790,
+      "width": 300,
+      "height": 160,
+      "text": "## Web版・他アプリ\n\n1仕様項目",
+      "color": "2"
+    },
+    {
+      "id": "a57d61a733122d62",
+      "type": "text",
+      "x": 1050,
+      "y": 4450,
+      "width": 540,
+      "height": 180,
+      "text": "## このアプリの特徴\n\nAI API連携ではなくWeb画面を操作する拡張。共有記録はGAS→GitHub、Web版は参照・補助に分担する。",
+      "color": "6"
+    },
+    {
+      "id": "a719bae325d9766d",
+      "type": "text",
+      "x": 1810,
+      "y": 4360,
+      "width": 1000,
+      "height": 360,
+      "text": "## アプリの特徴\n\nChrome拡張でClaude／Geminiの画面と音声・タスク・ログをつなぎ、GAS経由でGitHubへ記録する。\n\n### 根拠\n\n- [manifest.json](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/manifest.json)\n- [sidepanel.js](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/sidepanel.js)\n- [widget-common.js](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/widget-common.js)\n- [permission.js](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/permission.js)",
+      "color": "6"
+    },
+    {
+      "id": "5b8a8b56dada6ce7",
+      "type": "text",
+      "x": 560,
+      "y": 4450,
+      "width": 300,
+      "height": 180,
+      "text": "## アプリの特徴\n\n機能の組合せ・運用方法・設計上の性質",
+      "color": "6"
+    },
+    {
+      "id": "f623ff49da8d81cd",
+      "type": "text",
+      "x": 1050,
+      "y": 4980,
+      "width": 540,
+      "height": 500,
+      "text": "## 音声でAI画面と会話する\n\n認識した文字を渡す\n\n対象タブへ送信依頼\n\n抽出した返答を読み上げへ返す\n\n記録に基づく前提・対応順\n\n- [sidepanel.js](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/sidepanel.js)\n- [permission.js](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/permission.js)\n- [manifest.json](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/manifest.json)\n- [widget-common.js](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/widget-common.js)\n- [content.js](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/content.js)",
+      "color": "1"
+    },
+    {
+      "id": "b4395f34967fee2a",
+      "type": "text",
+      "x": 1810,
+      "y": 4980,
+      "width": 620,
+      "height": 280,
+      "text": "## speech\n\n**ブラウザの音声入出力**\n\n呼びかけを認識して文字を送り、返答を読み上げる。\n\n上側の同じ項目の再掲。",
+      "color": "4"
+    },
+    {
+      "id": "b25d50193955a4fc",
+      "type": "text",
+      "x": 2650,
+      "y": 4980,
+      "width": 760,
+      "height": 280,
+      "text": "## panel\n\n**Chromeサイドパネルとウィジェット**\n\n音声会話、タスク監査、定型文、設計、ジャーナルを操作する。\n\n上側の同じ項目の再掲。",
+      "color": "5"
+    },
+    {
+      "id": "c0d5017348fb926f",
+      "type": "text",
+      "x": 3650,
+      "y": 4980,
+      "width": 840,
+      "height": 280,
+      "text": "## dom\n\n**content scriptの橋渡し**\n\nAIサイトの入力欄と応答DOMを操作する。\n\n上側の同じ項目の再掲。",
+      "color": "4"
+    },
+    {
+      "id": "07ab1a462bf44409",
+      "type": "text",
+      "x": 4730,
+      "y": 4980,
+      "width": 760,
+      "height": 280,
+      "text": "## speech\n\n**ブラウザの音声入出力**\n\n呼びかけを認識して文字を送り、返答を読み上げる。\n\n上側の同じ項目の再掲。",
+      "color": "4"
+    },
+    {
+      "id": "17d346ba646448be",
+      "type": "text",
+      "x": 1050,
+      "y": 5620,
+      "width": 540,
+      "height": 600,
+      "text": "## タスク・ログを共有する\n\n保存actionで送信\n\nGitHub Contents APIで書込\n\n公開JSONを読んで表示\n\n記録に基づく前提・対応順\n\n- [tracker-store.js](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/tracker-store.js)\n- [room-log-store.js](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/room-log-store.js)\n- [sidepanel.js](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/sidepanel.js)\n- [gas/code.gs](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/gas/code.gs)\n- [gas/README.md](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/gas/README.md)\n- [widget-journal.js](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/widget-journal.js)\n- [webapp/index.html](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/webapp/index.html)\n- [widget-design.js](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/widget-design.js)\n- [.github/workflows/deploy-pages.yml](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/.github/workflows/deploy-pages.yml)",
+      "color": "1"
+    },
+    {
+      "id": "f8b1b8dd9b985c0c",
+      "type": "text",
+      "x": 1810,
+      "y": 5620,
+      "width": 620,
+      "height": 280,
+      "text": "## state\n\n**タスクとログの状態管理**\n\n抽出結果と会話ログを端末に保持する。\n\n上側の同じ項目の再掲。",
+      "color": "6"
+    },
+    {
+      "id": "4f36c2b17b96a8a1",
+      "type": "text",
+      "x": 2650,
+      "y": 5620,
+      "width": 760,
+      "height": 280,
+      "text": "## gas\n\n**GASのGitHub書込み中継**\n\ntracker・knowledge・room-log・journalを保存する。\n\n上側の同じ項目の再掲。",
+      "color": "6"
+    },
+    {
+      "id": "da0932f1fbf22b7b",
+      "type": "text",
+      "x": 3650,
+      "y": 5620,
+      "width": 840,
+      "height": 280,
+      "text": "## json\n\n**GitHubのJSON**\n\nタスク・テンプレート・ログ・ジャーナルを共有する。\n\n上側の同じ項目の再掲。",
+      "color": "6"
+    },
+    {
+      "id": "6fc35c7463a3dffd",
+      "type": "text",
+      "x": 4730,
+      "y": 5620,
+      "width": 760,
+      "height": 280,
+      "text": "## web\n\n**拡張なしのWebビューア**\n\nJSONや設計情報を通常ページで参照し、ジャーナルを渡す。\n\n上側の同じ項目の再掲。",
+      "color": "2"
+    },
+    {
+      "id": "a114a8acdd550009",
+      "type": "text",
+      "x": 1050,
+      "y": 6360,
+      "width": 540,
+      "height": 420,
+      "text": "## 設計情報の参照\n\nテンプレート・タスクを再読込。設計は別RepoのJSONも参照\n\n記録に基づく前提・対応順\n\n- [sidepanel.js](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/sidepanel.js)\n- [gas/code.gs](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/gas/code.gs)\n- [widget-journal.js](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/widget-journal.js)\n- [manifest.json](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/manifest.json)\n- [widget-common.js](https://github.com/gurii-gabreh/claude-voice-bridge/blob/f6e832014f183fa6890008cfab0d9969b2484c61/widget-common.js)",
+      "color": "1"
+    },
+    {
+      "id": "ab5021b459cab156",
+      "type": "text",
+      "x": 1810,
+      "y": 6360,
+      "width": 620,
+      "height": 280,
+      "text": "## json\n\n**GitHubのJSON**\n\nタスク・テンプレート・ログ・ジャーナルを共有する。\n\n上側の同じ項目の再掲。",
+      "color": "6"
+    },
+    {
+      "id": "0b4dc6d157889e4e",
+      "type": "text",
+      "x": 2650,
+      "y": 6360,
+      "width": 760,
+      "height": 280,
+      "text": "## panel\n\n**Chromeサイドパネルとウィジェット**\n\n音声会話、タスク監査、定型文、設計、ジャーナルを操作する。\n\n上側の同じ項目の再掲。",
+      "color": "5"
+    },
+    {
+      "id": "e2ba41af03120f14",
+      "type": "text",
+      "x": 560,
+      "y": 5770,
+      "width": 300,
+      "height": 360,
+      "text": "## つながり\n\n矢印：記録から確認できる前提・対応順\n\n矢印なし＋関連ラベル：依存を意味しない関連\n\nカードは上側の同じ項目の再掲。",
+      "color": "1"
+    },
+    {
+      "id": "4813494d137e1631",
+      "type": "text",
+      "x": 0,
+      "y": 3060,
+      "width": 380,
+      "height": 800,
+      "text": "# Claude Voice Bridge：内部構成・連関図\n\n**gurii-gabreh/claude-voice-bridge**\n\nChrome拡張でClaude／Geminiの画面と音声・タスク・ログをつなぎ、GAS経由でGitHubへ記録する。 上側は役割別の内部構成、下側はデータのつながり。\n\nモード：最終仕様・アプリの特徴\n\n記録：2026-10-17 JST\n\n対象：f6e832014f183fa6890008cfab0d9969b2484c61\n\n- 既定ブランチ main の固定コミットを確認したスナップショット。\n- 実装ありはコードの存在を示す。稼働環境・認証設定・実機での動作は未検証。\n- 技術・モデル・サービス名はコード中の設定や候補。現行の提供状況・料金を保証しない。"
+    }
+  ],
+  "edges": [
+    {
+      "id": "842ec36c7bad40e3",
+      "fromNode": "015e2c89b0e20777",
+      "fromSide": "right",
+      "toNode": "529409f9de46037e",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "5"
+    },
+    {
+      "id": "96b7240ab6d8fffc",
+      "fromNode": "ce88dc3083792793",
+      "fromSide": "right",
+      "toNode": "015e2c89b0e20777",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "5"
+    },
+    {
+      "id": "39a27919198ef6fd",
+      "fromNode": "a4bbbe9cc47220b7",
+      "fromSide": "right",
+      "toNode": "ea57d4dbb9289634",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "4"
+    },
+    {
+      "id": "ef9b2e190b7b344f",
+      "fromNode": "154b1fc20d41489a",
+      "fromSide": "right",
+      "toNode": "c49b2f71bf18ba96",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "4"
+    },
+    {
+      "id": "4cec58174960897f",
+      "fromNode": "d0cef71666f0f799",
+      "fromSide": "right",
+      "toNode": "a4bbbe9cc47220b7",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "4"
+    },
+    {
+      "id": "37c9355e92a52d0d",
+      "fromNode": "d0cef71666f0f799",
+      "fromSide": "right",
+      "toNode": "154b1fc20d41489a",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "4"
+    },
+    {
+      "id": "a2309f13aa19a67a",
+      "fromNode": "8fcadf19125582fa",
+      "fromSide": "right",
+      "toNode": "ba9c70c6543bb7fa",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "6"
+    },
+    {
+      "id": "dbd0217c97a4cc7d",
+      "fromNode": "d6263917c1fdcc64",
+      "fromSide": "right",
+      "toNode": "211ff15ab065821a",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "6"
+    },
+    {
+      "id": "7357353ffd2a873c",
+      "fromNode": "7beb5b1c6181a43b",
+      "fromSide": "right",
+      "toNode": "ac9da194cc7f6923",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "6"
+    },
+    {
+      "id": "80f2beadfb27488e",
+      "fromNode": "ee0bdbcde24b6917",
+      "fromSide": "right",
+      "toNode": "8fcadf19125582fa",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "bc0758b443cd39ba",
+      "fromNode": "ee0bdbcde24b6917",
+      "fromSide": "right",
+      "toNode": "d6263917c1fdcc64",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "62f072b9f7a45ad5",
+      "fromNode": "ee0bdbcde24b6917",
+      "fromSide": "right",
+      "toNode": "7beb5b1c6181a43b",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "760f0f9b87e5b8b8",
+      "fromNode": "030001737bf41c8f",
+      "fromSide": "right",
+      "toNode": "a87033ff9372b9d5",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "詳細",
+      "color": "2"
+    },
+    {
+      "id": "46be5522a6897d7f",
+      "fromNode": "ce37eeda8cab1f46",
+      "fromSide": "right",
+      "toNode": "030001737bf41c8f",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "2"
+    },
+    {
+      "id": "ef1e340f45131d90",
+      "fromNode": "a57d61a733122d62",
+      "fromSide": "right",
+      "toNode": "a719bae325d9766d",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "特徴・根拠",
+      "color": "6"
+    },
+    {
+      "id": "92ce88946f76b54d",
+      "fromNode": "5b8a8b56dada6ce7",
+      "fromSide": "right",
+      "toNode": "a57d61a733122d62",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "6"
+    },
+    {
+      "id": "55e4b4cc930cdb02",
+      "fromNode": "f623ff49da8d81cd",
+      "fromSide": "right",
+      "toNode": "b4395f34967fee2a",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "対象",
+      "color": "1"
+    },
+    {
+      "id": "516d8e301ed11692",
+      "fromNode": "b4395f34967fee2a",
+      "fromSide": "right",
+      "toNode": "b25d50193955a4fc",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "認識した文字を渡す",
+      "color": "1"
+    },
+    {
+      "id": "7ac39aeaccb8daec",
+      "fromNode": "b25d50193955a4fc",
+      "fromSide": "right",
+      "toNode": "c0d5017348fb926f",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "対象タブへ送信依頼",
+      "color": "1"
+    },
+    {
+      "id": "911d7cfe01b000a7",
+      "fromNode": "c0d5017348fb926f",
+      "fromSide": "right",
+      "toNode": "07ab1a462bf44409",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "抽出した返答を読み上げへ返す",
+      "color": "1"
+    },
+    {
+      "id": "722f0a6d9a5dc96f",
+      "fromNode": "17d346ba646448be",
+      "fromSide": "right",
+      "toNode": "f8b1b8dd9b985c0c",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "対象",
+      "color": "1"
+    },
+    {
+      "id": "c9f85138ae1bed14",
+      "fromNode": "f8b1b8dd9b985c0c",
+      "fromSide": "right",
+      "toNode": "4f36c2b17b96a8a1",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "保存actionで送信",
+      "color": "1"
+    },
+    {
+      "id": "937efd4d5ef41f81",
+      "fromNode": "4f36c2b17b96a8a1",
+      "fromSide": "right",
+      "toNode": "da0932f1fbf22b7b",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "GitHub Contents APIで書込",
+      "color": "1"
+    },
+    {
+      "id": "506c70458b5669a0",
+      "fromNode": "da0932f1fbf22b7b",
+      "fromSide": "right",
+      "toNode": "6fc35c7463a3dffd",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "公開JSONを読んで表示",
+      "color": "1"
+    },
+    {
+      "id": "e7641c44227ccc0e",
+      "fromNode": "a114a8acdd550009",
+      "fromSide": "right",
+      "toNode": "ab5021b459cab156",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "label": "対象",
+      "color": "1"
+    },
+    {
+      "id": "ffce5c5d430908ed",
+      "fromNode": "ab5021b459cab156",
+      "fromSide": "right",
+      "toNode": "0b4dc6d157889e4e",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "arrow",
+      "label": "テンプレート・タスクを再読込。設計は別RepoのJSONも参照",
+      "color": "1"
+    },
+    {
+      "id": "d32fe90d62efd459",
+      "fromNode": "e2ba41af03120f14",
+      "fromSide": "right",
+      "toNode": "f623ff49da8d81cd",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "6827b46e64da68e7",
+      "fromNode": "e2ba41af03120f14",
+      "fromSide": "right",
+      "toNode": "17d346ba646448be",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "ef9c3bd9f9036317",
+      "fromNode": "e2ba41af03120f14",
+      "fromSide": "right",
+      "toNode": "a114a8acdd550009",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none",
+      "color": "1"
+    },
+    {
+      "id": "1bbad22b48fb2c18",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ce88dc3083792793",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "4070bf0bdd9f4a6a",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "d0cef71666f0f799",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "afc67758d58bd9ae",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ee0bdbcde24b6917",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "1387928c1a15e359",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "ce37eeda8cab1f46",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "78bfd3fb74d6de42",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "5b8a8b56dada6ce7",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    },
+    {
+      "id": "27dbad7fbe7e9556",
+      "fromNode": "4813494d137e1631",
+      "fromSide": "right",
+      "toNode": "e2ba41af03120f14",
+      "toSide": "left",
+      "fromEnd": "none",
+      "toEnd": "none"
+    }
+  ]
+}
